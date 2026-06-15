@@ -1,0 +1,12 @@
+node_modules
+.env
+db.json
+names.json
+bighillserver.json
+desertServer.json
+deserthill.json
+deserthill2.json
+randomMess.json
+index-old.js
+.gitattributes
+.vs
