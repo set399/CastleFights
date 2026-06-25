@@ -1,4 +1,5 @@
-﻿const fs = require('fs');
+﻿require('dotenv').config();
+const fs = require('fs');
 
 const readline = require('readline');
 const rl = readline.createInterface(process.stdin, process.stdout);
@@ -99,18 +100,27 @@ names.json length: ${JSON.stringify(names).length}
         xp: '<:xp:1048892841465741372>',
         coin: '<:coin:1047983261512642650>',
         gem: '<:gem:1047983268491960392>',
-        lvl1: '<:lvl1:1504235611031207947>',
-        lvl3: '<:lvl3:1504235636171997224>',
-        lvl7: '<:lvl7:1504235653884543038>',
-        lvl10: '<:lvl10:1504235676999352472>',
-        lvl15: '<:lvl15:1504235700109971626>',
-        lvl20: '<:lvl20:1504235736197759006>',
-        lvl25: '<:lvl25:1504235757672333382>',
-        lvl30: '<:lvl30:1504235776953810954>',
-        lvl35: '<:lvl35:1504235797824540744>',
-        lvl40: '<:lvl40:1504236254848356602>',
-        lvl45: '<:lvl45:1504235853466308778>',
-        lvl50: '<a:lvl50:1504235886613893180>'
+        lvl1: '<:lvl1:1519741006982021220>',
+        lvl5: '<:lvl5:1519741033255145617>',
+        lvl10: '<:lvl10:1519741055283494913>',
+        lvl15: '<:lvl15:1519741078327132170>',
+        lvl20: '<:lvl20:1519741099042803773>',
+        lvl30: '<:lvl30:1519741122585301154>',
+        lvl40: '<:lvl40:1519741147377963128>',
+        lvl50: '<:lvl50:1519741168605200587>',
+        lvl60: '<:lvl60:1519741194857353319>',
+        lvl70: '<:lvl70:1519741221688447188>',
+        lvl80: '<:lvl80:1519741249836421170>',
+        lvl90: '<:lvl90:1519741278122676256>',
+        lvl100: '<a:lvl100:1519741302076346459>',
+        verified: '<a:verified:1047983275383214191>',
+        mod: '<:mod1:1047983257557409813>',
+        mod2: '<:mod2:1047983259453231134>',
+        challenger1: '<:challenger_badge1:975316703560990760>',
+        challenger2: '<:challenger_badge2:975316703691018250>',
+        challenger3: ':star:',
+        challenger4: '<:challenger_badge4:975316703368060969>',
+        collector: '<a:diamond:1047983266357055578>'
     };
     var servers = {};
     var currentGames = {};
@@ -313,6 +323,47 @@ names.json length: ${JSON.stringify(names).length}
         servers[code] = serverdata;
     }
 
+    function displayBadge(id, tier) {
+        if (tier == 0) return '';
+        if (id == 'verified' && tier == 1) return icons.verified;
+        if (id == 'mod' && tier == 1) return icons.mod;
+        if (id == 'mod' && tier == 2) return icons.mod2;
+        if (id == 'collector' && tier == 1) return icons.collector;
+        if (id.startsWith('challenger') && tier > 0) return icons[`challenger${tier}`];
+        return '';
+    }
+function displayBadgeText(id, tier) {
+    if (tier == 0) return '';
+    if (id == 'verified' && tier == 1) return `${icons.verified} **Verified**\n`;
+    if (id == 'mod' && tier == 1) return `${icons.mod} **Moderator**\n`;
+    if (id == 'mod' && tier == 2) return `${icons.mod2} **Head Moderator**\n`;
+    if (id == 'collector' && tier == 1) return `${icons.collector} **Collector**\n`;
+    if (id.startsWith('challenger') && tier > 0) {
+        let icon = icons[`challenger${tier}`];
+        return `${icon} **Challenger [Tier ${tier}]**\n`;
+    }
+    return '';
+}
+    function getXp(level) {
+        if (level < 1) return -1;
+        return (50*Math.pow(level, 2)) - 50*level
+    }
+    function getLevel(xp) {
+        if (xp < 0 || isNaN(xp)) return { level: 1, progress: 0, required: 0 };
+        const level = Math.floor((50 + Math.sqrt(2500 + 200 * xp)) / 100);
+        const progress = xp - getXp(level);
+        const required = getXp(level + 1) - getXp(level);
+        return { level: level, progress: progress, required: required };
+    }
+    function displayProgress(percentage) {
+        if (percentage < 1 || percentage > 100) return `⬜⬜⬜⬜⬜`;
+        if (percentage > 0 && percentage <= 20) return `🟦⬜⬜⬜⬜`;
+        if (percentage >= 21 && percentage <= 40) return `🟦🟦⬜⬜⬜`;
+        if (percentage >= 41 && percentage <= 60) return `🟦🟦🟦⬜⬜`;
+        if (percentage >= 61 && percentage <= 80) return `🟦🟦🟦🟦⬜`;
+        if (percentage > 81) return `🟦🟦🟦🟦🟦`;
+    }
+
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
     const { MessageEmbed, MessageActionRow, MessageButton, Client, WebhookClient } = require('discord.js');
@@ -391,7 +442,7 @@ names.json length: ${JSON.stringify(names).length}
                     coins: 0,
                     gems: 0,
                     xp: 0,
-                    levelBadge: 1,
+                    levelIcon: 1,
                     challengeTier: 0,
                     challengesCompleteTier1: 0,
                     challengesCompleteTier2: 0,
@@ -507,10 +558,10 @@ names.json length: ${JSON.stringify(names).length}
                         mod: 0,
                         verified: 0,
                         collector: 0,
-                        challenge: 0
+                        challenger: 0
                     },
                     settings: {
-                        embedcolor: '#ffffff',
+                        embedcolor: 'BLUE',
                         profileviews: false
 
                     },
@@ -551,44 +602,61 @@ names.json length: ${JSON.stringify(names).length}
                         ]
                     });
                 } catch (error) {
-                    console.error(`Failed to send message at ${message.channel.id}: ${error}`);
+                    console.error(`Failed to send ?register message at ${message.channel.id}: ${error}`);
                 }
             }
         }
-        if (message.content == '?profiltest') {
-            message.reply({
-                embeds: [
-                    new MessageEmbed()
-                        // .setTitle('# i think this will do markup fail :bust_in_silhouette: Profile of whoever tf exewcutes the command xd')
-                        .setDescription(`
-                        ## :bust_in_silhouette: Profile of \`@user\`
-### ${icons.lvl1} **Level 1** :white_large_square::white_large_square::white_large_square::white_large_square::white_large_square: (\`0/500 XP\`)
+        if (message.content.startsWith('?profile')) {
+            const ign = message.content.split('?profile ')[1]
+            if (!ign) {
+                try {
+                    const user = db[message.author.id];
+                    const level = getLevel(user.xp);
+                    const invWorth = (user.inventory.default * 0) + (user.inventory.default2 * 0) + (user.inventory.constructionworker * 0) + (user.inventory.farmer * 0) + (user.inventory.sweating * 100) + (user.inventory.holdingtears * 150) + (user.inventory.grin * 300) + (user.inventory.joy * 400) + (user.inventory.rofl * 500) + (user.inventory.snail * 600) + (user.inventory.beetle * 800) + (user.inventory.cricket * 1000) + (user.inventory.halo * 1200) + (user.inventory.sunglasses * 1500) + (user.inventory.suspicious * 1550) + (user.inventory.sauropod * 1600) + (user.inventory.orangutan * 1650) + (user.inventory.parrot * 1900) + (user.inventory.swan * 2100) + (user.inventory.chipmunk * 2500) + (user.inventory.nerd * 3000) + (user.inventory.raisedeyebrow * 3200) + (user.inventory.coldface * 3250) + (user.inventory.imp * 3333) + (user.inventory.pumpkin * 3400) + (user.inventory.turkey * 3500) + (user.inventory.dodo * 3600) + (user.inventory.flamingo * 3850) + (user.inventory.crocodile * 3900) + (user.inventory.beaver * 3900) + (user.inventory.flushed * 4000) + (user.inventory.cowboy * 4050) + (user.inventory.skull * 4100) + (user.inventory.alien * 4200) + (user.inventory.robot * 4400) + (user.inventory.turtle * 5000) + (user.inventory.dog * 6000) + (user.inventory.cat * 6000) + (user.inventory.rat * 6000) + (user.inventory.peacock * 7000) + (user.inventory.chicken * 7500) + (user.inventory.rich * 10000) + (user.inventory.killermouse * 11000) + (user.inventory.spaceinvader * 12000) + (user.inventory.catfemoby * 30000) + (user.inventory.femoby * 30000) + (user.inventory.rgbchicken * 100000);
+                    let kdr = (user.kills / user.deaths).toFixed(2);
+                    let winrate = ((user.wins / user.plays) * 100).toFixed(2);
+                    let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
+                    if (badgeDescriptions == '') badgeDescriptions == 'This user has no badges.'; 
+                    if (isNaN(kdr)) kdr = 0;
+                    if (isNaN(winrate)) winrate = 0;
+                    message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setDescription(`
+## :bust_in_silhouette: Profile of swep${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
+### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress/level.required)*100))} (\`${level.progress}/${level.required} XP\`)
 **Using Skin:** :bust_in_silhouette: \`Default\` (0 ${icons.coin})
 ## **Badges:**
-> This user has no badges.
+> ${badgeDescriptions}
                         `)
-                        .addField(`${icons.xp} **Total XP**`, `\`0 XP\``, true)
-                        .addField(`${icons.coin} **Coins**`, `\`0\``, true)
-                        .addField(`${icons.gem} **Gems**`, `\`0\``, true)
-                        .addField(':trophy: **Wins**', `\`0\``, true)
-                        .addField(':video_game: **Games Played**', `\`0\``, true)
-                        .addField(':star: **Winrate**', `\`0%\``, true)
-                        .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`0\``, true)
-                        .addField(`:bust_in_silhouette: **Skins Owned**`, `\`0\``, true)
-                        .addField(`:moneybag: **Inventory Value**`, `\`0\``, true)
-                        .addField(':skull: **Kills**', `\`0\``, true)
-                        .addField(':skull_crossbones: **Deaths**', `\`0\``, true)
-                        .addField(':crossed_swords: **KDR**', `\`0.00\``, true)
-                        .setFooter({ text: `?profile | @user (Player #0)` })
-                        .setColor('RANDOM')
-                ]
-            })
-            
+                                .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
+                                .addField(`${icons.coin} **Coins**`, `\`${user.coins}\``, true)
+                                .addField(`${icons.gem} **Gems**`, `\`${user.gems}\``, true)
+                                .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
+                                .addField(':video_game: **Games Played**', `\`${user.games}\``, true)
+                                .addField(':star: **Winrate**', `\`${winrate}%\``, true)
+                                .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`${user.crownDestroys}\``, true)
+                                .addField(`:bust_in_silhouette: **Skins Owned**`, `\`0\``, true)
+                                .addField(`:moneybag: **Inventory Value**`, `\`${invWorth}\``, true)
+                                .addField(':skull: **Kills**', `\`${user.kills}\``, true)
+                                .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
+                                .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
+                                .setFooter({ text: `?profile | @${user.name} (Player #0)` })
+                                .setColor(user.settings.embedcolor)
+                        ]
+                    })
+                } catch (error) {
+                    console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                }
+            } else {
+
+            }
         }
-});
+    }); 
 
 cl.on('interactionCreate', async interaction => {
     if (!interaction.isButton()) return null;
 });
+
 
 cl.login(process.env.TOKEN);
