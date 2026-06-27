@@ -718,7 +718,8 @@ const itemPrices = {
                         highestWinstreak: 0
                     },
                     profileviews: 0,
-                    canUseRequest: true
+                    canUseRequest: true,
+                    playerID: (Object.keys(db).length || 0)+1
                 };
                 db[message.author.id] = d;
                 names[name.toLowerCase()] = { id: message.author.id, display: name };
