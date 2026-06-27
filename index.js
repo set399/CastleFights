@@ -364,6 +364,57 @@ function displayBadgeText(id, tier) {
         if (percentage > 81) return `🟦🟦🟦🟦🟦`;
     }
 
+const itemPrices = {
+    default: 0,
+    default2: 0,
+    constructionworker: 0,
+    farmer: 0,
+    sweating: 100,
+    holdingtears: 150,
+    grin: 300,
+    joy: 400,
+    rofl: 500,
+    snail: 600,
+    beetle: 800,
+    cricket: 1000,
+    halo: 1200,
+    sunglasses: 1500,
+    suspicious: 1550,
+    sauropod: 1600,
+    orangutan: 1650,
+    parrot: 1900,
+    swan: 2100,
+    chipmunk: 2500,
+    nerd: 3000,
+    raisedeyebrow: 3200,
+    coldface: 3250,
+    imp: 3333,
+    pumpkin: 3400,
+    turkey: 3500,
+    dodo: 3600,
+    flamingo: 3850,
+    crocodile: 3900,
+    beaver: 3900,
+    flushed: 4000,
+    cowboy: 4050,
+    skull: 4100,
+    alien: 4200,
+    robot: 4400,
+    turtle: 5000,
+    dog: 6000,
+    cat: 6000,
+    rat: 6000,
+    peacock: 7000,
+    chicken: 7500,
+    rich: 10000,
+    killermouse: 11000,
+    spaceinvader: 12000,
+    catfemoby: 30000,
+    femoby: 30000,
+    rgbchicken: 100000
+};
+
+
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
     const { MessageEmbed, MessageActionRow, MessageButton, Client, WebhookClient } = require('discord.js');
@@ -444,52 +495,25 @@ function displayBadgeText(id, tier) {
                     xp: 0,
                     levelIcon: 1,
                     challengeTier: 0,
-                    challengesCompleteTier1: 0,
-                    challengesCompleteTier2: 0,
-                    challengesCompleteTier3: 0,
-                    challengesCompleteTier4: 0,
-                    challenges: {
-                        tier1: {
-                            claimed: false,
-                            fistkills: 0, // 5
-                            crowns: 0, // 15
-                            winstreak: 0, // 3
-                            blocks: 0, // 50
-                            gamekills: 0, // 10
-                            killstreak: 0 // 5 
-                        },
-                        tier2: {
-                            claimed: false,
-                            fistkills: 0, // 10
-                            crowns: 0, // 30
-                            winstreak: 0, // 5
-                            blocks: 0, // 100
-                            gamekills: 0, // 12
-                            killstreak: 0, // 6
-                            nodefwins: 0 // 5
-                        },
-                        tier3: {
-                            claimed: false,
-                            fistkills: 0, // 20
-                            crowns: 0, // 50
-                            winstreak: 0, // 7
-                            blocks: 0, // 150
-                            gamekills: 0, // 15
-                            killstreak: 0, // 7
-                            nodefwins: 0, // 10
-                            toolwins: 0 // 1
-                        },
-                        tier4: {
-                            claimed: false,
-                            fistkills: 0, // 30
-                            crowns: 0, // 100
-                            winstreak: 0, // 8
-                            blocks: 0, // 200
-                            gamekills: 0, // 17
-                            killstreak: 0, // 8
-                            nodefwins: 0, // 15
-                            toolwins: 0 // 3
-                        }
+                    currentChallengeRequirements: {
+                        fistkills: 5,
+                        crowns: 15,
+                        winstreak: 3,
+                        blocks: 100,
+                        gamekills: 10,
+                        killstreak: 5,
+                        nodefwins: 0,
+                        toolwins: 0
+                    },
+                    currentChallengeProgress: {
+                        fistkills: 0,
+                        crowns: 0,
+                        winstreak: 0,
+                        blocks: 0,
+                        gamekills: 0,
+                        killstreak: 0,
+                        nodefwins: 0,
+                        toolwins: 0
                     },
                     kills: 0,
                     deaths: 0,
@@ -576,6 +600,9 @@ function displayBadgeText(id, tier) {
                         showFps: false,
                         respawnTime: 5000
                     },
+                    analytics: {
+
+                    },
                     profileviews: 0,
                     canUseRequest: true
                 };
@@ -612,7 +639,10 @@ function displayBadgeText(id, tier) {
                 try {
                     const user = db[message.author.id];
                     const level = getLevel(user.xp);
-                    const invWorth = (user.inventory.default * 0) + (user.inventory.default2 * 0) + (user.inventory.constructionworker * 0) + (user.inventory.farmer * 0) + (user.inventory.sweating * 100) + (user.inventory.holdingtears * 150) + (user.inventory.grin * 300) + (user.inventory.joy * 400) + (user.inventory.rofl * 500) + (user.inventory.snail * 600) + (user.inventory.beetle * 800) + (user.inventory.cricket * 1000) + (user.inventory.halo * 1200) + (user.inventory.sunglasses * 1500) + (user.inventory.suspicious * 1550) + (user.inventory.sauropod * 1600) + (user.inventory.orangutan * 1650) + (user.inventory.parrot * 1900) + (user.inventory.swan * 2100) + (user.inventory.chipmunk * 2500) + (user.inventory.nerd * 3000) + (user.inventory.raisedeyebrow * 3200) + (user.inventory.coldface * 3250) + (user.inventory.imp * 3333) + (user.inventory.pumpkin * 3400) + (user.inventory.turkey * 3500) + (user.inventory.dodo * 3600) + (user.inventory.flamingo * 3850) + (user.inventory.crocodile * 3900) + (user.inventory.beaver * 3900) + (user.inventory.flushed * 4000) + (user.inventory.cowboy * 4050) + (user.inventory.skull * 4100) + (user.inventory.alien * 4200) + (user.inventory.robot * 4400) + (user.inventory.turtle * 5000) + (user.inventory.dog * 6000) + (user.inventory.cat * 6000) + (user.inventory.rat * 6000) + (user.inventory.peacock * 7000) + (user.inventory.chicken * 7500) + (user.inventory.rich * 10000) + (user.inventory.killermouse * 11000) + (user.inventory.spaceinvader * 12000) + (user.inventory.catfemoby * 30000) + (user.inventory.femoby * 30000) + (user.inventory.rgbchicken * 100000);
+                    let invWorth = 0;
+                    Object.keys(user.inventory).forEach(i => {
+                        invWorth += user.inventory[i] * itemPrices[i];
+                    });
                     let kdr = (user.kills / user.deaths).toFixed(2);
                     let winrate = ((user.wins / user.plays) * 100).toFixed(2);
                     let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
