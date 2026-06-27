@@ -586,6 +586,7 @@ const itemPrices = {
             } else {
                 let d = {
                     accountType: 1,
+                    disableReason: '',
                     display: name,
                     name: name.toLowerCase(),
                     skin: 'default',
@@ -786,7 +787,7 @@ const itemPrices = {
                                 .addField(':skull: **Kills**', `\`${user.kills}\``, true)
                                 .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
                                 .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
-                                .setFooter({ text: `?profile | @${user.name} (Player #0)` })
+                                .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
                                 .setColor(user.settings.embedcolor)
                         ]
                     })
@@ -794,7 +795,56 @@ const itemPrices = {
                     console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                 }
             } else {
-
+                if (names[ign] == undefined || db[names[ign].id] == undefined) {
+                    // doesnt exit
+                } else if (db[names[ign].id].accountType == -1) {
+                    // deleted account
+                } else if (db[names[ign].id].accountType == -2) {
+                    // banned
+                } else {
+                    try {
+                        const user = db[names[ign].id];
+                        const level = getLevel(user.xp);
+                        let invWorth = 0;
+                        Object.keys(user.inventory).forEach(i => {
+                            invWorth += user.inventory[i] * itemPrices[i];
+                        });
+                        let kdr = (user.kills / user.deaths).toFixed(2);
+                        let winrate = ((user.wins / user.plays) * 100).toFixed(2);
+                        let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
+                        if (badgeDescriptions == '') badgeDescriptions == 'This user has no badges.';
+                        if (isNaN(kdr)) kdr = 0;
+                        if (isNaN(winrate)) winrate = 0;
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setDescription(`
+## ${skins[user.skin]} Profile of swep${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
+### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
+**Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${itemPrices[user.skin]} ${icons.coin})
+## **Badges:**
+> ${badgeDescriptions}
+                        `)
+                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
+                                    .addField(`${icons.coin} **Coins**`, `\`${user.coins}\``, true)
+                                    .addField(`${icons.gem} **Gems**`, `\`${user.gems}\``, true)
+                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
+                                    .addField(':video_game: **Games Played**', `\`${user.games}\``, true)
+                                    .addField(':star: **Winrate**', `\`${winrate}%\``, true)
+                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`${user.crownDestroys}\``, true)
+                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`0\``, true)
+                                    .addField(`:moneybag: **Inventory Value**`, `\`${invWorth}\``, true)
+                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
+                                    .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
+                                    .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setColor(user.settings.embedcolor)
+                            ]
+                        })
+                    } catch (error) {
+                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                    }
+                }
             }
         }
     }); 
