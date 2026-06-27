@@ -601,7 +601,22 @@ const itemPrices = {
                         respawnTime: 5000
                     },
                     analytics: {
-
+                        mostKills: 0,
+                        killsRanged: 0,
+                        killsMelee: 0,
+                        killsUtil: 0,
+                        dmgDealt: 0,
+                        dmgDealtBlocks: 0,
+                        blocksMined: 0,
+                        blocksPlaced: 0,
+                        itemsCrafted: 0,
+                        shots: 0,
+                        hits: 0,
+                        privateGames: 0,
+                        playtime: 0,
+                        playtimePrivate: 0,
+                        currentWinstreak: 0,
+                        highestWinstreak: 0
                     },
                     profileviews: 0,
                     canUseRequest: true
