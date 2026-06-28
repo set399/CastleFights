@@ -819,7 +819,7 @@ const itemPrices = {
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
-## ${skins[user.skin]} Profile of swep${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
+## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
 **Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${itemPrices[user.skin]} ${icons.coin})
 ## **Badges:**
