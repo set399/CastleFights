@@ -514,6 +514,32 @@ const itemPrices = {
 };
 
 
+const noAccountEmbed = new MessageEmbed()
+    .setTitle(':no_entry_sign: You do not have an account!')
+    .setDescription(`In order to use :european_castle: **Castle Fights** commands, you need to create an account using the \`?register\` command`)
+    .setColor('RED')
+    .setFooter({ text: 'Create an account using the ?register command!' });
+const deletedEmbed = new MessageEmbed()
+    .setTitle(`:no_entry_sign: You have deleted your account!`)
+    .setDescription(`Because you have deleted your account, you cannot use any :european_castle: **Castle Fights** interaction commands!
+*In order to recover your account, please use the \`?request\` command to submit an account recovery request by putting it in the parameter, i.e. \`?request Months ago I have deleted my account out of boredom and now wish for it back, please recover my account\`*
+*Your stats are still saved, but your \`?profile\` has most stats hidden (once you recover your account you will gain all of your old stats back)*
+*3 months after your account's deletion, your IGN will be changed and your old name will be unlocked*
+`)
+    .setColor('RED')
+    .setFooter({ text: 'Recover your account using the ?request command!' });
+const bannedEmbed = new MessageEmbed()
+    .setTitle(`:no_entry_sign: You are banned from :european_castle: Castle Fights!`)
+    .setDescription(`An in-game moderator has banned you from the game, in order to check your ban reason, **use the \`?profile\` command**
+You are not able to use any interaction commands, but you can still view player's profiles, etc.
+*Your stats still remain, meaning if you get unbanned you will get everything back*
+*Bans have a duration commonly specified right inside the reason, if your ban is temporary, you have no choice but to wait it out*
+*If you are permanently banned, you will need to ask an in-game moderator for an appeal, you cannot use the \`?request\` command when banned*
+`)
+    .setColor('RED')
+    .setFooter({ text: 'You have been banned!' });
+
+
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
     const { MessageEmbed, MessageActionRow, MessageButton, Client, WebhookClient } = require('discord.js');
@@ -752,47 +778,67 @@ const itemPrices = {
         if (message.content.startsWith('?profile')) {
             const ign = message.content.split('?profile ')[1]
             if (!ign) {
-                try {
-                    const user = db[message.author.id];
-                    const level = getLevel(user.xp);
-                    let invWorth = 0;
-                    Object.keys(user.inventory).forEach(i => {
-                        invWorth += user.inventory[i] * itemPrices[i];
-                    });
-                    let kdr = (user.kills / user.deaths).toFixed(2);
-                    let winrate = ((user.wins / user.plays) * 100).toFixed(2);
-                    let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
-                    if (badgeDescriptions == '') badgeDescriptions = 'This user has no badges.'; 
-                    if (isNaN(kdr)) kdr = 0;
-                    if (isNaN(winrate)) winrate = 0;
-                    message.reply({
-                        embeds: [
-                            new MessageEmbed()
-                                .setDescription(`
+                if (db[message.author.id] == undefined) {
+                    try {
+                        message.reply({embeds: [noAccountEmbed]})
+                    } catch (error) {
+                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                    }
+                } else if (db[message.author.id].accountType == -1) {
+                    try {
+                        message.reply({ embeds: [deletedEmbed] })
+                    } catch (error) {
+                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                    }
+                } else if (db[message.author.id].accountType == -2) {
+                    try {
+                        message.reply({ embeds: [bannedEmbed] })
+                    } catch (error) {
+                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                    }
+                } else {
+                    try {
+                        const user = db[message.author.id];
+                        const level = getLevel(user.xp);
+                        let invWorth = 0;
+                        Object.keys(user.inventory).forEach(i => {
+                            invWorth += user.inventory[i] * itemPrices[i];
+                        });
+                        let kdr = (user.kills / user.deaths).toFixed(2);
+                        let winrate = ((user.wins / user.plays) * 100).toFixed(2);
+                        let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
+                        if (badgeDescriptions == '') badgeDescriptions = 'This user has no badges.';
+                        if (isNaN(kdr)) kdr = 0;
+                        if (isNaN(winrate)) winrate = 0;
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setDescription(`
 ## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
-### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress/level.required)*100))} (\`${level.progress}/${level.required} XP\`)
+### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
 **Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${itemPrices[user.skin]} ${icons.coin})
 ## **Badges:**
 > ${badgeDescriptions}
                         `)
-                                .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
-                                .addField(`${icons.coin} **Coins**`, `\`${user.coins}\``, true)
-                                .addField(`${icons.gem} **Gems**`, `\`${user.gems}\``, true)
-                                .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
-                                .addField(':video_game: **Games Played**', `\`${user.games}\``, true)
-                                .addField(':star: **Winrate**', `\`${winrate}%\``, true)
-                                .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`${user.crownDestroys}\``, true)
-                                .addField(`:bust_in_silhouette: **Skins Owned**`, `\`0\``, true)
-                                .addField(`:moneybag: **Inventory Value**`, `\`${invWorth}\``, true)
-                                .addField(':skull: **Kills**', `\`${user.kills}\``, true)
-                                .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
-                                .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
-                                .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
-                                .setColor(user.settings.embedcolor)
-                        ]
-                    })
-                } catch (error) {
-                    console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
+                                    .addField(`${icons.coin} **Coins**`, `\`${user.coins}\``, true)
+                                    .addField(`${icons.gem} **Gems**`, `\`${user.gems}\``, true)
+                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
+                                    .addField(':video_game: **Games Played**', `\`${user.games}\``, true)
+                                    .addField(':star: **Winrate**', `\`${winrate}%\``, true)
+                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`${user.crownDestroys}\``, true)
+                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`0\``, true)
+                                    .addField(`:moneybag: **Inventory Value**`, `\`${invWorth}\``, true)
+                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
+                                    .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
+                                    .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setColor(user.settings.embedcolor)
+                            ]
+                        })
+                    } catch (error) {
+                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                    }
                 }
             } else {
                 if (names[ign] == undefined || db[names[ign].id] == undefined) {
