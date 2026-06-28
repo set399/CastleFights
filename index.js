@@ -1028,7 +1028,7 @@ ${badgeDescriptions}
                 }
             }
         }
-        if (message.content.startsWith('?lootboxes') || message.content.startsWith('?shop')) {
+        if (message.content.startsWith('?lootboxes')) {
             if (db[message.author.id] == undefined) {
                 try {
                     message.reply({ embeds: [noAccountEmbed] });
@@ -1052,8 +1052,30 @@ ${badgeDescriptions}
                     message.reply({
                         embeds: [
                             new MessageEmbed()
-                                .setTitle(`:shopping_cart: Shopping Cart`)
+                                .setTitle(`${icons.goodbox} Lootbox Inventory`)
                                 .setDescription(`
+${icons.commonbox} **Common Lootbox** - \`${db[message.author.id].lootboxes.common}x\`
+${icons.goodbox} **Good Lootbox** - \`${db[message.author.id].lootboxes.good}x\`
+${icons.epicbox} **Epic Lootbox** - \`${db[message.author.id].lootboxes.epic}x\`
+${icons.legendarybox} **Legendary Lootbox** - \`${db[message.author.id].lootboxes.legendary}x\`
+${icons.mythicbox} **Mythic Lootbox** - \`${db[message.author.id].lootboxes.mythic}x\`
+`)
+                                .setColor('BLUE')
+                                .setFooter({text: 'Lootbox Inventory | ?lootboxes'})
+                        ]
+                    })
+                } catch (error) {
+                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                }
+            }
+        }
+        if (message.content.startsWith('?shop')) {
+            try {
+                message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`:shopping_cart: Shopping Cart`)
+                            .setDescription(`
 * Use \`?unbox\` and \`?buy\` to either open lootboxes or buy them in the store accordingly with their IDs as the parameters
 * Their IDs are specified right next to the item 
 
@@ -1081,26 +1103,14 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
 > :blue_square: Good - \`5%\`
 > :purple_square: Epic - \`5%\`
 > :yellow_square: Legendary - \`10%\`
-> red_square: Mythic - \`80%\`
+> :red_square: Mythic - \`80%\`
 `)
-                                .setColor('YELLOW')
-                                .setFooter({ text: 'Lootbox Shop | ?lootboxes' }),
-                            new MessageEmbed()
-                                .setTitle(`${icons.goodbox} Lootbox Inventory`)
-                                .setDescription(`
-${icons.commonbox} **Common Lootbox** - \`${db[message.author.id].lootboxes.common}x\`
-${icons.goodbox} **Good Lootbox** - \`${db[message.author.id].lootboxes.good}x\`
-${icons.epicbox} **Epic Lootbox** - \`${db[message.author.id].lootboxes.epic}x\`
-${icons.legendarybox} **Legendary Lootbox** - \`${db[message.author.id].lootboxes.legendary}x\`
-${icons.mythicbox} **Mythic Lootbox** - \`${db[message.author.id].lootboxes.mythic}x\`
-`)
-                                .setColor('BLUE')
-                                .setFooter({text: 'Lootbox Inventory | ?lootboxes'})
-                        ]
-                    })
-                } catch (error) {
-                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
-                }
+                            .setColor('YELLOW')
+                            .setFooter({ text: 'Lootbox Shop | ?shop' })
+                    ]
+                })
+            } catch (error) {
+                console.error(`Failed to send ?shop message at ${message.channel.id}: ${error}`);
             }
         }
     }); 
