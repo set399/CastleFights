@@ -227,7 +227,7 @@ names.json length: ${JSON.stringify(names).length}
 };
 
     var servers = {};
-    var currentGames = {};
+    var currentGame = {};
     var demoServer = {
         settings: { respawnTime: 5000 },
         mapTitle: 'Ground',
