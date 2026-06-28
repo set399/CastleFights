@@ -433,13 +433,13 @@ names.json length: ${JSON.stringify(names).length}
     }
 function displayBadgeText(id, tier) {
     if (tier == 0) return '';
-    if (id == 'verified' && tier == 1) return `${icons.verified} **> Verified**\n`;
-    if (id == 'mod' && tier == 1) return `${icons.mod} **> Moderator**\n`;
-    if (id == 'mod' && tier == 2) return `${icons.mod2} **> Head Moderator**\n`;
-    if (id == 'collector' && tier == 1) return `${icons.collector} **> Collector**\n`;
+    if (id == 'verified' && tier == 1) return `${icons.verified} **Verified**\n`;
+    if (id == 'mod' && tier == 1) return `${icons.mod} **Moderator**\n`;
+    if (id == 'mod' && tier == 2) return `${icons.mod2} **Head Moderator**\n`;
+    if (id == 'collector' && tier == 1) return `${icons.collector} **Collector**\n`;
     if (id.startsWith('challenger') && tier > 0) {
         let icon = icons[`challenger${tier}`];
-        return `${icon} **> Challenger [Tier ${tier}]**\n`;
+        return `${icon} **Challenger [Tier ${tier}]**\n`;
     }
     return '';
 }
@@ -795,7 +795,7 @@ You are not able to use any interaction commands, but you can still view player'
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
 **Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
 
-> :no_entry_sign: You have deleted your account
+:no_entry_sign: You have deleted your account
                         `)
                                     .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
                                     .addField(`${icons.coin} **Coins**`, `\`?\``, true)
@@ -827,7 +827,7 @@ You are not able to use any interaction commands, but you can still view player'
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
 **Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
 
-> :no_entry_sign: You have been banned for:
+:no_entry_sign: You have been banned for:
 \`\`\`
 ${user.disableReason}
 \`\`\`
@@ -873,7 +873,7 @@ ${user.disableReason}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
 **Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${itemPrices[user.skin]} ${icons.coin})
 ## **Badges:**
-> ${badgeDescriptions}
+${badgeDescriptions}
                         `)
                                     .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
                                     .addField(`${icons.coin} **Coins**`, `\`${user.coins}\``, true)
@@ -923,7 +923,7 @@ ${user.disableReason}
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
 **Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
 
-> :no_entry_sign: This user has deleted their account.
+:no_entry_sign: This user has deleted their account.
                         `)
                                     .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
                                     .addField(`${icons.coin} **Coins**`, `\`?\``, true)
@@ -955,7 +955,7 @@ ${user.disableReason}
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
 **Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
 
-> :no_entry_sign: This user has been banned for \`${user.disableReason}\`
+:no_entry_sign: This user has been banned for \`${user.disableReason}\`
                         `)
                                     .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
                                     .addField(`${icons.coin} **Coins**`, `\`?\``, true)
@@ -998,7 +998,7 @@ ${user.disableReason}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
 **Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${itemPrices[user.skin]} ${icons.coin})
 ## **Badges:**
-> ${badgeDescriptions}
+${badgeDescriptions}
                         `)
                                     .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
                                     .addField(`${icons.coin} **Coins**`, `\`${user.coins}\``, true)
