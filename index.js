@@ -517,7 +517,38 @@ const itemPrices = {
     femoby: 30000,
     rgbchicken: 100000
 };
-
+const lootboxPrices = {
+    commonbox: 500,
+    common: 500,
+    goodbox: 1500,
+    good: 1500,
+    epicbox: 3000,
+    epic: 3000,
+    legendarybox: 6000,
+    legendary: 6000
+};
+const lootboxNames = {
+    commonbox: 'Common Lootbox',
+    common: 'Common Lootbox',
+    goodbox: 'Good Lootbox',
+    good: 'Good Lootbox',
+    epicbox: 'Epic Lootbox',
+    epic: 'Epic Lootbox',
+    legendarybox: 'Legendary Lootbox',
+    legendary: 'Legendary Lootbox',
+    mythicbox: 'Mythic Lootbox',
+    mythic: 'Mythic Lootbox'
+};
+const lootboxEmojis = {
+    commonbox: icons.commonbox,
+    common: icons.commonbox,
+    goodbox: icons.goodbox,
+    good: icons.goodbox,
+    epicbox: icons.epicbox,
+    epic: icons.epicbox,
+    legendarybox: icons.legendarybox,
+    legendary: icons.legendarybox
+};
 
 
     const EventEmitter = require('events');
@@ -1112,6 +1143,68 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
             } catch (error) {
                 console.error(`Failed to send ?shop message at ${message.channel.id}: ${error}`);
             }
+        }
+        if (message.content.startsWith('?buy')) {
+            const box = message.content.split('?buy ')[1];
+            if (!box || ['common', 'good', 'epic', 'legendary', 'commonbox', 'goodbox', 'epicbox', 'legendarybox'].includes(box)) {
+                try {
+                    message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: Invalid box specified!')
+                                .setDescription(`In order to purchase a ${icons.goodbox} **Lootbox** using the \`?buy\` command, you need to specify a valid box ID that you want to buy, like so: \`?buy <lootbox>\`, you can check all the box IDs in the \`?shop\` menu`)
+                                .setColor('RED')
+                                .setFooter({text: 'Specify a box | ?buy'})
+                        ]
+                    });
+                } catch (error) {
+                    console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                }
+            } else {
+                if (db[message.author.id] == undefined) {
+                    try {
+                        message.reply({ embeds: [noAccountEmbed] });
+                    } catch (error) {
+                        console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                    }
+                } else if (db[message.author.id].accountType == -1) {
+                    try {
+                        message.reply({ embeds: [deletedEmbed] });
+                    } catch (error) {
+                        console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                    }
+                } else if (db[message.author.id].accountType == -2) {
+                    try {
+                        message.reply({ embeds: [bannedEmbed] });
+                    } catch (error) {
+                        console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                    }
+                } else {
+                    try {
+                        const user = db[message.author.id];
+                        if (user.coins < lootboxPrices(box)) return message.reply({
+                            embeds: [ // meligoob -w-
+                                new MessageEmbed()
+                                    .setTitle(':no_entry_sign: Not enough coins!')
+                                    .setDescription(`You do not have enough coins to purchase ${lootboxEmojis(box)} **${lootboxNames(box)}**! You have \`${user.coins}\` ${icons.coin}, and you need \`${lootboxPrices(box)}\` to purchase this lootbox!`)
+                                    .setColor('RED')
+                                    .setFooter({ text: 'Not enough coins | ?buy' })
+                            ]
+                        });
+                        db[message.author.id].coins -= lootboxPrices(box);
+                        db[message.author.id].lootboxes[box.replace('box', '')] += 1;
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setTitle(`${lootboxEmojis(box)} Bought ${lootboxNames(box)}!`)
+.setDescription(`You have purchased a ${lootboxEmojis(box)} **${lootboxNames(box)}** for ${lootboxPrices(box)} ${icons.coin}! You now have ${db[message.author.id].coins} ${icons.coin} left`)
+                            ]
+                        })
+                    } catch (error) {
+                        console.error(`Failed to process ?buy at ${message.channel.id}: ${error}`);
+                    }
+                }
+            } 
         }
     }); 
 
