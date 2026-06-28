@@ -1067,7 +1067,7 @@ ${icons.goodbox} **Good Lootbox** - 1,500 ${icons.coin} (\`goodbox\` / \`good\`)
 > :purple_square: Epic - \`15%\`
 > :yellow_square: Legendary - \`5%\`
 ${icons.epicbox} **Epic Lootbox** - 3,000 ${icons.coin} (\`epicbox\` / \`epic\`)
-> :green_square: Common - \`10%\`\
+> :green_square: Common - \`10%\`
 > :blue_square: Good - \`15%\`
 > :purple_square: Epic - \`65%\`
 > :yellow_square: Legendary - \`10%\`
@@ -1081,7 +1081,7 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
 > :blue_square: Good - \`5%\`
 > :purple_square: Epic - \`5%\`
 > :yellow_square: Legendary - \`10%\`
-:> red_square: Mythic - \`80%\`
+> red_square: Mythic - \`80%\`
 `)
                                 .setColor('YELLOW')
                                 .setFooter({ text: 'Lootbox Shop | ?lootboxes' }),
