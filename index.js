@@ -762,7 +762,7 @@ const itemPrices = {
                     let kdr = (user.kills / user.deaths).toFixed(2);
                     let winrate = ((user.wins / user.plays) * 100).toFixed(2);
                     let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
-                    if (badgeDescriptions == '') badgeDescriptions == 'This user has no badges.'; 
+                    if (badgeDescriptions == '') badgeDescriptions = 'This user has no badges.'; 
                     if (isNaN(kdr)) kdr = 0;
                     if (isNaN(winrate)) winrate = 0;
                     message.reply({
@@ -812,8 +812,69 @@ const itemPrices = {
                     }
                 } else if (db[names[ign].id].accountType == -1) {
                     // deleted account
+                    try {
+                        const user = db[names[ign].id];
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setDescription(`
+## ${skins[user.skin]} Profile of ~~${names[user.name].display}~~
+### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
+**Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
+
+> :no_entry_sign: This user has deleted their account.
+                        `)
+                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
+                                    .addField(`${icons.coin} **Coins**`, `\`?\``, true)
+                                    .addField(`${icons.gem} **Gems**`, `\`?\``, true)
+                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
+                                    .addField(':video_game: **Games Played**', `\`?\``, true)
+                                    .addField(':star: **Winrate**', `\`?%\``, true)
+                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`?\``, true)
+                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`?\``, true)
+                                    .addField(`:moneybag: **Inventory Value**`, `\`?\``, true)
+                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
+                                    .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
+                                    .addField(':crossed_swords: **KDR**', `\`?\``, true)
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setColor('RED')
+                            ]
+                        })
+                    } catch (error) {
+                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                    }
                 } else if (db[names[ign].id].accountType == -2) {
-                    // banned
+                    try {
+                        const user = db[names[ign].id];
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setDescription(`
+## ${skins[user.skin]} Profile of ~~${names[user.name].display}~~
+### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
+**Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
+
+> :no_entry_sign: This user has been banned for \`${user.disableReason}\`
+                        `)
+                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
+                                    .addField(`${icons.coin} **Coins**`, `\`?\``, true)
+                                    .addField(`${icons.gem} **Gems**`, `\`?\``, true)
+                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
+                                    .addField(':video_game: **Games Played**', `\`?\``, true)
+                                    .addField(':star: **Winrate**', `\`?%\``, true)
+                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`?\``, true)
+                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`?\``, true)
+                                    .addField(`:moneybag: **Inventory Value**`, `\`?\``, true)
+                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
+                                    .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
+                                    .addField(':crossed_swords: **KDR**', `\`?\``, true)
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setColor('RED')
+                            ]
+                        })
+                    } catch (error) {
+                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                    }
                 } else {
                     try {
                         const user = db[names[ign].id];
@@ -825,7 +886,7 @@ const itemPrices = {
                         let kdr = (user.kills / user.deaths).toFixed(2);
                         let winrate = ((user.wins / user.plays) * 100).toFixed(2);
                         let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
-                        if (badgeDescriptions == '') badgeDescriptions == 'This user has no badges.';
+                        if (badgeDescriptions == '') badgeDescriptions = 'This user has no badges.';
                         if (isNaN(kdr)) kdr = 0;
                         if (isNaN(winrate)) winrate = 0;
                         message.reply({
