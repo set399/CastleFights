@@ -124,8 +124,8 @@ names.json length: ${JSON.stringify(names).length}
         commonbox: '<:commonbox:1048689265900527686>',
         goodbox: '<:goodbox:1048689316542558260>',
         epicbox: '<:epicbox:1048689356614942892>',
-        legendarybox: '<: legendarybox:1048689380124000346>',
-        mythicbox: '<: mythicbox:1048689408431374426>'
+        legendarybox: '<:legendarybox:1048689380124000346>',
+        mythicbox: '<:mythicbox:1048689408431374426>'
     };
     const skins = {
         default: '😀',
