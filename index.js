@@ -1198,6 +1198,8 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                                 new MessageEmbed()
                                     .setTitle(`${lootboxEmojis[box]} Bought ${lootboxNames[box]}!`)
 .setDescription(`You have purchased a ${lootboxEmojis[box]} **${lootboxNames[box]}** for ${lootboxPrices[box]} ${icons.coin}! You now have ${db[message.author.id].coins} ${icons.coin} left`)
+                                    .setColor('GREEN')
+                                    .setFooter({text: 'Bought a lootbox | ?buy'})
                             ]
                         })
                     } catch (error) {
