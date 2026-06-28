@@ -1028,7 +1028,7 @@ ${badgeDescriptions}
                 }
             }
         }
-        if (message.channel.startsWith('?lootboxes')) {
+        if (message.content.startsWith('?lootboxes')) {
             if (db[message.author.id] == undefined) {
                 try {
                     message.reply({ embeds: [noAccountEmbed] });
