@@ -818,7 +818,7 @@ const itemPrices = {
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
-## ${skins[user.skin]} Profile of ~~${names[user.name].display}~~
+## :bust_in_silhouette: Profile of ~~${names[user.name].display}~~
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
 **Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
 
@@ -850,7 +850,7 @@ const itemPrices = {
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
-## ${skins[user.skin]} Profile of ~~${names[user.name].display}~~
+## :bust_in_silhouette: Profile of ~~${names[user.name].display}~~
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
 **Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
 
