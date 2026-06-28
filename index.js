@@ -797,6 +797,19 @@ const itemPrices = {
             } else {
                 if (names[ign] == undefined || db[names[ign].id] == undefined) {
                     // doesnt exit
+                    try {
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setTitle(':no_entry_sign: This user doesn\'t exist!')
+                                    .setDescription(`In order to view someone's profile, you must specify their In-Game Name, like so: \`?profile <ign>\`. You cannot use Discord IDs or usernames, you need the same name that they used upon registering to the bot`)
+                                    .setColor('RED')
+                                    .setFooter({ text: 'Not a valid user | ?profile' })
+                            ]
+                        });
+                    } catch (error) {
+                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                    }
                 } else if (db[names[ign].id].accountType == -1) {
                     // deleted account
                 } else if (db[names[ign].id].accountType == -2) {
