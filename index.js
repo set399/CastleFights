@@ -786,13 +786,68 @@ You are not able to use any interaction commands, but you can still view player'
                     }
                 } else if (db[message.author.id].accountType == -1) {
                     try {
-                        message.reply({ embeds: [deletedEmbed] })
+                        const user = db[message.author.id];
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setDescription(`
+## :bust_in_silhouette: Profile of ~~${names[user.name].display}~~
+### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
+**Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
+
+> :no_entry_sign: You have deleted your account
+                        `)
+                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
+                                    .addField(`${icons.coin} **Coins**`, `\`?\``, true)
+                                    .addField(`${icons.gem} **Gems**`, `\`?\``, true)
+                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
+                                    .addField(':video_game: **Games Played**', `\`?\``, true)
+                                    .addField(':star: **Winrate**', `\`?%\``, true)
+                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`?\``, true)
+                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`?\``, true)
+                                    .addField(`:moneybag: **Inventory Value**`, `\`?\``, true)
+                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
+                                    .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
+                                    .addField(':crossed_swords: **KDR**', `\`?\``, true)
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setColor('RED')
+                            ]
+                        });
                     } catch (error) {
                         console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[message.author.id].accountType == -2) {
                     try {
-                        message.reply({ embeds: [bannedEmbed] })
+                        const user = db[message.author.id];
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setDescription(`
+## :bust_in_silhouette: Profile of ~~${names[user.name].display}~~
+### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
+**Using Skin:** :question_mark: \`None\` (0 ${icons.coin})
+
+> :no_entry_sign: You have been banned for:
+\`\`\`
+${user.disableReason}
+\`\`\`
+                        `)
+                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
+                                    .addField(`${icons.coin} **Coins**`, `\`?\``, true)
+                                    .addField(`${icons.gem} **Gems**`, `\`?\``, true)
+                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
+                                    .addField(':video_game: **Games Played**', `\`?\``, true)
+                                    .addField(':star: **Winrate**', `\`?%\``, true)
+                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`?\``, true)
+                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`?\``, true)
+                                    .addField(`:moneybag: **Inventory Value**`, `\`?\``, true)
+                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
+                                    .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
+                                    .addField(':crossed_swords: **KDR**', `\`?\``, true)
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setColor('RED')
+                            ]
+                        })
                     } catch (error) {
                         console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
