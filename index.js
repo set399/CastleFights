@@ -1029,15 +1029,78 @@ ${badgeDescriptions}
             }
         }
         if (message.channel.startsWith('?lootboxes')) {
-            try {
-                message.reply({
-                    embeds: [
-                        new MessageEmbed()
-                            .setTitle('')
-                    ]
-                })
-            } catch (error) {
+            if (db[message.author.id] == undefined) {
+                try {
+                    message.reply({ embeds: [noAccountEmbed] });
+                } catch (error) {
+                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                }
+            } else if (db[message.author.id].accountType == -1) {
+                try {
+                    message.reply({ embeds: [deletedEmbed] });
+                } catch (error) {
+                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                }
+            } else if (db[message.author.id].accountTpe == -2) {
+                try {
+                    message.reply({ embeds: [bannedEmbed] });
+                } catch (error) {
+                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                }
+            } else {
+                try {
+                    message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(`:shopping_cart: Shopping Cart`)
+                                .setDescription(`
+* Use \`?unbox\` and \`?buy\` to either open lootboxes or buy them in the store accordingly with their IDs as the parameters
+* Their IDs are specified right next to the item 
 
+${icons.commonbox} **Common Lootbox** - 500 ${icons.coin} (\`commonbox\` / \`common\`)
+> :green_square: Common - \`70%\`
+> :blue_square: Good - \`20%\`
+> :purple_square: Epic - \`10%\`
+${icons.goodbox} **Good Lootbox** - 1,500 ${icons.coin} (\`goodbox\` / \`good\`)
+> :green_square: Common - \`30%\`
+> :blue_square: Good - \`50%\`
+> :purple_square: Epic - \`15%\`
+> :yellow_square: Legendary - \`5%\`
+${icons.epicbox} **Epic Lootbox** - 3,000 ${icons.coin} (\`epicbox\` / \`epic\`)
+> :green_square: Common - \`10%\`\
+> :blue_square: Good - \`15%\`
+> :purple_square: Epic - \`65%\`
+> :yellow_square: Legendary - \`10%\`
+${icons.legendarybox} **Legendary Lootbox** - 6,000 ${icons.coin} (\`legendarybox\` / \`legendary\`)
+> :green_square: Common - \`5%\`
+> :blue_square: Good - \`5%\`
+> :purple_square: Epic - \`10%\`
+> :yellow_square: Legendary - \`60%\`
+> :red_square: Mythic - \`20%\`
+${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythic\`)
+> :blue_square: Good - \`5%\`
+> :purple_square: Epic - \`5%\`
+> :yellow_square: Legendary - \`10%\`
+:> red_square: Mythic - \`80%\`
+`)
+                                .setColor('YELLOW')
+                                .setFooter({ text: 'Lootbox Shop | ?lootboxes' }),
+                            new MessageEmbed()
+                                .setTitle(`${icons.rarebox} Lootbox Inventory`)
+                                .setDescription(`
+${icons.commonbox} **Common Lootbox** - \`${db[message.author.id].lootboxes.common}x\`
+${icons.goodbox} **Good Lootbox** - \`${db[message.author.id].lootboxes.good}x\`
+${icons.epicbox} **Epic Lootbox** - \`${db[message.author.id].lootboxes.epic}x\`
+${icons.legendarybox} **Legendary Lootbox** - \`${db[message.author.id].lootboxes.legendary}x\`
+${icons.mythicbox} **Mythic Lootbox** - \`${db[message.author.id].lootboxes.mythic}x\`
+`)
+                                .setColor('BLUE')
+                                .setFooter({text: 'Lootbox Inventory | ?lootboxes'})
+                        ]
+                    })
+                } catch (error) {
+                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                }
             }
         }
     }); 
