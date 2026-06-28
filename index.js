@@ -1086,7 +1086,7 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                                 .setColor('YELLOW')
                                 .setFooter({ text: 'Lootbox Shop | ?lootboxes' }),
                             new MessageEmbed()
-                                .setTitle(`${icons.rarebox} Lootbox Inventory`)
+                                .setTitle(`${icons.goodbox} Lootbox Inventory`)
                                 .setDescription(`
 ${icons.commonbox} **Common Lootbox** - \`${db[message.author.id].lootboxes.common}x\`
 ${icons.goodbox} **Good Lootbox** - \`${db[message.author.id].lootboxes.good}x\`
