@@ -120,7 +120,12 @@ names.json length: ${JSON.stringify(names).length}
         challenger2: '<:challenger_badge2:975316703691018250>',
         challenger3: ':star:',
         challenger4: '<:challenger_badge4:975316703368060969>',
-        collector: '<a:diamond:1047983266357055578>'
+        collector: '<a:diamond:1047983266357055578>',
+        commonbox: '<:commonbox:1048689265900527686>',
+        goodbox: '<:goodbox:1048689316542558260>',
+        epicbox: '<:epicbox:1048689356614942892>',
+        legendarybox: '<: legendarybox:1048689380124000346>',
+        mythicbox: '<: mythicbox:1048689408431374426>'
     };
     const skins = {
         default: '😀',
@@ -1021,6 +1026,18 @@ ${badgeDescriptions}
                         console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 }
+            }
+        }
+        if (message.channel.startsWith('?lootboxes')) {
+            try {
+                message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle('')
+                    ]
+                })
+            } catch (error) {
+
             }
         }
     }); 
