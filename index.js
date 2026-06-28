@@ -514,6 +514,12 @@ const itemPrices = {
 };
 
 
+
+    const EventEmitter = require('events');
+    const dominoUpdater = new EventEmitter();
+    const { MessageEmbed, MessageActionRow, MessageButton, Client, WebhookClient } = require('discord.js');
+    const cl = new Client({ intents: ['GUILDS', 'MESSAGE_CONTENT', 'GUILD_MEMBERS', 'GUILD_MESSAGES'] })
+
 const noAccountEmbed = new MessageEmbed()
     .setTitle(':no_entry_sign: You do not have an account!')
     .setDescription(`In order to use :european_castle: **Castle Fights** commands, you need to create an account using the \`?register\` command`)
@@ -538,12 +544,6 @@ You are not able to use any interaction commands, but you can still view player'
 `)
     .setColor('RED')
     .setFooter({ text: 'You have been banned!' });
-
-
-    const EventEmitter = require('events');
-    const dominoUpdater = new EventEmitter();
-    const { MessageEmbed, MessageActionRow, MessageButton, Client, WebhookClient } = require('discord.js');
-    const cl = new Client({ intents: ['GUILDS', 'MESSAGE_CONTENT', 'GUILD_MEMBERS', 'GUILD_MESSAGES'] })
 
     cl.on('ready', () => {
         console.log('[0;32m32Bot started!');
