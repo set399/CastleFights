@@ -612,6 +612,7 @@ You are not able to use any interaction commands, but you can still view player'
             } else {
                 let d = {
                     accountType: 1,
+                    constAccountType: 1,
                     disableReason: '',
                     display: name,
                     name: name.toLowerCase(),
