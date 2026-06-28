@@ -1182,22 +1182,22 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                 } else {
                     try {
                         const user = db[message.author.id];
-                        if (user.coins < lootboxPrices(box)) return message.reply({
+                        if (user.coins < lootboxPrices[box]) return message.reply({
                             embeds: [ // meligoob -w-
                                 new MessageEmbed()
                                     .setTitle(':no_entry_sign: Not enough coins!')
-                                    .setDescription(`You do not have enough coins to purchase ${lootboxEmojis(box)} **${lootboxNames(box)}**! You have \`${user.coins}\` ${icons.coin}, and you need \`${lootboxPrices(box)}\` to purchase this lootbox!`)
+                                    .setDescription(`You do not have enough coins to purchase ${lootboxEmojis[box]} **${lootboxNames[box]}**! You have \`${user.coins}\` ${icons.coin}, and you need \`${lootboxPrices[box]}\` to purchase this lootbox!`)
                                     .setColor('RED')
                                     .setFooter({ text: 'Not enough coins | ?buy' })
                             ]
                         });
-                        db[message.author.id].coins -= lootboxPrices(box);
+                        db[message.author.id].coins -= lootboxPrices[box];
                         db[message.author.id].lootboxes[box.replace('box', '')] += 1;
                         message.reply({
                             embeds: [
                                 new MessageEmbed()
-                                    .setTitle(`${lootboxEmojis(box)} Bought ${lootboxNames(box)}!`)
-.setDescription(`You have purchased a ${lootboxEmojis(box)} **${lootboxNames(box)}** for ${lootboxPrices(box)} ${icons.coin}! You now have ${db[message.author.id].coins} ${icons.coin} left`)
+                                    .setTitle(`${lootboxEmojis[box]} Bought ${lootboxNames[box]}!`)
+.setDescription(`You have purchased a ${lootboxEmojis[box]} **${lootboxNames[box]}** for ${lootboxPrices[box]} ${icons.coin}! You now have ${db[message.author.id].coins} ${icons.coin} left`)
                             ]
                         })
                     } catch (error) {
