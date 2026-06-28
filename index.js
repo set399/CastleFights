@@ -1028,7 +1028,7 @@ ${badgeDescriptions}
                 }
             }
         }
-        if (message.content.startsWith('?lootboxes')) {
+        if (message.content.startsWith('?lootboxes') || message.content.startsWith('?shop')) {
             if (db[message.author.id] == undefined) {
                 try {
                     message.reply({ embeds: [noAccountEmbed] });
