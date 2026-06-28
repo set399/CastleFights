@@ -433,13 +433,13 @@ names.json length: ${JSON.stringify(names).length}
     }
 function displayBadgeText(id, tier) {
     if (tier == 0) return '';
-    if (id == 'verified' && tier == 1) return `${icons.verified} **Verified**\n`;
-    if (id == 'mod' && tier == 1) return `${icons.mod} **Moderator**\n`;
-    if (id == 'mod' && tier == 2) return `${icons.mod2} **Head Moderator**\n`;
-    if (id == 'collector' && tier == 1) return `${icons.collector} **Collector**\n`;
+    if (id == 'verified' && tier == 1) return `${icons.verified} **> Verified**\n`;
+    if (id == 'mod' && tier == 1) return `${icons.mod} **> Moderator**\n`;
+    if (id == 'mod' && tier == 2) return `${icons.mod2} **> Head Moderator**\n`;
+    if (id == 'collector' && tier == 1) return `${icons.collector} **> Collector**\n`;
     if (id.startsWith('challenger') && tier > 0) {
         let icon = icons[`challenger${tier}`];
-        return `${icon} **Challenger [Tier ${tier}]**\n`;
+        return `${icon} **> Challenger [Tier ${tier}]**\n`;
     }
     return '';
 }
