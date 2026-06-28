@@ -1146,7 +1146,7 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
         }
         if (message.content.startsWith('?buy')) {
             const box = message.content.split('?buy ')[1];
-            if (!box || ['common', 'good', 'epic', 'legendary', 'commonbox', 'goodbox', 'epicbox', 'legendarybox'].includes(box)) {
+            if (!box || !['common', 'good', 'epic', 'legendary', 'commonbox', 'goodbox', 'epicbox', 'legendarybox'].includes(box)) {
                 try {
                     message.reply({
                         embeds: [
