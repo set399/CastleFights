@@ -468,20 +468,27 @@ function displayBadgeText(id, tier) {
         if (percentage > 81) return `🟦🟦🟦🟦🟦`;
     }
 
+const skinRarities = {
+    common: ['sweating', 'holdingtears', 'grin', 'joy', 'rofl', 'snail', 'beetle', 'cricket'],
+    good: ['halo', 'sunglasses', 'suspicious', 'sauropod', 'orangutan', 'parrot', 'swan', 'chipmunk'],
+    epic: ['nerd', 'raisedeyebrow', 'coldface', 'imp', 'pumpkin', 'turkey', 'dodo', 'flamingo', 'crocodile', 'beaver'],
+    legendary: ['flushed', 'cowboy', 'skull', 'alien', 'robot', 'turtle', 'dog', 'cat', 'rat', 'peacock', 'chicken'],
+    mythic: ['rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken']
+};
 const lootboxChances = {
     common: { common: 70, good: 20, epic: 10 },
     good: { common: 30, good: 50, epic: 15, legendary: 5 },
     epic: { common: 10, good: 15, epic: 65, legendary: 10 },
     legendary: { common: 5, good: 5, epic: 10, legendary: 60, mythic: 20 },
     mythic: { common: 0, good: 5, epic: 5, legendary: 10, mythic: 80 }
-}
+};
 let lootboxRolls = {
     common: [],
     good: [],
     epic: [],
     legendary: [],
     mythic: []
-}
+};
 Object.keys(lootboxChances).forEach(tier => {
     Object.keys(lootboxChances[tier]).forEach(rarity => {
         for (var i = 0; i < lootboxChances[tier][rarity]; i++) {
@@ -489,11 +496,11 @@ Object.keys(lootboxChances).forEach(tier => {
         };
     });
 });
-console.log(lootboxRolls.common)
     function roll(id) {
         if (!['common', 'good', 'epic', 'legendary', 'mythic'].includes(id)) return new Error('roll(...): Invalid box ID specified');
-        return lootboxRolls[id][Math.floor(Math.random() * lootboxRolls[id].length)];
-    }
+        const rarity = lootboxRolls[id][Math.floor(Math.random() * lootboxRolls[id].length)];
+        return skinRarities[rarity][Math.floor(Math.random() * skinRarities[rarity].length)];
+};
 
 const itemPrices = {
     default: 0,
