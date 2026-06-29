@@ -450,7 +450,7 @@ function displayBadgeText(id, tier) {
 }
     function getXp(level) {
         if (level < 1) return -1;
-        return (50*Math.pow(level, 2)) - 50*level
+        return (50 * Math.pow(level, 2)) - 50 * level;
     }
     function getLevel(xp) {
         if (xp < 0 || isNaN(xp)) return { level: 1, progress: 0, required: 0 };
@@ -1328,6 +1328,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                 }
             }
         }
+
     }); 
 
 cl.on('interactionCreate', async interaction => {
