@@ -487,7 +487,7 @@ const lootboxChances = {
     common: { common: 70, good: 20, epic: 10 },
     good: { common: 30, good: 50, epic: 15, legendary: 5 },
     epic: { common: 10, good: 15, epic: 65, legendary: 10 },
-    legendary: { common: 5, good: 5, epic: 10, legendary: 60, mythic: 20 },
+    legendary: { common: 5, good: 5, epic: 10, legendary: 73, mythic: 7 },
     mythic: { common: 0, good: 5, epic: 5, legendary: 10, mythic: 80 }
 };
 let lootboxRolls = {
