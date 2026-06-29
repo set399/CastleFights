@@ -9,7 +9,7 @@ rl.prompt('> ')
 rl.on('line', async l => {
     const result = eval(l);
     console.log(result);
-    const logChannels = [] // [process.env.LOG1, process.env.LOG2];
+    const logChannels = [process.env.LOG1, process.env.LOG2];
     logChannels.forEach(ch => {
         try {
             cl.channels.cache.get(ch).send({
