@@ -1172,8 +1172,8 @@ ${icons.legendarybox} **Legendary Lootbox** - 6,000 ${icons.coin} (\`legendarybo
 > :green_square: Common - \`5%\`
 > :blue_square: Good - \`5%\`
 > :purple_square: Epic - \`10%\`
-> :yellow_square: Legendary - \`60%\`
-> :red_square: Mythic - \`20%\`
+> :yellow_square: Legendary - \`73%\`
+> :red_square: Mythic - \`7%\`
 ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythic\`)
 > :blue_square: Good - \`5%\`
 > :purple_square: Epic - \`5%\`
