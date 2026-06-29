@@ -589,7 +589,9 @@ const lootboxEmojis = {
     epicbox: icons.epicbox,
     epic: icons.epicbox,
     legendarybox: icons.legendarybox,
-    legendary: icons.legendarybox
+    legendary: icons.legendarybox,
+    mythic: icons.mythicbox,
+    mythicbox: icons.mythicbox
 };
 
 
