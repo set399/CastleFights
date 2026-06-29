@@ -938,7 +938,7 @@ ${user.disableReason}
                         const level = getLevel(user.xp);
                         let invWorth = 0;
                         Object.keys(user.inventory).forEach(i => {
-                            invWorth += user.inventory[i] * itemPrices[i];
+                            invWorth += user.inventory[i] * skinPrices[i];
                         });
                         let kdr = (user.kills / user.deaths).toFixed(2);
                         let winrate = ((user.wins / user.plays) * 100).toFixed(2);
@@ -952,7 +952,7 @@ ${user.disableReason}
                                     .setDescription(`
 ## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
-**Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${itemPrices[user.skin]} ${icons.coin})
+**Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${skinPrices[user.skin]} ${icons.coin})
 ## **Badges:**
 ${badgeDescriptions}
                         `)
@@ -1063,7 +1063,7 @@ ${badgeDescriptions}
                         const level = getLevel(user.xp);
                         let invWorth = 0;
                         Object.keys(user.inventory).forEach(i => {
-                            invWorth += user.inventory[i] * itemPrices[i];
+                            invWorth += user.inventory[i] * skinPrices[i];
                         });
                         let kdr = (user.kills / user.deaths).toFixed(2);
                         let winrate = ((user.wins / user.plays) * 100).toFixed(2);
@@ -1077,7 +1077,7 @@ ${badgeDescriptions}
                                     .setDescription(`
 ## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
-**Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${itemPrices[user.skin]} ${icons.coin})
+**Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${skinPrices[user.skin]} ${icons.coin})
 ## **Badges:**
 ${badgeDescriptions}
                         `)
