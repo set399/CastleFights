@@ -475,6 +475,14 @@ const skinRarities = {
     legendary: ['flushed', 'cowboy', 'skull', 'alien', 'robot', 'turtle', 'dog', 'cat', 'rat', 'peacock', 'chicken'],
     mythic: ['rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken']
 };
+const rarityIcons = {
+    default: '❓',
+    common: '🟩',
+    good: '🟦',
+    epic: '🟪',
+    legendary: '🟨',
+    mythic: '🟥'
+};
 const lootboxChances = {
     common: { common: 70, good: 20, epic: 10 },
     good: { common: 30, good: 50, epic: 15, legendary: 5 },
@@ -499,10 +507,10 @@ Object.keys(lootboxChances).forEach(tier => {
     function roll(id) {
         if (!['common', 'good', 'epic', 'legendary', 'mythic'].includes(id)) return new Error('roll(...): Invalid box ID specified');
         const rarity = lootboxRolls[id][Math.floor(Math.random() * lootboxRolls[id].length)];
-        return skinRarities[rarity][Math.floor(Math.random() * skinRarities[rarity].length)];
+        return { skin: skinRarities[rarity][Math.floor(Math.random() * skinRarities[rarity].length)], rarity: rarity };
 };
 
-const itemPrices = {
+const skinPrices = {
     default: 0,
     default2: 0,
     constructionworker: 0,
@@ -1241,7 +1249,83 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                     }
                 }
             } 
-        } 
+        }
+        if (message.content.startsWith('?unbox')) {
+            const box = message.content.split('?unbox ')[1];
+            if (!box || !['common', 'good', 'epic', 'legendary', 'mythic', 'commonbox', 'goodbox', 'epicbox', 'legendarybox', 'mythicbox'].includes(box)) {
+                try {
+                    message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: Invalid box specified!')
+                                .setDescription(`In order to open a lootbox using \`?unbox\` command, you need to specify a valid box ID that you want to open, like so: \`?unbox <lootbox>\`, you can check all the box IDs in the \`?shop\` menu`)
+                                .setColor('RED')
+                                .setFooter({ text: 'Specify a box | ?unbox' })
+                        ]
+                    });
+                } catch (error) {
+                    console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                }
+            } else {
+                if (db[message.author.id] == undefined) {
+                    try {
+                        message.reply({ embeds: [noAccountEmbed] });
+                    } catch (error) {
+                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                    }
+                } else if (db[message.author.id].accountType == -1) {
+                    try {
+                        message.reply({ embeds: [deletedEmbed] });
+                    } catch (error) {
+                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                    }
+                } else if (db[message.author.id].accountType == -2) {
+                    try {
+                        message.reply({ embeds: [bannedEmbed] });
+                    } catch (error) {
+                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                    }
+                } else if (db[message.author.id].lootboxes[box.replace('box', '')] < 1) {
+                    try {
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setTitle(':no_entry_sign: You do not own this lootbox!')
+                                    .setDescription(`You cannot open a ${lootboxEmojis[box]} **${lootboxNames[box]}** because you do not own one!`)
+                                    .setColor('RED')
+                                    .setFooter({text: 'You do not own this lootbox | ?unbox'})
+                            ]
+                        });
+                    } catch (error) {
+                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                    }
+                } else {
+                    const reward = roll(box.replace('box', ''));
+                    db[message.author.id].lootboxes[box.replace('box', '')]--;
+                    db[message.author.id].inventory[reward.skin]++;
+                    try {
+                        message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setTitle(`${lootboxEmojis[box]} ${lootboxNames[box]} opened!`)
+                                    .setDescription(`
+You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
+✨✨✨✨✨
+# ${rarityIcons[reward.rarity]} | ${skins[reward.skin]} ${skinNames[reward.skin]}
+✨✨✨✨✨
+
+*This skin is worth **${skinPrices[reward.skin]}** ${icons.coin}*
+`)
+                                    .setColor('YELLOW')
+                                    .setFooter({text: `${db[message.author.id].name} has unboxed a ${skinNames[reward.skin]} | ?unbox`})
+                            ]
+                        });
+                    } catch (error) {
+                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                    }
+                }
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
