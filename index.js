@@ -492,7 +492,7 @@ Object.keys(lootboxChances).forEach(tier => {
 console.log(lootboxRolls.common)
     function roll(id) {
         if (!['common', 'good', 'epic', 'legendary', 'mythic'].includes(id)) return new Error('roll(...): Invalid box ID specified');
-        return lootboxRolls[id][Math.floor(Math.random() * 100)];
+        return lootboxRolls[id][Math.floor(Math.random() * lootboxRolls[id].length)];
     }
 
 const itemPrices = {
