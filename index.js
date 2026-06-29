@@ -468,6 +468,35 @@ function displayBadgeText(id, tier) {
         if (percentage > 81) return `🟦🟦🟦🟦🟦`;
     }
 
+const lootboxChances = {
+    common: { common: 70, good: 20, epic: 10 },
+    good: { common: 30, good: 50, epic: 15, legendary: 5 },
+    epic: { common: 10, good: 15, epic: 65, legendary: 10 },
+    legendary: { common: 5, good: 5, epic: 10, legendary: 60, mythic: 20 },
+    mythic: { common: 0, good: 5, epic: 5, legendary: 10, mythic: 80 }
+}
+let lootboxRolls = {
+    common: [],
+    good: [],
+    epic: [],
+    legendary: [],
+    mythic: []
+}
+Object.keys(lootboxChances).forEach(tier => {
+    Object.keys(lootboxChances[tier]).forEach(rarity => {
+        for (var i = 0; i < lootboxChances[tier][rarity]; i++) {
+            lootboxRolls[tier].push(rarity);
+        };
+    });
+});
+console.log(lootboxRolls.common)
+    function roll(id) {
+        if (!['common', 'good', 'epic', 'legendary', 'mythic'].includes(id)) return new Error('roll(...): Invalid box ID specified');
+        if (id) {
+
+        }
+    }
+
 const itemPrices = {
     default: 0,
     default2: 0,
@@ -1207,7 +1236,7 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                     }
                 }
             } 
-        }
+        } 
     }); 
 
 cl.on('interactionCreate', async interaction => {
