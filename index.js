@@ -1414,6 +1414,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                 let inv = '';
                 Object.keys(db[user].inventory).reverse().forEach(skin => {
                     inv += inventoryDisplay(skin, db[user].inventory[skin]);
+                    if (inv == '') inv = 'This user does not own any skins.';
                 });
                 return message.reply({
                     embeds: [
