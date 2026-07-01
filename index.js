@@ -9,7 +9,7 @@ rl.prompt('> ')
 rl.on('line', async l => {
     const result = eval(l);
     console.log(result);
-    const logChannels = [process.env.LOG1, process.env.LOG2];
+    const logChannels = [] // [process.env.LOG1, process.env.LOG2];
     logChannels.forEach(ch => {
         try {
             cl.channels.cache.get(ch).send({
@@ -475,6 +475,52 @@ const skinRarities = {
     legendary: ['flushed', 'cowboy', 'skull', 'alien', 'robot', 'turtle', 'dog', 'cat', 'rat', 'peacock', 'chicken'],
     mythic: ['rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken']
 };
+const rarityOfSkin = {
+    sweating: 'common',
+    holdingtears: 'common',
+    grin: 'common',
+    joy: 'common',
+    rofl: 'common',
+    snail: 'common',
+    beetle: 'common',
+    cricket: 'common',
+    halo: 'good',
+    sunglasses: 'good',
+    suspicious: 'good',
+    sauropod: 'good',
+    orangutan: 'good',
+    parrot: 'good',
+    swan: 'good',
+    chipmunk: 'good',
+    nerd: 'epic',
+    raisedeyebrow: 'epic',
+    coldface: 'epic',
+    imp: 'epic',
+    pumpkin: 'epic',
+    turkey: 'epic',
+    dodo: 'epic',
+    flamingo: 'epic',
+    crocodile: 'epic',
+    beaver: 'epic',
+    flushed: 'legendary',
+    cowboy: 'legendary',
+    skull: 'legendary',
+    alien: 'legendary',
+    robot: 'legendary',
+    turtle: 'legendary',
+    dog: 'legendary',
+    cat: 'legendary',
+    rat: 'legendary',
+    peacock: 'legendary',
+    chicken: 'legendary',
+    rich: 'mythic',
+    killermouse: 'mythic',
+    spaceinvader: 'mythic',
+    catfemoby: 'mythic',
+    femoby: 'mythic',
+    rgbchicken: 'mythic'
+};
+
 const rarityIcons = {
     default: '❓',
     common: '🟩',
@@ -559,6 +605,13 @@ const skinPrices = {
     femoby: 30000,
     rgbchicken: 100000
 };
+function inventoryDisplay(sk, count) {
+    if (count > 1) {
+        return `${rarityOfSkin[sk]} | ${skins[sk]} **${skinNames[sk]}** - \`${count}x\` (${skinPrices[sk]} ${icons.coin})`
+    } else {
+        return '';
+    }
+}
 const lootboxPrices = {
     commonbox: 500,
     common: 500,
@@ -1328,7 +1381,55 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                 }
             }
         }
-
+        if (message.content.startsWith('?inventory')) {
+            let user;
+            const ign = message.content.split('?inventory ')[1];
+            if (!ign) user = message.author.id;
+            if (db[user] == undefined) {
+                try {
+                    return message.reply({
+                        embeds: [noAccountEmbed]
+                    });
+                } catch (error) {
+                    return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                }
+            };
+            if (ign && names[ign.toLowerCase()] !== undefined) user = names[ign.toLowerCase()].id;
+            if (ign && names[ign.toLowerCase()] == undefined) {
+                try {
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(`:no_entry_sign: This user doesn't exit!`)
+                                .setDescription(`Please specify a valid in-game name, if you are trying to use mentions or a person's name, you must use their username that they registered in the bot with the \`?register\` command!`)
+                                .setColor('RED')
+                                .setFooter({text: 'Invalid user | ?inventory'})
+                        ]
+                    });
+                } catch (error) {
+                    return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                }
+            }
+            try {
+                let inv = '';
+                Object.keys(db[user].inventory).reverse().forEach(skin => {
+                    inv += inventoryDisplay(skin, db[user].inventory[skin]);
+                });
+                return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`:bust_in_silhouette: Inventory of ${db[user].name}`)
+                            .setDescription(`
+${inv}
+`)
+                            .setColor(db[user].settings.embedcolor)
+                            .setFooter({text: `Inventory of @${db[user].name} | ?inventory`})
+                    ]
+                })
+            } catch (error) {
+                return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
