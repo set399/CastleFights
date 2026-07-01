@@ -1382,7 +1382,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
             }
         }
         if (message.content.startsWith('?inventory')) {
-            let user;
+            let user = message.author.id;
             const ign = message.content.split('?inventory ')[1];
             if (!ign) user = message.author.id;
             if (db[user] == undefined) {
