@@ -607,7 +607,7 @@ const skinPrices = {
 };
 function inventoryDisplay(sk, count) {
     if (count > 1) {
-        return `${rarityOfSkin[sk]} | ${skins[sk]} **${skinNames[sk]}** - \`${count}x\` (${skinPrices[sk]} ${icons.coin})`
+        return `${rarityIcons[rarityOfSkin[sk]]} | ${skins[sk]} **${skinNames[sk]}** - \`${count}x\` (${skinPrices[sk]} ${icons.coin})\n`
     } else {
         return '';
     }
