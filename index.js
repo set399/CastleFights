@@ -476,6 +476,10 @@ const skinRarities = {
     mythic: ['rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken']
 };
 const rarityOfSkin = {
+    default: 'default',
+    default2: 'default',
+    constructionworker: 'default',
+    farmer: 'default',
     sweating: 'common',
     holdingtears: 'common',
     grin: 'common',
@@ -518,7 +522,8 @@ const rarityOfSkin = {
     spaceinvader: 'mythic',
     catfemoby: 'mythic',
     femoby: 'mythic',
-    rgbchicken: 'mythic'
+    rgbchicken: 'mythic',
+
 };
 
 const rarityIcons = {
@@ -561,6 +566,7 @@ const skinPrices = {
     default2: 0,
     constructionworker: 0,
     farmer: 0,
+    
     sweating: 100,
     holdingtears: 150,
     grin: 300,
