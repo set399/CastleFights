@@ -1054,7 +1054,7 @@ ${badgeDescriptions}
                 } else if (db[names[ign].id].accountType == -1) {
                     // deleted account
                     try {
-                        const user = db[names[ign].id];
+                        const user = db[names[ign.toLowerCase()].id];
                         return message.reply({
                             embeds: [
                                 new MessageEmbed()
