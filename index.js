@@ -710,7 +710,7 @@ You are not able to use any interaction commands, but you can still view player'
             const name = message.content.split('?register ')[1];
             if (!name || name.includes(':') || name.includes('*') || name.includes('`') || name.length < 2 || name.length > 20) {
                 try {
-                    return return message.reply({
+                    return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: Failed to register')
@@ -726,7 +726,7 @@ You are not able to use any interaction commands, but you can still view player'
                 }
             } else if (db[message.author.id]) {
                 try {
-                    return return message.reply({
+                    return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(`:no_entry_sign: You are already registered as \`${db[message.author.id].name}\`!`)
@@ -738,7 +738,7 @@ You are not able to use any interaction commands, but you can still view player'
                 }
             } else if (names[name.toLowerCase()]) {
                 try {
-                    return return message.reply({
+                    return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(`:no_entry_sign: This name is already taken!`)
@@ -1285,7 +1285,7 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                 } else {
                     try {
                         const user = db[message.author.id];
-                        if (user.coins < lootboxPrices[box]) return return message.reply({
+                        if (user.coins < lootboxPrices[box]) return message.reply({
                             embeds: [ // meligoob -w-
                                 new MessageEmbed()
                                     .setTitle(':no_entry_sign: Not enough coins!')
@@ -1393,17 +1393,17 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
             if (!ign) user = message.author.id;
             if (db[user] == undefined) {
                 try {
-                    return return message.reply({
+                    return message.reply({
                         embeds: [noAccountEmbed]
                     });
                 } catch (error) {
-                    return return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
                 }
             };
             if (ign && names[ign.toLowerCase()] !== undefined) user = names[ign.toLowerCase()].id;
             if (ign && names[ign.toLowerCase()] == undefined) {
                 try {
-                    return return message.reply({
+                    return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(`:no_entry_sign: This user doesn't exit!`)
@@ -1413,7 +1413,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                         ]
                     });
                 } catch (error) {
-                    return return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
                 }
             }
             try {
@@ -1421,7 +1421,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                 Object.keys(db[user].inventory).reverse().forEach(skin => {
                     inv += inventoryDisplay(skin, db[user].inventory[skin]);
                 });
-                return return message.reply({
+                return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`:bust_in_silhouette: Inventory of ${db[user].name}`)
@@ -1433,7 +1433,7 @@ ${inv}
                     ]
                 })
             } catch (error) {
-                return return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
             }
         }
     }); 
