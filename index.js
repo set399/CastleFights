@@ -50,7 +50,7 @@ names.json length: ${JSON.stringify(names).length}
     `);
 
             } catch (error) {
-                console.error(error);
+                return console.error(error);
             }
         }, 20000);
         console.log(JSON.stringify(db));
@@ -710,7 +710,7 @@ You are not able to use any interaction commands, but you can still view player'
             const name = message.content.split('?register ')[1];
             if (!name || name.includes(':') || name.includes('*') || name.includes('`') || name.length < 2 || name.length > 20) {
                 try {
-                    message.reply({
+                    return return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: Failed to register')
@@ -722,11 +722,11 @@ You are not able to use any interaction commands, but you can still view player'
                         ]
                     })
                 } catch (error) {
-                    console.error(`Failed to send message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send message at ${message.channel.id}: ${error}`);
                 }
             } else if (db[message.author.id]) {
                 try {
-                    message.reply({
+                    return return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(`:no_entry_sign: You are already registered as \`${db[message.author.id].name}\`!`)
@@ -734,11 +734,11 @@ You are not able to use any interaction commands, but you can still view player'
                         ]
                     })
                 } catch (error) {
-                    console.error(`Failed to send message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send message at ${message.channel.id}: ${error}`);
                 }
             } else if (names[name.toLowerCase()]) {
                 try {
-                    message.reply({
+                    return return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(`:no_entry_sign: This name is already taken!`)
@@ -746,7 +746,7 @@ You are not able to use any interaction commands, but you can still view player'
                         ]
                     });
                 } catch (error) {
-                    console.error(`Failed to send message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send message at ${message.channel.id}: ${error}`);
                 }
             } else {
                 let d = {
@@ -891,7 +891,7 @@ You are not able to use any interaction commands, but you can still view player'
                 db[message.author.id] = d;
                 names[name.toLowerCase()] = { id: message.author.id, display: name };
                 try {
-                    message.reply({
+                    return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(`:white_check_mark: Successfully registered!`)
@@ -911,7 +911,7 @@ You are not able to use any interaction commands, but you can still view player'
                         ]
                     });
                 } catch (error) {
-                    console.error(`Failed to send ?register message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?register message at ${message.channel.id}: ${error}`);
                 }
             }
         }
@@ -920,14 +920,14 @@ You are not able to use any interaction commands, but you can still view player'
             if (!ign) {
                 if (db[message.author.id] == undefined) {
                     try {
-                        message.reply({embeds: [noAccountEmbed]})
+                        return message.reply({embeds: [noAccountEmbed]})
                     } catch (error) {
-                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[message.author.id].accountType == -1) {
                     try {
                         const user = db[message.author.id];
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
@@ -954,12 +954,12 @@ You are not able to use any interaction commands, but you can still view player'
                             ]
                         });
                     } catch (error) {
-                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[message.author.id].accountType == -2) {
                     try {
                         const user = db[message.author.id];
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
@@ -989,7 +989,7 @@ ${user.disableReason}
                             ]
                         })
                     } catch (error) {
-                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 } else {
                     try {
@@ -1005,7 +1005,7 @@ ${user.disableReason}
                         if (badgeDescriptions == '') badgeDescriptions = 'This user has no badges.';
                         if (isNaN(kdr)) kdr = 0;
                         if (isNaN(winrate)) winrate = 0;
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
@@ -1032,14 +1032,14 @@ ${badgeDescriptions}
                             ]
                         })
                     } catch (error) {
-                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 }
             } else {
                 if (names[ign] == undefined || db[names[ign].id] == undefined) {
                     // doesnt exit
                     try {
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setTitle(':no_entry_sign: This user doesn\'t exist!')
@@ -1049,13 +1049,13 @@ ${badgeDescriptions}
                             ]
                         });
                     } catch (error) {
-                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[names[ign].id].accountType == -1) {
                     // deleted account
                     try {
                         const user = db[names[ign].id];
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
@@ -1082,12 +1082,12 @@ ${badgeDescriptions}
                             ]
                         })
                     } catch (error) {
-                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[names[ign].id].accountType == -2) {
                     try {
                         const user = db[names[ign].id];
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
@@ -1114,7 +1114,7 @@ ${badgeDescriptions}
                             ]
                         })
                     } catch (error) {
-                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 } else {
                     try {
@@ -1130,7 +1130,7 @@ ${badgeDescriptions}
                         if (badgeDescriptions == '') badgeDescriptions = 'This user has no badges.';
                         if (isNaN(kdr)) kdr = 0;
                         if (isNaN(winrate)) winrate = 0;
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
@@ -1157,7 +1157,7 @@ ${badgeDescriptions}
                             ]
                         })
                     } catch (error) {
-                        console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
                     }
                 }
             }
@@ -1165,25 +1165,25 @@ ${badgeDescriptions}
         if (message.content.startsWith('?lootboxes')) {
             if (db[message.author.id] == undefined) {
                 try {
-                    message.reply({ embeds: [noAccountEmbed] });
+                    return message.reply({ embeds: [noAccountEmbed] });
                 } catch (error) {
-                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
                 }
             } else if (db[message.author.id].accountType == -1) {
                 try {
-                    message.reply({ embeds: [deletedEmbed] });
+                    return message.reply({ embeds: [deletedEmbed] });
                 } catch (error) {
-                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
                 }
             } else if (db[message.author.id].accountTpe == -2) {
                 try {
-                    message.reply({ embeds: [bannedEmbed] });
+                    return message.reply({ embeds: [bannedEmbed] });
                 } catch (error) {
-                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
                 }
             } else {
                 try {
-                    message.reply({
+                    return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(`${icons.goodbox} Lootbox Inventory`)
@@ -1199,13 +1199,13 @@ ${icons.mythicbox} **Mythic Lootbox** - \`${db[message.author.id].lootboxes.myth
                         ]
                     })
                 } catch (error) {
-                    console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
                 }
             }
         }
         if (message.content.startsWith('?shop')) {
             try {
-                message.reply({
+                return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`:shopping_cart: Shopping Cart`)
@@ -1244,14 +1244,14 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                     ]
                 })
             } catch (error) {
-                console.error(`Failed to send ?shop message at ${message.channel.id}: ${error}`);
+                return console.error(`Failed to send ?shop message at ${message.channel.id}: ${error}`);
             }
         }
         if (message.content.startsWith('?buy')) {
             const box = message.content.split('?buy ')[1];
             if (!box || !['common', 'good', 'epic', 'legendary', 'commonbox', 'goodbox', 'epicbox', 'legendarybox'].includes(box)) {
                 try {
-                    message.reply({
+                    return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: Invalid box specified!')
@@ -1261,31 +1261,31 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                         ]
                     });
                 } catch (error) {
-                    console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
                 }
             } else {
                 if (db[message.author.id] == undefined) {
                     try {
-                        message.reply({ embeds: [noAccountEmbed] });
+                        return message.reply({ embeds: [noAccountEmbed] });
                     } catch (error) {
-                        console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[message.author.id].accountType == -1) {
                     try {
-                        message.reply({ embeds: [deletedEmbed] });
+                        return message.reply({ embeds: [deletedEmbed] });
                     } catch (error) {
-                        console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[message.author.id].accountType == -2) {
                     try {
-                        message.reply({ embeds: [bannedEmbed] });
+                        return message.reply({ embeds: [bannedEmbed] });
                     } catch (error) {
-                        console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
                     }
                 } else {
                     try {
                         const user = db[message.author.id];
-                        if (user.coins < lootboxPrices[box]) return message.reply({
+                        if (user.coins < lootboxPrices[box]) return return message.reply({
                             embeds: [ // meligoob -w-
                                 new MessageEmbed()
                                     .setTitle(':no_entry_sign: Not enough coins!')
@@ -1296,7 +1296,7 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                         });
                         db[message.author.id].coins -= lootboxPrices[box];
                         db[message.author.id].lootboxes[box.replace('box', '')] += 1;
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setTitle(`${lootboxEmojis[box]} Bought ${lootboxNames[box]}!`)
@@ -1306,7 +1306,7 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                             ]
                         })
                     } catch (error) {
-                        console.error(`Failed to process ?buy at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to process ?buy at ${message.channel.id}: ${error}`);
                     }
                 }
             } 
@@ -1315,7 +1315,7 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
             const box = message.content.split('?unbox ')[1];
             if (!box || !['common', 'good', 'epic', 'legendary', 'mythic', 'commonbox', 'goodbox', 'epicbox', 'legendarybox', 'mythicbox'].includes(box)) {
                 try {
-                    message.reply({
+                    return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: Invalid box specified!')
@@ -1325,30 +1325,30 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                         ]
                     });
                 } catch (error) {
-                    console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                    return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
                 }
             } else {
                 if (db[message.author.id] == undefined) {
                     try {
-                        message.reply({ embeds: [noAccountEmbed] });
+                        return message.reply({ embeds: [noAccountEmbed] });
                     } catch (error) {
-                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[message.author.id].accountType == -1) {
                     try {
-                        message.reply({ embeds: [deletedEmbed] });
+                        return message.reply({ embeds: [deletedEmbed] });
                     } catch (error) {
-                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[message.author.id].accountType == -2) {
                     try {
-                        message.reply({ embeds: [bannedEmbed] });
+                        return message.reply({ embeds: [bannedEmbed] });
                     } catch (error) {
-                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
                     }
                 } else if (db[message.author.id].lootboxes[box.replace('box', '')] < 1) {
                     try {
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setTitle(':no_entry_sign: You do not own this lootbox!')
@@ -1358,14 +1358,14 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythi
                             ]
                         });
                     } catch (error) {
-                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
                     }
                 } else {
                     const reward = roll(box.replace('box', ''));
                     db[message.author.id].lootboxes[box.replace('box', '')]--;
                     db[message.author.id].inventory[reward.skin]++;
                     try {
-                        message.reply({
+                        return message.reply({
                             embeds: [
                                 new MessageEmbed()
                                     .setTitle(`${lootboxEmojis[box]} ${lootboxNames[box]} opened!`)
@@ -1382,7 +1382,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                             ]
                         });
                     } catch (error) {
-                        console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
                     }
                 }
             }
@@ -1393,17 +1393,17 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
             if (!ign) user = message.author.id;
             if (db[user] == undefined) {
                 try {
-                    return message.reply({
+                    return return message.reply({
                         embeds: [noAccountEmbed]
                     });
                 } catch (error) {
-                    return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                    return return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
                 }
             };
             if (ign && names[ign.toLowerCase()] !== undefined) user = names[ign.toLowerCase()].id;
             if (ign && names[ign.toLowerCase()] == undefined) {
                 try {
-                    return message.reply({
+                    return return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(`:no_entry_sign: This user doesn't exit!`)
@@ -1413,7 +1413,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                         ]
                     });
                 } catch (error) {
-                    return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                    return return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
                 }
             }
             try {
@@ -1421,7 +1421,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                 Object.keys(db[user].inventory).reverse().forEach(skin => {
                     inv += inventoryDisplay(skin, db[user].inventory[skin]);
                 });
-                return message.reply({
+                return return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`:bust_in_silhouette: Inventory of ${db[user].name}`)
@@ -1433,7 +1433,7 @@ ${inv}
                     ]
                 })
             } catch (error) {
-                return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                return return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
             }
         }
     }); 
