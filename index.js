@@ -1446,7 +1446,7 @@ ${inv}
                                 .setTitle(':no_entry_sign: No skin specified!')
                                 .setDescription(`In order to equip a skin, you need to specify one! Do it like this: \`?equip <skinID>\`. To check your skins, use \`?inventory\`, please keep in reminder that the skin IDs are basically always lowercase and no-space versions of the skin labels you see, for example ${skins['rgbchicken']} **RGB Chicken** is \`rgbchicken\`!`)
                                 .setColor('RED')
-                                .setFooter({text: 'No skin specified | ?equip'})
+                                .setFooter({ text: 'No skin specified | ?equip' })
                         ]
                     });
                 } catch (error) {
@@ -1455,7 +1455,7 @@ ${inv}
             } else {
                 if (db[message.author.id] == undefined) {
                     try {
-                        return message.reply({embeds: [noAccountEmbed]});
+                        return message.reply({ embeds: [noAccountEmbed] });
                     } catch (error) {
                         return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
                     }
@@ -1468,7 +1468,7 @@ ${inv}
                                     .setTitle(':no_entry_sign: Invalid skin specified!')
                                     .setDescription(`The skin you specified in your parameter does not exist! Please keep in mind skin IDs are more than always lowercase and no-space versions of their labels, i.e. ${skins['rgbchicken']} **RGB Chicken** is \`rgbchicken\``)
                                     .setColor('RED')
-                                    .setFooter({text: 'Invalid skin specified | ?equip'})
+                                    .setFooter({ text: 'Invalid skin specified | ?equip' })
                             ]
                         });
                     } catch (error) {
@@ -1483,7 +1483,7 @@ ${inv}
                                     .setTitle(':no_entry_sign: You do not own this skin!')
                                     .setDescription(`In your inventory, you do not own a single ${skins[skin]} **${skinNames[skin]}**! Therefore you cannot equip it! To check your skins that you own, use \`?inventory\``)
                                     .setColor('RED')
-                                    .setFooter({text: 'Insufficient funds | ?equip'})
+                                    .setFooter({ text: 'Insufficient funds | ?equip' })
                             ]
                         })
                     } catch (error) {
@@ -1502,25 +1502,27 @@ ${inv}
                 } catch (error) {
                     return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
                 }
-                
+
             }
             if (message.content.startsWith('?sell')) {
                 const skin = message.content.split('?sell ')[1];
-                if (!skin) try {
-                    return message.reply({
-                        embeds: [
-                            new MessageEmbed()
-                                .setTitle(':no_entry_sign: No skin specified!')
-                                .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`\``)
-                                .setColor('RED')
-                                .setFooter({text: 'No skin specified | ?sell'})
-                        ]
-                    });
-                } catch (error) {
-                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                if (!skin) {
+                    try {
+                        return message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setTitle(':no_entry_sign: No skin specified!')
+                                    .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`\``)
+                                    .setColor('RED')
+                                    .setFooter({ text: 'No skin specified | ?sell' })
+                            ]
+                        });
+                    } catch (error) {
+                        return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                    }
                 }
                 if (db[message.author.id] == undefined) try {
-                    return message.reply({embeds: [noAccountEmbed]});
+                    return message.reply({ embeds: [noAccountEmbed] });
                 } catch (error) {
                     return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
                 }
@@ -1541,7 +1543,7 @@ ${inv}
                                 .setTitle(':no_entry_sign: Invalid skin specified!')
                                 .setDescription(`The skin you entered doesn't exist, please check that you are entering a valid skin ID. Skin IDs are lowercase and no-space versions of their original names, like ${skins.rgbchicken} **RGB Chicken** is \`rgbchicken\``)
                                 .setColor('RED')
-                                .setFooter({text: 'Invalid skin specified | ?sell'})
+                                .setFooter({ text: 'Invalid skin specified | ?sell' })
                         ]
                     });
                 } catch (error) {
@@ -1567,7 +1569,7 @@ ${inv}
                                 .setTitle(':no_entry_sign: You cannot sell this skin!')
                                 .setDescription(`Because this skin is the :question_mark: **Default** rarity, it's given to you at the creation of your account, these skins are meant to fill an empty inventory so you have skins to use, not to be sold, therefore you cannot sell this!`)
                                 .setColor('RED')
-                                .setFooter({text: 'Why sell default skin ;< | ?sell'})
+                                .setFooter({ text: 'Why sell default skin ;< | ?sell' })
                         ]
                     });
                 } catch (error) {
@@ -1592,7 +1594,6 @@ ${inv}
                 } catch (error) {
                     return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
                 }
-
             }
         }
     }); 
