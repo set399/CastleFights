@@ -1504,6 +1504,92 @@ ${inv}
                 }
                 
             }
+            if (message.content.startsWith('?sell')) {
+                const skin = message.content.split('?sell ')[1];
+                if (!skin) try {
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: No skin specified!')
+                                .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`\``)
+                                .setColor('RED')
+                                .setFooter({text: 'No skin specified | ?sell'})
+                        ]
+                    });
+                } catch (error) {
+                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                }
+                if (db[message.author.id] == undefined) try {
+                    return message.reply({embeds: [noAccountEmbed]});
+                } catch (error) {
+                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                }
+                if (db[message.author.id].accountType == -1) try {
+                    return message.reply({ embeds: [deletedEmbed] });
+                } catch (error) {
+                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                }
+                if (db[message.author.id].accountType == -2) try {
+                    return message.reply({ embeds: [bannedEmbed] });
+                } catch (error) {
+                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                }
+                if (!skins[skin]) try {
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: Invalid skin specified!')
+                                .setDescription(`The skin you entered doesn't exist, please check that you are entering a valid skin ID. Skin IDs are lowercase and no-space versions of their original names, like ${skins.rgbchicken} **RGB Chicken** is \`rgbchicken\``)
+                                .setColor('RED')
+                                .setFooter({text: 'Invalid skin specified | ?sell'})
+                        ]
+                    });
+                } catch (error) {
+                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                }
+                if (db[message.author.id].inventory[skin] < 1) try {
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: You do not own this skin!')
+                                .setDescription(`You can't sell ${skins[skin]} **${skinNames[skin]}** because you do not own it! Please make sure to check your \`?inventory\` for skins you own!`)
+                                .setColor('RED')
+                                .setFooter({ text: 'Insufficient funds | ?sell' })
+                        ]
+                    })
+                } catch (error) {
+                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                }
+                if (rarityofSkin[skin] == 'default') try {
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: You cannot sell this skin!')
+                                .setDescription(`Because this skin is the :question_mark: **Default** rarity, it's given to you at the creation of your account, these skins are meant to fill an empty inventory so you have skins to use, not to be sold, therefore you cannot sell this!`)
+                                .setColor('RED')
+                                .setFooter({text: 'Why sell default skin ;< | ?sell'})
+                        ]
+                    });
+                } catch (error) {
+                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                }
+                db[message.author.id].inventory[skin]--;
+                db[message.author.id].coins += skinPrices[skin];
+                try {
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':white_check_mark: Skin sold!')
+                                .setDescription(`Sold ${skins[skin]} **${skinNames[skin]}** for ${skinPrices[skin]} ${icons.coin}! You now have **${db[message.author.id].coins}** ${icons.coin}`)
+                                .setColor('GREEN')
+                                .setFooter({ text: `@${db[message.author.id].name} sold ${skinNames[skin]} | ?sell` })
+                        ]
+                    });
+                } catch (error) {
+                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                }
+
+            }
         }
     }); 
 
