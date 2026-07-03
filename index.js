@@ -1436,6 +1436,26 @@ ${inv}
                 return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWith('?equip')) {
+            const skin = message.content.split('?equip ')[1];
+            if (!skin) {
+                try {
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: No skin specified!')
+                                .setDescription(`In order to equip a skin, you need to specify one! Do it like this: \`?equip <skinID>\`. To check your skins, use \`?inventory\`, please keep in reminder that the skin IDs are basically always lowercase and no-space versions of the skin labels you see, for example ${skins['rgbchicken']} **RGB Chicken** is \`rgbchicken\`!`)
+                                .setColor('RED')
+                                .setFooter({text: 'No skin specified | ?equip'})
+                        ]
+                    });
+                } catch (error) {
+                    return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                }
+            } else {
+                
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
