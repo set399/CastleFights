@@ -1575,6 +1575,10 @@ ${inv}
                 }
                 db[message.author.id].inventory[skin]--;
                 db[message.author.id].coins += skinPrices[skin];
+                if (skin == 'rich' || skin == 'killermouse') db[message.author.id].gems += 3;
+                if (skin == 'spaceinvader') db[message.author.id].gems += 4;
+                if (skin == 'femoby' || skin == 'catfemoby') db[message.author.id].gems += 10;
+                if (skin == 'rgbchicken') db[message.author.id].gems += 30;
                 try {
                     return message.reply({
                         embeds: [
