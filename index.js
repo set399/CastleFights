@@ -1453,6 +1453,28 @@ ${inv}
                     return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
                 }
             } else {
+                if (db[message.author.id] == undefined) {
+                    try {
+                        return message.reply({embeds: [noAccountEmbed]});
+                    } catch (error) {
+                        return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                    }
+                }
+                if (!skins[skin]) {
+                    try {
+                        return message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setTitle(':no_entry_sign: Invalid skin specified!')
+                                    .setDescription(`The skin you specified in your parameter does not exist! Please keep in mind skin IDs are more than always lowercase and no-space versions of their labels, i.e. ${skins['rgbchicken']} **RGB Chicken** is \`rgbchicken\``)
+                                    .setColor('RED')
+                                    .setFooter({text: 'Invalid skin specified | ?equip'})
+                            ]
+                        });
+                    } catch (error) {
+                        return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                    }
+                }
                 
             }
         }
