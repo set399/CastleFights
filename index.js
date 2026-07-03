@@ -1475,6 +1475,33 @@ ${inv}
                         return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
                     }
                 }
+                if (db[message.author.id].inventory[skin] < 1) {
+                    try {
+                        return message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setTitle(':no_entry_sign: You do not own this skin!')
+                                    .setDescription(`In your inventory, you do not own a single ${skins[skin]} **${skinNames[skin]}**! Therefore you cannot equip it! To check your skins that you own, use \`?inventory\``)
+                                    .setColor('RED')
+                                    .setFooter({text: 'Insufficient funds | ?equip'})
+                            ]
+                        })
+                    } catch (error) {
+                        return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                    }
+                }
+                db[message.author.id].skin = skin;
+                try {
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(`:white_check_mark: Equipped ${skins[skin]} ${skinNames[skin]}!`)
+                                .setColor('GREEN')
+                        ]
+                    });
+                } catch (error) {
+                    return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                }
                 
             }
         }
