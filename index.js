@@ -1606,6 +1606,25 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                             .setFooter({text: `Ya that box is expensive isn't it ;< | ?usercraft`})
                     ]
                 });
+                if (item == 'crafter' && user.gems < 50) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: You do not have enough for this item!')
+                            .setDescription(`A ${icons.crafter} **Crafter (User Badge)** requires **50** ${icons.gem}! You have only ${user.gems} ${icons.gem}! You cannot craft this item!`)
+                            .setColor('RED')
+                            .setFooter({ text: `Such expensive badge woaa ;< | ?usercraft` })
+                    ]
+                });
+                if (item == 'crafter' && user.badges.crafter == 1) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: You already own this badge!')
+                            .setDescription(`You already own the ${icons.crafter} **Crafter** profile badge! You cannot craft it again or get rid of it!`)
+                            .setColor('RED')
+                            .setFooter({ text: `U ALREADY OWN ITTT WHY CRAFT AGAIN ;< | ?usercraft` })
+                    ]
+                });
+
                 if (item == 'mythicbox') {
                     user.gems -= 50;
                     user.lootboxes.mythic++;
@@ -1615,10 +1634,24 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                                 .setTitle(`:white_check_mark: Crafted ${icons.mythicbox} Mythic Lootbox successfully!`)
                                 .setDescription(`You have crafted a ${icons.mythicbox} **Mythic Lootbox** for 50 ${icons.gem}! You now have ${user.gems} ${icons.gem} left!`)
                                 .setColor('GREEN')
-                                .setFooter({text: `Yayyy mythic box -w- | ?usercraft`})
+                                .setFooter({ text: `Yayyy mythic box -w- | ?usercraft` })
                         ]
                     });
                 };
+                if (item == 'crafter') {
+                    user.gems -= 50;
+                    user.badges.crafter = 1;
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(`:white_check_mark: Crafted ${icons.crafter} Crafter Profile Badge successfully!`)
+                                .setDescription(`You have crafted the ${icons.crafter} **Crafter (Profile Badge)** for 50 ${icons.gem}! You now have ${user.gems} ${icons.gem} left and your profile now has the new badge already equipped (and shown in-game)! Enjoy your new badge! :tada:`)
+                                .setColor('GREEN')
+                                .setFooter({text: `WOAA NEW KEWLIE BADGE :o | ?usercraft`})
+                        ]
+                    });
+                };
+
                 return message.reply({
                     embeds: [
                         new MessageEmbed()
