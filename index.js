@@ -1600,14 +1600,24 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythiclootbox\`)
                     embeds: [
                         new MessageEmbed()
                             .setTitle(':no_entry_sign: You do not have enough for this item!')
-                            .setDescription(`A ${icons.mythicbox} **Mythic Lootbox** requires **50** ${icons.gem}! You have only ${db[message.author.id].gems} ${icons.gem}! You cannot craft this item!`)
+                            .setDescription(`A ${icons.mythicbox} **Mythic Lootbox** requires **50** ${icons.gem}! You have only ${user.gems} ${icons.gem}! You cannot craft this item!`)
                             .setColor('RED')
                             .setFooter({text: `Ya that box is expensive isn't it ;< | ?usercraft`})
                     ]
                 });
                 if (item == 'mythicbox') {
-
-                }
+                    user.gems -= 50;
+                    user.lootboxes.mythic++;
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(`:white_check_mark: Crafted ${icons.mythicbox} Mythic Lootbox successfully!`)
+                                .setDescription(`You have crafted a ${icons.mythicbox} **Mythic Lootbox** for 50 ${icons.gem}! You now have ${user.gems} ${icons.gem} left!`)
+                                .setColor('GREEN')
+                                .setFooter({text: `Yayyy mythic box -w- | ?usercraft`})
+                        ]
+                    });
+                };
                 return message.reply({
                     embeds: [
                         new MessageEmbed()
