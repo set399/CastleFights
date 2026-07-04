@@ -893,7 +893,8 @@ You are not able to use any interaction commands, but you can still view player'
                     },
                     profileviews: 0,
                     canUseRequest: true,
-                    playerID: (Object.keys(db).length || 0)+1
+                    playerID: (Object.keys(db).length || 0) + 1,
+                    created: Date.now()
                 };
                 db[message.author.id] = d;
                 names[name.toLowerCase()] = { id: message.author.id, display: name };
