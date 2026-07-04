@@ -1573,6 +1573,38 @@ ${inv}
                     console.error(`Failed to process ?sell command at ${message.channel.id}: ${error}`);
                 }
             }
+        if (message.content.startsWith('?usercraft')) {
+            try {
+                const item = message.content.split('?usercraft ')[1];
+                if (!item) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':tools: User Crafting Recipes')
+                            .setDescription(`
+* With this command, you can craft skins! Unlike \`?craft\` which is used in-game for preparation, here you can craft your own skins and different **LONG-TERM** items (i.e. lootboxes, badges, boosters, etc.)!
+* Main currency used here are ${icons.gem} **Gems**! You can get these by either selling :red_square: **Mythic** skins, or in-game with a chance everytime you destroy a heavier block like ${textures.STEEL} **Reinforced Steel** or :purple_square: **Obsidian**
+* When crafting an item, use it's ID as the parameter, like this: \`?usercraft <itemID>\`
+
+# Recipes
+There are currently no recipes.
+`)
+                            .setColor('BROWN')
+                            .setFooter({text: 'User Crafting Recipes | ?usercraft'})
+                    ]
+                });
+                if (![].includes(item)) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: This item doesn\'t exist!')
+                            .setDescription(`The item you specified doesn't exist, use this command without any parameters to check the list of items and their IDs that you have to specify when trying to craft them! Use the command like this: \`?usercraft <itemID>\``)
+                            .setColor('RED')
+                            .setFooter({text: `Item doesn't exist | ?usercraft`})
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?usercraft command at ${message.channel.id}: ${error}`);
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
