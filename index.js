@@ -1588,6 +1588,7 @@ ${inv}
 
 # Recipes
 ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\`)
+${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
 `)
                             .setColor('YELLOW')
                             .setFooter({text: 'User Crafting Recipes | ?usercraft'})
