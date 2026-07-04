@@ -1002,6 +1002,7 @@ ${user.disableReason}
                 } else {
                     try {
                         const user = db[message.author.id];
+                        if (user.inventory[user.skin] < 1) user.skin = 'default';
                         const level = getLevel(user.xp);
                         let invWorth = 0;
                         Object.keys(user.inventory).forEach(i => {
@@ -1127,6 +1128,7 @@ ${badgeDescriptions}
                 } else {
                     try {
                         const user = db[names[ign].id];
+                        if (user.inventory[user.skin] < 1) user.skin = 'default';
                         const level = getLevel(user.xp);
                         let invWorth = 0;
                         Object.keys(user.inventory).forEach(i => {
