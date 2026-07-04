@@ -1504,6 +1504,7 @@ ${inv}
                 }
 
             }
+        }
             if (message.content.startsWith('?sell')) {
                 try {
                     const skin = message.content.split('?sell ')[1];
