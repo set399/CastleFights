@@ -1587,7 +1587,7 @@ ${inv}
 * When crafting an item, use it's ID as the parameter, like this: \`?usercraft <itemID>\`
 
 # Recipes
-${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythiclootbox\`)
+${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\`)
 `)
                             .setColor('YELLOW')
                             .setFooter({text: 'User Crafting Recipes | ?usercraft'})
