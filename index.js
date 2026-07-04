@@ -1588,7 +1588,7 @@ ${inv}
 # Recipes
 There are currently no recipes.
 `)
-                            .setColor('BROWN')
+                            .setColor('YELLOW')
                             .setFooter({text: 'User Crafting Recipes | ?usercraft'})
                     ]
                 });
