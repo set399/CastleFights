@@ -120,7 +120,7 @@ names.json length: ${JSON.stringify(names).length}
         challenger2: '<:challenger_badge2:975316703691018250>',
         challenger3: ':star:',
         challenger4: '<:challenger_badge4:975316703368060969>',
-        collector: '<a:diamond:1047983266357055578>',
+        crafter: '<a:diamond:1047983266357055578>',
         commonbox: '<:commonbox:1048689265900527686>',
         goodbox: '<:goodbox:1048689316542558260>',
         epicbox: '<:epicbox:1048689356614942892>',
@@ -432,7 +432,7 @@ names.json length: ${JSON.stringify(names).length}
         if (id == 'verified' && tier == 1) return icons.verified;
         if (id == 'mod' && tier == 1) return icons.mod;
         if (id == 'mod' && tier == 2) return icons.mod2;
-        if (id == 'collector' && tier == 1) return icons.collector;
+        if (id == 'crafter' && tier == 1) return icons.crafter;
         if (id.startsWith('challenger') && tier > 0) return icons[`challenger${tier}`];
         return '';
     }
@@ -441,7 +441,7 @@ function displayBadgeText(id, tier) {
     if (id == 'verified' && tier == 1) return `${icons.verified} **Verified**\n`;
     if (id == 'mod' && tier == 1) return `${icons.mod} **Moderator**\n`;
     if (id == 'mod' && tier == 2) return `${icons.mod2} **Head Moderator**\n`;
-    if (id == 'collector' && tier == 1) return `${icons.collector} **Collector**\n`;
+    if (id == 'crafter' && tier == 1) return `${icons.crafter} **Crafter**\n`;
     if (id.startsWith('challenger') && tier > 0) {
         let icon = icons[`challenger${tier}`];
         return `${icon} **Challenger [Tier ${tier}]**\n`;
@@ -854,7 +854,7 @@ You are not able to use any interaction commands, but you can still view player'
                     badges: {
                         mod: 0,
                         verified: 0,
-                        collector: 0,
+                        crafter: 0,
                         challenger: 0
                     },
                     settings: {
@@ -1008,7 +1008,7 @@ ${user.disableReason}
                         });
                         let kdr = (user.kills / user.deaths).toFixed(2);
                         let winrate = ((user.wins / user.plays) * 100).toFixed(2);
-                        let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
+                        let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('crafter', user.badges.crafter)}`;
                         if (badgeDescriptions == '') badgeDescriptions = 'This user has no badges.';
                         if (isNaN(kdr)) kdr = 0;
                         if (isNaN(winrate)) winrate = 0;
@@ -1016,7 +1016,7 @@ ${user.disableReason}
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
-## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
+## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('crafter', user.badges.crafter)}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
 **Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${skinPrices[user.skin]} ${icons.coin})
 ## **Badges:**
@@ -1133,7 +1133,7 @@ ${badgeDescriptions}
                         });
                         let kdr = (user.kills / user.deaths).toFixed(2);
                         let winrate = ((user.wins / user.plays) * 100).toFixed(2);
-                        let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('collector', user.badges.collector)}`;
+                        let badgeDescriptions = `${displayBadgeText('mod', user.badges.mod)}${displayBadgeText('verified', user.badges.verified)}${displayBadgeText('challenger', user.badges.challenger)}${displayBadgeText('crafter', user.badges.crafter)}`;
                         if (badgeDescriptions == '') badgeDescriptions = 'This user has no badges.';
                         if (isNaN(kdr)) kdr = 0;
                         if (isNaN(winrate)) winrate = 0;
@@ -1141,7 +1141,7 @@ ${badgeDescriptions}
                             embeds: [
                                 new MessageEmbed()
                                     .setDescription(`
-## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('collector', user.badges.collector)}
+## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('crafter', user.badges.crafter)}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
 **Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${skinPrices[user.skin]} ${icons.coin})
 ## **Badges:**
