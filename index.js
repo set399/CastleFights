@@ -1669,6 +1669,23 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                 console.error(`Failed to process ?usercraft command at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWIth('?challenges')) {
+            try {
+                const user = db[message.author.id];
+                const tier = user.challengeTier;
+                const completingTier = user.challengeTier + 1;
+                if (user == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} challenges`)
+                            .setDescription()
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?challenges command at ${message.channel.id}: ${error}`);
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
