@@ -1564,7 +1564,7 @@ ${inv}
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':white_check_mark: Skin sold!')
-                                .setDescription(`Sold ${skins[skin]} **${skinNames[skin]}** for ${skinPrices[skin]} ${icons.coin}! You now have **${db[message.author.id].coins}** ${icons.coin}`)
+                                .setDescription(`Sold ${skins[skin]} **${skinNames[skin]}** for ${skinPrices[skin]} ${icons.coin}${gemSellDisplay(skin)}! You now have **${db[message.author.id].coins}** ${icons.coin}`)
                                 .setColor('GREEN')
                                 .setFooter({ text: `@${db[message.author.id].name} sold ${skinNames[skin]} | ?sell` })
                         ]
