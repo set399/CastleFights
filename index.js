@@ -1575,6 +1575,7 @@ ${inv}
             }
         if (message.content.startsWith('?usercraft')) {
             try {
+                const user = db[message.author.id];
                 const item = message.content.split('?usercraft ')[1];
                 if (!item) return message.reply({
                     embeds: [
@@ -1592,10 +1593,10 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythiclootbox\`)
                             .setFooter({text: 'User Crafting Recipes | ?usercraft'})
                     ]
                 });
-                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
-                if (db[message.author.id].accountType == -1) return message.reply({ embeds: [deletedEmbed] });
-                if (db[message.author.id].accountType == -2) return message.reply({ embeds: [bannedEmbed] });
-                if (!['mythiclootbox'].includes(item)) return message.reply({
+                if (user == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (user.accountType == -1) return message.reply({ embeds: [deletedEmbed] });
+                if (user.accountType == -2) return message.reply({ embeds: [bannedEmbed] });
+                if (!['mythicbox'].includes(item)) return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(':no_entry_sign: This item doesn\'t exist!')
@@ -1604,6 +1605,16 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythiclootbox\`)
                             .setFooter({text: `Item doesn't exist | ?usercraft`})
                     ]
                 });
+                if (item == 'mythicbox' && user.gems < 50) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: You do not have enough for this item!')
+                            .setDescription(`A ${icons.mythicbox} **Mythic Lootbox** requires **50** ${icons.gem}! You have only ${db[message.author.id].gems} ${icons.gem}! You cannot craft this item!`)
+                            .setColor('RED')
+                            .setFooter({text: `Ya that box is expensive isn't it ;< | ?usercraft`})
+                    ]
+                });
+                if(item == 'mythicbox') 
                 
             } catch (error) {
                 console.error(`Failed to process ?usercraft command at ${message.channel.id}: ${error}`);
