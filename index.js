@@ -1586,13 +1586,16 @@ ${inv}
 * When crafting an item, use it's ID as the parameter, like this: \`?usercraft <itemID>\`
 
 # Recipes
-There are currently no recipes.
+${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythiclootbox\`)
 `)
                             .setColor('YELLOW')
                             .setFooter({text: 'User Crafting Recipes | ?usercraft'})
                     ]
                 });
-                if (![].includes(item)) return message.reply({
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType == -1) return message.reply({ embeds: [deletedEmbed] });
+                if (db[message.author.id].accountType == -2) return message.reply({ embeds: [bannedEmbed] });
+                if (!['mythiclootbox'].includes(item)) return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(':no_entry_sign: This item doesn\'t exist!')
@@ -1601,6 +1604,7 @@ There are currently no recipes.
                             .setFooter({text: `Item doesn't exist | ?usercraft`})
                     ]
                 });
+                
             } catch (error) {
                 console.error(`Failed to process ?usercraft command at ${message.channel.id}: ${error}`);
             }
