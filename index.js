@@ -1505,39 +1505,21 @@ ${inv}
 
             }
             if (message.content.startsWith('?sell')) {
-                const skin = message.content.split('?sell ')[1];
-                if (!skin) {
-                    try {
-                        return message.reply({
-                            embeds: [
-                                new MessageEmbed()
-                                    .setTitle(':no_entry_sign: No skin specified!')
-                                    .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`\``)
-                                    .setColor('RED')
-                                    .setFooter({ text: 'No skin specified | ?sell' })
-                            ]
-                        });
-                    } catch (error) {
-                        return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
-                    }
-                }
-                if (db[message.author.id] == undefined) try {
-                    return message.reply({ embeds: [noAccountEmbed] });
-                } catch (error) {
-                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
-                }
-                if (db[message.author.id].accountType == -1) try {
-                    return message.reply({ embeds: [deletedEmbed] });
-                } catch (error) {
-                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
-                }
-                if (db[message.author.id].accountType == -2) try {
-                    return message.reply({ embeds: [bannedEmbed] });
-                } catch (error) {
-                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
-                }
-                if (!skins[skin]) try {
-                    return message.reply({
+                try {
+                    const skin = message.content.split('?sell ')[1];
+                    if (!skin) return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: No skin specified!')
+                                .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`\``)
+                                .setColor('RED')
+                                .setFooter({ text: 'No skin specified | ?sell' })
+                        ]
+                    });
+                    if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                    if (db[message.author.id].accountType == -1) return message.reply({ embeds: [deletedEmbed] });
+                    if (db[message.author.id].accountType == -2) return message.reply({ embeds: [bannedEmbed] });
+                    if (!skins[skin]) return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: Invalid skin specified!')
@@ -1546,11 +1528,7 @@ ${inv}
                                 .setFooter({ text: 'Invalid skin specified | ?sell' })
                         ]
                     });
-                } catch (error) {
-                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
-                }
-                if (db[message.author.id].inventory[skin] < 1) try {
-                    return message.reply({
+                    if (db[message.author.id].inventory[skin] < 1) return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: You do not own this skin!')
@@ -1558,12 +1536,8 @@ ${inv}
                                 .setColor('RED')
                                 .setFooter({ text: 'Insufficient funds | ?sell' })
                         ]
-                    })
-                } catch (error) {
-                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
-                }
-                if (rarityofSkin[skin] == 'default') try {
-                    return message.reply({
+                    });
+                    if (rarityofSkin[skin] == 'default') return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: You cannot sell this skin!')
@@ -1572,16 +1546,12 @@ ${inv}
                                 .setFooter({ text: 'Why sell default skin ;< | ?sell' })
                         ]
                     });
-                } catch (error) {
-                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
-                }
-                db[message.author.id].inventory[skin]--;
-                db[message.author.id].coins += skinPrices[skin];
-                if (skin == 'rich' || skin == 'killermouse') db[message.author.id].gems += 3;
-                if (skin == 'spaceinvader') db[message.author.id].gems += 4;
-                if (skin == 'femoby' || skin == 'catfemoby') db[message.author.id].gems += 10;
-                if (skin == 'rgbchicken') db[message.author.id].gems += 30;
-                try {
+                    db[message.author.id].inventory[skin]--;
+                    db[message.author.id].coins += skinPrices[skin];
+                    if (skin == 'rich' || skin == 'killermouse') db[message.author.id].gems += 3;
+                    if (skin == 'spaceinvader') db[message.author.id].gems += 4;
+                    if (skin == 'femoby' || skin == 'catfemoby') db[message.author.id].gems += 10;
+                    if (skin == 'rgbchicken') db[message.author.id].gems += 30;
                     return message.reply({
                         embeds: [
                             new MessageEmbed()
@@ -1592,7 +1562,7 @@ ${inv}
                         ]
                     });
                 } catch (error) {
-                    return console.error(`Failed to send ?sell message at ${message.channel.id}: ${error}`);
+                    console.error(`Failed to process ?sell command at ${message.channel.id}: ${error}`);
                 }
             }
         }
