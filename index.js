@@ -618,6 +618,13 @@ function inventoryDisplay(sk, count) {
         return '';
     }
 }
+function gemSellDisplay(skin) {
+    if (skin == 'rich' || skin == 'killermouse') return ` and **3** ${icons.gem}`;
+    if (skin == 'spaceinvader') return ` and **4** ${icons.gem}`;
+    if (skin == 'femoby' || skin == 'catfemoby') return ` and **10** ${icons.gem}`;
+    if (skin == 'rgbchicken') return ` and **30** ${icons.gem}`;
+    return ``;
+}
 const lootboxPrices = {
     commonbox: 500,
     common: 500,
