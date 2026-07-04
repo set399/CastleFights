@@ -1565,7 +1565,6 @@ ${inv}
                     console.error(`Failed to process ?sell command at ${message.channel.id}: ${error}`);
                 }
             }
-        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
