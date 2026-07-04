@@ -1596,15 +1596,6 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythiclootbox\`)
                 if (user == undefined) return message.reply({ embeds: [noAccountEmbed] });
                 if (user.accountType == -1) return message.reply({ embeds: [deletedEmbed] });
                 if (user.accountType == -2) return message.reply({ embeds: [bannedEmbed] });
-                if (!['mythicbox'].includes(item)) return message.reply({
-                    embeds: [
-                        new MessageEmbed()
-                            .setTitle(':no_entry_sign: This item doesn\'t exist!')
-                            .setDescription(`The item you specified doesn't exist, use this command without any parameters to check the list of items and their IDs that you have to specify when trying to craft them! Use the command like this: \`?usercraft <itemID>\``)
-                            .setColor('RED')
-                            .setFooter({text: `Item doesn't exist | ?usercraft`})
-                    ]
-                });
                 if (item == 'mythicbox' && user.gems < 50) return message.reply({
                     embeds: [
                         new MessageEmbed()
@@ -1614,7 +1605,18 @@ ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythiclootbox\`)
                             .setFooter({text: `Ya that box is expensive isn't it ;< | ?usercraft`})
                     ]
                 });
-                if(item == 'mythicbox') 
+                if (item == 'mythicbox') {
+
+                }
+                return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: This item doesn\'t exist!')
+                            .setDescription(`The item you specified doesn't exist, use this command without any parameters to check the list of items and their IDs that you have to specify when trying to craft them! Use the command like this: \`?usercraft <itemID>\``)
+                            .setColor('RED')
+                            .setFooter({ text: `Item doesn't exist | ?usercraft` })
+                    ]
+                });
                 
             } catch (error) {
                 console.error(`Failed to process ?usercraft command at ${message.channel.id}: ${error}`);
