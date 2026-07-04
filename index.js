@@ -1512,7 +1512,7 @@ ${inv}
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: No skin specified!')
-                                .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`\``)
+                                .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`rgbchícken\``)
                                 .setColor('RED')
                                 .setFooter({ text: 'No skin specified | ?sell' })
                         ]
