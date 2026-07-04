@@ -1538,7 +1538,7 @@ ${inv}
                                 .setFooter({ text: 'Insufficient funds | ?sell' })
                         ]
                     });
-                    if (rarityofSkin[skin] == 'default') return message.reply({
+                    if (rarityOfSkin[skin] == 'default') return message.reply({
                         embeds: [
                             new MessageEmbed()
                                 .setTitle(':no_entry_sign: You cannot sell this skin!')
