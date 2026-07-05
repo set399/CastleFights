@@ -1792,7 +1792,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                         new MessageEmbed()
                             .setTitle(`${icons.challenger4} You have completed all Challenges!`)
                             .setDescription(`You have completed all ${icons.challenger1} **Tier 1**, ${icons.challenger2} **Tier 2**, ${icons.challenger3} **Tier 3** and ${icons.challenger4} **Tier 4** challenges and already own the maximum best possible obtained from them! Congratulations! :tada:`)
-                            .setColor(user.embedcolor)
+                            .setColor(user.settings.embedcolor)
                             .setFooter({text: `yea u already did everything man -w- | ?challenges`})
                     ]
                 });
@@ -1814,7 +1814,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
 > ${challengeTierRewardDisplay('legendary', challengeRewards['tier' + completingTier])}
 > ${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier])}
 `)
-                            .setColor(user.embedcolor)
+                            .setColor(user.settings.embedcolor)
                             .setFooter({text: `@${user.name}'s Tier ${completingTier} challenges | ?challenges`})
                     ]
                 });
