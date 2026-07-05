@@ -760,8 +760,8 @@ function settingsLevelIconUnlockDisplay(icon, level) {
     if (level >= icon) return icons['lvl' + icon];
 }
 function settingsLevelIconUnlockBool(icon, level) {
-    if (level < icon) true;
-    if (level >= icon) false;
+    if (level < icon) return true;
+    if (level >= icon) return false;
 }
 
 const lootboxPrices = {
