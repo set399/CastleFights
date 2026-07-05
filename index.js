@@ -1835,6 +1835,28 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 console.error(`Failed to process ?challenges command at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWith('?settings')) {
+            try {
+                const user = db[message.author.id];
+                const setting = message.content.split('?settings ')[1];
+                if (user == undefined) message.reply({ embeds: [noAccountEmbed] });
+                if (user.accountType == -1) message.reply({ embeds: [deletedEmbed] });
+                if (user.accountType == -2) message.reply({ embeds: [bannedEmbed] });
+                if (!setting) message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`:gear: ${names[user.name].display}'s settings`)
+                            .setDescription(`
+Here all settings idk
+`)
+                            .setColor(user.settings.embedcolor)
+                            .setFooter({ text: `Settings of @${user.name} | ?settings` })
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?settings command at ${message.channel.id}: ${error}`);
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
