@@ -719,7 +719,7 @@ function challengeTierRewardDisplay(reward, count) {
     if (reward == 'mythic') return `> ${count} Mythic Lootboxes ${icons.mythicbox}`;
     return `Invalid rewards.`;
 }
-function challengeCountForTier(id) {
+function challengeCountForTierRequired(id) {
     const user = db[id];
     let i = 0;
     Object.keys(user.currentChallengeRequirements).forEach(challenge => {
@@ -727,6 +727,15 @@ function challengeCountForTier(id) {
     });
     return i;
 }
+function challengeCountForTierProgress(id) {
+    const user = db[id];
+    let i = 0;
+    Object.keys(user.currentChallengeProgress).forEach(challenge => {
+        if (user.currentChallengeProgress[challenge] > 1) i++;
+    });
+    return i;
+}
+
 const lootboxPrices = {
     commonbox: 500,
     common: 500,
