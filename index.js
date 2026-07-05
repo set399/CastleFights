@@ -430,6 +430,19 @@ names.json length: ${JSON.stringify(names).length}
         servers[code] = serverdata;
     }
 
+const embedColors = {
+    red: '#ff0000',
+    orange: '#ff5500',
+    yellow: '#ffd000',
+    green: '#4dff00',
+    minty: '#93ed87',
+    blue: '#57aade',
+    darkblue: '#0800ff',
+    black: '#000000',
+    white: '#ffffff',
+    pink: '#f0a8ea'
+};
+
     function displayBadge(id, tier) {
         if (tier == 0) return '';
         if (id == 'verified' && tier == 1) return icons.verified;
@@ -1984,7 +1997,27 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                         )
                     ]
                 });
-                if (setting == 'embedcolor') return message.reply({ embeds: [] });
+                if (setting == 'embedcolor') return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`:gear: ${user.name}'s :art: Embed Color Settings`)
+                            .setDescription(`
+* Change the sidebar color of your embeds for the \`?profile\`, \`?inventory\` and \`?settings\` commands for you
+* You can use the current **10** colors using the buttons below:
+* You are currently using the *[color]** color
+`)
+                    ],
+                    components: [
+                        new MessageActionRow()
+                            .addComponents(
+                                new MessageButton()
+                                    .setEmoji('🟥')
+                                    .setDisabled()
+                                    .setCustomId('settings_embedcolor_red')
+                                    .setStyle('SECONDARY')
+                        )
+                    ]
+                });
                 if (setting == 'profileviews') return message.reply({ embeds: [] });
                 if (setting == 'anonmode') return message.reply({embeds: [] });
             } catch (error) {
