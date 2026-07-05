@@ -1223,27 +1223,27 @@ ${icons.mythicbox} **Mythic Lootbox** - \`${db[message.author.id].lootboxes.myth
 * Use \`?unbox\` and \`?buy\` to either open lootboxes or buy them in the store accordingly with their IDs as the parameters
 * Their IDs are specified right next to the item 
 
-${icons.commonbox} **Common Lootbox** - 500 ${icons.coin} (\`commonbox\` / \`common\`)
+${icons.commonbox} **Common Lootbox** - 1,000 ${icons.coin} (\`commonbox\` / \`common\`)
 > :green_square: Common - \`70%\`
 > :blue_square: Good - \`20%\`
 > :purple_square: Epic - \`10%\`
-${icons.goodbox} **Good Lootbox** - 1,500 ${icons.coin} (\`goodbox\` / \`good\`)
+${icons.goodbox} **Good Lootbox** - 2,000 ${icons.coin} (\`goodbox\` / \`good\`)
 > :green_square: Common - \`30%\`
 > :blue_square: Good - \`50%\`
 > :purple_square: Epic - \`15%\`
 > :yellow_square: Legendary - \`5%\`
-${icons.epicbox} **Epic Lootbox** - 3,000 ${icons.coin} (\`epicbox\` / \`epic\`)
+${icons.epicbox} **Epic Lootbox** - 4,000 ${icons.coin} (\`epicbox\` / \`epic\`)
 > :green_square: Common - \`10%\`
 > :blue_square: Good - \`15%\`
 > :purple_square: Epic - \`65%\`
 > :yellow_square: Legendary - \`10%\`
-${icons.legendarybox} **Legendary Lootbox** - 6,000 ${icons.coin} (\`legendarybox\` / \`legendary\`)
+${icons.legendarybox} **Legendary Lootbox** - 7,000 ${icons.coin} (\`legendarybox\` / \`legendary\`)
 > :green_square: Common - \`5%\`
 > :blue_square: Good - \`5%\`
 > :purple_square: Epic - \`10%\`
 > :yellow_square: Legendary - \`73%\`
 > :red_square: Mythic - \`7%\`
-${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\` / \`mythic\`)
+${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtainable through \`?usercraft\` and \`?challenges\`*
 > :blue_square: Good - \`5%\`
 > :purple_square: Epic - \`5%\`
 > :yellow_square: Legendary - \`10%\`
@@ -1679,7 +1679,9 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} challenges`)
-                            .setDescription('')
+                            .setDescription(`
+
+                            `)
                     ]
                 });
             } catch (error) {
