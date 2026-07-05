@@ -1242,7 +1242,7 @@ ${badgeDescriptions}
 ## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('crafter', user.badges.crafter)}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
 **Using Skin:** ${skins[user.skin]} \`${skinNames[user.skin]}\` (${skinPrices[user.skin]} ${icons.coin})
-**Account Created:** :calendar: <t:${user.created}:R>
+**Account Created:** :calendar: <t:${user.created}:R> 
 ## **Badges:**
 ${badgeDescriptions}
                         `)
