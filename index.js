@@ -1852,7 +1852,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 if (user.accountType == -1) message.reply({ embeds: [deletedEmbed] });
                 if (user.accountType == -2) message.reply({ embeds: [bannedEmbed] });
                 let anonModeUnlocked = false;
-                const level = getLevel(user.xp);
+                const level = getLevel(user.xp).level;
                 if (user.accountType > 1) anonModeUnlocked = true;
                 if (!setting) message.reply({
                     embeds: [
