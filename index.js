@@ -125,7 +125,10 @@ names.json length: ${JSON.stringify(names).length}
         goodbox: '<:goodbox:1048689316542558260>',
         epicbox: '<:epicbox:1048689356614942892>',
         legendarybox: '<:legendarybox:1048689380124000346>',
-        mythicbox: '<:mythicbox:1048689408431374426>'
+        mythicbox: '<:mythicbox:1048689408431374426>',
+        darkbluecolor: '<:darkbluecolor:1523432962706772127>',
+        mintycolor: '<:mintycolor:1523433011620741120>',
+        pinkcolor: '<:pinkcolor:1523432979333124187>'
     };
     const skins = {
         default: '😀',
@@ -1857,12 +1860,12 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
             try {
                 const user = db[message.author.id];
                 const setting = message.content.split('?settings ')[1];
-                if (user == undefined) message.reply({ embeds: [noAccountEmbed] });
-                if (user.accountType == -1) message.reply({ embeds: [deletedEmbed] });
-                if (user.accountType == -2) message.reply({ embeds: [bannedEmbed] });
+                if (user == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (user.accountType == -1) return message.reply({ embeds: [deletedEmbed] });
+                if (user.accountType == -2) return message.reply({ embeds: [bannedEmbed] });
                 let anonModeUnlocked = user.accountType > 1;
                 const level = getLevel(user.xp).level;
-                if (!setting) message.reply({
+                if (!setting) return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`:gear: ${names[user.name].display}'s settings`)
@@ -1877,7 +1880,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                             .setFooter({ text: `Settings of @${user.name} | ?settings` })
                     ]
                 });
-                if (setting == 'levelicon') message.reply({
+                if (setting == 'levelicon') return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`:gear: ${names[user.name].display}'s ${icons['lvl' + user.levelIcon]} Level Icon Settings`)
@@ -1981,6 +1984,9 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                         )
                     ]
                 });
+                if (setting == 'embedcolor') return message.reply({ embeds: [] });
+                if (setting == 'profileviews') return message.reply({ embeds: [] });
+                if (setting == 'anonmode') return message.reply({embeds: [] });
             } catch (error) {
                 console.error(`Failed to process ?settings command at ${message.channel.id}: ${error}`);
             }
