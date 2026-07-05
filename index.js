@@ -693,7 +693,7 @@ function challengeDisplay(name, count) {
         return `:skull: **Get a ${count} killstreak**`;
     };
     if (name.startsWith('nodefwins')) {
-        const count = name.split('fistkills')[1];
+        const count = name.split('nodefwins')[1];
         return `:european_castle: **Win ${count} games without a defense**`;
     };
 
