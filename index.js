@@ -660,7 +660,46 @@ const challengeRewards = {
     tier3: { coins: 10000, xp: 10000, lootboxes: { common: 0, good: 3, epic: 3, legendary: 3, mythic: 0 } },
     tier4: { coins: 25000, xp: 25000, lootboxes: { common: 0, good: 0, epic: 5, legendary: 4, mythic: 4 } },
 }
+function challengeDisplay(name) {
+    if (count < 1) return ``;
+    if (name.startsWith('fistkills')) {
+        const count = name.split('fistkills')[1];
+        return `:fist: **Get ${count} Fist kills**`;
+    };
+    if (name.startsWith('crowns')) {
+        const count = name.split('crowns')[1];
+        return `${textures.CROWN1} **Destroy ${count} crowns**`;
+    };
+    if (name.startsWith('winstreak')) {
+        const count = name.split('winstreak')[1];
+        return `:crown: **Win ${count} games in a row**`;
+    };
+    if (name.startsWith('blocks')) {
+        const count = name.split('blocks')[1];
+        return `:pick: **Destroy ${count} blocks**`;
+    };
+    if (name.startsWith('gamekills')) {
+        const count = name.split('gamekills')[1];
+        return `:crossed_swords: **Get ${count} in one game**`;
+    };
+    if (name.startsWith('killstreak')) {
+        const count = name.split('killstreak')[1];
+        return `:skull: **Get a ${count} killstreak**`;
+    };
+    if (name.startsWith('nodefwins')) {
+        const count = name.split('fistkills')[1];
+        return `:european_castle: **Win ${count} games without a defense**`;
+    };
 
+    if (name.startsWith('toolwins')) {
+        const count = name.split('fistkills')[1];
+        return `:firecracker: **Win ${count} games using only tools and ability items**`;
+    };  
+    return `Invalid challenge specifications.`;
+}
+function challengeRewardDisplay() {
+
+}
 const lootboxPrices = {
     commonbox: 500,
     common: 500,
