@@ -1822,7 +1822,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                             .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} Challenges`)
                             .setDescription(`
 **You have completed \`${challengeCountForTierProgress(message.author.id)}/${challengeCountForTierRequired(message.author.id)}\` ${icons['challenger' + completingTier]} Challenges:**
-
+${challenges}
 **Complete all Challenges in this tier to get:**
 > **${icons['challenger' + completingTier]} Tier ${completingTier} Challenger Badge**
 ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].coins)}${challengeTierRewardDisplay('xp', challengeRewards['tier' + completingTier].xp)}${challengeTierRewardDisplay('common', challengeRewards['tier' + completingTier].lootboxes.common)}${challengeTierRewardDisplay('good', challengeRewards['tier' + completingTier].lootboxes.good)}${challengeTierRewardDisplay('epic', challengeRewards['tier' + completingTier].lootboxes.epic)}${challengeTierRewardDisplay('legendary', challengeRewards['tier' + completingTier].lootboxes.legendary)}${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier].lootboxes.mythic)}
