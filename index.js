@@ -625,6 +625,37 @@ function gemSellDisplay(skin) {
     if (skin == 'rgbchicken') return ` and **30** ${icons.gem}`;
     return ``;
 }
+const challengeRewards = {
+    fistkills5: { coins: 100, xp: 100, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    fistkills10: { coins: 200, xp: 200, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    fistkills20: { coins: 400, xp: 400, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    fistkills30: { coins: 600, xp: 600, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    crowns15: { coins: 100, xp: 100, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    crowns30: { coins: 200, xp: 200, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    crowns50: { coins: 400, xp: 400, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    crowns100: { coins: 800, xp: 800, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    winstreak3: { coins: 300, xp: 350, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    winstreak5: { coins: 600, xp: 600, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    winstreak7: { coins: 800, xp: 800, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    winstreak10: { coins: 1600, xp: 1600, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    blocks100: { coins: 500, xp: 500, lootboxes: { common: 0, good: 1, epic: 0, legendary: 0, mythic: 0 } },
+    blocks250: { coins: 1250, xp: 1250, lootboxes: { common: 0, good: 0, epic: 1, legendary: 0, mythic: 0 } },
+    blocks500: { coins: 2500, xp: 2500, lootboxes: { common: 0, good: 0, epic: 2, legendary: 0, mythic: 0 } },
+    blocks1000: { coins: 5000, xp: 5000, lootboxes: { common: 0, good: 0, epic: 3, legendary: 1, mythic: 0 } },
+    gamekills10: { coins: 200, xp: 300, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    gamekills12: { coins: 240, xp: 360, lootboxes: { common: 0, good: 1, epic: 0, legendary: 0, mythic: 0 } },
+    gamekills15: { coins: 300, xp: 400, lootboxes: { common: 0, good: 1, epic: 0, legendary: 0, mythic: 0 } },
+    gamekills20: { coins: 500, xp: 500, lootboxes: { common: 0, good: 3, epic: 0, legendary: 0, mythic: 0 } },
+    killstreak5: { coins: 100, xp: 150, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    killstreak6: { coins: 120, xp: 175, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    killstreak7: { coins: 150, xp: 200, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    killstreak8: { coins: 200, xp: 250, lootboxes: { common: 0, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    nodefwins5: { coins: 500, xp: 500, lootboxes: { common: 1, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    nodefwins10: { coins: 1000, xp: 1000, lootboxes: { common: 1, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    nodefwins15: { coins: 100, xp: 100, lootboxes: { common: 2, good: 0, epic: 0, legendary: 0, mythic: 0 } },
+    toolwins1: { coins: 400, xp: 400, lootboxes: { common: 0, good: 1, epic: 0, legendary: 0, mythic: 0 } },
+    toolwins3: { coins: 1200, xp: 1200, lootboxes: { common: 0, good: 0, epic: 0, legendary: 1, mythic: 0 } }
+}
 const lootboxPrices = {
     commonbox: 500,
     common: 500,
