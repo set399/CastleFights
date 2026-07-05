@@ -706,6 +706,18 @@ function challengeRewardDisplay(reward, count) {
     if (reward == 'epic') return `+${count} ${icons.epicbox}`;
     if (reward == 'legendary') return `+${count} ${icons.legendarybox}`;
     if (reward == 'mythic') return `+${count} ${icons.mythicbox}`;
+    return `Invalid rewards.`;
+}
+function challengeTierRewardDisplay(reward, count) {
+    if (count < 1) return ``;
+    if (reward == 'coins') return `> ${count} Coins ${icons.coin}`;
+    if (reward == 'xp') return `> ${count} XP ${icons.xp}`;
+    if (reward == 'common') return `> ${count} Common Lootboxes ${icons.commonbox}`;
+    if (reward == 'good') return `> ${count} Good Lootboxes ${icons.goodbox}`;
+    if (reward == 'epic') return `> ${count} Epic Lootboxes ${icons.epicbox}`;
+    if (reward == 'legendary') return `> ${count} Legendary Lootboxes ${icons.legendarybox}`;
+    if (reward == 'mythic') return `> ${count} Mythic Lootboxes ${icons.mythicbox}`;
+    return `Invalid rewards.`;
 }
 const lootboxPrices = {
     commonbox: 500,
