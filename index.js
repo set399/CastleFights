@@ -705,12 +705,12 @@ function challengeDisplay(name) {
 }
 function challengeRewardDisplay(reward, count) {
     if (count < 1) return ``;
-    if (reward == 'coins') return `+${count} ${icons.coin}`;
-    if (reward == 'xp') return `+${count} ${icons.xp}`;
-    if (reward == 'common') return `+${count} ${icons.commonbox}`;
-    if (reward == 'goods') return `+${count} ${icons.goodbox}`;
-    if (reward == 'epic') return `+${count} ${icons.epicbox}`;
-    if (reward == 'legendary') return `+${count} ${icons.legendarybox}`;
+    if (reward == 'coins') return `+${count} ${icons.coin} `;
+    if (reward == 'xp') return `+${count} ${icons.xp} `;
+    if (reward == 'common') return `+${count} ${icons.commonbox} `;
+    if (reward == 'goods') return `+${count} ${icons.goodbox} `;
+    if (reward == 'epic') return `+${count} ${icons.epicbox} `;
+    if (reward == 'legendary') return `+${count} ${icons.legendarybox} `;
     if (reward == 'mythic') return `+${count} ${icons.mythicbox}`;
     return `Invalid rewards.`;
 }
@@ -730,7 +730,8 @@ function challengeStatus(progress, required) {
     if (progress >= required) return '✅';
 }
 function challengeWholeDisplay(challenge, progress, required) {
-
+    if (required < 1) return ``;
+    return `> ${challengeStatus(progress, required)} | \`${progress}/${required}\` | ${challengeDisplay(challenge)} | ${challengeRewardDisplay(challengeRewards[challenge].coins)}${challengeRewardDisplay(challengeRewards[challenge].xp)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.common)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.good)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.epic)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.legendary)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.mythic)}`;
 }
 
 function challengeCountForTierRequired(id) {
