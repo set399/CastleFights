@@ -1858,7 +1858,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
 > ${icons['lvl' + user.levelIcon]} **Level Icon** - Change the icon that displays your level in-game and on your profile! (\`levelicon\`)
 > :art: **Embed Color** - Change the sidebar color of the embed color of your profile and inventory (\`embedcolor\`)
 > :eye: **Profile Views** - Change if you want your profile to log how many it has been viewed by other people (\`profileviews\`)
-> ${settingsAnonModeDisplay(anonModeUnlocked)}
+> ${settingsAnonModeDisplay(anonModeUnlocked)} (\`anonmode\`)
 `)
                             .setColor(user.settings.embedcolor)
                             .setFooter({ text: `Settings of @${user.name} | ?settings` })
