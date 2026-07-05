@@ -1785,15 +1785,24 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
         if (message.content.startsWith('?challenges')) {
             try {
                 const user = db[message.author.id];
-                const tier = user.challengeTier;
-                const completingTier = user.challengeTier + 1;
+                let tier = user.challengeTier;
+                let completingTier = user.challengeTier + 1;
+                if (completingTier > 4) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`${icons.challenger4} You have completed all Challenges!`)
+                            .setDescription(`You have completed all ${icons.challenger1} **Tier 1**, ${icons.challenger2} **Tier 2**, ${icons.challenger3} **Tier 3** and ${icons.challenger4} **Tier 4** challenges and already own the maximum best possible obtained from them! Congratulations! :tada:`)
+                            .setColor(user.embedcolor)
+                            .setFooter({text: `yea u already did everything man -w- | ?challenges`})
+                    ]
+                });
                 if (user == undefined) return message.reply({ embeds: [noAccountEmbed] });
                 return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} challenges`)
                             .setDescription(`
-
+**You have completed \`${}/${}\` ${icons['challenger' + completingTier]}**
                             `)
                     ]
                 });
