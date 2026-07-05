@@ -1669,7 +1669,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                 console.error(`Failed to process ?usercraft command at ${message.channel.id}: ${error}`);
             }
         }
-        if (message.content.startsWIth('?challenges')) {
+        if (message.content.startsWith('?challenges')) {
             try {
                 const user = db[message.author.id];
                 const tier = user.challengeTier;
