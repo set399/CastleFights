@@ -731,7 +731,7 @@ function challengeStatus(progress, required) {
 }
 function challengeWholeDisplay(challenge, progress, required) {
     if (required < 1) return ``;
-    return `> ${challengeStatus(progress, required)} | \`${progress}/${required}\` | ${challengeDisplay(challenge)} | ${challengeRewardDisplay(challengeRewards[challenge].coins)}${challengeRewardDisplay(challengeRewards[challenge].xp)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.common)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.good)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.epic)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.legendary)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.mythic)}`;
+    return `> ${challengeStatus(progress, required)} | \`${progress}/${required}\` | ${challengeDisplay(challenge)} | ${challengeRewardDisplay(challengeRewards[challenge].coins)}${challengeRewardDisplay(challengeRewards[challenge].xp)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.common)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.good)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.epic)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.legendary)}${challengeRewardDisplay(challengeRewards[challenge].lootboxes.mythic)}\n`;
 }
 
 function challengeCountForTierRequired(id) {
@@ -1812,19 +1812,23 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                     ]
                 });
                 if (user == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                let challenges = '';
+                Object.keys(user.currentChallengeRequirements).forEach(challenge => {
+                    challenges += challengeWholeDisplay(`${challenge}${user.currentChallengeRequirements[challenge]}`, user.currentChallengeProgress[challenge], user.currentChallengeRequirements[challenge]);
+                });
                 return message.reply({
                     embeds: [
                         new MessageEmbed()
-                            .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} challenges`)
+                            .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} Challenges`)
                             .setDescription(`
-**You have completed \`${challengeCountForTierProgress(message.author.id)}/${challengeCountForTierRequired(message.author.id)}\` ${icons['challenger' + completingTier]} challenges:**
-> Challenges list here
-**Complete all challenges in this tier to get:**
+**You have completed \`${challengeCountForTierProgress(message.author.id)}/${challengeCountForTierRequired(message.author.id)}\` ${icons['challenger' + completingTier]} Challenges:**
+
+**Complete all Challenges in this tier to get:**
 > **${icons['challenger' + completingTier]} Tier ${completingTier} Challenger Badge**
 ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].coins)}${challengeTierRewardDisplay('xp', challengeRewards['tier' + completingTier].xp)}${challengeTierRewardDisplay('common', challengeRewards['tier' + completingTier].lootboxes.common)}${challengeTierRewardDisplay('good', challengeRewards['tier' + completingTier].lootboxes.good)}${challengeTierRewardDisplay('epic', challengeRewards['tier' + completingTier].lootboxes.epic)}${challengeTierRewardDisplay('legendary', challengeRewards['tier' + completingTier].lootboxes.legendary)}${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier].lootboxes.mythic)}
 `)
                             .setColor(challengeEmbedColors[`tier${completingTier}`])
-                            .setFooter({text: `@${user.name}'s Tier ${completingTier} challenges | ?challenges`})
+                            .setFooter({text: `@${user.name}'s Tier ${completingTier} Challenges | ?challenges`})
                     ]
                 });
             } catch (error) {
