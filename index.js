@@ -708,7 +708,7 @@ function challengeRewardDisplay(reward, count) {
     if (reward == 'coins') return `+${count} ${icons.coin} `;
     if (reward == 'xp') return `+${count} ${icons.xp} `;
     if (reward == 'common') return `+${count} ${icons.commonbox} `;
-    if (reward == 'goods') return `+${count} ${icons.goodbox} `;
+    if (reward == 'good') return `+${count} ${icons.goodbox} `;
     if (reward == 'epic') return `+${count} ${icons.epicbox} `;
     if (reward == 'legendary') return `+${count} ${icons.legendarybox} `;
     if (reward == 'mythic') return `+${count} ${icons.mythicbox}`;
