@@ -725,6 +725,14 @@ function challengeTierRewardDisplay(reward, count) {
     if (reward == 'mythic') return `> ${count} Mythic Lootboxes ${icons.mythicbox}`;
     return `Invalid rewards.`;
 }
+function challengeStatus(progress, required) {
+    if (progress < required) return '❌';
+    if (progress >= required) return '✅';
+}
+function challengeWholeDisplay(challenge, progress, required) {
+
+}
+
 function challengeCountForTierRequired(id) {
     const user = db[id];
     let i = 0;
