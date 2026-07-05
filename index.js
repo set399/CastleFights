@@ -1812,7 +1812,7 @@ ${challengeTierRewardDisplay('common', challengeRewards['tier' + completingTier]
 ${challengeTierRewardDisplay('good', challengeRewards['tier' + completingTier].lootboxes.good)}
 ${challengeTierRewardDisplay('epic', challengeRewards['tier' + completingTier].lootboxes.epic)}
 ${challengeTierRewardDisplay('legendary', challengeRewards['tier' + completingTier].lootboxes.legendary)}
-${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier].mythic)}
+${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier].lootboxes.mythic)}
 `)
                             .setColor(user.settings.embedcolor)
                             .setFooter({text: `@${user.name}'s Tier ${completingTier} challenges | ?challenges`})
