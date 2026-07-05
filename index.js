@@ -1679,7 +1679,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} challenges`)
-                            .setDescription()
+                            .setDescription('')
                     ]
                 });
             } catch (error) {
