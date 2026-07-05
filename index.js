@@ -1802,8 +1802,20 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                         new MessageEmbed()
                             .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} challenges`)
                             .setDescription(`
-**You have completed \`${}/${}\` ${icons['challenger' + completingTier]}**
-                            `)
+**You have completed \`${challengeCountForTierProgress(message.author.id)}/${challengeCountForTierRequired(message.author.id)}\` ${icons['challenger' + completingTier]} challenges:**
+> Challenges list here
+**Complete all challenges in this tier to get:**
+> **${icons['challenger' + completingTier]} Tier ${completingTier} Challenger Badge**
+> ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier])}
+> ${challengeTierRewardDisplay('xp', challengeRewards['tier' + completingTier])}
+> ${challengeTierRewardDisplay('common', challengeRewards['tier' + completingTier])}
+> ${challengeTierRewardDisplay('good', challengeRewards['tier' + completingTier])}
+> ${challengeTierRewardDisplay('epic', challengeRewards['tier' + completingTier])}
+> ${challengeTierRewardDisplay('legendary', challengeRewards['tier' + completingTier])}
+> ${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier])}
+`)
+                            .setColor(user.embedcolor)
+                            .setFooter({text: `@${user.name}'s Tier ${completingTier} challenges | ?challenges`})
                     ]
                 });
             } catch (error) {
