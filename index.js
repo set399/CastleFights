@@ -710,12 +710,12 @@ function challengeRewardDisplay(reward, count) {
 }
 function challengeTierRewardDisplay(reward, count) {
     if (count < 1) return ``;
-    if (reward == 'coins') return `> ${count} Coins ${icons.coin}`;
-    if (reward == 'xp') return `> ${count} XP ${icons.xp}`;
-    if (reward == 'common') return `> ${count} Common Lootboxes ${icons.commonbox}`;
-    if (reward == 'good') return `> ${count} Good Lootboxes ${icons.goodbox}`;
-    if (reward == 'epic') return `> ${count} Epic Lootboxes ${icons.epicbox}`;
-    if (reward == 'legendary') return `> ${count} Legendary Lootboxes ${icons.legendarybox}`;
+    if (reward == 'coins') return `> ${count} Coins ${icons.coin}\n`;
+    if (reward == 'xp') return `> ${count} XP ${icons.xp}\n`;
+    if (reward == 'common') return `> ${count} Common Lootboxes ${icons.commonbox}\n`;
+    if (reward == 'good') return `> ${count} Good Lootboxes ${icons.goodbox}\n`;
+    if (reward == 'epic') return `> ${count} Epic Lootboxes ${icons.epicbox}\n`;
+    if (reward == 'legendary') return `> ${count} Legendary Lootboxes ${icons.legendarybox}\n`;
     if (reward == 'mythic') return `> ${count} Mythic Lootboxes ${icons.mythicbox}`;
     return `Invalid rewards.`;
 }
@@ -1806,14 +1806,8 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
 > Challenges list here
 **Complete all challenges in this tier to get:**
 > **${icons['challenger' + completingTier]} Tier ${completingTier} Challenger Badge**
-${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].coins)}
-${challengeTierRewardDisplay('xp', challengeRewards['tier' + completingTier].xp)}
-${challengeTierRewardDisplay('common', challengeRewards['tier' + completingTier].lootboxes.common)}
-${challengeTierRewardDisplay('good', challengeRewards['tier' + completingTier].lootboxes.good)}
-${challengeTierRewardDisplay('epic', challengeRewards['tier' + completingTier].lootboxes.epic)}
-${challengeTierRewardDisplay('legendary', challengeRewards['tier' + completingTier].lootboxes.legendary)}
-${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier].lootboxes.mythic)}
-`.trim())
+${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].coins)}${challengeTierRewardDisplay('xp', challengeRewards['tier' + completingTier].xp)}${challengeTierRewardDisplay('common', challengeRewards['tier' + completingTier].lootboxes.common)}${challengeTierRewardDisplay('good', challengeRewards['tier' + completingTier].lootboxes.good)}${challengeTierRewardDisplay('epic', challengeRewards['tier' + completingTier].lootboxes.epic)}${challengeTierRewardDisplay('legendary', challengeRewards['tier' + completingTier].lootboxes.legendary)}${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier].lootboxes.mythic)}
+`)
                             .setColor(user.settings.embedcolor)
                             .setFooter({text: `@${user.name}'s Tier ${completingTier} challenges | ?challenges`})
                     ]
