@@ -755,6 +755,11 @@ function settingsAnonModeDisplay(verifiedStatus) {
     if (!verifiedStatus) return `~~:lock: **Anonymous Mode** - Hide your identity against your opponents in-game~~ *(Requires ${icons.verified} **Verified** badge)*`;
     return ``;
 }
+function settingsLevelIconUnlockDisplay(icon, level) {
+    const levelOfIcon = icon.split('lvl')[1];
+    if (levelOfIcon > level) return `🔒`;
+    if (levelOfIcon <= level) return icons[icon];
+}
 
 const lootboxPrices = {
     commonbox: 500,
@@ -1862,6 +1867,15 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
 `)
                             .setColor(user.settings.embedcolor)
                             .setFooter({ text: `Settings of @${user.name} | ?settings` })
+                    ]
+                });
+                if (setting == 'levelicon') message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`:gear: ${names[user.name].display}'s ${icons['lvl' + user.levelIcon]} Level Icon Settings`)
+                            .setDescription(`
+${} **Level
+`)
                     ]
                 });
             } catch (error) {
