@@ -654,8 +654,13 @@ const challengeRewards = {
     nodefwins10: { coins: 1000, xp: 1000, lootboxes: { common: 1, good: 0, epic: 0, legendary: 0, mythic: 0 } },
     nodefwins15: { coins: 100, xp: 100, lootboxes: { common: 2, good: 0, epic: 0, legendary: 0, mythic: 0 } },
     toolwins1: { coins: 400, xp: 400, lootboxes: { common: 0, good: 1, epic: 0, legendary: 0, mythic: 0 } },
-    toolwins3: { coins: 1200, xp: 1200, lootboxes: { common: 0, good: 0, epic: 0, legendary: 1, mythic: 0 } }
+    toolwins3: { coins: 1200, xp: 1200, lootboxes: { common: 0, good: 0, epic: 0, legendary: 1, mythic: 0 } },
+    tier1: { coins: 2000, xp: 2000, lootboxes: { common: 0, good: 0, epic: 0, legendary: 1, mythic: 0 } },
+    tier2: { coins: 5000, xp: 5000, lootboxes: { common: 0, good: 0, epic: 2, legendary: 2, mythic: 0 } },
+    tier3: { coins: 10000, xp: 10000, lootboxes: { common: 0, good: 3, epic: 3, legendary: 3, mythic: 0 } },
+    tier4: { coins: 25000, xp: 25000, lootboxes: { common: 0, good: 0, epic: 5, legendary: 4, mythic: 4 } },
 }
+
 const lootboxPrices = {
     commonbox: 500,
     common: 500,
