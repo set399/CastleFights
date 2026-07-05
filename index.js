@@ -666,7 +666,7 @@ const challengeEmbedColors = {
     tier3: '#edc02d',
     tier4: '#2dedea'
 };
-function challengeDisplay(name) {
+function challengeDisplay(name, count) {
     if (count < 1) return ``;
     if (name.startsWith('fistkills')) {
         const count = name.split('fistkills')[1];
