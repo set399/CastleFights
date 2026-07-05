@@ -660,6 +660,12 @@ const challengeRewards = {
     tier3: { coins: 10000, xp: 10000, lootboxes: { common: 0, good: 3, epic: 3, legendary: 3, mythic: 0 } },
     tier4: { coins: 25000, xp: 25000, lootboxes: { common: 0, good: 0, epic: 5, legendary: 4, mythic: 4 } },
 }
+const challengeEmbedColors = {
+    tier1: '#382f26',
+    tier2: '#3f414a',
+    tier3: '#edc02d',
+    tier4: '#2dedea'
+};
 function challengeDisplay(name) {
     if (count < 1) return ``;
     if (name.startsWith('fistkills')) {
