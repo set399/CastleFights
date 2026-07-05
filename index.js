@@ -1855,10 +1855,10 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                             .setTitle(`:gear: ${names[user.name].display}'s settings`)
                             .setDescription(`
 * Change a setting using \`?settings <ID>\`, the ID is specified in the \`code block\` right after the category name
-${icons['lvl' + user.levelIcon]} **Level Icon** - Change the icon that displays your level in-game and on your profile! (\`levelicon\`)
-:art: **Embed Color** - Change the sidebar color of the embed color of your profile and inventory (\`embedcolor\`)
-:eye: **Profile Views** - Change if you want your profile to log how many it has been viewed by other people (\`profileviews\`)
-${settingsAnonModeDisplay(anonModeUnlocked)}
+> ${icons['lvl' + user.levelIcon]} **Level Icon** - Change the icon that displays your level in-game and on your profile! (\`levelicon\`)
+> :art: **Embed Color** - Change the sidebar color of the embed color of your profile and inventory (\`embedcolor\`)
+> :eye: **Profile Views** - Change if you want your profile to log how many it has been viewed by other people (\`profileviews\`)
+> ${settingsAnonModeDisplay(anonModeUnlocked)}
 `)
                             .setColor(user.settings.embedcolor)
                             .setFooter({ text: `Settings of @${user.name} | ?settings` })
