@@ -1798,7 +1798,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                         new MessageEmbed()
                             .setTitle(`${icons.challenger4} You have completed all Challenges!`)
                             .setDescription(`You have completed all ${icons.challenger1} **Tier 1**, ${icons.challenger2} **Tier 2**, ${icons.challenger3} **Tier 3** and ${icons.challenger4} **Tier 4** challenges and already own the maximum best possible obtained from them! Congratulations! :tada:`)
-                            .setColor(user.settings.embedcolor)
+                            .setColor(challengeEmbedColors.tier4)
                             .setFooter({text: `yea u already did everything man -w- | ?challenges`})
                     ]
                 });
@@ -1814,7 +1814,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
 > **${icons['challenger' + completingTier]} Tier ${completingTier} Challenger Badge**
 ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].coins)}${challengeTierRewardDisplay('xp', challengeRewards['tier' + completingTier].xp)}${challengeTierRewardDisplay('common', challengeRewards['tier' + completingTier].lootboxes.common)}${challengeTierRewardDisplay('good', challengeRewards['tier' + completingTier].lootboxes.good)}${challengeTierRewardDisplay('epic', challengeRewards['tier' + completingTier].lootboxes.epic)}${challengeTierRewardDisplay('legendary', challengeRewards['tier' + completingTier].lootboxes.legendary)}${challengeTierRewardDisplay('mythic', challengeRewards['tier' + completingTier].lootboxes.mythic)}
 `)
-                            .setColor(user.settings.embedcolor)
+                            .setColor(challengeEmbedColors[`tier${completingTier}`])
                             .setFooter({text: `@${user.name}'s Tier ${completingTier} challenges | ?challenges`})
                     ]
                 });
