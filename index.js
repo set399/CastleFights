@@ -756,9 +756,9 @@ function settingsAnonModeDisplay(verifiedStatus) {
     return ``;
 }
 function settingsLevelIconUnlockDisplay(icon, level) {
-    const levelOfIcon = icon.split('lvl')[1];
-    if (levelOfIcon > level) return `🔒`;
-    if (levelOfIcon <= level) return icons[icon];
+    const levelOfIcon = parseInt(icon.split('lvl')[1]);
+    if (level < levelOfIcon) return `🔒`;
+    if (level >= levelOfIcon) return icons[icon];
 }
 
 const lootboxPrices = {
