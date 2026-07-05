@@ -1895,6 +1895,82 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
 `) 
                             .setColor(user.settings.embedcolor)
                             .setFooter({text: `@${user.name}'s Level Icon settings | ?settings`})
+                    ],
+                    components: [
+                        new MessageActionRow()
+                            .addComponents(
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl1)
+                                    .setCustomId('settings_levelicon_lvl1')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl5)
+                                    .setCustomId('settings_levelicon_lvl5')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl10)
+                                    .setCustomId('settings_levelicon_lvl10')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl15)
+                                    .setCustomId('settings_levelicon_lvl15')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl20)
+                                    .setCustomId('settings_levelicon_lvl20')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY')
+                        ),
+                        new MessageActionRow()
+                                    .addComponents(
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl30)
+                                    .setCustomId('settings_levelicon_lvl30')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl40)
+                                    .setCustomId('settings_levelicon_lvl40')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl50)
+                                    .setCustomId('settings_levelicon_lvl50')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl60)
+                                    .setCustomId('settings_levelicon_lvl60')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl70)
+                                    .setCustomId('settings_levelicon_lvl70')
+                                    .setDisabled()
+                                            .setStyle('SECONDARY')
+                        ),
+                        new MessageActionRow()
+                                    .addComponents(
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl80)
+                                    .setCustomId('settings_levelicon_lvl80')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl90)
+                                    .setCustomId('settings_levelicon_lvl90')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY'),
+                                new MessageButton()
+                                    .setEmoji(ícons.lvl100)
+                                    .setCustomId('settings_levelicon_lvl100')
+                                    .setDisabled()
+                                    .setStyle('SECONDARY')
+                        )
                     ]
                 });
             } catch (error) {
