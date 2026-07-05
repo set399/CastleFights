@@ -731,7 +731,7 @@ function challengeStatus(progress, required) {
 }
 function challengeWholeDisplay(challenge, progress, required) {
     if (required < 1) return ``;
-    return `> ${challengeStatus(progress, required)} | \`${progress}/${required}\` | ${challengeDisplay(challenge)} | ${challengeRewardDisplay('coins', challengeRewards[challenge].coins)}${'xp', challengeRewardDisplay(challengeRewards[challenge].xp)}${'common', challengeRewardDisplay(challengeRewards[challenge].lootboxes.common)}${'good', challengeRewardDisplay(challengeRewards[challenge].lootboxes.good)}${'epic', challengeRewardDisplay(challengeRewards[challenge].lootboxes.epic)}${'legendary', challengeRewardDisplay(challengeRewards[challenge].lootboxes.legendary)}${'mythic', challengeRewardDisplay(challengeRewards[challenge].lootboxes.mythic)}\n`;
+    return `> ${challengeStatus(progress, required)} | \`${progress}/${required}\` | ${challengeDisplay(challenge)} | ${challengeRewardDisplay('coins', challengeRewards[challenge].coins)}${challengeRewardDisplay('xp', challengeRewards[challenge].xp)}${challengeRewardDisplay('common', challengeRewards[challenge].lootboxes.common)}${challengeRewardDisplay('good', challengeRewards[challenge].lootboxes.good)}${challengeRewardDisplay('epic', challengeRewards[challenge].lootboxes.epic)}${challengeRewardDisplay('legendary', challengeRewards[challenge].lootboxes.legendary)}${challengeRewardDisplay('mythic', challengeRewards[challenge].lootboxes.mythic)}\n`;
 }
 
 function challengeCountForTierRequired(id) {
