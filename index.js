@@ -1853,6 +1853,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 if (user.accountType == -1) message.reply({ embeds: [deletedEmbed] });
                 if (user.accountType == -2) message.reply({ embeds: [bannedEmbed] });
                 let anonModeUnlocked = false;
+                const level = getLevel(user.xp);
                 if (user.accountType > 1) anonModeUnlocked = true;
                 if (!setting) message.reply({
                     embeds: [
@@ -1874,8 +1875,26 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                         new MessageEmbed()
                             .setTitle(`:gear: ${names[user.name].display}'s ${icons['lvl' + user.levelIcon]} Level Icon Settings`)
                             .setDescription(`
-${} **Level
-`)
+${settingsLevelIconUnlockDisplay('lvl1', level)} **Level 1**
+${settingsLevelIconUnlockDisplay('lvl5', level)} **Level 5**
+${settingsLevelIconUnlockDisplay('lvl10', level)} **Level 10**
+${settingsLevelIconUnlockDisplay('lvl15', level)} **Level 15**
+${settingsLevelIconUnlockDisplay('lvl20', level)} **Level 20**
+${settingsLevelIconUnlockDisplay('lvl30', level)} **Level 30**
+${settingsLevelIconUnlockDisplay('lvl40', level)} **Level 40**
+${settingsLevelIconUnlockDisplay('lvl50', level)} **Level 50**
+${settingsLevelIconUnlockDisplay('lvl60', level)} **Level 60**
+${settingsLevelIconUnlockDisplay('lvl70', level)} **Level 70**
+${settingsLevelIconUnlockDisplay('lvl80', level)} **Level 80**
+${settingsLevelIconUnlockDisplay('lvl90', level)} **Level 90**
+${settingsLevelIconUnlockDisplay('lvl100', level)} **Level 100**
+
+* Level icons shown with a :lock: are locked and your level is too low to use them
+* Their buttons are automatically disabled so you cannot set your level to them
+* Use the buttons below to change your level icon
+`) 
+                            .setColor(user.settings.embedcolor)
+                            .setFooter({text: `@${user.name}'s Level Icon settings | ?settings`})
                     ]
                 });
             } catch (error) {
