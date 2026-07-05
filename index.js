@@ -764,8 +764,8 @@ function settingsLevelIconUnlockBool(icon, level) {
     if (level >= icon) return false;
 }
 function settingsLevelIconUnlockButtonStyle(icon, level) {
-    if (level < icon) return 'SUCCESS';
-    if (level >= icon) return 'SECONDARY';
+    if (level < icon) return 'SECONDARY';
+    if (level >= icon) return 'SUCCESS';
 }
 
 
