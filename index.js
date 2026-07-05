@@ -764,7 +764,7 @@ function settingsLevelIconUnlockBool(icon, level) {
     if (level >= icon) return false;
 }
 function settingsLevelIconUnlockButtonStyle(icon, level) {
-    if (level < icon) return 'SECONDARY';
+    if (level < icon) return settingsLevelIconUnlockButtonStyle(1, level);
     if (level >= icon) return 'SUCCESS';
 }
 
@@ -1912,27 +1912,27 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setEmoji(icons.lvl1)
                                     .setCustomId('settings_levelicon_lvl1')
                                     .setDisabled(settingsLevelIconUnlockBool(1, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(1, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl5)
                                     .setCustomId('settings_levelicon_lvl5')
                                     .setDisabled(settingsLevelIconUnlockBool(5, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(5, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl10)
                                     .setCustomId('settings_levelicon_lvl10')
                                     .setDisabled(settingsLevelIconUnlockBool(10, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(10, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl15)
                                     .setCustomId('settings_levelicon_lvl15')
                                     .setDisabled(settingsLevelIconUnlockBool(15, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(15, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl20)
                                     .setCustomId('settings_levelicon_lvl20')
                                     .setDisabled(settingsLevelIconUnlockBool(20, level))
-                                    .setStyle('SECONDARY')
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(20, level))
                         ),
                         new MessageActionRow()
                                     .addComponents(
@@ -1940,27 +1940,27 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setEmoji(icons.lvl30)
                                     .setCustomId('settings_levelicon_lvl30')
                                      .setDisabled(settingsLevelIconUnlockBool(30, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(30, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl40)
                                     .setCustomId('settings_levelicon_lvl40')
                                     .setDisabled(settingsLevelIconUnlockBool(40, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(40, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl50)
                                     .setCustomId('settings_levelicon_lvl50')
                                     .setDisabled(settingsLevelIconUnlockBool(50, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(50, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl60)
                                     .setCustomId('settings_levelicon_lvl60')
                                     .setDisabled(settingsLevelIconUnlockBool(60, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(60, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl70)
                                     .setCustomId('settings_levelicon_lvl70')
                                     .setDisabled(settingsLevelIconUnlockBool(70, level))
-                                    .setStyle('SECONDARY')
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(70, level))
                         ),
                         new MessageActionRow()
                                     .addComponents(
@@ -1968,17 +1968,17 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setEmoji(icons.lvl80)
                                     .setCustomId('settings_levelicon_lvl80')
                                     .setDisabled(settingsLevelIconUnlockBool(80, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(80, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl90)
                                     .setCustomId('settings_levelicon_lvl90')
                                     .setDisabled(settingsLevelIconUnlockBool(90, level))
-                                    .setStyle('SECONDARY'),
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(90, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl100)
                                     .setCustomId('settings_levelicon_lvl100')
                                     .setDisabled(settingsLevelIconUnlockBool(100, level))
-                                    .setStyle('SECONDARY')
+                                    .setStyle(settingsLevelIconUnlockButtonStyle(100, level))
                         )
                     ]
                 });
