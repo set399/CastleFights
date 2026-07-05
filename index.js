@@ -750,6 +750,11 @@ function challengeCountForTierProgress(id) {
     });
     return i;
 }
+function settingsAnonModeDisplay(verifiedStatus) {
+    if (verifiedStatus) return `:detective: **Anonymous Mode** - Hide your identity against your opponents in-game`;
+    if (!verifiedStatus) return `~~:lock: **Anonymous Mode** - Hide your identity against your opponents in-game~~ *(Requires ${icons.verified} **Verified** badge)*`;
+    return ``;
+}
 
 const lootboxPrices = {
     commonbox: 500,
@@ -1842,12 +1847,18 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 if (user == undefined) message.reply({ embeds: [noAccountEmbed] });
                 if (user.accountType == -1) message.reply({ embeds: [deletedEmbed] });
                 if (user.accountType == -2) message.reply({ embeds: [bannedEmbed] });
+                let anonModeUnlocked = false;
+                if (user.accountType > 1) anonModeUnlocked = true;
                 if (!setting) message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(`:gear: ${names[user.name].display}'s settings`)
                             .setDescription(`
-Here all settings idk
+* Change a setting using \`?settings <ID>\`, the ID is specified in the \`code block\` right after the category name
+${icons['lvl' + user.levelIcon]} **Level Icon** - Change the icon that displays your level in-game and on your profile! (\`levelicon\`)
+:art: **Embed Color** - Change the sidebar color of the embed color of your profile and inventory (\`embedcolor\`)
+:eye: **Profile Views** - Change if you want your profile to log how many it has been viewed by other people (\`profileviews\`)
+${settingsAnonModeDisplay(anonModeUnlocked)}
 `)
                             .setColor(user.settings.embedcolor)
                             .setFooter({ text: `Settings of @${user.name} | ?settings` })
