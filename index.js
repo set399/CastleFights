@@ -756,9 +756,8 @@ function settingsAnonModeDisplay(verifiedStatus) {
     return ``;
 }
 function settingsLevelIconUnlockDisplay(icon, level) {
-    const levelOfIcon = parseInt(icon.split('lvl')[1]);
-    if (level < levelOfIcon) return `🔒`;
-    if (level >= levelOfIcon) return icons[icon];
+    if (level < icon) return `🔒`;
+    if (level >= icon) return icons['lvl' + icon];
 }
 
 const lootboxPrices = {
@@ -1878,19 +1877,19 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
 * Level icons shown with a :lock: are locked and your level is too low to use them
 * Their buttons are automatically disabled so you cannot set your level to them
 * Use the buttons below to change your level icon
-${settingsLevelIconUnlockDisplay('lvl1', level)} **Level 1**
-${settingsLevelIconUnlockDisplay('lvl5', level)} **Level 5**
-${settingsLevelIconUnlockDisplay('lvl10', level)} **Level 10**
-${settingsLevelIconUnlockDisplay('lvl15', level)} **Level 15**
-${settingsLevelIconUnlockDisplay('lvl20', level)} **Level 20**
-${settingsLevelIconUnlockDisplay('lvl30', level)} **Level 30**
-${settingsLevelIconUnlockDisplay('lvl40', level)} **Level 40**
-${settingsLevelIconUnlockDisplay('lvl50', level)} **Level 50**
-${settingsLevelIconUnlockDisplay('lvl60', level)} **Level 60**
-${settingsLevelIconUnlockDisplay('lvl70', level)} **Level 70**
-${settingsLevelIconUnlockDisplay('lvl80', level)} **Level 80**
-${settingsLevelIconUnlockDisplay('lvl90', level)} **Level 90**
-${settingsLevelIconUnlockDisplay('lvl100', level)} **Level 100**
+${settingsLevelIconUnlockDisplay(1, level)} **Level 1**
+${settingsLevelIconUnlockDisplay(5, level)} **Level 5**
+${settingsLevelIconUnlockDisplay(10, level)} **Level 10**
+${settingsLevelIconUnlockDisplay(15, level)} **Level 15**
+${settingsLevelIconUnlockDisplay(20, level)} **Level 20**
+${settingsLevelIconUnlockDisplay(30, level)} **Level 30**
+${settingsLevelIconUnlockDisplay(40, level)} **Level 40**
+${settingsLevelIconUnlockDisplay(50, level)} **Level 50**
+${settingsLevelIconUnlockDisplay(60, level)} **Level 60**
+${settingsLevelIconUnlockDisplay(70, level)} **Level 70**
+${settingsLevelIconUnlockDisplay(80, level)} **Level 80**
+${settingsLevelIconUnlockDisplay(90, level)} **Level 90**
+${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
 `) 
                             .setColor(user.settings.embedcolor)
                             .setFooter({text: `@${user.name}'s Level Icon settings | ?settings`})
