@@ -1877,6 +1877,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
 * Level icons shown with a :lock: are locked and your level is too low to use them
 * Their buttons are automatically disabled so you cannot set your level to them
 * Use the buttons below to change your level icon
+* :white_check_mark: **You are currently using: ${icons['lvl' + user.levelIcon]} Level ${user.levelIcon} icon**
 ${settingsLevelIconUnlockDisplay(1, level)} **Level 1**
 ${settingsLevelIconUnlockDisplay(5, level)} **Level 5**
 ${settingsLevelIconUnlockDisplay(10, level)} **Level 10**
