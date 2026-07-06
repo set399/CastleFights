@@ -1621,7 +1621,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                             .setDescription(`
 ${inv}
 `)
-                            .setColor(db[user].settings.embedcolor)
+                            .setColor(embedColors[db[user].settings.embedcolor])
                             .setFooter({text: `Inventory of @${db[user].name} | ?inventory`})
                     ]
                 })
