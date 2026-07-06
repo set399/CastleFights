@@ -1912,7 +1912,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
 > :eye: **Profile Views** - Change if you want your profile to log how many it has been viewed by other people (\`profileviews\`)
 > ${settingsAnonModeDisplay(anonModeUnlocked)} (\`anonmode\`)
 `)
-                            .setColor(currentColor)
+                            .setColor(currentColorHex)
                             .setFooter({ text: `Settings of @${user.name} | ?settings` })
                     ]
                 });
