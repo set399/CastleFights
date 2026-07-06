@@ -1018,7 +1018,7 @@ You are not able to use any interaction commands, but you can still view player'
                         challenger: 0
                     },
                     settings: {
-                        embedcolor: 'BLUE',
+                        embedcolor: embedColors.blue,
                         profileviews: false
 
                     },
@@ -2023,7 +2023,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
             } catch (error) {
                 console.error(`Failed to process ?settings command at ${message.channel.id}: ${error}`);
             }
-        }
+        } // 2026!! -w-
     }); 
 
 cl.on('interactionCreate', async interaction => {
