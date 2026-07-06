@@ -2093,7 +2093,16 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     ]
                 });
                 if (setting == 'profileviews') return message.reply({ embeds: [] });
-                if (setting == 'anonmode') return message.reply({embeds: [] });
+                if (setting == 'anonmode') return message.reply({ embeds: [] });
+                return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: Invalid setting specified!')
+                            .setDescription(`The setting you specified is not a valid category! Please use the \`?settings\` command without any parameters to see the category list!`)
+                            .setColor('RED')
+                            .setFooter({text: 'Invalid settin ;< | ?settings'})
+                    ]
+                });
             } catch (error) {
                 console.error(`Failed to process ?settings command at ${message.channel.id}: ${error}`);
             }
