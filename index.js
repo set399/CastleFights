@@ -460,6 +460,10 @@ function currentEmbedColorButtonStyle(current, color) {
     if (color == embedColors[current]) return 'SUCCESS';
     return 'SECONDARY';
 }
+function currentEmbedColorButtonDisableBool(current, color) {
+    if (color == embedColors[current]) return true;
+    return false;
+}
 
     function displayBadge(id, tier) {
         if (tier == 0) return '';
