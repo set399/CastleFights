@@ -456,6 +456,10 @@ function displayEmbedColor(color) {
     if (color == embedColors.pink) return `${icons.pinkcolor} Pink`;
     return `Invalid color`;
 }
+function currentEmbedColorButtonStyle(current, color) {
+    if (color == embedColors[current]) return 'SUCCESS';
+    return 'SECONDARY';
+}
 
     function displayBadge(id, tier) {
         if (tier == 0) return '';
