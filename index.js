@@ -1900,6 +1900,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 if (user.accountType == -2) return message.reply({ embeds: [bannedEmbed] });
                 let anonModeUnlocked = user.accountType > 1;
                 const level = getLevel(user.xp).level;
+                const currentColor = user.settings.embedcolor;
                 if (!setting) return message.reply({
                     embeds: [
                         new MessageEmbed()
@@ -1911,7 +1912,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
 > :eye: **Profile Views** - Change if you want your profile to log how many it has been viewed by other people (\`profileviews\`)
 > ${settingsAnonModeDisplay(anonModeUnlocked)} (\`anonmode\`)
 `)
-                            .setColor(user.settings.embedcolor)
+                            .setColor(currentColor)
                             .setFooter({ text: `Settings of @${user.name} | ?settings` })
                     ]
                 });
@@ -2026,17 +2027,68 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setDescription(`
 * Change the sidebar color of your embeds for the \`?profile\`, \`?inventory\` and \`?settings\` commands for you
 * You can use the current **10** colors using the buttons below:
-* You are currently using the *[color]** color
+* You are currently using the **${displayEmbedColor(user.settings.embedcolor)}** color
 `)
+                            .setColor(currentColor)
+                            .setFooter({text: `@${user.name}'s Embed Color Settings | ?settings`})
                     ],
                     components: [
                         new MessageActionRow()
                             .addComponents(
                                 new MessageButton()
                                     .setEmoji('🟥')
-                                    .setDisabled()
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'red'))
                                     .setCustomId('settings_embedcolor_red')
-                                    .setStyle('SECONDARY')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'red')),
+                                new MessageButton()
+                                    .setEmoji('🟧')
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'orange'))
+                                    .setCustomId('settings_embedcolor_orange')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'orange')),
+                                new MessageButton()
+                                    .setEmoji('🟨')
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'yellow'))
+                                    .setCustomId('settings_embedcolor_yellow')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'yellow')),
+                                new MessageButton()
+                                    .setEmoji('🟩')
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'green'))
+                                    .setCustomId('settings_embedcolor_green')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'green')),
+                                new MessageButton()
+                                    .setEmoji(icons.mintycolor)
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'minty'))
+                                    .setCustomId('settings_embedcolor_minty')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'minty')),
+                        ),
+                        new MessageActionRow()
+                            .addComponents(
+                                new MessageButton()
+                                    .setEmoji('🟦')
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'blue'))
+                                    .setCustomId('settings_embedcolor_blue')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'blue')),
+                                new MessageButton()
+                                    .setEmoji(icons.darkbluecolor)
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'darkblue'))
+                                    .setCustomId('settings_embedcolor_darkblue')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'darkblue')),
+                                new MessageButton()
+                                    .setEmoji('⬛')
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'black'))
+                                    .setCustomId('settings_embedcolor_black')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'black')),
+                                new MessageButton()
+                                    .setEmoji('⬜')
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'white'))
+                                    .setCustomId('settings_embedcolor_white')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'white')),
+                                new MessageButton()
+                                    .setEmoji(icons.pinkcolor)
+                                    .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'pink'))
+                                    .setCustomId('settings_embedcolor_pink')
+                                    .setStyle(currentEmbedColorButtonStyle(currentColor, 'pink')),
+
                         )
                     ]
                 });
