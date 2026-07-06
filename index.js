@@ -1039,7 +1039,7 @@ You are not able to use any interaction commands, but you can still view player'
                         challenger: 0
                     },
                     settings: {
-                        embedcolor: embedColors.blue,
+                        embedcolor: 'blue',
                         profileviews: false
 
                     },
@@ -1219,7 +1219,7 @@ ${badgeDescriptions}
                                     .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
-                                    .setColor(user.settings.embedcolor)
+                                    .setColor(embedColors[user.settings.embedcolor])
                             ]
                         })
                     } catch (error) {
@@ -1346,7 +1346,7 @@ ${badgeDescriptions}
                                     .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
-                                    .setColor(user.settings.embedcolor)
+                                    .setColor(embedColors[user.settings.embedcolor])
                             ]
                         })
                     } catch (error) {
@@ -1899,7 +1899,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 if (user.accountType == -2) return message.reply({ embeds: [bannedEmbed] });
                 let anonModeUnlocked = user.accountType > 1;
                 const level = getLevel(user.xp).level;
-                const currentColor = user.settings.embedcolor;
+                const currentColor = embedColors[user.settings.embedcolor];
                 if (!setting) return message.reply({
                     embeds: [
                         new MessageEmbed()
@@ -1939,7 +1939,7 @@ ${settingsLevelIconUnlockDisplay(80, level)} **Level 80**
 ${settingsLevelIconUnlockDisplay(90, level)} **Level 90**
 ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
 `) 
-                            .setColor(user.settings.embedcolor)
+                            .setColor(embedColors[user.settings.embedcolor])
                             .setFooter({text: `@${user.name}'s Level Icon settings | ?settings`})
                     ],
                     components: [
@@ -2026,7 +2026,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setDescription(`
 * Change the sidebar color of your embeds for the \`?profile\`, \`?inventory\` and \`?settings\` commands for you
 * You can use the current **10** colors using the buttons below:
-* You are currently using the **${displayEmbedColor(user.settings.embedcolor)}** color
+* You are currently using the **${displayEmbedColor(embedColors[user.settings.embedcolor])}** color
 `)
                             .setColor(currentColor)
                             .setFooter({text: `@${user.name}'s Embed Color Settings | ?settings`})
