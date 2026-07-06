@@ -1899,7 +1899,8 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 if (user.accountType == -2) return message.reply({ embeds: [bannedEmbed] });
                 let anonModeUnlocked = user.accountType > 1;
                 const level = getLevel(user.xp).level;
-                const currentColor = embedColors[user.settings.embedcolor];
+                const currentColor = user.settings.embedcolor;
+                const currentColorHex = embedColors[currentColor];
                 if (!setting) return message.reply({
                     embeds: [
                         new MessageEmbed()
@@ -1939,7 +1940,7 @@ ${settingsLevelIconUnlockDisplay(80, level)} **Level 80**
 ${settingsLevelIconUnlockDisplay(90, level)} **Level 90**
 ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
 `) 
-                            .setColor(embedColors[user.settings.embedcolor])
+                            .setColor(currentColorHex)
                             .setFooter({text: `@${user.name}'s Level Icon settings | ?settings`})
                     ],
                     components: [
@@ -2028,7 +2029,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
 * You can use the current **10** colors using the buttons below:
 * You are currently using the **${displayEmbedColor(embedColors[user.settings.embedcolor])}** color
 `)
-                            .setColor(currentColor)
+                            .setColor(currentColorHex)
                             .setFooter({text: `@${user.name}'s Embed Color Settings | ?settings`})
                     ],
                     components: [
