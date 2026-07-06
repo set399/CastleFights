@@ -443,6 +443,20 @@ const embedColors = {
     pink: '#f0a8ea'
 };
 
+function displayEmbedColor(color) {
+    if (color == embedColors.red) return `:red_square: Red`;
+    if (color == embedColors.orange) return `:orange_square: Orange`;
+    if (color == embedColors.yellow) return `:yellow_square: Yellow`;
+    if (color == embedColors.green) return `:green_square: Green`;
+    if (color == embedColors.minty) return `${icons.mintycolor} Mint Green`;
+    if (color == embedColors.blue) return `:blue_square: Blue`;
+    if (color == embedColors.darkblue) return `${icons.darkbluecolor} Dark Blue`;
+    if (color == embedColors.black) return `:black_large_square: Black`;
+    if (color == embedColors.white) return `:white_large_square: White`;
+    if (color == embedColors.pink) return `${icons.pinkcolor} Pink`;
+    return `Invalid color`;
+}
+
     function displayBadge(id, tier) {
         if (tier == 0) return '';
         if (id == 'verified' && tier == 1) return icons.verified;
