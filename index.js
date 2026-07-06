@@ -457,11 +457,11 @@ function displayEmbedColor(color) {
     return `Invalid color`;
 }
 function currentEmbedColorButtonStyle(current, color) {
-    if (color == embedColors[current]) return 'SUCCESS';
+    if (color == current) return 'SUCCESS';
     return 'SECONDARY';
 }
 function currentEmbedColorButtonDisableBool(current, color) {
-    return color == embedColors[current];
+    return color == current;
 }
 
     function displayBadge(id, tier) {
