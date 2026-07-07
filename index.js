@@ -2164,6 +2164,24 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
 
 cl.on('interactionCreate', async interaction => {
     if (!interaction.isButton()) return null;
+    if (interaction.customId.startsWith('settings')) {
+        try {
+            const parts = interaction.customId.split('_')
+            const category = parts[1];
+            const action = parts[2];
+            const user = parts[3];
+            if (interaction.user.id == user) {
+                if (category == 'levelicon') {
+                    const lvl = parseInt(action.split('lvl')[1]);
+                    db[user].levelIcon = lvl;
+                    return interaction.deferUpdate();
+                }
+            }
+            return interaction.deferUpdate();
+        } catch (error) {
+            console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
+        }
+    }
 });
 
 
