@@ -1105,7 +1105,7 @@ You are not able to use any interaction commands, but you can still view player'
             }
         }
         if (message.content.startsWith('?profile')) {
-            const ign = message.content.split('?profile ')[1]
+            const ign = message.content.split('?profile ')[1].toLowerCase();
             if (!ign) {
                 if (db[message.author.id] == undefined) {
                     try {
@@ -1582,7 +1582,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
         }
         if (message.content.startsWith('?inventory')) {
             let user = message.author.id;
-            const ign = message.content.split('?inventory ')[1];
+            const ign = message.content.split('?inventory ')[1].toLowerCase();
             if (!ign) user = message.author.id;
             if (db[user] == undefined) {
                 try {
