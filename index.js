@@ -1948,27 +1948,27 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .addComponents(
                                 new MessageButton()
                                     .setEmoji(icons.lvl1)
-                                    .setCustomId('settings_levelicon_lvl1')
+                                    .setCustomId('settings_levelicon_lvl1_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(1, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(1, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl5)
-                                    .setCustomId('settings_levelicon_lvl5')
+                                    .setCustomId('settings_levelicon_lvl5_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(5, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(5, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl10)
-                                    .setCustomId('settings_levelicon_lvl10')
+                                    .setCustomId('settings_levelicon_lvl10_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(10, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(10, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl15)
-                                    .setCustomId('settings_levelicon_lvl15')
+                                    .setCustomId('settings_levelicon_lvl15_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(15, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(15, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl20)
-                                    .setCustomId('settings_levelicon_lvl20')
+                                    .setCustomId('settings_levelicon_lvl20_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(20, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(20, level))
                         ),
@@ -1976,27 +1976,27 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .addComponents(
                                 new MessageButton()
                                     .setEmoji(icons.lvl30)
-                                    .setCustomId('settings_levelicon_lvl30')
+                                    .setCustomId('settings_levelicon_lvl30_' + message.author.id)
                                      .setDisabled(settingsLevelIconUnlockBool(30, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(30, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl40)
-                                    .setCustomId('settings_levelicon_lvl40')
+                                    .setCustomId('settings_levelicon_lvl40_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(40, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(40, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl50)
-                                    .setCustomId('settings_levelicon_lvl50')
+                                    .setCustomId('settings_levelicon_lvl50_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(50, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(50, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl60)
-                                    .setCustomId('settings_levelicon_lvl60')
+                                    .setCustomId('settings_levelicon_lvl60_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(60, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(60, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl70)
-                                    .setCustomId('settings_levelicon_lvl70')
+                                    .setCustomId('settings_levelicon_lvl70_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(70, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(70, level))
                         ),
@@ -2004,17 +2004,17 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .addComponents(
                                 new MessageButton()
                                     .setEmoji(icons.lvl80)
-                                    .setCustomId('settings_levelicon_lvl80')
+                                    .setCustomId('settings_levelicon_lvl80_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(80, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(80, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl90)
-                                    .setCustomId('settings_levelicon_lvl90')
+                                    .setCustomId('settings_levelicon_lvl90_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(90, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(90, level)),
                                 new MessageButton()
                                     .setEmoji(icons.lvl100)
-                                    .setCustomId('settings_levelicon_lvl100')
+                                    .setCustomId('settings_levelicon_lvl100_' + message.author.id)
                                     .setDisabled(settingsLevelIconUnlockBool(100, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(100, level))
                         )
@@ -2038,27 +2038,27 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                 new MessageButton()
                                     .setEmoji('🟥')
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'red'))
-                                    .setCustomId('settings_embedcolor_red')
+                                    .setCustomId('settings_embedcolor_red_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'red')),
                                 new MessageButton()
                                     .setEmoji('🟧')
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'orange'))
-                                    .setCustomId('settings_embedcolor_orange')
+                                    .setCustomId('settings_embedcolor_orange_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'orange')),
                                 new MessageButton()
                                     .setEmoji('🟨')
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'yellow'))
-                                    .setCustomId('settings_embedcolor_yellow')
+                                    .setCustomId('settings_embedcolor_yellow_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'yellow')),
                                 new MessageButton()
                                     .setEmoji('🟩')
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'green'))
-                                    .setCustomId('settings_embedcolor_green')
+                                    .setCustomId('settings_embedcolor_green_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'green')),
                                 new MessageButton()
                                     .setEmoji(icons.mintycolor)
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'minty'))
-                                    .setCustomId('settings_embedcolor_minty')
+                                    .setCustomId('settings_embedcolor_minty_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'minty')),
                         ),
                         new MessageActionRow()
@@ -2066,27 +2066,27 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                 new MessageButton()
                                     .setEmoji('🟦')
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'blue'))
-                                    .setCustomId('settings_embedcolor_blue')
+                                    .setCustomId('settings_embedcolor_blue_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'blue')),
                                 new MessageButton()
                                     .setEmoji(icons.darkbluecolor)
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'darkblue'))
-                                    .setCustomId('settings_embedcolor_darkblue')
+                                    .setCustomId('settings_embedcolor_darkblue_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'darkblue')),
                                 new MessageButton()
                                     .setEmoji('⬛')
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'black'))
-                                    .setCustomId('settings_embedcolor_black')
+                                    .setCustomId('settings_embedcolor_black_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'black')),
                                 new MessageButton()
                                     .setEmoji('⬜')
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'white'))
-                                    .setCustomId('settings_embedcolor_white')
+                                    .setCustomId('settings_embedcolor_white_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'white')),
                                 new MessageButton()
                                     .setEmoji(icons.pinkcolor)
                                     .setDisabled(currentEmbedColorButtonDisableBool(currentColor, 'pink'))
-                                    .setCustomId('settings_embedcolor_pink')
+                                    .setCustomId('settings_embedcolor_pink_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'pink')),
 
                         )
