@@ -2025,7 +2025,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (setting == 'embedcolor') return message.reply({
                     embeds: [
                         new MessageEmbed()
-                            .setTitle(`:gear: ${user.name}'s :art: Embed Color Settings`)
+                            .setTitle(`:gear: ${names[user.name].display}'s :art: Embed Color Settings`)
                             .setDescription(`
 * Change the sidebar color of your embeds for the \`?profile\`, \`?inventory\` and \`?settings\` commands for you
 * You can use the current **10** colors using the buttons below:
@@ -2094,7 +2094,12 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                         )
                     ]
                 });
-                if (setting == 'profileviews') return message.reply({ embeds: [] });
+                if (setting == 'profileviews') return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                        .setTitle(``)
+                    ]
+                });
                 if (setting == 'anonmode') return message.reply({ embeds: [] });
                 return message.reply({
                     embeds: [
