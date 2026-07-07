@@ -2140,7 +2140,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .addComponents(
                                 new MessageButton()
                                     .setEmoji(anonModeStatus == false ? '✅' : '🚫')
-                                    .setCustomId('settings_profileviews_toggle_' + message.author.id)
+                                    .setCustomId('settings_anonmode_toggle_' + message.author.id)
                                     .setLabel(anonModeStatus == false ? 'Enable' : 'Disable')
                                     .setStyle(anonModeStatus == false ? 'SUCCESS' : 'DANGER')
                                     .setDisabled(anonModeUnlocked == false)
