@@ -1040,8 +1040,8 @@ You are not able to use any interaction commands, but you can still view player'
                     },
                     settings: {
                         embedcolor: 'blue',
-                        profileviews: false
-
+                        profileviews: false,
+                        anonymous: false
                     },
                     hcache: {
                         save: false,
@@ -1073,7 +1073,6 @@ You are not able to use any interaction commands, but you can still view player'
                         highestWinstreak: 0
                     },
                     profileviews: 0,
-                    anonymous: false,
                     canUseRequest: true,
                     playerID: (Object.keys(db).length || 0) + 1,
                     created: Date.now()
