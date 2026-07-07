@@ -114,7 +114,7 @@ names.json length: ${JSON.stringify(names).length}
         lvl90: '<:lvl90:1519741278122676256>',
         lvl100: '<a:lvl100:1519741302076346459>',
         verified: '<a:verified:1047983275383214191>',
-        anonmoed: '<a:anonmode:1047983271545426023>',
+        anonmode: '<a:anonmode:1047983271545426023>',
         mod: '<:mod1:1047983257557409813>',
         mod2: '<:mod2:1047983259453231134>',
         challenger1: '<:challenger_badge1:975316703560990760>',
