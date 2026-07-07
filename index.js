@@ -1903,6 +1903,8 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 const level = getLevel(user.xp).level;
                 const currentColor = user.settings.embedcolor;
                 const currentColorHex = embedColors[currentColor];
+                const profileViewsStatus = user.settings.profileviews;
+                const anonModeStatus = user.settings.anonymous;
                 if (!setting) return message.reply({
                     embeds: [
                         new MessageEmbed()
@@ -2100,10 +2102,20 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setTitle(`:gear: ${names[user.name].display}'s :eye: Profile Views Settings`)
                             .setDescription(`
 * Toggle whenever you want your \`?profile\` to log how many times has it been viewed by a different person in the embed footer (bottom text)
-* This setting is currently: 
+* This setting is currently: **${profileViewsStatus == true ? '✅' : '🚫'} ${profileViewsStatus == true ? 'Enabled' : 'Disabled'}**
                             `)
                             .setColor(currentColorHex)
                             .setFooter({text: `@${user.name}'s Profile Views settings | ?settings`})
+                    ],
+                    components: [
+                        new MessageActionRow()
+                            .addComponents(
+                                new MessageButton()
+                                    .setEmoji(profileViewsStatus == false ? '✅' : '🚫')
+                                    .setCustomId('settings_profileviews_toggle_' + message.author.id)
+                                    .setLabel(profileViewsStatus == false ? 'Enable' : 'Disable')
+                                    .setStyle(profileViews == false ? 'SUCCESS' : 'DANGER')
+                        )
                     ]
                 });
                 if (setting == 'anonmode') return message.reply({ embeds: [] });
