@@ -114,6 +114,7 @@ names.json length: ${JSON.stringify(names).length}
         lvl90: '<:lvl90:1519741278122676256>',
         lvl100: '<a:lvl100:1519741302076346459>',
         verified: '<a:verified:1047983275383214191>',
+        anonmoed: '<a:anonmode:1047983271545426023>',
         mod: '<:mod1:1047983257557409813>',
         mod2: '<:mod2:1047983259453231134>',
         challenger1: '<:challenger_badge1:975316703560990760>',
@@ -128,7 +129,7 @@ names.json length: ${JSON.stringify(names).length}
         mythicbox: '<:mythicbox:1048689408431374426>',
         darkbluecolor: '<:darkbluecolor:1523432962706772127>',
         mintycolor: '<:mintycolor:1523433011620741120>',
-        pinkcolor: '<:pinkcolor:1523432979333124187>'
+        pinkcolor: '<:pinkcolor:1523432979333124187>',
     };
     const skins = {
         default: '😀',
@@ -2118,7 +2119,34 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                         )
                     ]
                 });
-                // if (setting == 'anonmode') return message.reply({ embeds: [] });
+                if (setting == 'anonmode') return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`:gear: ${names[user.name].display}'s :detective: Anonymous Mode Settings`)
+                            .setDescription(`
+* Toggle whenever you want your identity to be shown in-game (even with Hide Identities disabled) shown or hidden
+* This changes your appearence only in the lobby and in the in-game fight HUD, but people can still view your original \`?profile\` if they know your IGN 
+* This settings hides all your other badges and instead gives you the ${icons.anonmode} **Anonymous Mode** badge (not shown on profile)
+> \`Regular: (Without Anonymous Mode)\` ${icons['lvl' + user.levelIcon]} | ${skins[user.skin]} | **${names[user.name].display}**${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('crafter', user.badges.crafter)}
+> \`Anonymous Mode Enabled:\` ${icons['lvl' + user.levelIcon]} | ${skins[user.skin]} | **${names[user.name].display}**${icons.anonmode}
+
+**This setting requires the ${icons.verified} \`Verified\` profile badge**
+`)
+                            .setColor(currentColorHex)
+                            .setFooter({text: `@${user.name}'s Anonymous Mode Settings | ?settings`})
+                    ],
+                    components: [
+                        new MessageActionRow()
+                            .addComponents(
+                                new MessageButton()
+                                    .setEmoji(anonModeStatus == false ? '✅' : '🚫')
+                                    .setCustomId('settings_profileviews_toggle_' + message.author.id)
+                                    .setLabel(anonModeStatus == false ? 'Enable' : 'Disable')
+                                    .setStyle(anonModeStatus == false ? 'SUCCESS' : 'DANGER')
+                                    .setDisabled(anonModeUnlocked == false)
+                        )
+                    ]
+                });
                 return message.reply({
                     embeds: [
                         new MessageEmbed()
