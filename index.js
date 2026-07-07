@@ -1073,6 +1073,7 @@ You are not able to use any interaction commands, but you can still view player'
                         highestWinstreak: 0
                     },
                     profileviews: 0,
+                    anonymous: false,
                     canUseRequest: true,
                     playerID: (Object.keys(db).length || 0) + 1,
                     created: Date.now()
@@ -2097,7 +2098,13 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (setting == 'profileviews') return message.reply({
                     embeds: [
                         new MessageEmbed()
-                        .setTitle(``)
+                            .setTitle(`:gear: ${names[user.name].display}'s :eye: Profile Views Settings`)
+                            .setDescription(`
+* Toggle whenever you want your \`?profile\` to log how many times has it been viewed by a different person in the embed footer (bottom text)
+* This setting is currently: 
+                            `)
+                            .setColor(currentColorHex)
+                            .setFooter({text: `@${user.name}'s Profile Views settings | ?settings`})
                     ]
                 });
                 if (setting == 'anonmode') return message.reply({ embeds: [] });
@@ -2107,7 +2114,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setTitle(':no_entry_sign: Invalid setting specified!')
                             .setDescription(`The setting you specified is not a valid category! Please use the \`?settings\` command without any parameters to see the category list!`)
                             .setColor('RED')
-                            .setFooter({text: 'Invalid settin ;< | ?settings'})
+                            .setFooter({text: 'Invalid setting ;< | ?settings'})
                     ]
                 });
             } catch (error) {
