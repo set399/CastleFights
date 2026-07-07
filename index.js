@@ -2114,11 +2114,11 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setEmoji(profileViewsStatus == false ? '✅' : '🚫')
                                     .setCustomId('settings_profileviews_toggle_' + message.author.id)
                                     .setLabel(profileViewsStatus == false ? 'Enable' : 'Disable')
-                                    .setStyle(profileViews == false ? 'SUCCESS' : 'DANGER')
+                                    .setStyle(profileViewsStatus == false ? 'SUCCESS' : 'DANGER')
                         )
                     ]
                 });
-                if (setting == 'anonmode') return message.reply({ embeds: [] });
+                // if (setting == 'anonmode') return message.reply({ embeds: [] });
                 return message.reply({
                     embeds: [
                         new MessageEmbed()
