@@ -896,6 +896,27 @@ You are not able to use any interaction commands, but you can still view player'
 
     cl.on('messageCreate', async (message) => {
         if (message.author.bot) return null;
+        if (
+            (
+                message.content.startsWith('?register') ||
+                message.content.startsWith('?profile') ||
+                message.content.startsWith('?inventory') ||
+                message.content.startsWith('?lootboxes') ||
+                message.content.startsWith('?unbox') ||
+                message.content.startsWith('?buy') ||
+                message.content.startsWith('?shop') ||
+                message.content.startsWith('?usercraft') ||
+                message.content.startsWith('?challenges') ||
+                message.content.startsWith('?equip') ||
+                message.content.startsWith('?sell')
+            ) && inGame.has(message.channel.id)
+        ) {
+            try {
+                message.react('❌');
+            } catch (error) {
+                console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`);
+            }
+        }
         if (message.content.startsWith('?register')) {
             const name = message.content.split('?register ')[1];
             if (!name || name.includes(':') || name.includes('*') || name.includes('`') || name.length < 2 || name.length > 20) {
