@@ -873,6 +873,35 @@ You are not able to use any interaction commands, but you can still view player'
 `)
     .setColor('RED')
     .setFooter({ text: 'You have been banned!' });
+const modEmbed = new MessageEmbed()
+    .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
+    .setDescription(`
+This command requires the ${icons.mod} **Moderator** permissions (Account Type \`3\`)! Account types are defined this way:
+> ${icons.headmod} **Head Moderator** - \`4\`
+> ${icons.mod} **Moderator** - \`3\`
+> ${icons.verified} **Verified** - \`2\`
+> :bust_in_silhouette: **Regular Player** - \`1\`
+> :no_entry_sign: **Deleted/Banned** - \`-1\`/\`-2\`
+
+Your account type does not match the required!
+    `)
+    .setColor('RED')
+    .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
+const headMod = new MessageEmbed()
+    .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
+    .setDescription(`
+This command requires the ${icons.headmod} **Head Moderator** permissions (Account Type \`3\`)! Account types are defined this way:
+> ${icons.headmod} **Head Moderator** - \`4\`
+> ${icons.mod} **Moderator** - \`3\`
+> ${icons.verified} **Verified** - \`2\`
+> :bust_in_silhouette: **Regular Player** - \`1\`
+> :no_entry_sign: **Deleted/Banned** - \`-1\`/\`-2\`
+
+Your account type does not match the required!
+    `)
+    .setColor('RED')
+    .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
+
 
     cl.on('ready', () => {
         console.log('[0;32m32Bot started!');
@@ -1242,7 +1271,7 @@ ${badgeDescriptions}
                                     .addField(':skull: **Kills**', `\`${user.kills}\``, true)
                                     .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
-                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})${user.settings.profileviews ? ' | ' + user.profileviews + ' profile views' : ''}` })
                                     .setColor(embedColors[user.settings.embedcolor])
                             ]
                         })
@@ -1292,7 +1321,7 @@ ${badgeDescriptions}
                                     .addField(':skull: **Kills**', `\`${user.kills}\``, true)
                                     .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`?\``, true)
-                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})${user.settings.profileviews ? ' | ' + user.profileviews + ' profile views' : ''}` })
                                     .setColor('RED')
                             ]
                         })
@@ -2181,7 +2210,16 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
             } catch (error) {
                 console.error(`Failed to process ?settings command at ${message.channel.id}: ${error}`);
             }
-        } // 2026!! -w-
+        }
+        if (message.content.startsWith('?verify')) {
+            try {
+                if (db[message.author.id] == undefined) return message.reply({embeds: [noAccountEmbed]});
+                const ign = message.content.split('?verify ')[1];
+                
+            } catch (error) {
+                console.error(`Failed to process ?verify command at ${message.channel.id}: ${error}`);
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
