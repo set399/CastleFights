@@ -1321,7 +1321,7 @@ ${badgeDescriptions}
                                     .addField(':skull: **Kills**', `\`${user.kills}\``, true)
                                     .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`?\``, true)
-                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})${user.settings.profileviews ? ' | ' + user.profileviews + ' profile views' : ''}` })
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})`})
                                     .setColor('RED')
                             ]
                         })
@@ -1363,6 +1363,7 @@ ${badgeDescriptions}
                 } else {
                     try {
                         const user = db[names[ign].id];
+                        user.profileviews++;
                         if (user.inventory[user.skin] < 1) user.skin = 'default';
                         const level = getLevel(user.xp);
                         let invWorth = 0;
@@ -1398,7 +1399,7 @@ ${badgeDescriptions}
                                     .addField(':skull: **Kills**', `\`${user.kills}\``, true)
                                     .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
-                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
+                                    .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})${user.settings.profileviews ? ' | ' + user.profileviews + ' profile views' : ''}` })
                                     .setColor(embedColors[user.settings.embedcolor])
                             ]
                         })
