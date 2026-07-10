@@ -2150,7 +2150,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
 * This changes your appearence only in the lobby and in the in-game fight HUD, but people can still view your original \`?profile\` if they know your IGN 
 * This settings hides all your other badges and instead gives you the ${icons.anonmode} **Anonymous Mode** badge (not shown on profile)
 > \`Regular: (Without Anonymous Mode)\` ${icons['lvl' + user.levelIcon]} | ${skins[user.skin]} | **${names[user.name].display}**${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('crafter', user.badges.crafter)}
-> \`Anonymous Mode Enabled:\` ${icons['lvl' + user.levelIcon]} | ${skins[user.skin]} | **${names[user.name].display}**${icons.anonmode}
+> \`Anonymous Mode Enabled:\` ${icons['lvl' + user.levelIcon]} | ${skins[user.skin]} | **[Anonymous Player]**${icons.anonmode}
 
 **This setting requires the ${icons.verified} \`Verified\` profile badge**
 `)
