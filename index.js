@@ -2197,7 +2197,7 @@ cl.on('interactionCreate', async interaction => {
                     const lvl = parseInt(action.split('lvl')[1]);
                     db[user].levelIcon = lvl;
                     interaction.message.delete();
-                    interaction.channel.send(`:white_check_mark: Set **Level Icon** to ${icons['lvl' + lvl]} **Level ${lvl}**`);
+                    if(!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Level Icon** to ${icons['lvl' + lvl]} **Level ${lvl}**`);
                     return interaction.deferUpdate();
                 }
             }
