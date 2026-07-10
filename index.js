@@ -2206,6 +2206,12 @@ cl.on('interactionCreate', async interaction => {
                     if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Embed Color** to **${displayEmbedColor(embedColors[action])}**`);
                     return interaction.deferUpdate();
                 }
+                if (category == 'profileviews') {
+                    db[user].settings.profileviews = !db[user].settings.profileviews; 
+                    interaction.message.delete();
+                    if (!inGame.has(interacted.channel.id)) interaction.channel.send(`:white_check_mark: Set **Profile Views** to ${db[user].settings.profileviews ? ':white_check_mark: **Enabled**' : '✖️ **Disabled**'}`);
+                    return interaction.deferUpdate();
+                }
             }
             return interaction.deferUpdate();
         } catch (error) {
