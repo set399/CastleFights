@@ -2215,8 +2215,26 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
         if (message.content.startsWith('?verify')) {
             try {
                 if (db[message.author.id] == undefined) return message.reply({embeds: [noAccountEmbed]});
+                if (db[message.author.id].accountType < 3) return message.reply({embeds: [modEmbed]});
                 const ign = message.content.split('?verify ')[1];
-                
+                if (!ign || db[names[ign].id] == undefined) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: This user doesn\'t exist!')
+                            .setColor('RED')
+                    ]
+                });
+                const user = db[names[ign].id];
+                if (user.badges.verified > 0) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(icons.verified + ' This user is already verified!')
+                            .setColor('RED')
+                    ]
+                });
+                user.badges.verified = 1;
+                if (user.accountType < 2) user.accountType = 2;
+                return message.reply({content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and granted ${icons.verified} **Verified** badge`});
             } catch (error) {
                 console.error(`Failed to process ?verify command at ${message.channel.id}: ${error}`);
             }
