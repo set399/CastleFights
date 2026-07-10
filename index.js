@@ -2203,7 +2203,7 @@ cl.on('interactionCreate', async interaction => {
                 if (category == 'embedcolor') {
                     db[user].settings.embedcolor = action;
                     interaction.message.delete();
-                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Embed Color** to ${displayEmbedColor(embedColors[action])}`);
+                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Embed Color** to **${displayEmbedColor(embedColors[action])}**`);
                     return interaction.deferUpdate();
                 }
             }
