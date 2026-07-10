@@ -2125,7 +2125,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setTitle(`:gear: ${names[user.name].display}'s :eye: Profile Views Settings`)
                             .setDescription(`
 * Toggle whenever you want your \`?profile\` to log how many times has it been viewed by a different person in the embed footer (bottom text)
-* This setting is currently: **${profileViewsStatus == true ? '✅' : '🚫'} ${profileViewsStatus == true ? 'Enabled' : 'Disabled'}**
+* This setting is currently: **${profileViewsStatus == true ? '✅' : '✖️'} ${profileViewsStatus == true ? 'Enabled' : 'Disabled'}**
                             `)
                             .setColor(currentColorHex)
                             .setFooter({text: `@${user.name}'s Profile Views settings | ?settings`})
@@ -2134,7 +2134,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                         new MessageActionRow()
                             .addComponents(
                                 new MessageButton()
-                                    .setEmoji(profileViewsStatus == false ? '✅' : '🚫')
+                                    .setEmoji(profileViewsStatus == false ? '✅' : '✖️')
                                     .setCustomId('settings_profileviews_toggle_' + message.author.id)
                                     .setLabel(profileViewsStatus == false ? 'Enable' : 'Disable')
                                     .setStyle(profileViewsStatus == false ? 'SUCCESS' : 'DANGER')
@@ -2161,7 +2161,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                         new MessageActionRow()
                             .addComponents(
                                 new MessageButton()
-                                    .setEmoji(anonModeStatus == false ? '✅' : '🚫')
+                                    .setEmoji(anonModeStatus == false ? '✅' : '✖️')
                                     .setCustomId('settings_anonmode_toggle_' + message.author.id)
                                     .setLabel(anonModeStatus == false ? 'Enable' : 'Disable')
                                     .setStyle(anonModeStatus == false ? 'SUCCESS' : 'DANGER')
