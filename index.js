@@ -877,7 +877,7 @@ const modEmbed = new MessageEmbed()
     .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
     .setDescription(`
 This command requires the ${icons.mod} **Moderator** permissions (Account Type \`3\`)! Account types are defined this way:
-> ${icons.headmod} **Head Moderator** - \`4\`
+> ${icons.mod2} **Head Moderator** - \`4\`
 > ${icons.mod} **Moderator** - \`3\`
 > ${icons.verified} **Verified** - \`2\`
 > :bust_in_silhouette: **Regular Player** - \`1\`
@@ -891,7 +891,7 @@ const headMod = new MessageEmbed()
     .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
     .setDescription(`
 This command requires the ${icons.headmod} **Head Moderator** permissions (Account Type \`3\`)! Account types are defined this way:
-> ${icons.headmod} **Head Moderator** - \`4\`
+> ${icons.mod2} **Head Moderator** - \`4\`
 > ${icons.mod} **Moderator** - \`3\`
 > ${icons.verified} **Verified** - \`2\`
 > :bust_in_silhouette: **Regular Player** - \`1\`
