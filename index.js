@@ -2200,6 +2200,12 @@ cl.on('interactionCreate', async interaction => {
                     if(!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Level Icon** to ${icons['lvl' + lvl]} **Level ${lvl}**`);
                     return interaction.deferUpdate();
                 }
+                if (category == 'embedcolor') {
+                    db[user].settings.embedcolor = action;
+                    interaction.message.delete();
+                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Embed Color** to ${displayEmbedColor(action)}`);
+                    return interaction.deferUpdate();
+                }
             }
             return interaction.deferUpdate();
         } catch (error) {
