@@ -2212,6 +2212,13 @@ cl.on('interactionCreate', async interaction => {
                     if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Profile Views** to ${db[user].settings.profileviews ? ':white_check_mark: **Enabled**' : '✖️ **Disabled**'}`);
                     return interaction.deferUpdate();
                 }
+                if (category == 'anonmode') {
+                    db[user].settings.anonymous = !db[user].settings.anonymous;
+                    interaction.message.delete();
+                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Anonymous Mode** to ${db[user].settings.profileviews ? ':white_check_mark: **Enabled**' : '✖️ **Disabled**'}`);
+                    return interaction.deferUpdate();
+                }
+
             }
             return interaction.deferUpdate();
         } catch (error) {
