@@ -78,11 +78,16 @@ class CFMap {
         this.fill(0, 19, 3, 3, 'WOOD', 100000);
         return this.title;
     }
-    preset() {
-
-    }
     export() {
         return JSON.stringify({ title: this.title, data: this.data});
+    }
+    import(jsonData) {
+        let map = JSON.parse(jsonData);
+        if (!map.title || typeof map.title !== 'string') throw new Error('CFMap.import(...): Map title not specified'); 
+        if (!map.data || !Array.isArray(map.data)) throw new Error('CFMap.import(...): Invalid map data specified');
+        this.title = map.title;
+        this.data = map.data;
+        return this.title;
     }
     
 }
