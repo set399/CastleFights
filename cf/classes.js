@@ -47,7 +47,15 @@ class CFMap {
         }
     }
     render() {
-        
+        let map = '';
+        for (var y = 8; y >= 0; y--) {
+            let row = '';
+            for (var x = 0; x < 20; x++) {
+                row += textures[this.data[x][y].id];
+            }
+            row += '\n';
+            map += row;
+        }
     }
     default() {
 
