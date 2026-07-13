@@ -24,9 +24,11 @@ class CFMap {
         return this.data[x][y] = { id: id, health: hp, props: props};
     }
     fill(x1, x2, y1, y2, id, hp, props = {}) {
+        if (isNaN(x1) || isNaN(y1) || x1 < 0 || x1 > 19 || y1 < 0 || y1 > 8) throw new Error('CFMap.fill(...): Fill boundaries (1) exceed the 20x9 area');
+        if (isNaN(x2) || isNaN(y2) || x2 < 0 || x2 > 19 || y2 < 0 || y2 > 8) throw new Error('CFMap.fill(...): Fill boundaries (2) exceed the 20x9 area');
         for (var y = y1; y <= y2; y++) {
             for (var x = x1; x <= x2; x++) {
-                this.set(x, y, id, hp, props);
+                this.set(x, y, id, hp, { ...props });
             }
         }
     }
