@@ -81,5 +81,8 @@ class CFMap {
     preset() {
 
     }
+    export() {
+        return JSON.stringify({ title: this.title, data: this.data});
+    }
     
 }
