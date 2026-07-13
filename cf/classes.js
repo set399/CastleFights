@@ -54,6 +54,7 @@ class CFMap {
         if (map.length > 3600) {
             let arr = map.split('\n');
             arr.splice(0, 2);
+            map = '';
             arr.forEach(row => {
                 map += row + '\n';
             });
