@@ -1,5 +1,19 @@
+
 const blocksIDs = ['EMPTY', 'LEAF', 'WOOD', 'SAND', 'ICE', 'CACTUS', 'STEEL', 'OBSIDIAN', 'CROWN', 'PLAYER'];
 const skins = ['default', 'default2', 'constructionworker', 'farmer', 'sweating', 'holdingtears', 'grin', 'joy', 'rofl', 'snail', 'beetle', 'cricket', 'halo', 'sunglasses', 'suspicious', 'sauropod', 'orangutan', 'parrot', 'swan', 'chipmunk', 'nerd', 'raisedeyebrow', 'coldface', 'imp', 'pumpkin', 'turkey', 'dodo', 'flamingo', 'crocodile', 'beaver', 'flushed', 'cowboy', 'skull', 'alien', 'robot', 'turtle', 'dog', 'cat', 'rat', 'peacock', 'chicken', 'rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken'];
+const textures = {
+    EMPTY: '<:e_:1337418328875991092>',
+    WOOD: '🟫',
+    LEAF: '🟩',
+    STONE: '<:ro:1337424806399709265>',
+    CACTUS: '🌵',
+    SAND: '🟨',
+    ICE: '<:ic:1337714434227048449>',
+    STEEL: '<:st:1337806342714298420>',
+    OBSIDIAN: '🟪',
+    CROWN: '<:cr:1117868600976478299>',
+    INVALID: '<:invalid:1337424671171412000>',
+};
 class CFMap {
     constructor(title) {
         this.data = [];
@@ -31,6 +45,9 @@ class CFMap {
                 this.set(x, y, id, hp, { ...props });
             }
         }
+    }
+    render() {
+        
     }
     default() {
 
