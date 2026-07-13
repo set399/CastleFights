@@ -45,6 +45,7 @@ class CFMap {
                 this.set(x, y, id, hp, { ...props });
             }
         }
+        return { blocksFilled: (x1 * y1) * (x2 * y2) };
     }
     render() {
         let map = '';
@@ -66,12 +67,6 @@ class CFMap {
         }
         return map;
     }
-    default() {
-
-    }
-    preset() {
-
-    }
     clear() {
         this.data = [];
         for (var x = 0; x < 20; x++) {
@@ -80,5 +75,15 @@ class CFMap {
                 this.data[x].push({ id: 'EMPTY', health: 0 });
             }
         };
+        return true;
     }
+    default() {
+        this.clear();
+        this.fill(0, 19, 0, 2, 'WOOD', 100000);
+        this.fill(0, 19, 3, 3, 'WOOD', 100000);
+    }
+    preset() {
+
+    }
+    
 }
