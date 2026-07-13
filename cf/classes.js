@@ -56,6 +56,12 @@ class CFMap {
 
     }
     clear() {
-
+        this.data = [];
+        for (var x = 0; x < 20; x++) {
+            this.data.push([]);
+            for (var y = 0; y < 9; y++) {
+                this.data[x].push({ id: 'EMPTY', health: 0 });
+            }
+        };
     }
 }
