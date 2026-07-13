@@ -39,7 +39,7 @@ class CFMap {
                 this.set(x, y, id, hp, { ...props });
             }
         }
-        return { blocksFilled: (x1 * y1) * (x2 * y2) };
+        return ({ blocksFilled: (x2 - x1 + 1) * (y2 - y1 + 1) });
     }
     render() {
         let map = '';
@@ -91,4 +91,7 @@ class CFMap {
         return this.title;
     }
     
+}
+class CFPlayer {
+
 }
