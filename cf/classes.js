@@ -60,7 +60,7 @@ class CFMap {
             let arr = map.split('\n');
             arr.splice(0, 2);
             arr.forEach(row => {
-                map += row;
+                map += row + '\n';
                 map += 'Map too long. Unrendered top 2 vertical rows (Y 8, 9).';
             });
         }
