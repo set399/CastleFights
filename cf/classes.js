@@ -61,8 +61,8 @@ class CFMap {
             arr.splice(0, 2);
             arr.forEach(row => {
                 map += row + '\n';
-                map += 'Map too long. Unrendered top 2 vertical rows (Y 8, 9).';
             });
+            map += 'Map too long. Unrendered top 2 vertical rows (Y 8, 9).';
         }
         return map;
     }
