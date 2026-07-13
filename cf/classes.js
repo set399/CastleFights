@@ -56,6 +56,7 @@ class CFMap {
             row += '\n';
             map += row;
         }
+        return map;
     }
     default() {
 
