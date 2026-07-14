@@ -93,5 +93,70 @@ class CFMap {
     
 }
 class CFPlayer {
-
+    constructor(ign, level, skin, x, y, respawnX, respawnY) {
+        this.level = level;
+        this.user = ign;
+        this.skin = skin;
+        this.x = x;
+        this.y = y;
+        this.respawnX = respawnX;
+        this.respawnY = respawnY;
+        this.kills = 0;
+        this.deaths = 0;
+        this.health = 100;
+        this.maxHealth = 100;
+        this.currentSlot = 0;
+        this.slots = [];
+        this.prepMinerals = {
+            leaf: 0,
+            wood: 0,
+            rock: 0,
+            cactus: 0,
+            ice: 0,
+            sand: 0,
+            iron: 0,
+            gunpowder: 0,
+            apple: 0,
+            olives: 0,
+            carrot: 0,
+            sparkle: 0,
+            orb: 0,
+            diamond: 0
+        }
+        this.prepItems = {
+            woodensword: 0,
+            knife: 0,
+            dagger: 0,
+            katana: 0,
+            pistol: 0,
+            revolver: 0,
+            shotgun: 0,
+            sniper: 0,
+            pistolrevbullet: 0,
+            shotgunbullet: 0,
+            sniperbullet: 0,
+            woodenshovel: 0,
+            pickaxe: 0,
+            steelpickaxe: 0,
+            diapickaxe: 0,
+            firecracker: 0,
+            bomb: 0,
+            powerfulbomb: 0,
+            teleporter: 0,
+            greenapple: 0,
+            carrot: 0,
+            soup: 0
+        };
+        this.earnings = { coins: 0, xp: 0, gems: 0, commonbox: 0, goodbox: 0, epicbox: 0, legendarybox: 0, mythicbox: 0 };
+        this.state = 'ALIVE';
+        this.canRespawn = true;
+        this.explorationCooldowns = {
+            forest: Date.now(),
+            fancygarden: Date.now(),
+            mountains: Date.now(),
+            snowmountains: Date.now(),
+            desert: Date.now(),
+            volcano: Date.now()
+        };
+    }
 }
