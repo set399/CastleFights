@@ -165,6 +165,7 @@ class CFPlayer {
             if (!(hitter instanceof CFPlayer)) {
                 this.deaths++;
                 this.state = 'DEAD';
+                this.health = 0;
                 return `${this.ign} died to natural causes`;
             };
             let m = 'killed';
@@ -173,6 +174,7 @@ class CFPlayer {
             this.deaths++;
             hitter.kills++;
             this.state = 'DEAD';
+            this.health = 0;
             return `${hitter.ign} ${m} ${this.ign}`;
         };
         this.health -= hp;
