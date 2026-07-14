@@ -159,4 +159,11 @@ class CFPlayer {
             volcano: Date.now()
         };
     }
+    damage(hitter, hp, method) {
+        
+    }
+    heal(hp) {
+        if (this.health + hp >= this.maxHealth) return this.health = this.maxHealth;
+        return this.health += hp;
+    }
 }
