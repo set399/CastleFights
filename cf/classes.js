@@ -107,6 +107,7 @@ class CFPlayer {
         this.maxHealth = 100;
         this.currentSlot = 0;
         this.slots = [];
+        this.respawnTs = Date.now();
         this.prepMinerals = {
             leaf: 0,
             wood: 0,
@@ -160,7 +161,22 @@ class CFPlayer {
         };
     }
     damage(hitter, hp, method) {
-        
+        if ((this.health - hp) < 1) {
+            if (!(hitter instanceof CFPlayer)) {
+                this.deaths++;
+                this.state = 'DEAD';
+                return `${this.ign} died to natural causes`;
+            };
+            let m = 'killed';
+            if (['pistol', 'revolver', 'shotgun', 'sniper'].includes(method)) m = 'shot';
+            if (['bomb', 'powerfulbomb'].includes(method)) m = 'exploded';
+            this.deaths++;
+            hitter.kills++;
+            this.state = 'DEAD';
+            return `${hitter.ign} ${m} ${this.ign}`;
+        };
+        this.health -= hp;
+        return hp;
     }
     heal(hp) {
         if (this.health + hp >= this.maxHealth) return this.health = this.maxHealth;
