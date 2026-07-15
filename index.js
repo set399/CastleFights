@@ -2262,8 +2262,8 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
                         .setFooter({ text: `Invalid params | ?editor set` });
                     const args = action.split('set ')[1];
                     if (!args) return message.reply({ embeds: [invalidParamsEmbed] });
-                    if (!params) return message.reply({ embeds: [invalidParamsEmbed] });
                     const params = args.split(',');
+                    if(!params) return message.reply({ embeds: [invalidParamsEmbed] });
                     const x = parseInt(params[0]);
                     const y = parseInt(params[1]);
                     const id = params[2];
