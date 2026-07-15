@@ -2247,19 +2247,9 @@ ${renderedMap}
                     });
                 }
                 if (action == 'set') {
-                    const args = action.split('set ')[1]
-                    const params = args.split(',');
-                    const x = parseInt(params[0]);
-                    const y = parseInt(params[1]);
-                    const id = params[2];
-                    const hp = parseInt(params[3]);
-                    const props = JSON.parse(params[4]);
-                    if (!x || !y || !id || !hp || !props || !args || !params) {
-                        return message.reply({
-                            embeds: [
-                                new MessageEmbed()
-                                    .setTitle(':no_entry_sign: Invalid parameters!')
-                                    .setDescription(`
+                    const invalidParamsEmbed = new MessageEmbed()
+                        .setTitle(':no_entry_sign: Invalid parameters!')
+                        .setDescription(`
 You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\`
 > \`x\` and \`y\` being the coordinates of the block **(ranging from 0 to 19 for X and 0 to 8 for Y)**
 > \`id\` being the type of the block **(allowed are \`EMPTY, LEAF, WOOD, STONE, CACTUS, ICE, STEEL, OBSIDIAN, PLAYER, CROWN, INVALID\`)**
@@ -2268,11 +2258,18 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
 
 * **Example:** If you want to set an ${icons.rgbchicken} **RGB Chicken** player block at the top left corner of the map, you do \`?editor set 0,8,'PLAYER',100,{"playerID":0,"skin":"rgbchicken"}\`
                                     `)
-                                    .setColor('RED')
-                                    .setFooter({text: `Invalid params | ?editor set`})
-                            ]
-                        });
-                    }
+                        .setColor('RED')
+                        .setFooter({ text: `Invalid params | ?editor set` });
+                    const args = action.split('set ')[1];
+                    if (!args) return message.reply({ embeds: [invalidParamsEmbed] });
+                    if (!params) return message.reply({ embeds: [invalidParamsEmbed] });
+                    const params = args.split(',');
+                    const x = parseInt(params[0]);
+                    const y = parseInt(params[1]);
+                    const id = params[2];
+                    const hp = parseInt(params[3]);
+                    const props = JSON.parse(params[4]);
+                    if (!x || !y || !id || !hp || !props || !args || !params) return message.reply({embeds: [invalidParamsEmbed]});
                     try {
                         const res = editors[message.author.id].set(x, y, id, hp, props);
                         message.reply(`\`${res}\``);
