@@ -1016,7 +1016,7 @@ Your account type does not match the required!
                     canUseRequest: true,
                     playerID: (Object.keys(db).length || 0) + 1,
                     created: Date.now(),
-                    editor: new CFMap('New Map', name)
+                    editor: {}
                 };
                 db[message.author.id] = d;
                 names[name.toLowerCase()] = { id: message.author.id, display: name };
@@ -2218,6 +2218,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (db[message.author.id].accountType < 2) return message.reply({ embeds: [verifiedEmbed] });
                 const action = message.content.split('?editor ')[1];
                 const user = db[message.author.id];
+                if (user.editor == {}) user.editor = new CFMap('New Map', user.name);
                 if (action == 'view') {
                     const renderedMap = user.editor.render();
                     return message.reply({
@@ -2255,7 +2256,7 @@ ${renderedMap}
                             .setDescription(`
 Welcome to the :european_castle: **Castle Fights** :map: **Map Editor**!
 *This feature is only available to ${icons.verified} **Verified** people*
-*A map is already prepared for you upon account creation*
+*A map is already prepared for you upon executing this command*
 
 Use the \`?editor\` command with one of the following parameters to perform actions:
 > \`view\` - :eye: **View the current state of the map** *(No auto-update unlike in-game)*
