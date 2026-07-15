@@ -2237,7 +2237,14 @@ ${renderedMap}
                     });
                 }
                 if (action == 'clear') {
-                    
+                    editors[message.author.id].clear();
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':white_check_mark: Successfully cleared map!')
+                                .setColor('GREEN')
+                        ]
+                    });
                 }
                 if (action == 'set') {
 
