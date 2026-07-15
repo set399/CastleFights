@@ -2369,7 +2369,7 @@ Welcome to the :european_castle: **Castle Fights** :map: **Map Editor**!
 *A map is already prepared for you upon account creation*
 
 Use the \`?editor\` command with one of the following parameters to perform actions:
-> \`view\` - :view: **View the current state of the map** *(No auto-update unlike in-game)*
+> \`view\` - :eye: **View the current state of the map** *(No auto-update unlike in-game)*
 > \`?title\` - :label: **Rename the map**
 > \`?clear\` - :wastebasket: **Set the whole map to empty blocks**
 > \`?set\` - :green_square: **Place a block on the map**
