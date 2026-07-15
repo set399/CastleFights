@@ -2274,7 +2274,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 });
                 user.badges.verified = 0;
                 if (user.accountType < 3) user.accountType = 1;
-                return message.reply({ content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and granted ${icons.verified} **Verified** badge` });
+                return message.reply({ content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and revoked ${icons.verified} **Verified** badge` });
             } catch (error) {
                 console.error(`Failed to process ?verify command at ${message.channel.id}: ${error}`);
             }
@@ -2302,6 +2302,34 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 user.badges.mod = 1;
                 if (user.accountType < 3) user.accountType = 3;
                 return message.reply({ content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and granted ${icons.mod} **Moderator** badge` });
+            } catch (error) {
+                console.error(`Failed to process ?mod command at ${message.channel.id}: ${error}`);
+            }
+        }
+        if (message.content.startsWith('?unmod')) {
+            try {
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType < 4) return message.reply({ embeds: [headModEmbed] });
+                const ign = message.content.split('?unmod ')[1];
+                if (!ign || db[names[ign].id] == undefined) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: This user doesn\'t exist!')
+                            .setColor('RED')
+                    ]
+                });
+                const user = db[names[ign].id];
+                if (user.badges.mod < 1) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(icons.verified + ' This user is already not a mod!')
+                            .setColor('RED')
+                    ]
+                });
+                user.badges.mod = 0;
+                if (user.badges.verified == 1) user.accountType = 2;
+                if (user.badges.verified < 1) user.accountType = 1;
+                return message.reply({ content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and revoked ${icons.mod} **Moderator** badge` });
             } catch (error) {
                 console.error(`Failed to process ?mod command at ${message.channel.id}: ${error}`);
             }
