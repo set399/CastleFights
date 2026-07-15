@@ -77,7 +77,7 @@ class CFMap {
         this.title = 'Example Map';
         this.clear();
         this.fill(0, 19, 0, 2, 'WOOD', 100000);
-        this.fill(0, 19, 3, 3, 'WOOD', 100000);
+        this.fill(0, 19, 3, 3, 'LEAF', 100000);
         return this.title;
     }
     export() {
