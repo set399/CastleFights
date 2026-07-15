@@ -2268,9 +2268,10 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
                     const y = parseInt(params[1]);
                     const id = params[2];
                     const hp = parseInt(params[3]);
+                    let props = {};
                     try {
                         const propsJson = params.slice(4).join(',');
-                        const props = JSON.parse(propsJson);
+                        props = JSON.parse(propsJson);
                     } catch (error) {
                         return message.reply(`\`${error}\``);
                     }
