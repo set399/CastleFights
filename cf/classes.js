@@ -238,8 +238,10 @@ class CFPlayer {
         if (this.health + hp >= this.maxHealth) return this.health = this.maxHealth;
         return this.health += hp;
     }
-    slot() {
-
+    slot(num) {
+        if (num < 0 && num > 9) return;
+        this.currentSlot = num;
+        return num;
     }
     explore() {
 
