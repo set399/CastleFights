@@ -184,4 +184,33 @@ class CFPlayer {
         if (this.health + hp >= this.maxHealth) return this.health = this.maxHealth;
         return this.health += hp;
     }
+    move() {
+
+    }
+    hit() {
+
+    }
+    break() {
+
+    }
+    use() {
+
+    }
+    slot() {
+
+    }
+    explore() {
+
+    }
+    craft() {
+
+    }
+    equipToSlot() {
+
+    }
+    respawn() {
+
+    }
+    
+
 }
