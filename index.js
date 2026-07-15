@@ -2278,7 +2278,7 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
                     if (isNaN(x) || isNaN(y) || !id || isNaN(hp) || !props || !args || !params) return message.reply({embeds: [invalidParamsEmbed]});
                     try {
                         const res = editors[message.author.id].set(x, y, id, hp, props);
-                        message.reply(`\`${res}\``);
+                        return message.reply(`\`${res}\``);
                     } catch (error) {
                         return message.reply(`\`${error}\``);
                     }
