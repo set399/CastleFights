@@ -2256,7 +2256,7 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
 > \`hp\` being the health of the block **(ranging from 0 to 100,000)**
 > \`props\` being the extra properties of the block if needed **(i.e. player skin for player block)** __(leave as {} if empty!)__
 
-* **Example:** If you want to set an ${skins.rgbchicken} **RGB Chicken** player block at the top left corner of the map, you do \`?editor set 0,8,'PLAYER',100,{"playerID":0,"skin":"rgbchicken"}\`
+* **Example:** If you want to set an ${skins.rgbchicken} **RGB Chicken** player block at the top left corner of the map, you do \`?editor set 0,8,PLAYER,100,{"playerID":0,"skin":"rgbchicken"}\`
                                     `)
                         .setColor('RED')
                         .setFooter({ text: `Invalid params | ?editor set` });
