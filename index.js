@@ -2219,10 +2219,17 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const action = message.content.split('?editor ')[1];
                 const user = db[message.author.id];
                 if (action == 'view') {
+                    const renderedMap = user.editor.render();
                     return message.reply({
                         embeds: [
                             new MessageEmbed()
-.setTitle(`:map: Map Editor (Map: \`${editor}\` by \`\`)`)
+                                .setTitle(`:map: Map Editor (Map: \`${user.editor.title}\` by \`${user.editor.author}\`)`)
+                                .setDescription(`
+${renderedMap}
+`)
+                                .setColor(embedColors[user.settings.embedcolor])
+                                .setFooter({text: `Map size: ${renderedMap.length}/3,600 characters (20x9 blocks of space)`})
+
                         ]
                     });
                 }
