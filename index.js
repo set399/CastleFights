@@ -59,6 +59,7 @@ names.json length: ${JSON.stringify(names).length}
     })();
 
 
+let editors = {};
 
     function racc(int) { // Resolve account type
         if (int == 0 || int == undefined || !int || int == null) {
@@ -2218,8 +2219,8 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (db[message.author.id].accountType < 2) return message.reply({ embeds: [verifiedEmbed] });
                 const action = message.content.split('?editor ')[1];
                 const user = db[message.author.id];
-                if (user.editor == undefined) user.editor = new CFMap('New Map', user.name);
-                user.editor.default();
+                if (editors[message.author.id] == undefined) editors[message.author.id] = new CFMap('New Map', user.name);
+                editors[message.author.id].default();
                 if (action == 'view') {
                     const renderedMap = user.editor.render();
                     return message.reply({
