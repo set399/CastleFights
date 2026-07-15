@@ -1015,7 +1015,8 @@ Your account type does not match the required!
                     profileviews: 0,
                     canUseRequest: true,
                     playerID: (Object.keys(db).length || 0) + 1,
-                    created: Date.now()
+                    created: Date.now(),
+                    editor: new CFMap('New Map')
                 };
                 db[message.author.id] = d;
                 names[name.toLowerCase()] = { id: message.author.id, display: name };
