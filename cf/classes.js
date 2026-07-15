@@ -27,9 +27,9 @@ class CFMap {
         if (!blockIDs.includes(id)) throw new Error('CFMap.set(...): Invalid Block ID, allowed are: ' + JSON.stringify(blockIDs));
         if (hp < 1) hp = 0;
         if (hp > 100000) hp = 100000;
-        if (id == 'CROWN' && ((props.playerID == undefined) || isNaN(props.playerID) || (props.playerID !== 0 && props.playerID !== 1))) throw new Error('CFMap.set(...): No player in props parameter for CROWN object specified');
-        if (id == 'PLAYER' && ((props.playerID) == undefined) || isNaN(props.playerID) || (props.playerID !== 0 && props.playerID !== 1)) throw new Error('CFMap.set(...): No player in props parameter for PLAYER object specified, obviously -.-');
-        if (id == 'PLAYER' && ((props.skin == undefined) || !skins.includes(props.skin))) props.skin = 'default';
+        if (id == 'CROWN' && (props.playerID == undefined || isNaN(props.playerID) || (props.playerID !== 0 && props.playerID !== 1))) throw new Error('CFMap.set(...): No player in props parameter for CROWN object specified');
+        if (id == 'PLAYER' && (props.playerID == undefined || isNaN(props.playerID) || (props.playerID !== 0 && props.playerID !== 1))) throw new Error('CFMap.set(...): No player in props parameter for PLAYER object specified, obviously -.-');
+        if (id == 'PLAYER' && (props.skin == undefined || !skins.includes(props.skin))) props.skin = 'default';
         return this.data[x][y] = { id: id, health: hp, props: props};
     }
     fill(x1, x2, y1, y2, id, hp) {
