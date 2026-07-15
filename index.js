@@ -2382,7 +2382,7 @@ Use the \`?editor\` command with one of the following parameters to perform acti
 *This basically creates an effect where the more complex the map is, the smaller in character size it actually is*
 *Because of this, when creating maps, place some blocks to make the map slightly complex*
 `)
-                            .setColor(user.settings.embedcolor)
+                            .setColor(currentColorHex(user.settings.embedcolor))
                             .setFooter({ text: `Map Editor Options | ?editor` })
                     ]
                 });
