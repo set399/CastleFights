@@ -2219,8 +2219,10 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (db[message.author.id].accountType < 2) return message.reply({ embeds: [verifiedEmbed] });
                 const action = message.content.split('?editor ')[1];
                 const user = db[message.author.id];
-                if (editors[message.author.id] == undefined) editors[message.author.id] = new CFMap('New Map', user.name);
-                editors[message.author.id].default();
+                if (editors[message.author.id] == undefined) {
+                    editors[message.author.id] = new CFMap('New Map', user.name);
+                    editors[message.author.id].default();
+                }
                 if (action == 'view') {
                     const renderedMap = editors[message.author.id].render();
                     return message.reply({
