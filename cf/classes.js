@@ -203,3 +203,6 @@ class CFPlayer {
     
 
 }
+
+
+module.exports = {CFMap, CFPlayer};
