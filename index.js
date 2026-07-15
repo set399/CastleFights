@@ -2334,6 +2334,61 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 console.error(`Failed to process ?mod command at ${message.channel.id}: ${error}`);
             }
         }
+        // Editor Commands
+        if (message.content.startsWith('?editor')) {
+            try {
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType < 2) return message.reply({ embeds: [verifiedEmbed] });
+                const action = message.content.split('?editor ')[1];
+                if (action == 'view') {
+
+                }
+                if (action == 'clear') {
+
+                }
+                if (action == 'set') {
+
+                }
+                if (action == 'fill') {
+
+                }
+                if (action == 'export') {
+
+                }
+                if (action == 'import') {
+
+                }
+                return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':european_castle: Castle Fights Map Editor')
+                            .setDescription(`
+Welcome to the :european_castle: **Castle Fights** :map: **Map Editor**!
+*This feature is only available to ${icons.verified} **Verified** people*
+*A map is already prepared for you upon account creation*
+
+Use the \`?editor\` command with one of the following parameters to perform actions:
+> \`view\` - :view: **View the current state of the map** *(No auto-update unlike in-game)*
+> \`?title\` - :label: **Rename the map**
+> \`?clear\` - :wastebasket: **Set the whole map to empty blocks**
+> \`?set\` - :green_square: **Place a block on the map**
+> \`?fill\` - :left_right_arrow: **Bulk place blocks in a region with the same properties on the map**
+> \`?export\` - :outbox_tray: **Save your map to the servers for later importing or showcase to potentially become as official map**
+> \`?import\` - :inbox_tray: **Load a previously created map from the servers**
+
+*Please note that if a map is longer than 3,600 characters, it will have rendering restrictions*
+*Because of how discord emojis work, the \`EMPTY\` block has ~25 characters while blocks like \`WOOD\` or \`LEAF\` are just 1 emoji (:brown_square:, :green_square:)*
+*This basically creates an effect where the more complex the map is, the smaller in character size it actually is*
+*Because of this, when creating maps, place some blocks to make the map slightly complex*
+`)
+                            .setColor(user.settings.embedcolor)
+                            .setFooter({ text: `Map Editor Options | ?editor` })
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?editor command at ${message.channel.id}: ${error}`);
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
