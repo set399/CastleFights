@@ -15,8 +15,9 @@ const textures = {
     INVALID: '<:invalid:1337424671171412000>',
 };
 class CFMap {
-    constructor(title) {
+    constructor(title, author) {
         this.title = title;
+        this.author = author;
         this.clear();
     }
     set(x, y, id, hp, props = {}) {
