@@ -233,76 +233,6 @@ names.json length: ${JSON.stringify(names).length}
 
     var servers = {};
     var currentGame = {};
-    var demoServer = {
-        settings: { respawnTime: 5000 },
-        mapTitle: 'Ground',
-        player1: {
-            respawnX: 1, respawnY: 5, x: 1, y: 5, skin: 'default', kills: 0, deaths: 0, health: 100, maxHealth: 100, currentSlot: 1, earnings: { coins: 0, xp: 0, gems: 0, commonLootbox: 0, rareLootbox: 0, epicLootbox: 0, legendaryLootbox: 0, mythicalLootbox: 0 }, state: 'ALIVE', slots: [
-                { id: 'steel_pickaxe', count: 1, data: { upgrades: [] } },
-                { id: 'iron_axe', count: 1, data: { upgrades: [] } },
-                { id: 'shovel', count: 1, data: { upgrades: [] } },
-                { id: 'pistol', count: 1, data: { upgrades: [] } },
-                { id: 'shotgun', count: 1, data: { upgrades: [] } },
-                { id: 'apple', count: 5, data: { upgrades: [] } },
-                { id: 'teleporter', count: 1, data: { usesLeft: 3, upgrades: [] } },
-                { id: 'wooden_sword', count: 1, data: { upgrades: [] } },
-                { id: 'dagger', count: 1, data: { upgrades: ['REGEN1'] } },
-                { id: 'katana', count: 1, data: { upgrades: ['REGEN2'] } },
-            ],
-        },
-        player2: {
-            respawnX: 5, respawnY: 5, x: 5, y: 5, skin: 'default', kills: 0, deaths: 0, health: 100, maxHealth: 100, currentSlot: 1, state: 'ALIVE', slots: [
-                { id: 'steel_pickaxe', count: 1, data: { upgrades: [] } },
-                { id: 'iron_axe', count: 1, data: { upgrades: [] } },
-                { id: 'shovel', count: 1, data: { upgrades: [] } },
-                { id: 'pistol', count: 1, data: { upgrades: [] } },
-                { id: 'shotgun', count: 1, data: { upgrades: [] } },
-                { id: 'apple', count: 5, data: { upgrades: [] } },
-                { id: 'teleporter', count: 1, data: { usesLeft: 3, upgrades: [] } },
-                { id: 'wooden_sword', count: 1, data: { upgrades: [] } },
-                { id: 'dagger', count: 1, data: { upgrades: ['REGEN1', 'REACH1'] } },
-                { id: 'katana', count: 1, data: { upgrades: ['REGEN2', 'REACH2'] } },
-            ],
-        },
-        b1_1: 'WOOD_U', b1_2: 'WOOD_U', b1_3: 'WOOD_U', b1_4: 'LEAF_U', b1_5: 'EMPTY', b1_6: 'EMPTY', b1_7: 'EMPTY', b1_8: 'EMPTY', b1_9: 'EMPTY',
-        b2_1: 'WOOD_U', b2_2: 'WOOD_U', b2_3: 'WOOD_U', b2_4: 'LEAF_U', b2_5: 'EMPTY', b2_6: 'EMPTY', b2_7: 'EMPTY', b2_8: 'EMPTY', b2_9: 'EMPTY',
-        b3_1: 'WOOD_U', b3_2: 'WOOD_U', b3_3: 'WOOD_U', b3_4: 'LEAF_U', b3_5: 'EMPTY', b3_6: 'EMPTY', b3_7: 'EMPTY', b3_8: 'EMPTY', b3_9: 'EMPTY',
-        b4_1: 'WOOD_U', b4_2: 'WOOD_U', b4_3: 'WOOD_U', b4_4: 'LEAF_U', b4_5: 'EMPTY', b4_6: 'EMPTY', b4_7: 'EMPTY', b4_8: 'EMPTY', b4_9: 'EMPTY',
-        b5_1: 'WOOD_U', b5_2: 'WOOD_U', b5_3: 'WOOD_U', b5_4: 'LEAF_U', b5_5: 'EMPTY', b5_6: 'EMPTY', b5_7: 'EMPTY', b5_8: 'EMPTY', b5_9: 'EMPTY',
-        b6_1: 'WOOD_U', b6_2: 'WOOD_U', b6_3: 'WOOD_U', b6_4: 'LEAF_U', b6_5: 'EMPTY', b6_6: 'EMPTY', b6_7: 'EMPTY', b6_8: 'EMPTY', b6_9: 'EMPTY',
-        b7_1: 'WOOD_U', b7_2: 'WOOD_U', b7_3: 'WOOD_U', b7_4: 'LEAF_U', b7_5: 'EMPTY', b7_6: 'EMPTY', b7_7: 'EMPTY', b7_8: 'EMPTY', b7_9: 'EMPTY',
-        b8_1: 'WOOD_U', b8_2: 'WOOD_U', b8_3: 'WOOD_U', b8_4: 'LEAF_U', b8_5: 'EMPTY', b8_6: 'EMPTY', b8_7: 'EMPTY', b8_8: 'EMPTY', b8_9: 'EMPTY',
-        b9_1: 'WOOD_U', b9_2: 'WOOD_U', b9_3: 'WOOD_U', b9_4: 'LEAF_U', b9_5: 'EMPTY', b9_6: 'EMPTY', b9_7: 'EMPTY', b9_8: 'EMPTY', b9_9: 'EMPTY',
-        b10_1: 'WOOD_U', b10_2: 'WOOD_U', b10_3: 'WOOD_U', b10_4: 'LEAF_U', b10_5: 'EMPTY', b10_6: 'EMPTY', b10_7: 'EMPTY', b10_8: 'EMPTY', b10_9: 'EMPTY',
-        b11_1: 'WOOD_U', b11_2: 'WOOD_U', b11_3: 'WOOD_U', b11_4: 'LEAF_U', b11_5: 'EMPTY', b11_6: 'EMPTY', b11_7: 'EMPTY', b11_8: 'EMPTY', b11_9: 'EMPTY',
-        b12_1: 'WOOD_U', b12_2: 'WOOD_U', b12_3: 'WOOD_U', b12_4: 'LEAF_U', b12_5: 'EMPTY', b12_6: 'EMPTY', b12_7: 'EMPTY', b12_8: 'EMPTY', b12_9: 'EMPTY',
-        b13_1: 'WOOD_U', b13_2: 'WOOD_U', b13_3: 'WOOD_U', b13_4: 'LEAF_U', b13_5: 'EMPTY', b13_6: 'EMPTY', b13_7: 'EMPTY', b13_8: 'EMPTY', b13_9: 'EMPTY',
-        b14_1: 'WOOD_U', b14_2: 'WOOD_U', b14_3: 'WOOD_U', b14_4: 'LEAF_U', b14_5: 'EMPTY', b14_6: 'EMPTY', b14_7: 'EMPTY', b14_8: 'EMPTY', b14_9: 'EMPTY',
-        b15_1: 'WOOD_U', b15_2: 'WOOD_U', b15_3: 'WOOD_U', b15_4: 'LEAF_U', b15_5: 'EMPTY', b15_6: 'EMPTY', b15_7: 'EMPTY', b15_8: 'EMPTY', b15_9: 'EMPTY',
-        b16_1: 'WOOD_U', b16_2: 'WOOD_U', b16_3: 'WOOD_U', b16_4: 'LEAF_U', b16_5: 'EMPTY', b16_6: 'EMPTY', b16_7: 'EMPTY', b16_8: 'EMPTY', b16_9: 'EMPTY',
-        b17_1: 'WOOD_U', b17_2: 'WOOD_U', b17_3: 'WOOD_U', b17_4: 'LEAF_U', b17_5: 'EMPTY', b17_6: 'EMPTY', b17_7: 'EMPTY', b17_8: 'EMPTY', b17_9: 'EMPTY',
-        b18_1: 'WOOD_U', b18_2: 'WOOD_U', b18_3: 'WOOD_U', b18_4: 'LEAF_U', b18_5: 'EMPTY', b18_6: 'EMPTY', b18_7: 'EMPTY', b18_8: 'EMPTY', b18_9: 'EMPTY',
-        blockData: {
-            b1_1: { health: 10000 }, b1_2: { health: 10000 }, b1_3: { health: 10000 }, b1_4: { health: 10000 }, b1_5: { health: 0 }, b1_6: { health: 0 }, b1_7: { health: 0 }, b1_8: { health: 0 }, b1_9: { health: 0 },
-            b2_1: { health: 10000 }, b2_2: { health: 10000 }, b2_3: { health: 10000 }, b2_4: { health: 10000 }, b2_5: { health: 0 }, b2_6: { health: 0 }, b2_7: { health: 0 }, b2_8: { health: 0 }, b2_9: { health: 0 },
-            b3_1: { health: 10000 }, b3_2: { health: 10000 }, b3_3: { health: 10000 }, b3_4: { health: 10000 }, b3_5: { health: 0 }, b3_6: { health: 0 }, b3_7: { health: 0 }, b3_8: { health: 0 }, b3_9: { health: 0 },
-            b4_1: { health: 10000 }, b4_2: { health: 10000 }, b4_3: { health: 10000 }, b4_4: { health: 10000 }, b4_5: { health: 0 }, b4_6: { health: 0 }, b4_7: { health: 0 }, b4_8: { health: 0 }, b4_9: { health: 0 },
-            b5_1: { health: 10000 }, b5_2: { health: 10000 }, b5_3: { health: 10000 }, b5_4: { health: 10000 }, b5_5: { health: 0 }, b5_6: { health: 0 }, b5_7: { health: 0 }, b5_8: { health: 0 }, b5_9: { health: 0 },
-            b6_1: { health: 10000 }, b6_2: { health: 10000 }, b6_3: { health: 10000 }, b6_4: { health: 10000 }, b6_5: { health: 0 }, b6_6: { health: 0 }, b6_7: { health: 0 }, b6_8: { health: 0 }, b6_9: { health: 0 },
-            b7_1: { health: 10000 }, b7_2: { health: 10000 }, b7_3: { health: 10000 }, b7_4: { health: 10000 }, b7_5: { health: 0 }, b7_6: { health: 0 }, b7_7: { health: 0 }, b7_8: { health: 0 }, b7_9: { health: 0 },
-            b8_1: { health: 10000 }, b8_2: { health: 10000 }, b8_3: { health: 10000 }, b8_4: { health: 10000 }, b8_5: { health: 0 }, b8_6: { health: 0 }, b8_7: { health: 0 }, b8_8: { health: 0 }, b8_9: { health: 0 },
-            b9_1: { health: 10000 }, b9_2: { health: 10000 }, b9_3: { health: 10000 }, b9_4: { health: 10000 }, b9_5: { health: 0 }, b9_6: { health: 0 }, b9_7: { health: 0 }, b9_8: { health: 0 }, b9_9: { health: 0 },
-            b10_1: { health: 10000 }, b10_2: { health: 10000 }, b10_3: { health: 10000 }, b10_4: { health: 10000 }, b10_5: { health: 0 }, b10_6: { health: 0 }, b10_7: { health: 0 }, b10_8: { health: 0 }, b10_9: { health: 0 },
-            b11_1: { health: 10000 }, b11_2: { health: 10000 }, b11_3: { health: 10000 }, b11_4: { health: 10000 }, b11_5: { health: 0 }, b11_6: { health: 0 }, b11_7: { health: 0 }, b11_8: { health: 0 }, b11_9: { health: 0 },
-            b12_1: { health: 10000 }, b12_2: { health: 10000 }, b12_3: { health: 10000 }, b12_4: { health: 10000 }, b12_5: { health: 0 }, b12_6: { health: 0 }, b12_7: { health: 0 }, b12_8: { health: 0 }, b12_9: { health: 0 },
-            b13_1: { health: 10000 }, b13_2: { health: 10000 }, b13_3: { health: 10000 }, b13_4: { health: 10000 }, b13_5: { health: 200 }, b13_6: { health: 0 }, b13_7: { health: 0 }, b13_8: { health: 0 }, b13_9: { health: 0 },
-            b14_1: { health: 10000 }, b14_2: { health: 10000 }, b14_3: { health: 10000 }, b14_4: { health: 10000 }, b14_5: { health: 0 }, b14_6: { health: 0 }, b14_7: { health: 0 }, b14_8: { health: 0 }, b14_9: { health: 0 },
-            b15_1: { health: 10000 }, b15_2: { health: 10000 }, b15_3: { health: 10000 }, b15_4: { health: 10000 }, b15_5: { health: 0 }, b15_6: { health: 0 }, b15_7: { health: 0 }, b15_8: { health: 0 }, b15_9: { health: 0 },
-            b16_1: { health: 10000 }, b16_2: { health: 10000 }, b16_3: { health: 10000 }, b16_4: { health: 10000 }, b16_5: { health: 0 }, b16_6: { health: 0 }, b16_7: { health: 0 }, b16_8: { health: 0 }, b16_9: { health: 0 },
-            b17_1: { health: 10000 }, b17_2: { health: 10000 }, b17_3: { health: 10000 }, b17_4: { health: 10000 }, b17_5: { health: 0 }, b17_6: { health: 0 }, b17_7: { health: 0 }, b17_8: { health: 0 }, b17_9: { health: 0 },
-            b18_1: { health: 10000 }, b18_2: { health: 10000 }, b18_3: { health: 10000 }, b18_4: { health: 10000 }, b18_5: { health: 0 }, b18_6: { health: 0 }, b18_7: { health: 0 }, b18_8: { health: 0 }, b18_9: { health: 0 }
-        }
-    }
 
     const blockHp = {
         LEAF: 50,
@@ -376,61 +306,6 @@ names.json length: ${JSON.stringify(names).length}
             return new Error('Invalid player specified for stateText(...) function');
         }
     };
-
-    function createServer(code, map, gamemode, isPrivate, showPing, showEvents, respawnTime, identities, rewards, hostID) {
-        let serverdata = {
-            stage: 'WAITING', // PREPARATION, FIGHT, ENDGAME
-            fightStarts: 0,
-            endgameStarts: 0,
-            gameEnds: 0,
-            settings: { respawnTime: respawnTime, private: isPrivate, showPing: showPing, showEvents: showEvents, showIdentities: identities, rewards: rewards },
-            mapTitle: 'Ground',
-            gamemode: gamemode,
-            player1: {
-                x: 1,
-                y: 1,
-                skin: 'default',
-                respawnX: 1,
-                respawnY: 5,
-                health: 100,
-                maxHealth: 100,
-                kills: 0,
-                deaths: 0,
-                killstreak: 0,
-                currentSlot: 0,
-                hasCrown: true,
-                state: 'ALIVE',
-                slots: [],
-                items: [],
-                preparationTimestamps: {
-                    forest: Date.now(),
-                    fancyGarden: Date.now(),
-                    mountains: Date.now(),
-                    snowyMountains: Date.now(),
-                    desert: Date.now(),
-                    volcano: Date.now()
-                },
-                earnings: {
-                    coins: 0,
-                    xp: 0
-                }
-            },
-            player2: {
-                respawnX: 5, respawnY: 5, x: 5, y: 5, skin: 'default', kills: 0, deaths: 0, health: 100, maxHealth: 100, currentSlot: 1, state: 'ALIVE', slots: [], items: []
-            },
-
-        }
-        for (var y = 1; y < 10; y++) {
-            for (var x = 1; x < 19; x++) {
-                serverdata[`b${x}_${y}`] = 'EMPTY';
-                serverdata.blockData = {};
-                serverdata.blockData[`b${x}_${y}`] = { health: 0 };
-                console.log(serverdata);
-            }
-        };
-        loadMap();
-        servers[code] = serverdata;
-    }
 
 const embedColors = {
     red: '#ff0000',
