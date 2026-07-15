@@ -2231,13 +2231,13 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
 ${renderedMap}
 `)
                                 .setColor(embedColors[user.settings.embedcolor])
-                                .setFooter({text: `Map size: ${renderedMap.length}/3,600 characters (20x9 blocks of space)`})
+                                .setFooter({text: `Map size: ${renderedMap.length}/3600 characters (20x9 blocks of space)`})
 
                         ]
                     });
                 }
                 if (action == 'clear') {
-
+                    
                 }
                 if (action == 'set') {
 

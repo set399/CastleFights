@@ -1,6 +1,55 @@
 
 const blockIDs = ['EMPTY', 'LEAF', 'WOOD', 'SAND', 'ICE', 'CACTUS', 'STEEL', 'OBSIDIAN', 'CROWN', 'PLAYER'];
 const skins = ['default', 'default2', 'constructionworker', 'farmer', 'sweating', 'holdingtears', 'grin', 'joy', 'rofl', 'snail', 'beetle', 'cricket', 'halo', 'sunglasses', 'suspicious', 'sauropod', 'orangutan', 'parrot', 'swan', 'chipmunk', 'nerd', 'raisedeyebrow', 'coldface', 'imp', 'pumpkin', 'turkey', 'dodo', 'flamingo', 'crocodile', 'beaver', 'flushed', 'cowboy', 'skull', 'alien', 'robot', 'turtle', 'dog', 'cat', 'rat', 'peacock', 'chicken', 'rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken'];
+const skinsObj = {
+    default: '😀',
+    default2: '😃',
+    constructionworker: '👷',
+    farmer: '👨‍🌾',
+    sweating: '😅',
+    holdingtears: '🥹',
+    grin: '😁',
+    joy: '😂',
+    rofl: '🤣',
+    snail: '🐌',
+    beetle: '🪲',
+    cricket: '🦗',
+    halo: '😇',
+    sunglasses: '😎',
+    suspicious: '🧐',
+    sauropod: '🦕',
+    orangutan: '🦧',
+    parrot: '🦜',
+    swan: '🦢',
+    chipmunk: '🐿️',
+    nerd: '🤓',
+    raisedeyebrow: '🤨',
+    coldface: '🥶',
+    imp: '😈',
+    pumpkin: '🎃',
+    turkey: '🦃',
+    dodo: '🦤',
+    flamingo: '🦩',
+    crocodile: '🐊',
+    beaver: '🦫',
+    flushed: '😳',
+    cowboy: '🤠',
+    skull: '💀',
+    alien: '👽',
+    robot: '🤖',
+    turtle: '🐢',
+    dog: '🐕',
+    cat: '🐈',
+    rat: '🐀',
+    peacock: '🦚',
+    chicken: '🐓',
+    rich: '🤑',
+    killermouse: '🐁',
+    spaceinvader: '👾',
+    catfemoby: '<:catfemoby:1520508020163870730>',
+    femoby: '<:femoby:1520508179023134933>',
+    rgbchicken: '<a:rgbchicken:1091024982966026350>'
+};
 const textures = {
     EMPTY: '<:e_:1337418328875991092>',
     WOOD: '🟫',
@@ -47,7 +96,11 @@ class CFMap {
         for (var y = 8; y >= 0; y--) {
             let row = '';
             for (var x = 0; x < 20; x++) {
-                row += textures[this.data[x][y].id];
+                if (this.data[x][y].id == 'PLAYER') {
+                    row += textures[this.data[x][y].props.skin];
+                } else {
+                    row += textures[this.data[x][y].id];
+                }
             }
             row += '\n';
             map += row;
