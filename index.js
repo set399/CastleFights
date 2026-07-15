@@ -33,7 +33,8 @@ rl.on('line', async l => {
 
 let inGame = new Set();
 
-    const { editjson, readjson, make, del, edit, read } = require('./fileManager.js');
+const { editjson, readjson, make, del, edit, read } = require('./fileManager.js');
+const { CFMap } = require('./cf/classes.js');
     // DB Deposit
     let db = {};
     let names = {};
