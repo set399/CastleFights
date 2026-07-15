@@ -2247,12 +2247,12 @@ Welcome to the :european_castle: **Castle Fights** :map: **Map Editor**!
 
 Use the \`?editor\` command with one of the following parameters to perform actions:
 > \`view\` - :eye: **View the current state of the map** *(No auto-update unlike in-game)*
-> \`?title\` - :label: **Rename the map**
-> \`?clear\` - :wastebasket: **Set the whole map to empty blocks**
-> \`?set\` - :green_square: **Place a block on the map**
-> \`?fill\` - :left_right_arrow: **Bulk place blocks in a region with the same properties on the map**
-> \`?export\` - :outbox_tray: **Save your map to the servers for later importing or showcase to potentially become as official map**
-> \`?import\` - :inbox_tray: **Load a previously created map from the servers**
+> \`title\` - :label: **Rename the map**
+> \`clear\` - :wastebasket: **Set the whole map to empty blocks**
+> \`set\` - :green_square: **Place a block on the map**
+> \`fill\` - :left_right_arrow: **Bulk place blocks in a region with the same properties on the map**
+> \`export\` - :outbox_tray: **Save your map to the servers for later importing or showcase to potentially become as official map**
+> \`import\` - :inbox_tray: **Load a previously created map from the servers**
 
 *Please note that if a map is longer than 3,600 characters, it will have rendering restrictions*
 *Because of how discord emojis work, the \`EMPTY\` block has ~25 characters while blocks like \`WOOD\` or \`LEAF\` are just 1 emoji (:brown_square:, :green_square:)*
