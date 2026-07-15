@@ -2254,7 +2254,7 @@ ${renderedMap}
                     const id = params[2];
                     const hp = parseInt(params[3]);
                     const props = JSON.parse(params[4]);
-                    if (!x || !y || !id || !hp || !props) {
+                    if (!x || !y || !id || !hp || !props || !args || !params) {
                         return message.reply({
                             embeds: [
                                 new MessageEmbed()
