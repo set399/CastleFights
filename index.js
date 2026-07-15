@@ -2340,6 +2340,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
                 if (db[message.author.id].accountType < 2) return message.reply({ embeds: [verifiedEmbed] });
                 const action = message.content.split('?editor ')[1];
+                const user = db[message.author.id];
                 if (action == 'view') {
 
                 }
