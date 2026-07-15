@@ -2274,7 +2274,8 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
                         });
                     }
                     try {
-                        editors[message.author.id].set(x, y, id, hp, props);
+                        const res = editors[message.author.id].set(x, y, id, hp, props);
+                        message.reply(`\`${res}\``);
                     } catch (error) {
                         return message.reply(`\`${error}\``);
                     }
