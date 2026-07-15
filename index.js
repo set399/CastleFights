@@ -1016,7 +1016,7 @@ Your account type does not match the required!
                     canUseRequest: true,
                     playerID: (Object.keys(db).length || 0) + 1,
                     created: Date.now(),
-                    editor: new CFMap('New Map')
+                    editor: new CFMap('New Map', name)
                 };
                 db[message.author.id] = d;
                 names[name.toLowerCase()] = { id: message.author.id, display: name };
@@ -2219,7 +2219,12 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const action = message.content.split('?editor ')[1];
                 const user = db[message.author.id];
                 if (action == 'view') {
-
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+.setTitle(`:map: Map Editor (Map: \`${editor}\` by \`\`)`)
+                        ]
+                    });
                 }
                 if (action == 'clear') {
 
