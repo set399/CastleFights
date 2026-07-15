@@ -873,6 +873,18 @@ You are not able to use any interaction commands, but you can still view player'
 `)
     .setColor('RED')
     .setFooter({ text: 'You have been banned!' });
+const verifiedEmbed = new MessageEmbed()
+    .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
+    .setDescription(`
+This command requires the ${icons.verified} **Verified** permissions (Account Type \`2\`)! Account types are defined this way:
+> ${icons.mod2} **Head Moderator** - \`4\`
+> ${icons.mod} **Moderator** - \`3\`
+> ${icons.verified} **Verified** - \`2\`
+> :bust_in_silhouette: **Regular Player** - \`1\`
+> :no_entry_sign: **Deleted/Banned** - \`-1\`/\`-2\`
+
+Your account type does not match the required!
+    `)
 const modEmbed = new MessageEmbed()
     .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
     .setDescription(`
