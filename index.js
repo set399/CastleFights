@@ -2265,7 +2265,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     ]
                 });
                 const user = db[names[ign].id];
-                if (user.badges.verified > 0) return message.reply({
+                if (user.badges.verified < 1) return message.reply({
                     embeds: [
                         new MessageEmbed()
                             .setTitle(':no_entry_sign: This user is not already verified!')
