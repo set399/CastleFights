@@ -97,7 +97,7 @@ class CFMap {
             let row = '';
             for (var x = 0; x < 20; x++) {
                 if (this.data[x][y].id == 'PLAYER') {
-                    row += textures[this.data[x][y].props.skin];
+                    row += skinsObj[this.data[x][y].props.skin];
                 } else {
                     row += textures[this.data[x][y].id];
                 }
