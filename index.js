@@ -2246,7 +2246,7 @@ ${renderedMap}
                         ]
                     });
                 }
-                if (action == 'set') {
+                if (action.startsWith('set')) {
                     const invalidParamsEmbed = new MessageEmbed()
                         .setTitle(':no_entry_sign: Invalid parameters!')
                         .setDescription(`
@@ -2277,7 +2277,7 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
                         return message.reply(`\`${error}\``);
                     }
                 }
-                if (action == 'fill') {
+                if (action.startsWith('fill')) {
 
                 }
                 if (action == 'export') {
