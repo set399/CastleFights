@@ -2247,7 +2247,37 @@ ${renderedMap}
                     });
                 }
                 if (action == 'set') {
+                    const args = action.split('set ')[1]
+                    const params = args.split(',');
+                    const x = parseInt(params[0]);
+                    const y = parseInt(params[1]);
+                    const id = params[2];
+                    const hp = parseInt(params[3]);
+                    const props = JSON.parse(params[4]);
+                    if (!x || !y || !id || !hp || !props) {
+                        return message.reply({
+                            embeds: [
+                                new MessageEmbed()
+                                    .setTitle(':no_entry_sign: Invalid parameters!')
+                                    .setDescription(`
+You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\`
+> \`x\` and \`y\` being the coordinates of the block **(ranging from 0 to 19 for X and 0 to 8 for Y)**
+> \`id\` being the type of the block **(allowed are \`EMPTY, LEAF, WOOD, STONE, CACTUS, ICE, STEEL, OBSIDIAN, PLAYER, CROWN, INVALID\`)**
+> \`hp\` being the health of the block **(ranging from 0 to 100,000)**
+> \`props\` being the extra properties of the block if needed **(i.e. player skin for player block)** __(leave as {} if empty!)__
 
+* **Example:** If you want to set an ${icons.rgbchicken} **RGB Chicken** player block at the top left corner of the map, you do \`?editor set 0,8,'PLAYER',100,{"playerID":0,"skin":"rgbchicken"}\`
+                                    `)
+                                    .setColor('RED')
+                                    .setFooter({text: `Invalid params | ?editor set`})
+                            ]
+                        });
+                    }
+                    try {
+                        editors[message.author.id].set(x, y, id, hp, props);
+                    } catch (error) {
+                        return message.reply(`\`${error}\``);
+                    }
                 }
                 if (action == 'fill') {
 
