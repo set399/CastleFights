@@ -2222,11 +2222,11 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (editors[message.author.id] == undefined) editors[message.author.id] = new CFMap('New Map', user.name);
                 editors[message.author.id].default();
                 if (action == 'view') {
-                    const renderedMap = user.editor.render();
+                    const renderedMap = editors[message.author.id].render();
                     return message.reply({
                         embeds: [
                             new MessageEmbed()
-                                .setTitle(`:map: Map Editor (Map: \`${user.editor.title}\` by \`${user.editor.author}\`)`)
+                                .setTitle(`:map: Map Editor (Map: \`${editors[message.author.id].title}\` by \`${editors[message.author.id].author}\`)`)
                                 .setDescription(`
 ${renderedMap}
 `)
