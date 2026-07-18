@@ -2310,7 +2310,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     const y2 = parseInt(params[3]);
                     const id = params[4];
                     const hp = parseInt(params[5]);
-                    if (isNaN(x1) || isNaN(x2) || isNaN(y1) || isNaN(y2) || !id || isNaN(hp) || !props || !args || !params) return message.reply({ embeds: [invalidParamsEmbed] });
+                    if (isNaN(x1) || isNaN(x2) || isNaN(y1) || isNaN(y2) || !id || isNaN(hp) || !args || !params) return message.reply({ embeds: [invalidParamsEmbed] });
                     try {
                         const res = editors[message.author.id].set(x1, x2, y1, y2, id, hp);
                         return message.reply(`\`${res}\``);
