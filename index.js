@@ -2277,7 +2277,7 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
                     } catch (error) {
                         return message.reply(`\`${error}\``);
                     }
-                    if (isNaN(x) || isNaN(y) || !id || isNaN(hp) || !props || !args || !params) return message.reply({embeds: [invalidParamsEmbed]});
+                    if (isNaN(x) || isNaN(y) || !id || isNaN(hp) || !props || !args || !params) return message.reply({ embeds: [invalidParamsEmbed] });
                     try {
                         const res = editors[message.author.id].set(x, y, id, hp, props);
                         return message.reply(`\`${res}\``);
@@ -2286,7 +2286,37 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
                     }
                 }
                 if (action.startsWith('fill')) {
+                    const invalidParamsEmbed = new MessageEmbed()
+                        .setTitle(':no_entry_sign: Invalid parameters!')
+                        .setDescription(`
+You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,hp\`
+> \`x1\` and \`y1\` being the coordinates of the first corner of the block **(ranging from 0 to 19 for X and 0 to 8 for Y)**
+> \`x2\` and \`y2\` being the coordinates of the second corner of the block **(ranging from 0 to 19 for X and 0 to 8 for Y)**
+> \`id\` being the type of the block **(allowed are \`EMPTY, LEAF, WOOD, STONE, CACTUS, ICE, STEEL, OBSIDIAN, PLAYER, CROWN, INVALID\`)**
+> \`hp\` being the health of the block **(ranging from 0 to 100,000)**
+*In the fill command, you cannot use the \`props\` argument for extra properties*
 
+* **Example:** If you want to set an ${skins.rgbchicken} **RGB Chicken** player block at the top left corner of the map, you do \`?editor set 0,8,PLAYER,100,{"playerID":0,"skin":"rgbchicken"}\`
+                                    `)
+                        .setColor('RED')
+                        .setFooter({ text: `Invalid params | ?editor fill` });
+                    const args = action.split('set ')[1];
+                    if (!args) return message.reply({ embeds: [invalidParamsEmbed] });
+                    const params = args.split(',');
+                    if (!params) return message.reply({ embeds: [invalidParamsEmbed] });
+                    const x1 = parseInt(params[0]);
+                    const y1 = parseInt(params[1]);
+                    const x2 = parseInt(params[2]);
+                    const y2 = parseInt(params[3]);
+                    const id = params[4];
+                    const hp = parseInt(params[5]);
+                    if (isNaN(x1) || isNaN(x2) || isNaN(y1) || isNaN(y2) || !id || isNaN(hp) || !props || !args || !params) return message.reply({ embeds: [invalidParamsEmbed] });
+                    try {
+                        const res = editors[message.author.id].set(x1, x2, y1, y2, id, hp);
+                        return message.reply(`\`${res}\``);
+                    } catch (error) {
+                        return message.reply(`\`${error}\``);
+                    }
                 }
                 if (action == 'export') {
 
