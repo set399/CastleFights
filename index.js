@@ -2300,7 +2300,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                                     `)
                         .setColor('RED')
                         .setFooter({ text: `Invalid params | ?editor fill` });
-                    const args = action.split('set ')[1];
+                    const args = action.split('fill ')[1];
                     if (!args) return message.reply({ embeds: [invalidParamsEmbed] });
                     const params = args.split(',');
                     if (!params) return message.reply({ embeds: [invalidParamsEmbed] });
