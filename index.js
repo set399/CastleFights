@@ -2248,6 +2248,26 @@ ${renderedMap}
                         ]
                     });
                 }
+                if (action.startsWith('title')) {
+                    const invalidParamsEmbed = new MessageEmbed()
+                        .setTitle(':no_entry_sign: Invalid parameters!')
+                        .setDescription(`
+You need to specify the **title** option like this: \`?editor title mapName\`
+> \`mapName\` being the name of the map **(2 to 20 characters)**
+
+* **Example:** If you want to set an ${skins.rgbchicken} **RGB Chicken** player block at the top left corner of the map, you do \`?editor set 0,8,PLAYER,100,{"playerID":0,"skin":"rgbchicken"}\`
+                                    `)
+                        .setColor('RED')
+                        .setFooter({ text: `Invalid params | ?editor set` });
+                    const title = action.split('set ')[1];
+                    if (!title || title.length > 20 || title.length < 2) return message.reply({ embeds: [invalidParamsEmbed] });
+                    try {
+                        const res = editors[message.author.id].title = title;
+                        return message.reply(`\`${res}\``);
+                    } catch (error) {
+                        return message.reply(`\`${error}\``);
+                    }
+                }
                 if (action.startsWith('set')) {
                     const invalidParamsEmbed = new MessageEmbed()
                         .setTitle(':no_entry_sign: Invalid parameters!')
