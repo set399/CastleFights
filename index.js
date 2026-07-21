@@ -2314,7 +2314,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
 > \`hp\` being the health of the block **(ranging from 0 to 100,000)**
 *In the fill command, you cannot use the \`props\` argument for extra properties*
 
-* **Example:** If you want to set an ${skins.rgbchicken} **RGB Chicken** player block at the top left corner of the map, you do \`?editor set 0,8,PLAYER,100,{"playerID":0,"skin":"rgbchicken"}\`
+* **Example:** If you want set the entire map to wood blocks, you do \`?editor fill 0,0,19,8,WOOD,1000\`
                                     `)
                         .setColor('RED')
                         .setFooter({ text: `Invalid params | ?editor fill` });
