@@ -2257,7 +2257,7 @@ You need to specify the **title** option like this: \`?editor title mapName\`
                                     `)
                         .setColor('RED')
                         .setFooter({ text: `Invalid params | ?editor set` });
-                    const title = action.split('set ')[1];
+                    const title = action.split('title ')[1];
                     if (!title || title.length > 20 || title.length < 2) return message.reply({ embeds: [invalidParamsEmbed] });
                     try {
                         const res = editors[message.author.id].title = title;
