@@ -2339,8 +2339,9 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 }
                 if (action == 'export') {
                     const id = WawaUtils.rand('0-9', 10);
-                    await WawaUtils.editf(`./maps/${editors[message.author.id].title}-${id}.json`, JSON.stringify(editors[message.author.id]));
-                    return message.reply({ content: `:white_check_mark: **Successfully saved map as ID \`${editors[message.author.id].title}-${id}\`**` });
+                    const mapName = `${editors[message.author.id].title}-${id}`.replaceAll(' ', '-'); // '-' looks like a silly face woaa -w-
+                    await WawaUtils.editf(`./maps/${mapName}.json`, JSON.stringify(editors[message.author.id]));
+                    return message.reply({ content: `:white_check_mark: **Successfully saved map as ID \`${mapName}\`**` });
                 }
                 if (action == 'import') {
 
