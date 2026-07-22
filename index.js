@@ -2341,7 +2341,12 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     const id = WawaUtils.rand('0-9', 10);
                     const mapName = `${editors[message.author.id].title}-${id}`.replaceAll(' ', '-'); // '-' looks like a silly face woaa -w-
                     await WawaUtils.editf(`./maps/${mapName}.json`, JSON.stringify(editors[message.author.id]));
-                    return message.reply({ content: `:white_check_mark: **Successfully saved map as ID \`${mapName}\`**` });
+                    return message.reply({
+                        content: `
+:white_check_mark: **Successfully saved map as ID \`${mapName}\`**
+-# Please remember this ID and save it somewhere for the future if you want to import this map in the editor again or potentially request for it to get added as an official map.
+`
+                    });
                 }
                 if (action == 'import') {
 
