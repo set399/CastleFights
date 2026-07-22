@@ -35,6 +35,7 @@ let inGame = new Set();
 
 const { editjson, readjson, make, del, edit, read } = require('./fileManager.js');
 const { CFMap } = require('./cf/classes.js');
+const WawaUtils = require('@set399/wawautils');
     // DB Deposit
     let db = {};
     let names = {};
