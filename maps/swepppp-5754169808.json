@@ -1,0 +1,846 @@
+{
+  "title": "swepppp",
+  "author": "sweepy",
+  "data": [
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ],
+    [
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "SAND",
+        "health": 1000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      },
+      {
+        "id": "EMPTY",
+        "health": 0
+      }
+    ]
+  ]
+}

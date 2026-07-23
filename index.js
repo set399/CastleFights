@@ -2332,7 +2332,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     if (isNaN(x1) || isNaN(x2) || isNaN(y1) || isNaN(y2) || !id || isNaN(hp) || !args || !params) return message.reply({ embeds: [invalidParamsEmbed] });
                     try {
                         const res = editors[message.author.id].fill(x1, x2, y1, y2, id, hp);
-                        return message.reply(`\`${res}\``);
+                        return message.reply(`\`${JSON.stringify(res)}\``);
                     } catch (error) {
                         return message.reply(`\`${error}\``);
                     }
