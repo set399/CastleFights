@@ -2288,7 +2288,7 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
 You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,hp\`
 > \`x1\` and \`y1\` being the coordinates of the first corner of the block **(ranging from 0 to 19 for X and 0 to 8 for Y)**
 > \`x2\` and \`y2\` being the coordinates of the second corner of the block **(ranging from 0 to 19 for X and 0 to 8 for Y)**
-> \`id\` being the type of the block **(allowed are \`EMPTY, LEAF, WOOD, STONE, CACTUS, ICE, STEEL, OBSIDIAN, PLAYER, CROWN, INVALID\`)**
+> \`id\` being the type of the block **(allowed are \`EMPTY, LEAF, WOOD, STONE, CACTUS, ICE, STEEL, OBSIDIAN, DECO_TREE, DECO_PALMTREE, DECO_DEADBUSH, PLAYER, CROWN, INVALID\`)**
 > \`hp\` being the health of the block **(ranging from 0 to 100,000)**
 *In the fill command, you cannot use the \`props\` argument for extra properties*
 
