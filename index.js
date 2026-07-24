@@ -2273,7 +2273,7 @@ You need to specify the **title** option like this: \`?editor title mapName\`
                         .setDescription(`
 You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\`
 > \`x\` and \`y\` being the coordinates of the block **(ranging from 0 to 19 for X and 0 to 8 for Y)**
-> \`id\` being the type of the block **(allowed are \`EMPTY, LEAF, WOOD, STONE, CACTUS, ICE, STEEL, OBSIDIAN, PLAYER, CROWN, INVALID\`)**
+> \`id\` being the type of the block **(allowed are \`EMPTY, LEAF, WOOD, STONE, CACTUS, ICE, STEEL, OBSIDIAN, DECO_TREE, DECO_PALMTREE, DECO_DEADBUSH, PLAYER, CROWN, INVALID\`)**
 > \`hp\` being the health of the block **(ranging from 0 to 100,000)**
 > \`props\` being the extra properties of the block if needed **(i.e. player skin for player block)** __(leave as {} if empty!)__
 
