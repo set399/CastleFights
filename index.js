@@ -2357,7 +2357,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                                 .setColor('RED')
                         ]
                     });
-                    const file = WawaUtils.readf(`./maps/${args}.json`);
+                    const file = await WawaUtils.readf(`./maps/${args}.json`);
                     if (!file) return message.reply({
                         embeds: [
                             new MessageEmbed()
@@ -2366,7 +2366,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         ]
                     });
                     editors[message.author.id].import(file);
-                    const loadedMap = editors[mesage.author.id];
+                    const loadedMap = editors[message.author.id];
                     return message.reply({
                         embeds: [
                             new MessageEmbed()
