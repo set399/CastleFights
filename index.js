@@ -2349,7 +2349,32 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     });
                 }
                 if (action == 'import') {
-
+                    const args = action.split('fill ')[1];
+                    if (!args) return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(':no_entry_sign: Specify a Map ID to import!')
+                                .setColor('RED')
+                        ]
+                    });
+                    const file = WawaUtils.readf(`./maps/${args}.json`);
+                    if (!file) return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(`:no_entry_sign: This map doesn't exist!`)
+                                .setColor('RED')
+                        ]
+                    });
+                    editors[message.author.id].import(file);
+                    const loadedMap = editors[mesage.author.id];
+                    return message.reply({
+                        embeds: [
+                            new MessageEmbed()
+                                .setTitle(`:white_check_mark: Loaded \`${loadedMap.title}\` by \`@${loadedMap.author}\` to the editor!`)
+                                .setColor('GREEN')
+                                .setFooter({text: `${args}.json has been loaded into the editor! | ?editor import`})
+                        ]
+                    });
                 }
                 return message.reply({
                     embeds: [
