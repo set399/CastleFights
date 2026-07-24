@@ -77,29 +77,6 @@ let editors = {};
             return 'CUSTOM'
         }
     }
-
-    const textures = {
-        EMPTY: '<:e_:1337418328875991092>',
-        WOOD: '🟫',
-        WOOD_U: '🟫',
-        LEAF: '🟩',
-        LEAF_U: '🟩',
-        STONE: '<:ro:1337424806399709265>',
-        STONE_U: '<:ro:1337424806399709265>',
-        CACTUS: '🌵',
-        CACTUS_U: '🌵',
-        SAND: '🟨',
-        SAND_U: '🟨',
-        ICE: '<:ic:1337714434227048449>',
-        ICE_U: '<:ic:1337714434227048449>',
-        STEEL: '<:st:1337806342714298420>',
-        STEEL_U: '<:st:1337806342714298420>',
-        OBSIDIAN: '🟪',
-        OBSIDIAN_U: '🟪',
-        CROWN1: '<:cr:1117868600976478299>',
-        CROWN2: '<:cr:1117868600976478299>',
-        invalid: '<:invalid:1337424671171412000>',
-    };
     const icons = {
         xp: '<:xp:1048892841465741372>',
         coin: '<:coin:1047983261512642650>',
