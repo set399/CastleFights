@@ -134,7 +134,7 @@ class CFMap {
         return this.title;
     }
     export() {
-        return JSON.stringify({ title: this.title, data: this.data});
+        return JSON.stringify({ title: this.title, author: this.author, data: this.data});
     }
     import(jsonData) {
         let map = JSON.parse(jsonData);
