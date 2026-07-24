@@ -2348,7 +2348,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
 `
                     });
                 }
-                if (action == 'import') {
+                if (action.startsWith('import')) {
                     const args = action.split('fill ')[1];
                     if (!args) return message.reply({
                         embeds: [
