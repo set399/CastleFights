@@ -70,6 +70,7 @@ class CFMap {
     constructor(title, author) {
         this.title = title;
         this.author = author;
+        this.settings = {};
         this.clear();
     }
     set(x, y, id, hp, props = {}) {
