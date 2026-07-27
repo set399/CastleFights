@@ -151,9 +151,10 @@ class CFMap {
     
 }
 class CFPlayer {
-    constructor(ign, level, skin, x, y, respawnX, respawnY) {
+    constructor(ign, nick, level, skin, x, y, respawnX, respawnY) {
         this.level = level;
         this.user = ign;
+        this.displayUser = nick;
         this.skin = skin;
         this.x = x;
         this.y = y;
@@ -261,9 +262,6 @@ class CFPlayer {
 
     }
     equipToSlot() {
-
-    }
-    respawn() {
 
     }
     
