@@ -1069,18 +1069,20 @@ Your account type does not match the required!
 
 :no_entry_sign: You have deleted your account
                         `)
-                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
-                                    .addField(`${icons.coin} **Coins**`, `\`?\``, true)
-                                    .addField(`${icons.gem} **Gems**`, `\`?\``, true)
-                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
-                                    .addField(':video_game: **Games Played**', `\`?\``, true)
-                                    .addField(':star: **Winrate**', `\`?%\``, true)
-                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`?\``, true)
-                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`?\``, true)
-                                    .addField(`:moneybag: **Inventory Value**`, `\`?\``, true)
-                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
-                                    .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
-                                    .addField(':crossed_swords: **KDR**', `\`?\``, true)
+                                    .addFields(
+                                        { name: `${icons.xp} **Total XP**`, value: `\`${user.xp} XP\``, inline: true },
+                                        { name: `${icons.coin} **Coins**`, value: `\`?\``, inline: true },
+                                        { name: `${icons.gem} **Gems**`, value: `\`?\``, inline: true },
+                                        { name: ':trophy: **Wins**', value: `\`${user.wins}\``, inline: true },
+                                        { name: ':video_game: **Games Played**', value: `\`?\``, inline: true },
+                                        { name: ':star: **Winrate**', value: `\`?%\``, inline: true },
+                                        { name: `${textures.CROWN1} **Crowns Destroyed**`, value: `\`?\``, inline: true },
+                                        { name: `:bust_in_silhouette: **Skins Owned**`, value: `\`?\``, inline: true },
+                                        { name: `:moneybag: **Inventory Value**`, value: `\`?\``, inline: true },
+                                        { name: ':skull: **Kills**', value: `\`${user.kills}\``, inline: true },
+                                        { name: ':skull_crossbones: **Deaths**', value: `\`?\``, inline: true },
+                                        { name: ':crossed_swords: **KDR**', value: `\`?\``, inline: true }
+                                    )
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
                                     .setColor('Red')
                             ]
@@ -1104,18 +1106,20 @@ Your account type does not match the required!
 ${user.disableReason}
 \`\`\`
                         `)
-                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
-                                    .addField(`${icons.coin} **Coins**`, `\`?\``, true)
-                                    .addField(`${icons.gem} **Gems**`, `\`?\``, true)
-                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
-                                    .addField(':video_game: **Games Played**', `\`?\``, true)
-                                    .addField(':star: **Winrate**', `\`?%\``, true)
-                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`?\``, true)
-                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`?\``, true)
-                                    .addField(`:moneybag: **Inventory Value**`, `\`?\``, true)
-                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
-                                    .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
-                                    .addField(':crossed_swords: **KDR**', `\`?\``, true)
+                                    .addFields(
+                                        { name: `${icons.xp} **Total XP**`, value: `\`${user.xp} XP\``, inline: true },
+                                        { name: `${icons.coin} **Coins**`, value: `\`?\``, inline: true },
+                                        { name: `${icons.gem} **Gems**`, value: `\`?\``, inline: true },
+                                        { name: ':trophy: **Wins**', value: `\`${user.wins}\``, inline: true },
+                                        { name: ':video_game: **Games Played**', value: `\`?\``, inline: true },
+                                        { name: ':star: **Winrate**', value: `\`?%\``, inline: true },
+                                        { name: `${textures.CROWN1} **Crowns Destroyed**`, value: `\`?\``, inline: true },
+                                        { name: `:bust_in_silhouette: **Skins Owned**`, value: `\`?\``, inline: true },
+                                        { name: `:moneybag: **Inventory Value**`, value: `\`?\``, inline: true },
+                                        { name: ':skull: **Kills**', value: `\`${user.kills}\``, inline: true },
+                                        { name: ':skull_crossbones: **Deaths**', value: `\`?\``, inline: true },
+                                        { name: ':crossed_swords: **KDR**', value: `\`?\``, inline: true }
+                                    )
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
                                     .setColor('Red')
                             ]
@@ -1149,18 +1153,20 @@ ${user.disableReason}
 ## **Badges:**
 ${badgeDescriptions}
                         `)
-                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
-                                    .addField(`${icons.coin} **Coins**`, `\`${user.coins}\``, true)
-                                    .addField(`${icons.gem} **Gems**`, `\`${user.gems}\``, true)
-                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
-                                    .addField(':video_game: **Games Played**', `\`${user.games}\``, true)
-                                    .addField(':star: **Winrate**', `\`${winrate}%\``, true)
-                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`${user.crownDestroys}\``, true)
-                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`0\``, true)
-                                    .addField(`:moneybag: **Inventory Value**`, `\`${invWorth}\``, true)
-                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
-                                    .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
-                                    .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
+                                    .addFields(
+                                        { name: `${icons.xp} **Total XP**`, value: `\`${user.xp} XP\``, inline: true },
+                                        { name: `${icons.coin} **Coins**`, value: `\`${user.coins}\``, inline: true },
+                                        { name: `${icons.gem} **Gems**`, value: `\`${user.gems}\``, inline: true },
+                                        { name: ':trophy: **Wins**', value: `\`${user.wins}\``, inline: true },
+                                        { name: ':video_game: **Games Played**', value: `\`${user.games}\``, inline: true },
+                                        { name: ':star: **Winrate**', value: `\`${winrate}%\``, inline: true },
+                                        { name: `${textures.CROWN1} **Crowns Destroyed**`, value: `\`${user.crownDestroys}\``, inline: true },
+                                        { name: `:bust_in_silhouette: **Skins Owned**`, value: `\`0\``, inline: true },
+                                        { name: `:moneybag: **Inventory Value**`, value: `\`${invWorth}\``, inline: true },
+                                        { name: ':skull: **Kills**', value: `\`${user.kills}\``, inline: true },
+                                        { name: ':skull_crossbones: **Deaths**', value: `\`${user.deaths}\``, inline: true },
+                                        { name: ':crossed_swords: **KDR**', value: `\`${kdr}\``, inline: true }
+                                    )
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})${user.settings.profileviews ? ' | ' + user.profileviews + ' profile views' : ''}` })
                                     .setColor(embedColors[user.settings.embedcolor])
                             ]
@@ -1199,18 +1205,20 @@ ${badgeDescriptions}
 
 :no_entry_sign: This user has deleted their account.
                         `)
-                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
-                                    .addField(`${icons.coin} **Coins**`, `\`?\``, true)
-                                    .addField(`${icons.gem} **Gems**`, `\`?\``, true)
-                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
-                                    .addField(':video_game: **Games Played**', `\`?\``, true)
-                                    .addField(':star: **Winrate**', `\`?%\``, true)
-                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`?\``, true)
-                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`?\``, true)
-                                    .addField(`:moneybag: **Inventory Value**`, `\`?\``, true)
-                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
-                                    .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
-                                    .addField(':crossed_swords: **KDR**', `\`?\``, true)
+                                    .addFields(
+                                        { name: `${icons.xp} **Total XP**`, value: `\`${user.xp} XP\``, inline: true },
+                                        { name: `${icons.coin} **Coins**`, value: `\`?\``, inline: true },
+                                        { name: `${icons.gem} **Gems**`, value: `\`?\``, inline: true },
+                                        { name: ':trophy: **Wins**', value: `\`${user.wins}\``, inline: true },
+                                        { name: ':video_game: **Games Played**', value: `\`?\``, inline: true },
+                                        { name: ':star: **Winrate**', value: `\`?%\``, inline: true },
+                                        { name: `${textures.CROWN1} **Crowns Destroyed**`, value: `\`?\``, inline: true },
+                                        { name: `:bust_in_silhouette: **Skins Owned**`, value: `\`?\``, inline: true },
+                                        { name: `:moneybag: **Inventory Value**`, value: `\`?\``, inline: true },
+                                        { name: ':skull: **Kills**', value: `\`${user.kills}\``, inline: true },
+                                        { name: ':skull_crossbones: **Deaths**', value: `\`?\``, inline: true },
+                                        { name: ':crossed_swords: **KDR**', value: `\`?\``, inline: true }
+                                    )
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})`})
                                     .setColor('Red')
                             ]
@@ -1231,18 +1239,20 @@ ${badgeDescriptions}
 
 :no_entry_sign: This user has been banned for \`${user.disableReason}\`
                         `)
-                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
-                                    .addField(`${icons.coin} **Coins**`, `\`?\``, true)
-                                    .addField(`${icons.gem} **Gems**`, `\`?\``, true)
-                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
-                                    .addField(':video_game: **Games Played**', `\`?\``, true)
-                                    .addField(':star: **Winrate**', `\`?%\``, true)
-                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`?\``, true)
-                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`?\``, true)
-                                    .addField(`:moneybag: **Inventory Value**`, `\`?\``, true)
-                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
-                                    .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
-                                    .addField(':crossed_swords: **KDR**', `\`?\``, true)
+                                    .addFields(
+                                        { name: `${icons.xp} **Total XP**`, value: `\`${user.xp} XP\``, inline: true },
+                                        { name: `${icons.coin} **Coins**`, value: `\`?\``, inline: true },
+                                        { name: `${icons.gem} **Gems**`, value: `\`?\``, inline: true },
+                                        { name: ':trophy: **Wins**', value: `\`${user.wins}\``, inline: true },
+                                        { name: ':video_game: **Games Played**', value: `\`?\``, inline: true },
+                                        { name: ':star: **Winrate**', value: `\`?%\``, inline: true },
+                                        { name: `${textures.CROWN1} **Crowns Destroyed**`, value: `\`?\``, inline: true },
+                                        { name: `:bust_in_silhouette: **Skins Owned**`, value: `\`?\``, inline: true },
+                                        { name: `:moneybag: **Inventory Value**`, value: `\`?\``, inline: true },
+                                        { name: ':skull: **Kills**', value: `\`${user.kills}\``, inline: true },
+                                        { name: ':skull_crossbones: **Deaths**', value: `\`?\``, inline: true },
+                                        { name: ':crossed_swords: **KDR**', value: `\`?\``, inline: true }
+                                    )
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
                                     .setColor('Red')
                             ]
@@ -1277,18 +1287,20 @@ ${badgeDescriptions}
 ## **Badges:**
 ${badgeDescriptions}
                         `)
-                                    .addField(`${icons.xp} **Total XP**`, `\`${user.xp} XP\``, true)
-                                    .addField(`${icons.coin} **Coins**`, `\`${user.coins}\``, true)
-                                    .addField(`${icons.gem} **Gems**`, `\`${user.gems}\``, true)
-                                    .addField(':trophy: **Wins**', `\`${user.wins}\``, true)
-                                    .addField(':video_game: **Games Played**', `\`${user.games}\``, true)
-                                    .addField(':star: **Winrate**', `\`${winrate}%\``, true)
-                                    .addField(`${textures.CROWN1} **Crowns Destroyed**`, `\`${user.crownDestroys}\``, true)
-                                    .addField(`:bust_in_silhouette: **Skins Owned**`, `\`0\``, true)
-                                    .addField(`:moneybag: **Inventory Value**`, `\`${invWorth}\``, true)
-                                    .addField(':skull: **Kills**', `\`${user.kills}\``, true)
-                                    .addField(':skull_crossbones: **Deaths**', `\`${user.deaths}\``, true)
-                                    .addField(':crossed_swords: **KDR**', `\`${kdr}\``, true)
+                                    .addFields(
+                                        { name: `${icons.xp} **Total XP**`, value: `\`${user.xp} XP\``, inline: true },
+                                        { name: `${icons.coin} **Coins**`, value: `\`${user.coins}\``, inline: true },
+                                        { name: `${icons.gem} **Gems**`, value: `\`${user.gems}\``, inline: true },
+                                        { name: ':trophy: **Wins**', value: `\`${user.wins}\``, inline: true },
+                                        { name: ':video_game: **Games Played**', value: `\`${user.games}\``, inline: true },
+                                        { name: ':star: **Winrate**', value: `\`${winrate}%\``, inline: true },
+                                        { name: `${textures.CROWN1} **Crowns Destroyed**`, value: `\`${user.crownDestroys}\``, inline: true },
+                                        { name: `:bust_in_silhouette: **Skins Owned**`, value: `\`0\``, inline: true },
+                                        { name: `:moneybag: **Inventory Value**`, value: `\`${invWorth}\``, inline: true },
+                                        { name: ':skull: **Kills**', value: `\`${user.kills}\``, inline: true },
+                                        { name: ':skull_crossbones: **Deaths**', value: `\`${user.deaths}\``, inline: true },
+                                        { name: ':crossed_swords: **KDR**', value: `\`${kdr}\``, inline: true }
+                                    )
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})${user.settings.profileviews ? ' | ' + user.profileviews + ' profile views' : ''}` })
                                     .setColor(embedColors[user.settings.embedcolor])
                             ]
