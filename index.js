@@ -1376,7 +1376,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
 > :yellow_square: Legendary - \`10%\`
 > :red_square: Mythic - \`80%\`
 `)
-                            .setColor('YELLOW')
+                            .setColor('Yellow')
                             .setFooter({ text: 'Lootbox Shop | ?shop' })
                     ]
                 })
@@ -1514,7 +1514,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
 
 *This skin is worth **${skinPrices[reward.skin]}** ${icons.coin}*
 `)
-                                    .setColor('YELLOW')
+                                    .setColor('Yellow')
                                     .setFooter({text: `${db[message.author.id].name} has unboxed a ${skinNames[reward.skin]} | ?unbox`})
                             ]
                         });
@@ -1721,7 +1721,7 @@ ${inv}
 ${icons.mythicbox} **Mythic Lootbox** - 50 ${icons.gem} (\`mythicbox\`)
 ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
 `)
-                            .setColor('YELLOW')
+                            .setColor('Yellow')
                             .setFooter({text: 'User Crafting Recipes | ?usercraft'})
                     ]
                 });
