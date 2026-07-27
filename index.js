@@ -729,7 +729,7 @@ const lootboxEmojis = {
 const noAccountEmbed = new EmbedBuilder()
     .setTitle(':no_entry_sign: You do not have an account!')
     .setDescription(`In order to use :european_castle: **Castle Fights** commands, you need to create an account using the \`?register\` command`)
-    .setColor('RED')
+    .setColor('Red')
     .setFooter({ text: 'Create an account using the ?register command!' });
 const deletedEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You have deleted your account!`)
@@ -738,7 +738,7 @@ const deletedEmbed = new EmbedBuilder()
 *Your stats are still saved, but your \`?profile\` has most stats hidden (once you recover your account you will gain all of your old stats back)*
 *3 months after your account's deletion, your IGN will be changed and your old name will be unlocked*
 `)
-    .setColor('RED')
+    .setColor('Red')
     .setFooter({ text: 'Recover your account using the ?request command!' });
 const bannedEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You are banned from :european_castle: Castle Fights!`)
@@ -748,7 +748,7 @@ You are not able to use any interaction commands, but you can still view player'
 *Bans have a duration commonly specified right inside the reason, if your ban is temporary, you have no choice but to wait it out*
 *If you are permanently banned, you will need to ask an in-game moderator for an appeal, you cannot use the \`?request\` command when banned*
 `)
-    .setColor('RED')
+    .setColor('Red')
     .setFooter({ text: 'You have been banned!' });
 const verifiedEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
@@ -774,7 +774,7 @@ This command requires the ${icons.mod} **Moderator** permissions (Account Type \
 
 Your account type does not match the required!
     `)
-    .setColor('RED')
+    .setColor('Red')
     .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
 const headModEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
@@ -788,7 +788,7 @@ This command requires the ${icons.headmod} **Head Moderator** permissions (Accou
 
 Your account type does not match the required!
     `)
-    .setColor('RED')
+    .setColor('Red')
     .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
 
 
@@ -847,7 +847,7 @@ Your account type does not match the required!
 > **Please keep in mind names must be from 2 to 20 characters and must not contain \`:\`, \`*\` or "\`"** *(if your name does not match the requirements you will receive this same error)*
                         `)
                                 .setFooter({ text: `Invalid parameters specified | ?register` })
-                                .setColor('RED')
+                                .setColor('Red')
                         ]
                     })
                 } catch (error) {
@@ -859,7 +859,7 @@ Your account type does not match the required!
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: You are already registered as \`${db[message.author.id].name}\`!`)
-                                .setColor('RED')
+                                .setColor('Red')
                         ]
                     })
                 } catch (error) {
@@ -871,7 +871,7 @@ Your account type does not match the required!
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: This name is already taken!`)
-                                .setColor('RED')
+                                .setColor('Red')
                         ]
                     });
                 } catch (error) {
@@ -1037,7 +1037,7 @@ Your account type does not match the required!
 > :shopping_cart: **Shop:** After earning rewards, spend your coins in the \`?shop\`
 **Enjoy your stay and have fun playing! :D** :tada:
                             `)
-                                .setColor('GREEN')
+                                .setColor('Green')
                                 .setFooter({ text: `?register | User ${name} (${message.author.username}/${message.author.id}) created account at ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}` })
                         ]
                     });
@@ -1082,7 +1082,7 @@ Your account type does not match the required!
                                     .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`?\``, true)
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
-                                    .setColor('RED')
+                                    .setColor('Red')
                             ]
                         });
                     } catch (error) {
@@ -1117,7 +1117,7 @@ ${user.disableReason}
                                     .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`?\``, true)
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
-                                    .setColor('RED')
+                                    .setColor('Red')
                             ]
                         })
                     } catch (error) {
@@ -1178,7 +1178,7 @@ ${badgeDescriptions}
                                 new EmbedBuilder()
                                     .setTitle(':no_entry_sign: This user doesn\'t exist!')
                                     .setDescription(`In order to view someone's profile, you must specify their In-Game Name, like so: \`?profile <ign>\`. You cannot use Discord IDs or usernames, you need the same name that they used upon registering to the bot`)
-                                    .setColor('RED')
+                                    .setColor('Red')
                                     .setFooter({ text: 'Not a valid user | ?profile' })
                             ]
                         });
@@ -1212,7 +1212,7 @@ ${badgeDescriptions}
                                     .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`?\``, true)
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})`})
-                                    .setColor('RED')
+                                    .setColor('Red')
                             ]
                         })
                     } catch (error) {
@@ -1244,7 +1244,7 @@ ${badgeDescriptions}
                                     .addField(':skull_crossbones: **Deaths**', `\`?\``, true)
                                     .addField(':crossed_swords: **KDR**', `\`?\``, true)
                                     .setFooter({ text: `?profile | @${user.name} (Player #${user.playerID})` })
-                                    .setColor('RED')
+                                    .setColor('Red')
                             ]
                         })
                     } catch (error) {
@@ -1393,7 +1393,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                             new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Invalid box specified!')
                                 .setDescription(`In order to purchase a ${icons.goodbox} **Lootbox** using the \`?buy\` command, you need to specify a valid box ID that you want to buy, like so: \`?buy <lootbox>\`, you can check all the box IDs in the \`?shop\` menu`)
-                                .setColor('RED')
+                                .setColor('Red')
                                 .setFooter({text: 'Specify a box | ?buy'})
                         ]
                     });
@@ -1427,7 +1427,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                                 new EmbedBuilder()
                                     .setTitle(':no_entry_sign: Not enough coins!')
                                     .setDescription(`You do not have enough coins to purchase ${lootboxEmojis[box]} **${lootboxNames[box]}**! You have \`${user.coins}\` ${icons.coin}, and you need \`${lootboxPrices[box]}\` to purchase this lootbox!`)
-                                    .setColor('RED')
+                                    .setColor('Red')
                                     .setFooter({ text: 'Not enough coins | ?buy' })
                             ]
                         });
@@ -1438,7 +1438,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                                 new EmbedBuilder()
                                     .setTitle(`${lootboxEmojis[box]} Bought ${lootboxNames[box]}!`)
 .setDescription(`You have purchased a ${lootboxEmojis[box]} **${lootboxNames[box]}** for ${lootboxPrices[box]} ${icons.coin}! You now have ${db[message.author.id].coins} ${icons.coin} left`)
-                                    .setColor('GREEN')
+                                    .setColor('Green')
                                     .setFooter({text: 'Bought a lootbox | ?buy'})
                             ]
                         })
@@ -1457,7 +1457,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                             new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Invalid box specified!')
                                 .setDescription(`In order to open a lootbox using \`?unbox\` command, you need to specify a valid box ID that you want to open, like so: \`?unbox <lootbox>\`, you can check all the box IDs in the \`?shop\` menu`)
-                                .setColor('RED')
+                                .setColor('Red')
                                 .setFooter({ text: 'Specify a box | ?unbox' })
                         ]
                     });
@@ -1490,7 +1490,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                                 new EmbedBuilder()
                                     .setTitle(':no_entry_sign: You do not own this lootbox!')
                                     .setDescription(`You cannot open a ${lootboxEmojis[box]} **${lootboxNames[box]}** because you do not own one!`)
-                                    .setColor('RED')
+                                    .setColor('Red')
                                     .setFooter({text: 'You do not own this lootbox | ?unbox'})
                             ]
                         });
@@ -1546,7 +1546,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                             new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: This user doesn't exit!`)
                                 .setDescription(`Please specify a valid in-game name, if you are trying to use mentions or a person's name, you must use their username that they registered in the bot with the \`?register\` command!`)
-                                .setColor('RED')
+                                .setColor('Red')
                                 .setFooter({text: 'Invalid user | ?inventory'})
                         ]
                     });
@@ -1583,7 +1583,7 @@ ${inv}
                             new EmbedBuilder()
                                 .setTitle(':no_entry_sign: No skin specified!')
                                 .setDescription(`In order to equip a skin, you need to specify one! Do it like this: \`?equip <skinID>\`. To check your skins, use \`?inventory\`, please keep in reminder that the skin IDs are basically always lowercase and no-space versions of the skin labels you see, for example ${skins['rgbchicken']} **RGB Chicken** is \`rgbchicken\`!`)
-                                .setColor('RED')
+                                .setColor('Red')
                                 .setFooter({ text: 'No skin specified | ?equip' })
                         ]
                     });
@@ -1605,7 +1605,7 @@ ${inv}
                                 new EmbedBuilder()
                                     .setTitle(':no_entry_sign: Invalid skin specified!')
                                     .setDescription(`The skin you specified in your parameter does not exist! Please keep in mind skin IDs are more than always lowercase and no-space versions of their labels, i.e. ${skins['rgbchicken']} **RGB Chicken** is \`rgbchicken\``)
-                                    .setColor('RED')
+                                    .setColor('Red')
                                     .setFooter({ text: 'Invalid skin specified | ?equip' })
                             ]
                         });
@@ -1620,7 +1620,7 @@ ${inv}
                                 new EmbedBuilder()
                                     .setTitle(':no_entry_sign: You do not own this skin!')
                                     .setDescription(`In your inventory, you do not own a single ${skins[skin]} **${skinNames[skin]}**! Therefore you cannot equip it! To check your skins that you own, use \`?inventory\``)
-                                    .setColor('RED')
+                                    .setColor('Red')
                                     .setFooter({ text: 'Insufficient funds | ?equip' })
                             ]
                         })
@@ -1634,7 +1634,7 @@ ${inv}
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Equipped ${skins[skin]} ${skinNames[skin]}!`)
-                                .setColor('GREEN')
+                                .setColor('Green')
                         ]
                     });
                 } catch (error) {
@@ -1651,7 +1651,7 @@ ${inv}
                             new EmbedBuilder()
                                 .setTitle(':no_entry_sign: No skin specified!')
                                 .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`rgbchícken\``)
-                                .setColor('RED')
+                                .setColor('Red')
                                 .setFooter({ text: 'No skin specified | ?sell' })
                         ]
                     });
@@ -1663,7 +1663,7 @@ ${inv}
                             new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Invalid skin specified!')
                                 .setDescription(`The skin you entered doesn't exist, please check that you are entering a valid skin ID. Skin IDs are lowercase and no-space versions of their original names, like ${skins.rgbchicken} **RGB Chicken** is \`rgbchicken\``)
-                                .setColor('RED')
+                                .setColor('Red')
                                 .setFooter({ text: 'Invalid skin specified | ?sell' })
                         ]
                     });
@@ -1672,7 +1672,7 @@ ${inv}
                             new EmbedBuilder()
                                 .setTitle(':no_entry_sign: You do not own this skin!')
                                 .setDescription(`You can't sell ${skins[skin]} **${skinNames[skin]}** because you do not own it! Please make sure to check your \`?inventory\` for skins you own!`)
-                                .setColor('RED')
+                                .setColor('Red')
                                 .setFooter({ text: 'Insufficient funds | ?sell' })
                         ]
                     });
@@ -1681,7 +1681,7 @@ ${inv}
                             new EmbedBuilder()
                                 .setTitle(':no_entry_sign: You cannot sell this skin!')
                                 .setDescription(`Because this skin is the :question_mark: **Default** rarity, it's given to you at the creation of your account, these skins are meant to fill an empty inventory so you have skins to use, not to be sold, therefore you cannot sell this!`)
-                                .setColor('RED')
+                                .setColor('Red')
                                 .setFooter({ text: 'Why sell default skin ;< | ?sell' })
                         ]
                     });
@@ -1696,7 +1696,7 @@ ${inv}
                             new EmbedBuilder()
                                 .setTitle(':white_check_mark: Skin sold!')
                                 .setDescription(`Sold ${skins[skin]} **${skinNames[skin]}** for ${skinPrices[skin]} ${icons.coin}${gemSellDisplay(skin)}! You now have **${db[message.author.id].coins}** ${icons.coin}`)
-                                .setColor('GREEN')
+                                .setColor('Green')
                                 .setFooter({ text: `@${db[message.author.id].name} sold ${skinNames[skin]} | ?sell` })
                         ]
                     });
@@ -1733,7 +1733,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: You do not have enough for this item!')
                             .setDescription(`A ${icons.mythicbox} **Mythic Lootbox** requires **50** ${icons.gem}! You have only ${user.gems} ${icons.gem}! You cannot craft this item!`)
-                            .setColor('RED')
+                            .setColor('Red')
                             .setFooter({text: `Ya that box is expensive isn't it ;< | ?usercraft`})
                     ]
                 });
@@ -1742,7 +1742,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: You do not have enough for this item!')
                             .setDescription(`A ${icons.crafter} **Crafter (User Badge)** requires **50** ${icons.gem}! You have only ${user.gems} ${icons.gem}! You cannot craft this item!`)
-                            .setColor('RED')
+                            .setColor('Red')
                             .setFooter({ text: `Such expensive badge woaa ;< | ?usercraft` })
                     ]
                 });
@@ -1751,7 +1751,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: You already own this badge!')
                             .setDescription(`You already own the ${icons.crafter} **Crafter** profile badge! You cannot craft it again or get rid of it!`)
-                            .setColor('RED')
+                            .setColor('Red')
                             .setFooter({ text: `U ALREADY OWN ITTT WHY CRAFT AGAIN ;< | ?usercraft` })
                     ]
                 });
@@ -1764,7 +1764,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                             new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Crafted ${icons.mythicbox} Mythic Lootbox successfully!`)
                                 .setDescription(`You have crafted a ${icons.mythicbox} **Mythic Lootbox** for 50 ${icons.gem}! You now have ${user.gems} ${icons.gem} left!`)
-                                .setColor('GREEN')
+                                .setColor('Green')
                                 .setFooter({ text: `Yayyy mythic box -w- | ?usercraft` })
                         ]
                     });
@@ -1777,7 +1777,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                             new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Crafted ${icons.crafter} Crafter Profile Badge successfully!`)
                                 .setDescription(`You have crafted the ${icons.crafter} **Crafter (Profile Badge)** for 50 ${icons.gem}! You now have ${user.gems} ${icons.gem} left and your profile now has the new badge already equipped (and shown in-game)! Enjoy your new badge! :tada:`)
-                                .setColor('GREEN')
+                                .setColor('Green')
                                 .setFooter({text: `WOAA NEW KEWLIE BADGE :o | ?usercraft`})
                         ]
                     });
@@ -1788,7 +1788,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This item doesn\'t exist!')
                             .setDescription(`The item you specified doesn't exist, use this command without any parameters to check the list of items and their IDs that you have to specify when trying to craft them! Use the command like this: \`?usercraft <itemID>\``)
-                            .setColor('RED')
+                            .setColor('Red')
                             .setFooter({ text: `Item doesn't exist | ?usercraft` })
                     ]
                 });
@@ -2094,7 +2094,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: Invalid setting specified!')
                             .setDescription(`The setting you specified is not a valid category! Please use the \`?settings\` command without any parameters to see the category list!`)
-                            .setColor('RED')
+                            .setColor('Red')
                             .setFooter({text: 'Invalid setting ;< | ?settings'})
                     ]
                 });
@@ -2112,7 +2112,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
-                            .setColor('RED')
+                            .setColor('Red')
                     ]
                 });
                 const user = db[names[ign].id];
@@ -2120,7 +2120,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(icons.verified + ' This user is already verified!')
-                            .setColor('RED')
+                            .setColor('Red')
                     ]
                 });
                 user.badges.verified = 1;
@@ -2139,7 +2139,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
-                            .setColor('RED')
+                            .setColor('Red')
                     ]
                 });
                 const user = db[names[ign].id];
@@ -2147,7 +2147,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user is not already verified!')
-                            .setColor('RED')
+                            .setColor('Red')
                     ]
                 });
                 user.badges.verified = 0;
@@ -2166,7 +2166,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
-                            .setColor('RED')
+                            .setColor('Red')
                     ]
                 });
                 const user = db[names[ign].id];
@@ -2174,7 +2174,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(icons.verified + ' This user is already a mod!')
-                            .setColor('RED')
+                            .setColor('Red')
                     ]
                 });
                 user.badges.mod = 1;
@@ -2193,7 +2193,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
-                            .setColor('RED')
+                            .setColor('Red')
                     ]
                 });
                 const user = db[names[ign].id];
@@ -2201,7 +2201,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(icons.verified + ' This user is already not a mod!')
-                            .setColor('RED')
+                            .setColor('Red')
                     ]
                 });
                 user.badges.mod = 0;
@@ -2244,7 +2244,7 @@ ${renderedMap}
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(':white_check_mark: Successfully cleared map!')
-                                .setColor('GREEN')
+                                .setColor('Green')
                         ]
                     });
                 }
@@ -2255,7 +2255,7 @@ ${renderedMap}
 You need to specify the **title** option like this: \`?editor title mapName\`
 > \`mapName\` being the name of the map **(2 to 20 characters)**
                                     `)
-                        .setColor('RED')
+                        .setColor('Red')
                         .setFooter({ text: `Invalid params | ?editor set` });
                     const title = action.split('title ')[1];
                     if (!title || title.length > 20 || title.length < 2) return message.reply({ embeds: [invalidParamsEmbed] });
@@ -2278,7 +2278,7 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
 
 * **Example:** If you want to set an ${skins.rgbchicken} **RGB Chicken** player block at the top left corner of the map, you do \`?editor set 0,8,PLAYER,100,{"playerID":0,"skin":"rgbchicken"}\`
                                     `)
-                        .setColor('RED')
+                        .setColor('Red')
                         .setFooter({ text: `Invalid params | ?editor set` });
                     const args = action.split('set ')[1];
                     if (!args) return message.reply({ embeds: [invalidParamsEmbed] });
@@ -2316,7 +2316,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
 
 * **Example:** If you want set the entire map to wood blocks, you do \`?editor fill 0,0,19,8,WOOD,1000\`
                                     `)
-                        .setColor('RED')
+                        .setColor('Red')
                         .setFooter({ text: `Invalid params | ?editor fill` });
                     const args = action.split('fill ')[1];
                     if (!args) return message.reply({ embeds: [invalidParamsEmbed] });
@@ -2353,7 +2353,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Specify a Map ID to import!')
-                                .setColor('RED')
+                                .setColor('Red')
                         ]
                     });
                     const file = await WawaUtils.readf(`./maps/${args}.json`);
@@ -2361,7 +2361,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: This map doesn't exist!`)
-                                .setColor('RED')
+                                .setColor('Red')
                         ]
                     });
                     editors[message.author.id].import(file);
@@ -2370,7 +2370,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Loaded \`${loadedMap.title}\` by \`@${loadedMap.author}\` to the editor!`)
-                                .setColor('GREEN')
+                                .setColor('Green')
                                 .setFooter({text: `${args}.json has been loaded into the editor! | ?editor import`})
                         ]
                     });
