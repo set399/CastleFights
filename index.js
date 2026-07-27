@@ -723,7 +723,7 @@ const lootboxEmojis = {
 
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
-    const { EmbedBuilder, MessageActionRow, ButtonBuilder, Client, WebhookClient, GatewayIntentBits } = require('discord.js');
+    const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits } = require('discord.js');
     const cl = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] })
 
 const noAccountEmbed = new EmbedBuilder()
@@ -1891,7 +1891,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setFooter({text: `@${user.name}'s Level Icon settings | ?settings`})
                     ],
                     components: [
-                        new MessageActionRow()
+                        new ActionRowBuilder()
                             .addComponents(
                                 new ButtonBuilder()
                                     .setEmoji(icons.lvl1)
@@ -1919,7 +1919,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setDisabled(settingsLevelIconUnlockBool(20, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(20, level))
                         ),
-                        new MessageActionRow()
+                        new ActionRowBuilder()
                                     .addComponents(
                                 new ButtonBuilder()
                                     .setEmoji(icons.lvl30)
@@ -1947,7 +1947,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setDisabled(settingsLevelIconUnlockBool(70, level))
                                     .setStyle(settingsLevelIconUnlockButtonStyle(70, level))
                         ),
-                        new MessageActionRow()
+                        new ActionRowBuilder()
                                     .addComponents(
                                 new ButtonBuilder()
                                     .setEmoji(icons.lvl80)
@@ -1980,7 +1980,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setFooter({text: `@${user.name}'s Embed Color Settings | ?settings`})
                     ],
                     components: [
-                        new MessageActionRow()
+                        new ActionRowBuilder()
                             .addComponents(
                                 new ButtonBuilder()
                                     .setEmoji('🟥')
@@ -2008,7 +2008,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setCustomId('settings_embedcolor_minty_' + message.author.id)
                                     .setStyle(currentEmbedColorButtonStyle(currentColor, 'minty')),
                         ),
-                        new MessageActionRow()
+                        new ActionRowBuilder()
                             .addComponents(
                                 new ButtonBuilder()
                                     .setEmoji('🟦')
@@ -2051,7 +2051,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setFooter({text: `@${user.name}'s Profile Views settings | ?settings`})
                     ],
                     components: [
-                        new MessageActionRow()
+                        new ActionRowBuilder()
                             .addComponents(
                                 new ButtonBuilder()
                                     .setEmoji(profileViewsStatus == false ? '✅' : '✖️')
@@ -2078,7 +2078,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setFooter({text: `@${user.name}'s Anonymous Mode Settings | ?settings`})
                     ],
                     components: [
-                        new MessageActionRow()
+                        new ActionRowBuilder()
                             .addComponents(
                                 new ButtonBuilder()
                                     .setEmoji(anonModeStatus == false ? '✅' : '✖️')
