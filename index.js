@@ -1331,7 +1331,7 @@ ${icons.epicbox} **Epic Lootbox** - \`${db[message.author.id].lootboxes.epic}x\`
 ${icons.legendarybox} **Legendary Lootbox** - \`${db[message.author.id].lootboxes.legendary}x\`
 ${icons.mythicbox} **Mythic Lootbox** - \`${db[message.author.id].lootboxes.mythic}x\`
 `)
-                                .setColor('BLUE')
+                                .setColor('Blue')
                                 .setFooter({text: 'Lootbox Inventory | ?lootboxes'})
                         ]
                     })
