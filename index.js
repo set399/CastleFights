@@ -14,7 +14,7 @@ rl.on('line', async l => {
         try {
             cl.channels.cache.get(ch).send({
                 embeds: [
-                    new MessageEmbed()
+                    new EmbedBuilder()
                         .setTitle(`💻 Console Command entered`)
                         .setDescription(`
 \`\`\`
@@ -723,15 +723,15 @@ const lootboxEmojis = {
 
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
-    const { MessageEmbed, MessageActionRow, MessageButton, Client, WebhookClient, GatewayIntentBits } = require('discord.js');
+    const { EmbedBuilder, MessageActionRow, MessageButton, Client, WebhookClient, GatewayIntentBits } = require('discord.js');
     const cl = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] })
 
-const noAccountEmbed = new MessageEmbed()
+const noAccountEmbed = new EmbedBuilder()
     .setTitle(':no_entry_sign: You do not have an account!')
     .setDescription(`In order to use :european_castle: **Castle Fights** commands, you need to create an account using the \`?register\` command`)
     .setColor('RED')
     .setFooter({ text: 'Create an account using the ?register command!' });
-const deletedEmbed = new MessageEmbed()
+const deletedEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You have deleted your account!`)
     .setDescription(`Because you have deleted your account, you cannot use any :european_castle: **Castle Fights** interaction commands!
 *In order to recover your account, please use the \`?request\` command to submit an account recovery request by putting it in the parameter, i.e. \`?request Months ago I have deleted my account out of boredom and now wish for it back, please recover my account\`*
@@ -740,7 +740,7 @@ const deletedEmbed = new MessageEmbed()
 `)
     .setColor('RED')
     .setFooter({ text: 'Recover your account using the ?request command!' });
-const bannedEmbed = new MessageEmbed()
+const bannedEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You are banned from :european_castle: Castle Fights!`)
     .setDescription(`An in-game moderator has banned you from the game, in order to check your ban reason, **use the \`?profile\` command**
 You are not able to use any interaction commands, but you can still view player's profiles, etc.
@@ -750,7 +750,7 @@ You are not able to use any interaction commands, but you can still view player'
 `)
     .setColor('RED')
     .setFooter({ text: 'You have been banned!' });
-const verifiedEmbed = new MessageEmbed()
+const verifiedEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
     .setDescription(`
 This command requires the ${icons.verified} **Verified** permissions (Account Type \`2\`)! Account types are defined this way:
@@ -762,7 +762,7 @@ This command requires the ${icons.verified} **Verified** permissions (Account Ty
 
 Your account type does not match the required!
     `)
-const modEmbed = new MessageEmbed()
+const modEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
     .setDescription(`
 This command requires the ${icons.mod} **Moderator** permissions (Account Type \`3\`)! Account types are defined this way:
@@ -776,7 +776,7 @@ Your account type does not match the required!
     `)
     .setColor('RED')
     .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
-const headModEmbed = new MessageEmbed()
+const headModEmbed = new EmbedBuilder()
     .setTitle(`:no_entry_sign: You do not have permissions to execute this command!`)
     .setDescription(`
 This command requires the ${icons.headmod} **Head Moderator** permissions (Account Type \`3\`)! Account types are defined this way:
@@ -797,7 +797,7 @@ Your account type does not match the required!
         cl.user.setActivity(`to the ? prefix`, { type: "LISTENING" });
         cl.channels.cache.get('1336754930022748205').send({
             embeds: [
-                new MessageEmbed()
+                new EmbedBuilder()
                     .setTitle(`:white_check_mark: **Bot started!**`)
                     .setDescription(`
 \`\`\`ansi
@@ -841,7 +841,7 @@ Your account type does not match the required!
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Failed to register')
                                 .setDescription(`In order to register to :european_castle: **Castle Fights**, you need to choose a name upon using the command as a parameter, like so: \`?register <name>\`
 > **Please keep in mind names must be from 2 to 20 characters and must not contain \`:\`, \`*\` or "\`"** *(if your name does not match the requirements you will receive this same error)*
@@ -857,7 +857,7 @@ Your account type does not match the required!
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: You are already registered as \`${db[message.author.id].name}\`!`)
                                 .setColor('RED')
                         ]
@@ -869,7 +869,7 @@ Your account type does not match the required!
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: This name is already taken!`)
                                 .setColor('RED')
                         ]
@@ -1024,7 +1024,7 @@ Your account type does not match the required!
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Successfully registered!`)
                                 .setDescription(`
 # Welcome to :european_castle: **Castle Fights**, ${message.author.username}/${name}!
@@ -1061,7 +1061,7 @@ Your account type does not match the required!
                         const user = db[message.author.id];
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setDescription(`
 ## :bust_in_silhouette: Profile of ~~${names[user.name].display}~~
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
@@ -1093,7 +1093,7 @@ Your account type does not match the required!
                         const user = db[message.author.id];
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setDescription(`
 ## :bust_in_silhouette: Profile of ~~${names[user.name].display}~~
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
@@ -1140,7 +1140,7 @@ ${user.disableReason}
                         if (isNaN(winrate)) winrate = 0;
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setDescription(`
 ## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('crafter', user.badges.crafter)}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
@@ -1175,7 +1175,7 @@ ${badgeDescriptions}
                     try {
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setTitle(':no_entry_sign: This user doesn\'t exist!')
                                     .setDescription(`In order to view someone's profile, you must specify their In-Game Name, like so: \`?profile <ign>\`. You cannot use Discord IDs or usernames, you need the same name that they used upon registering to the bot`)
                                     .setColor('RED')
@@ -1191,7 +1191,7 @@ ${badgeDescriptions}
                         const user = db[names[ign.toLowerCase()].id];
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setDescription(`
 ## :bust_in_silhouette: Profile of ~~${names[user.name].display}~~
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
@@ -1223,7 +1223,7 @@ ${badgeDescriptions}
                         const user = db[names[ign].id];
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setDescription(`
 ## :bust_in_silhouette: Profile of ~~${names[user.name].display}~~
 ### ${icons[`lvl1`]} **Level 0** ${displayProgress(0)} (\`${user.xp}/${user.xp} XP\`)
@@ -1268,7 +1268,7 @@ ${badgeDescriptions}
                         if (isNaN(winrate)) winrate = 0;
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setDescription(`
 ## ${skins[user.skin]} Profile of ${names[user.name].display}${displayBadge('mod', user.badges.mod)}${displayBadge('verified', user.badges.verified)}${displayBadge('challenger', user.badges.challenger)}${displayBadge('crafter', user.badges.crafter)}
 ### ${icons[`lvl${user.levelIcon}`]} **Level ${level.level}** ${displayProgress(Math.floor((level.progress / level.required) * 100))} (\`${level.progress}/${level.required} XP\`)
@@ -1322,7 +1322,7 @@ ${badgeDescriptions}
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`${icons.goodbox} Lootbox Inventory`)
                                 .setDescription(`
 ${icons.commonbox} **Common Lootbox** - \`${db[message.author.id].lootboxes.common}x\`
@@ -1344,7 +1344,7 @@ ${icons.mythicbox} **Mythic Lootbox** - \`${db[message.author.id].lootboxes.myth
             try {
                 return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`:shopping_cart: Shopping Cart`)
                             .setDescription(`
 * Use \`?unbox\` and \`?buy\` to either open lootboxes or buy them in the store accordingly with their IDs as the parameters
@@ -1390,7 +1390,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Invalid box specified!')
                                 .setDescription(`In order to purchase a ${icons.goodbox} **Lootbox** using the \`?buy\` command, you need to specify a valid box ID that you want to buy, like so: \`?buy <lootbox>\`, you can check all the box IDs in the \`?shop\` menu`)
                                 .setColor('RED')
@@ -1424,7 +1424,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                         const user = db[message.author.id];
                         if (user.coins < lootboxPrices[box]) return message.reply({
                             embeds: [ // meligoob -w-
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setTitle(':no_entry_sign: Not enough coins!')
                                     .setDescription(`You do not have enough coins to purchase ${lootboxEmojis[box]} **${lootboxNames[box]}**! You have \`${user.coins}\` ${icons.coin}, and you need \`${lootboxPrices[box]}\` to purchase this lootbox!`)
                                     .setColor('RED')
@@ -1435,7 +1435,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                         db[message.author.id].lootboxes[box.replace('box', '')] += 1;
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setTitle(`${lootboxEmojis[box]} Bought ${lootboxNames[box]}!`)
 .setDescription(`You have purchased a ${lootboxEmojis[box]} **${lootboxNames[box]}** for ${lootboxPrices[box]} ${icons.coin}! You now have ${db[message.author.id].coins} ${icons.coin} left`)
                                     .setColor('GREEN')
@@ -1454,7 +1454,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Invalid box specified!')
                                 .setDescription(`In order to open a lootbox using \`?unbox\` command, you need to specify a valid box ID that you want to open, like so: \`?unbox <lootbox>\`, you can check all the box IDs in the \`?shop\` menu`)
                                 .setColor('RED')
@@ -1487,7 +1487,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                     try {
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setTitle(':no_entry_sign: You do not own this lootbox!')
                                     .setDescription(`You cannot open a ${lootboxEmojis[box]} **${lootboxNames[box]}** because you do not own one!`)
                                     .setColor('RED')
@@ -1504,7 +1504,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                     try {
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setTitle(`${lootboxEmojis[box]} ${lootboxNames[box]} opened!`)
                                     .setDescription(`
 You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
@@ -1543,7 +1543,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: This user doesn't exit!`)
                                 .setDescription(`Please specify a valid in-game name, if you are trying to use mentions or a person's name, you must use their username that they registered in the bot with the \`?register\` command!`)
                                 .setColor('RED')
@@ -1561,7 +1561,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                 });
                 return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`:bust_in_silhouette: Inventory of ${db[user].name}`)
                             .setDescription(`
 ${inv}
@@ -1580,7 +1580,7 @@ ${inv}
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: No skin specified!')
                                 .setDescription(`In order to equip a skin, you need to specify one! Do it like this: \`?equip <skinID>\`. To check your skins, use \`?inventory\`, please keep in reminder that the skin IDs are basically always lowercase and no-space versions of the skin labels you see, for example ${skins['rgbchicken']} **RGB Chicken** is \`rgbchicken\`!`)
                                 .setColor('RED')
@@ -1602,7 +1602,7 @@ ${inv}
                     try {
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setTitle(':no_entry_sign: Invalid skin specified!')
                                     .setDescription(`The skin you specified in your parameter does not exist! Please keep in mind skin IDs are more than always lowercase and no-space versions of their labels, i.e. ${skins['rgbchicken']} **RGB Chicken** is \`rgbchicken\``)
                                     .setColor('RED')
@@ -1617,7 +1617,7 @@ ${inv}
                     try {
                         return message.reply({
                             embeds: [
-                                new MessageEmbed()
+                                new EmbedBuilder()
                                     .setTitle(':no_entry_sign: You do not own this skin!')
                                     .setDescription(`In your inventory, you do not own a single ${skins[skin]} **${skinNames[skin]}**! Therefore you cannot equip it! To check your skins that you own, use \`?inventory\``)
                                     .setColor('RED')
@@ -1632,7 +1632,7 @@ ${inv}
                 try {
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Equipped ${skins[skin]} ${skinNames[skin]}!`)
                                 .setColor('GREEN')
                         ]
@@ -1648,7 +1648,7 @@ ${inv}
                     const skin = message.content.split('?sell ')[1];
                     if (!skin) return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: No skin specified!')
                                 .setDescription(`In order to sell a skin, you need to specify it, like this: \`?sell <skinID>\`, please keep in mind that skin IDs are always lowercase and no-space versions of their labels, i.e. ${skins.rgbchicken} **RGB Chicken** is \`rgbchícken\``)
                                 .setColor('RED')
@@ -1660,7 +1660,7 @@ ${inv}
                     if (db[message.author.id].accountType == -2) return message.reply({ embeds: [bannedEmbed] });
                     if (!skins[skin]) return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Invalid skin specified!')
                                 .setDescription(`The skin you entered doesn't exist, please check that you are entering a valid skin ID. Skin IDs are lowercase and no-space versions of their original names, like ${skins.rgbchicken} **RGB Chicken** is \`rgbchicken\``)
                                 .setColor('RED')
@@ -1669,7 +1669,7 @@ ${inv}
                     });
                     if (db[message.author.id].inventory[skin] < 1) return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: You do not own this skin!')
                                 .setDescription(`You can't sell ${skins[skin]} **${skinNames[skin]}** because you do not own it! Please make sure to check your \`?inventory\` for skins you own!`)
                                 .setColor('RED')
@@ -1678,7 +1678,7 @@ ${inv}
                     });
                     if (rarityOfSkin[skin] == 'default') return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: You cannot sell this skin!')
                                 .setDescription(`Because this skin is the :question_mark: **Default** rarity, it's given to you at the creation of your account, these skins are meant to fill an empty inventory so you have skins to use, not to be sold, therefore you cannot sell this!`)
                                 .setColor('RED')
@@ -1693,7 +1693,7 @@ ${inv}
                     if (skin == 'rgbchicken') db[message.author.id].gems += 30;
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':white_check_mark: Skin sold!')
                                 .setDescription(`Sold ${skins[skin]} **${skinNames[skin]}** for ${skinPrices[skin]} ${icons.coin}${gemSellDisplay(skin)}! You now have **${db[message.author.id].coins}** ${icons.coin}`)
                                 .setColor('GREEN')
@@ -1710,7 +1710,7 @@ ${inv}
                 const item = message.content.split('?usercraft ')[1];
                 if (!item) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':tools: User Crafting Recipes')
                             .setDescription(`
 * With this command, you can craft skins! Unlike \`?craft\` which is used in-game for preparation, here you can craft your own skins and different **LONG-TERM** items (i.e. lootboxes, badges, boosters, etc.)!
@@ -1730,7 +1730,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                 if (user.accountType == -2) return message.reply({ embeds: [bannedEmbed] });
                 if (item == 'mythicbox' && user.gems < 50) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: You do not have enough for this item!')
                             .setDescription(`A ${icons.mythicbox} **Mythic Lootbox** requires **50** ${icons.gem}! You have only ${user.gems} ${icons.gem}! You cannot craft this item!`)
                             .setColor('RED')
@@ -1739,7 +1739,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                 });
                 if (item == 'crafter' && user.gems < 50) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: You do not have enough for this item!')
                             .setDescription(`A ${icons.crafter} **Crafter (User Badge)** requires **50** ${icons.gem}! You have only ${user.gems} ${icons.gem}! You cannot craft this item!`)
                             .setColor('RED')
@@ -1748,7 +1748,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                 });
                 if (item == 'crafter' && user.badges.crafter == 1) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: You already own this badge!')
                             .setDescription(`You already own the ${icons.crafter} **Crafter** profile badge! You cannot craft it again or get rid of it!`)
                             .setColor('RED')
@@ -1761,7 +1761,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                     user.lootboxes.mythic++;
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Crafted ${icons.mythicbox} Mythic Lootbox successfully!`)
                                 .setDescription(`You have crafted a ${icons.mythicbox} **Mythic Lootbox** for 50 ${icons.gem}! You now have ${user.gems} ${icons.gem} left!`)
                                 .setColor('GREEN')
@@ -1774,7 +1774,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                     user.badges.crafter = 1;
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Crafted ${icons.crafter} Crafter Profile Badge successfully!`)
                                 .setDescription(`You have crafted the ${icons.crafter} **Crafter (Profile Badge)** for 50 ${icons.gem}! You now have ${user.gems} ${icons.gem} left and your profile now has the new badge already equipped (and shown in-game)! Enjoy your new badge! :tada:`)
                                 .setColor('GREEN')
@@ -1785,7 +1785,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
 
                 return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: This item doesn\'t exist!')
                             .setDescription(`The item you specified doesn't exist, use this command without any parameters to check the list of items and their IDs that you have to specify when trying to craft them! Use the command like this: \`?usercraft <itemID>\``)
                             .setColor('RED')
@@ -1804,7 +1804,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                 let completingTier = user.challengeTier + 1;
                 if (completingTier > 4) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`${icons.challenger4} You have completed all Challenges!`)
                             .setDescription(`You have completed all ${icons.challenger1} **Tier 1**, ${icons.challenger2} **Tier 2**, ${icons.challenger3} **Tier 3** and ${icons.challenger4} **Tier 4** challenges and already own the maximum best possible obtained from them! Congratulations! :tada:`)
                             .setColor(challengeEmbedColors.tier4)
@@ -1818,7 +1818,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                 });
                 return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`${icons['challenger' + completingTier]} Tier ${completingTier} Challenges`)
                             .setDescription(`
 **You have completed \`${challengeCountForTierProgress(message.author.id)}/${challengeCountForTierRequired(message.author.id)}\` ${icons['challenger' + completingTier]} Challenges:**
@@ -1850,7 +1850,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 const anonModeStatus = user.settings.anonymous;
                 if (!setting) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`:gear: ${names[user.name].display}'s settings`)
                             .setDescription(`
 * Change a setting using \`?settings <ID>\`, the ID is specified in the \`code block\` right after the category name
@@ -1865,7 +1865,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 });
                 if (setting == 'levelicon') return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`:gear: ${names[user.name].display}'s ${icons['lvl' + user.levelIcon]} Level Icon Settings`)
                             .setDescription(`                
 * Level icons shown with a :lock: are locked and your level is too low to use them
@@ -1969,7 +1969,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 });
                 if (setting == 'embedcolor') return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`:gear: ${names[user.name].display}'s :art: Embed Color Settings`)
                             .setDescription(`
 * Change the sidebar color of your embeds for the \`?profile\`, \`?inventory\` and \`?settings\` commands for you
@@ -2041,7 +2041,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 });
                 if (setting == 'profileviews') return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`:gear: ${names[user.name].display}'s :eye: Profile Views Settings`)
                             .setDescription(`
 * Toggle whenever you want your \`?profile\` to log how many times has it been viewed by a different person in the embed footer (bottom text)
@@ -2063,7 +2063,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 });
                 if (setting == 'anonmode') return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`:gear: ${names[user.name].display}'s :detective: Anonymous Mode Settings`)
                             .setDescription(`
 * Toggle whenever you want your identity to be shown in-game (even with Hide Identities disabled) shown or hidden
@@ -2091,7 +2091,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 });
                 return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: Invalid setting specified!')
                             .setDescription(`The setting you specified is not a valid category! Please use the \`?settings\` command without any parameters to see the category list!`)
                             .setColor('RED')
@@ -2110,7 +2110,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const ign = message.content.split('?verify ')[1];
                 if (!ign || db[names[ign].id] == undefined) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
                             .setColor('RED')
                     ]
@@ -2118,7 +2118,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const user = db[names[ign].id];
                 if (user.badges.verified > 0) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(icons.verified + ' This user is already verified!')
                             .setColor('RED')
                     ]
@@ -2137,7 +2137,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const ign = message.content.split('?unverify ')[1];
                 if (!ign || db[names[ign].id] == undefined) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
                             .setColor('RED')
                     ]
@@ -2145,7 +2145,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const user = db[names[ign].id];
                 if (user.badges.verified < 1) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user is not already verified!')
                             .setColor('RED')
                     ]
@@ -2164,7 +2164,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const ign = message.content.split('?mod ')[1];
                 if (!ign || db[names[ign].id] == undefined) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
                             .setColor('RED')
                     ]
@@ -2172,7 +2172,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const user = db[names[ign].id];
                 if (user.badges.mod > 0) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(icons.verified + ' This user is already a mod!')
                             .setColor('RED')
                     ]
@@ -2191,7 +2191,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const ign = message.content.split('?unmod ')[1];
                 if (!ign || db[names[ign].id] == undefined) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
                             .setColor('RED')
                     ]
@@ -2199,7 +2199,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 const user = db[names[ign].id];
                 if (user.badges.mod < 1) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(icons.verified + ' This user is already not a mod!')
                             .setColor('RED')
                     ]
@@ -2227,7 +2227,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     const renderedMap = editors[message.author.id].render();
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:map: Map Editor (Map: \`${editors[message.author.id].title}\` by \`${editors[message.author.id].author}\`)`)
                                 .setDescription(`
 ${renderedMap}
@@ -2242,14 +2242,14 @@ ${renderedMap}
                     editors[message.author.id].clear();
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':white_check_mark: Successfully cleared map!')
                                 .setColor('GREEN')
                         ]
                     });
                 }
                 if (action.startsWith('title')) {
-                    const invalidParamsEmbed = new MessageEmbed()
+                    const invalidParamsEmbed = new EmbedBuilder()
                         .setTitle(':no_entry_sign: Invalid parameters!')
                         .setDescription(`
 You need to specify the **title** option like this: \`?editor title mapName\`
@@ -2267,7 +2267,7 @@ You need to specify the **title** option like this: \`?editor title mapName\`
                     }
                 }
                 if (action.startsWith('set')) {
-                    const invalidParamsEmbed = new MessageEmbed()
+                    const invalidParamsEmbed = new EmbedBuilder()
                         .setTitle(':no_entry_sign: Invalid parameters!')
                         .setDescription(`
 You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\`
@@ -2304,7 +2304,7 @@ You need to specify the **set** option like this: \`?editor set x,y,id,hp,props\
                     }
                 }
                 if (action.startsWith('fill')) {
-                    const invalidParamsEmbed = new MessageEmbed()
+                    const invalidParamsEmbed = new EmbedBuilder()
                         .setTitle(':no_entry_sign: Invalid parameters!')
                         .setDescription(`
 You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,hp\`
@@ -2351,7 +2351,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     const args = action.split('import ')[1];
                     if (!args) return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(':no_entry_sign: Specify a Map ID to import!')
                                 .setColor('RED')
                         ]
@@ -2359,7 +2359,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     const file = await WawaUtils.readf(`./maps/${args}.json`);
                     if (!file) return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: This map doesn't exist!`)
                                 .setColor('RED')
                         ]
@@ -2368,7 +2368,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     const loadedMap = editors[message.author.id];
                     return message.reply({
                         embeds: [
-                            new MessageEmbed()
+                            new EmbedBuilder()
                                 .setTitle(`:white_check_mark: Loaded \`${loadedMap.title}\` by \`@${loadedMap.author}\` to the editor!`)
                                 .setColor('GREEN')
                                 .setFooter({text: `${args}.json has been loaded into the editor! | ?editor import`})
@@ -2377,7 +2377,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 }
                 return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':european_castle: Castle Fights Map Editor')
                             .setDescription(`
 Welcome to the :european_castle: **Castle Fights** :map: **Map Editor**!
