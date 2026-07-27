@@ -723,8 +723,8 @@ const lootboxEmojis = {
 
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
-    const { MessageEmbed, MessageActionRow, MessageButton, Client, WebhookClient } = require('discord.js');
-    const cl = new Client({ intents: ['GUILDS', 'MESSAGE_CONTENT', 'GUILD_MEMBERS', 'GUILD_MESSAGES'] })
+    const { MessageEmbed, MessageActionRow, MessageButton, Client, WebhookClient, GatewayIntentBits } = require('discord.js');
+    const cl = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] })
 
 const noAccountEmbed = new MessageEmbed()
     .setTitle(':no_entry_sign: You do not have an account!')
