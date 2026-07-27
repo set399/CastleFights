@@ -792,7 +792,7 @@ Your account type does not match the required!
     .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
 
 
-    cl.on('ready', () => {
+    cl.on('clientReady', () => {
         console.log('[0;32m32Bot started!');
         cl.user.setActivity(`to the ? prefix`, { type: "LISTENING" });
         cl.channels.cache.get('1336754930022748205').send({
