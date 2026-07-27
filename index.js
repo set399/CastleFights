@@ -336,8 +336,8 @@ function displayEmbedColor(color) {
     return `Invalid color`;
 }
 function currentEmbedColorButtonStyle(current, color) {
-    if (color == current) return 'SUCCESS';
-    return 'SECONDARY';
+    if (color == current) return 'Success';
+    return 'Secondary';
 }
 function currentEmbedColorButtonDisableBool(current, color) {
     return color == current;
@@ -680,8 +680,8 @@ function settingsLevelIconUnlockBool(icon, level) {
     if (level >= icon) return false;
 }
 function settingsLevelIconUnlockButtonStyle(icon, level) {
-    if (level < icon) return 'SECONDARY';
-    if (level >= icon) return 'SUCCESS';
+    if (level < icon) return 'Secondary';
+    if (level >= icon) return 'Success';
 }
 
 
@@ -2057,7 +2057,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setEmoji(profileViewsStatus == false ? '✅' : '✖️')
                                     .setCustomId('settings_profileviews_toggle_' + message.author.id)
                                     .setLabel(profileViewsStatus == false ? 'Enable' : 'Disable')
-                                    .setStyle(profileViewsStatus == false ? 'SUCCESS' : 'DANGER')
+                                    .setStyle(profileViewsStatus == false ? 'Success' : 'Danger')
                         )
                     ]
                 });
@@ -2084,7 +2084,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                                     .setEmoji(anonModeStatus == false ? '✅' : '✖️')
                                     .setCustomId('settings_anonmode_toggle_' + message.author.id)
                                     .setLabel(anonModeStatus == false ? 'Enable' : 'Disable')
-                                    .setStyle(anonModeStatus == false ? 'SUCCESS' : 'DANGER')
+                                    .setStyle(anonModeStatus == false ? 'Success' : 'Danger')
                                     .setDisabled(anonModeUnlocked == false)
                         )
                     ]
