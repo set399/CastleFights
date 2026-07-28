@@ -806,7 +806,7 @@ Your account type does not match the required!
                         .setTitle(`:white_check_mark: **Bot started!**`)
                         .setDescription(`
 \`\`\`ansi
-◇ injected env (8) from .env [0;37m// tip: ◈ encrypted .env [www.dotenvx.com]
+◇ injected env (${Object.keys(process.env).length}) from .env [0;37m// tip: ◈ encrypted .env [www.dotenvx.com]
 [DB] Loaded db.json (length: ${JSON.stringify(db).length})
 [DB] Loaded names.json (length: ${JSON.stringify(names).length})
 [0;90mThere are [0;32m${Object.keys(db).length}[0;90m users registered
