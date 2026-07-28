@@ -4,12 +4,13 @@ const fs = require('fs');
 const readline = require('readline');
 const rl = readline.createInterface(process.stdin, process.stdout);
 
+const logChannels = [process.env.LOG1, process.env.LOG2];
+
 rl.prompt('> ')
 
 rl.on('line', async l => {
     const result = eval(l);
     console.log(result);
-    const logChannels = [] // [process.env.LOG1, process.env.LOG2];
     logChannels.forEach(ch => {
         try {
             cl.channels.cache.get(ch).send({
@@ -793,23 +794,26 @@ Your account type does not match the required!
 
 
     cl.on('clientReady', () => {
-        console.log('[0;32m32Bot started!');
+        console.log('[0;32mBot started!');
         cl.user.setActivity(`to the ? prefix`, { type: "LISTENING" });
-        cl.channels.cache.get('1336754930022748205').send({
-            embeds: [
-                new EmbedBuilder()
-                    .setTitle(`:white_check_mark: **Bot started!**`)
-                    .setDescription(`
+        logChannels.forEach(id => {
+            cl.channels.cache.get(id).send({
+                embeds: [
+                    new EmbedBuilder()
+                        .setTitle(`:white_check_mark: **Bot started!**`)
+                        .setDescription(`
 \`\`\`ansi
 > (node:1012) [DEP0040] DeprecationWarning: The \`punycode\` module is deprecated. Please use a userland alternative instead.
 (Use \`node--trace - deprecation ...\` to show where the warning was created)
-[0;32mBot started!]
+◇ injected env (8) from .env [0;37m// tip: ◈ encrypted .env [www.dotenvx.com]
+[0;32mBot started!
 \`\`\`
                 `)
-                    .setColor('#33ff00')
-                    .setFooter({ text: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}` })
-            ]
-        })
+                        .setColor('#33ff00')
+                        .setFooter({ text: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}` })
+                ]
+            });
+        });
     });
 
     cl.on('messageCreate', async (message) => {
