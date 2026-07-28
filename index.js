@@ -43,7 +43,10 @@ const WawaUtils = require('@set399/wawautils');
     let currentgame = {};
     (async () => {
         db = await readjson('./db.json');
+        console.log(`[DB] Loaded db.json (length: ${JSON.stringify(db).length})`);
         names = await readjson('./names.json');
+        console.log(`[DB] Loaded names.json (length: ${JSON.stringify(names).length})`);
+        console.log(`[0;90mThere are [0;32m${Object.keys(db).length}[0;90m users registered`);
         setInterval(async () => {
             try {
                 await editjson('./db.json', db);
@@ -57,7 +60,7 @@ names.json length: ${JSON.stringify(names).length}
                 return console.error(error);
             }
         }, 20000);
-        console.log(JSON.stringify(db));
+        // console.log(JSON.stringify(db));
     })();
 
 
@@ -803,9 +806,10 @@ Your account type does not match the required!
                         .setTitle(`:white_check_mark: **Bot started!**`)
                         .setDescription(`
 \`\`\`ansi
-> (node:1012) [DEP0040] DeprecationWarning: The \`punycode\` module is deprecated. Please use a userland alternative instead.
-(Use \`node--trace - deprecation ...\` to show where the warning was created)
 ◇ injected env (8) from .env [0;37m// tip: ◈ encrypted .env [www.dotenvx.com]
+[DB] Loaded db.json (length: ${JSON.stringify(db).length})
+[DB] Loaded names.json (length: ${JSON.stringify(names).length})
+[0;90mThere are [0;32m${Object.keys(db).length}[0;90m users registered
 [0;32mBot started!
 \`\`\`
                 `)
