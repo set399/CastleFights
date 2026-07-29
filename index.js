@@ -730,6 +730,12 @@ const lootboxEmojis = {
     const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits } = require('discord.js');
     const cl = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] })
 
+const commandsWh = new WebhookClient({ url: process.env.WH_COMMANDS });
+const gamesWh = new WebhookClient({ url: process.env.WH_GAMES });
+const framesWh = new WebhookClient({ url: process.env.WH_FRAMES });
+const interactionsWh = new WebhookClient({ url: process.env.WH_INTERACTIONS });
+const errorsWh = new WebhookClient({url: process.env.WH_ERRORS});
+
 const noAccountEmbed = new EmbedBuilder()
     .setTitle(':no_entry_sign: You do not have an account!')
     .setDescription(`In order to use :european_castle: **Castle Fights** commands, you need to create an account using the \`?register\` command`)
