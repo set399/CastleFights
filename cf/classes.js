@@ -116,7 +116,7 @@ class CFMap {
             arr.forEach(row => {
                 map += row + '\n';
             });
-            map += 'Map too long. Unrendered top 2 vertical rows (Y 8, 9).';
+            map += 'Map too long. Unrendered top 2 vertical rows (Y 7, 8).';
         }
         return map;
     }
