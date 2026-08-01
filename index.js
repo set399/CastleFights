@@ -746,6 +746,15 @@ let queues = {
     errors: []
 };
 
+setInterval(() => {
+    Object.keys(queues).forEach(queue => {
+        if (queues[queue].length > 0) {
+            wh[queue].send({embeds: [queues[queue][0]]});
+            queues[queue].shift();
+        }
+    });
+}, 1500);
+
 const noAccountEmbed = new EmbedBuilder()
     .setTitle(':no_entry_sign: You do not have an account!')
     .setDescription(`In order to use :european_castle: **Castle Fights** commands, you need to create an account using the \`?register\` command`)
