@@ -730,11 +730,13 @@ const lootboxEmojis = {
     const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits } = require('discord.js');
     const cl = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] })
 
-const commandsWh = new WebhookClient({ url: process.env.WH_COMMANDS });
-const gamesWh = new WebhookClient({ url: process.env.WH_GAMES });
-const framesWh = new WebhookClient({ url: process.env.WH_FRAMES });
-const interactionsWh = new WebhookClient({ url: process.env.WH_INTERACTIONS });
-const errorsWh = new WebhookClient({ url: process.env.WH_ERRORS });
+const wh = {
+    commands: new WebhookClient({ url: process.env.WH_COMMANDS }),
+    games: new WebhookClient({ url: process.env.WH_GAMES }),
+    frames: new WebhookClient({ url: process.env.WH_FRAMES }),
+    interactions: new WebhookClient({ url: process.env.WH_INTERACTIONS }),
+    errors: new WebhookClient({ url: process.env.WH_ERRORS })
+}
 
 let queues = {
     commands: [],
