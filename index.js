@@ -734,7 +734,15 @@ const commandsWh = new WebhookClient({ url: process.env.WH_COMMANDS });
 const gamesWh = new WebhookClient({ url: process.env.WH_GAMES });
 const framesWh = new WebhookClient({ url: process.env.WH_FRAMES });
 const interactionsWh = new WebhookClient({ url: process.env.WH_INTERACTIONS });
-const errorsWh = new WebhookClient({url: process.env.WH_ERRORS});
+const errorsWh = new WebhookClient({ url: process.env.WH_ERRORS });
+
+let queues = {
+    commands: [],
+    games: [],
+    frames: [],
+    interactions: [],
+    errors: []
+};
 
 const noAccountEmbed = new EmbedBuilder()
     .setTitle(':no_entry_sign: You do not have an account!')
