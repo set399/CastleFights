@@ -749,8 +749,8 @@ let queues = {
 setInterval(() => {
     Object.keys(queues).forEach(queue => {
         if (queues[queue].length > 0) {
-            wh[queue].send({embeds: [queues[queue][0]]});
-            queues[queue].shift();
+            const pendingSend = queues[queue].shift();
+            wh[queue].send({embeds: [pendingSend]});
         }
     });
 }, 1500);
@@ -859,7 +859,8 @@ Your account type does not match the required!
                 message.content.startsWith('?usercraft') ||
                 message.content.startsWith('?challenges') ||
                 message.content.startsWith('?equip') ||
-                message.content.startsWith('?sell')
+                message.content.startsWith('?sell' ||
+                message.content.startsWith('?editor'))
             ) && inGame.has(message.channel.id)
         ) {
             try {
