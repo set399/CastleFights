@@ -2565,6 +2565,19 @@ cl.on('interactionCreate', async interaction => {
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
         const id = interaction.customId.split('registerModal_')[1];
         if (!id || id !== interaction.user.id) return;
+        const ign = interaction.fields.getTextInputValue('registerInput_' + id)
+            .replaceAll('*', '-')
+            .replaceAll('/', '-')
+            .replaceAll('\\', '-')
+            .replaceAll('_', '-')
+            .replaceAll('`', '-')
+            .replaceAll('<', '-')
+            .replaceAll('>', '-')
+            .replaceAll(':', '-')
+            .replaceAll('@', '-')
+            .replaceAll(' ', '-')
+        console.log(ign);
+
 
     }
 });
