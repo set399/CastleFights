@@ -902,6 +902,13 @@ Your account type does not match the required!
                         ]
                     });
                 }
+                return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(`:no_entry_sign: You are already registered as \`@${db[message.author.id].name}\`!`)
+                            .setColor('Red')
+                    ]
+                });
             } catch (error) {
                 return console.error(`Failed to send ?register message at ${message.channel.id}: ${error}`);
             }
