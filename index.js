@@ -893,7 +893,7 @@ Please click the button below to create your account and type your name!
                                 .setCustomId('register')
                                 .setLabel('Register')
                                 .setEmoji('👤')
-                                .setStyle('SUCCESS')
+                                .setStyle('Success')
                         ]
                     });
                 }
