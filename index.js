@@ -2561,6 +2561,11 @@ cl.on('interactionCreate', async interaction => {
             console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
         }
     }
+    if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
+        const id = interaction.customId.split('registerModal_')[1];
+        if (!id || id !== interaction.user.id) return;
+
+    }
 });
 
 
