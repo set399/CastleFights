@@ -2439,7 +2439,7 @@ cl.on('interactionCreate', async interaction => {
                 .replaceAll('@', '-')
             await interaction.deferUpdate();
             db[interaction.user.id] = register(ign, Object.keys(db).length);
-            names[name.toLowerCase()] = { id: id, display: name };
+            names[name.toLowerCase()] = { id: id, display: ign };
             if (interaction.isFromMessage() && interaction.message) {
                 await interaction.message.delete();
                 return interaction.channel.send({
@@ -2447,7 +2447,7 @@ cl.on('interactionCreate', async interaction => {
                         new EmbedBuilder()
                             .setTitle(`:white_check_mark: Successfully registered!`)
                             .setDescription(`
-# Welcome to :european_castle: **Castle Fights**, **${name}**!
+# Welcome to :european_castle: **Castle Fights**, **${ign}**!
 > :book: **Guide:** Read the guide on how to play the game using the \`?guide\` command and **__make sure to read the \`?rules\`__!**!
 > :bust_in_silhouette: **Profile:** View your profile and profiles of others using the \`?profile\` command!
 > :earth_africa: **Join a game:** Join a game by looking at the public server list (\`?servers\`) and by typing \`?join <code>\` *(altertively enter a code sent to you by a friend or server member for a private game)*
