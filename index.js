@@ -876,7 +876,7 @@ Your account type does not match the required!
                 console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`);
             }
         }
-        if (message.content.startsWith('?register')) {
+        if (message.content.startsWith('?oldregister')) {
             const name = message.content.split('?register ')[1];
             if (!name || name.includes(':') || name.includes('*') || name.includes('`') || name.length < 2 || name.length > 20) {
                 try {
