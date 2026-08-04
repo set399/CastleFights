@@ -2458,7 +2458,7 @@ cl.on('interactionCreate', async interaction => {
 # Enjoy your stay and have fun playing! :D :tada:
                             `)
                             .setColor('Green')
-                            .setFooter({ text: `?register | User ${name} created account at ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()} (#${Object.keys(db).length})` })
+                            .setFooter({ text: `?register | User ${ign} created account at ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()} (#${Object.keys(db).length})` })
                     ]
 });
             }
