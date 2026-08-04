@@ -2439,7 +2439,7 @@ cl.on('interactionCreate', async interaction => {
                 .replaceAll('@', '-')
             await interaction.deferUpdate();
             db[interaction.user.id] = register(ign, Object.keys(db).length);
-            names[ign.toLowerCase()] = { id: id, display: ign };
+            names[ign.toLowerCase().replaceAll(' ', '-')] = { id: id, display: ign };
             if (interaction.isFromMessage() && interaction.message) {
                 await interaction.message.delete();
                 return interaction.channel.send({
