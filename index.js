@@ -894,7 +894,7 @@ Your account type does not match the required!
                         ], components: [
                             new ActionRowBuilder().addComponents(
                                 new ButtonBuilder()
-                                .setCustomId('register')
+                                .setCustomId('register_' + message.author.id)
                                 .setLabel('Register')
                                 .setEmoji('👤')
                                 .setStyle('Success')
@@ -2500,6 +2500,15 @@ Use the \`?editor\` command with one of the following parameters to perform acti
 
 cl.on('interactionCreate', async interaction => {
     if (!interaction.isButton()) return null;
+    if (interaction.customId.startsWith('register_')) {
+        try {
+            const id = interaction.customId.split('register_')[1];
+            if (!id) return;
+            if (interaction.user.id !== id) return;
+        } catch (error) {
+            console.error(`Failed to process register (${interaction.customId}) interaction: ${error}`);
+        }
+    }
     if (interaction.customId.startsWith('settings')) {
         try {
             const parts = interaction.customId.split('_')
