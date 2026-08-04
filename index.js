@@ -2438,7 +2438,7 @@ cl.on('interactionCreate', async interaction => {
                 .replaceAll(':', '-')
                 .replaceAll('@', '-')
             await interaction.deferUpdate();
-            db[message.author.id] = register(ign, Object.keys(db).length);
+            db[interaction.user.id] = register(ign, Object.keys(db).length);
             names[name.toLowerCase()] = { id: id, display: name };
             if (interaction.isFromMessage() && interaction.message) {
                 await interaction.message.delete();
