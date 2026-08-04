@@ -876,6 +876,25 @@ Your account type does not match the required!
                 console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWith('?register')) {
+            try {
+                if (db[message.author.id] == undefined) {
+                    return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle(':european_castle: Register to Castle Fights')
+                                .setDescription(`:wave: Hey **${message.author.globalName}**! Welcome to :european_castle: **Castle Fights**! Because the bot uses it's own account system independent of your Discord account, you have to register your own account like this.
+Please click the button below to create your account and type your name!
+:warning: **Disclaimer:** The name you enter inside the modal that will pop up after pressing the button is your **Display Name** in game, your actual username that people can interact with you by will be the lowercase version of it where spaces are converted into underscores, i.e. **Castle Fights** -> \`@castle_fights\`
+:exclamation: **You cannot use \`:\`, \`/\`, \`\\\`, \`;\`, \`*\`, \`\`\`, \`<\` or \`>\` in your name and it must be 2-20 characters long
+`)
+                        ]
+                    });
+                }
+            } catch (error) {
+                return console.error(`Failed to send ?register message at ${message.channel.id}: ${error}`);
+            }
+        }
         if (message.content.startsWith('?oldregister')) {
             const name = message.content.split('?register ')[1];
             if (!name || name.includes(':') || name.includes('*') || name.includes('`') || name.length < 2 || name.length > 20) {
