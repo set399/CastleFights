@@ -2505,6 +2505,20 @@ cl.on('interactionCreate', async interaction => {
             const id = interaction.customId.split('register_')[1];
             if (!id) return;
             if (interaction.user.id !== id) return;
+                const modal = new ModalBuilder()
+                .setCustomId('registerModal_' + id)
+                .setTitle('Register to Castle Fights');
+                const registerInput = new TextInputBuilder()
+                .setCustomId('registerInput_' + id)
+                .setLabel('Enter your in-game name (display name)')
+                .setStyle('Short')
+                .setRequired(true)
+                .setMinLength(2)
+                .setMaxLength(20)
+                const modalRow = new ActionRowBuilder().addComponents(registerInput);
+                modal.addComponents(modalRow);
+                await interaction.showModal(modal);
+
         } catch (error) {
             console.error(`Failed to process register (${interaction.customId}) interaction: ${error}`);
         }
