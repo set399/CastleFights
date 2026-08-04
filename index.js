@@ -2499,8 +2499,7 @@ Use the \`?editor\` command with one of the following parameters to perform acti
     }); 
 
 cl.on('interactionCreate', async interaction => {
-    if (!interaction.isButton()) return null;
-    if (interaction.customId.startsWith('register_')) {
+    if (interaction.isButton() && interaction.customId.startsWith('register_')) {
         try {
             const id = interaction.customId.split('register_')[1];
             if (!id) return;
@@ -2523,7 +2522,7 @@ cl.on('interactionCreate', async interaction => {
             console.error(`Failed to process register (${interaction.customId}) interaction: ${error}`);
         }
     }
-    if (interaction.customId.startsWith('settings')) {
+    if (interaction.isButton() && interaction.customId.startsWith('settings')) {
         try {
             const parts = interaction.customId.split('_')
             const category = parts[1];
