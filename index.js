@@ -905,7 +905,7 @@ Your account type does not match the required!
                 }
                 return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(`:no_entry_sign: You are already registered as \`@${db[message.author.id].name}\`!`)
                             .setColor('Red')
                     ]
