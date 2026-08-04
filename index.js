@@ -2424,22 +2424,47 @@ cl.on('interactionCreate', async interaction => {
         }
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
-        const id = interaction.customId.split('registerModal_')[1];
-        if (!id || id !== interaction.user.id) return;
-        const ign = interaction.fields.getTextInputValue('registerInput_' + id)
-            .replaceAll('*', '-')
-            .replaceAll('/', '-')
-            .replaceAll('\\', '-')
-            .replaceAll('_', '-')
-            .replaceAll('`', '-')
-            .replaceAll('<', '-')
-            .replaceAll('>', '-')
-            .replaceAll(':', '-')
-            .replaceAll('@', '-')
-        console.log(ign);
-        await interaction.deferUpdate();
-
-
+        try {
+            const id = interaction.customId.split('registerModal_')[1];
+            if (!id || id !== interaction.user.id) return;
+            const ign = interaction.fields.getTextInputValue('registerInput_' + id)
+                .replaceAll('*', '-')
+                .replaceAll('/', '-')
+                .replaceAll('\\', '-')
+                .replaceAll('_', '-')
+                .replaceAll('`', '-')
+                .replaceAll('<', '-')
+                .replaceAll('>', '-')
+                .replaceAll(':', '-')
+                .replaceAll('@', '-')
+            await interaction.deferUpdate();
+            db[message.author.id] = register(ign, Object.keys(db).length);
+            names[name.toLowerCase()] = { id: id, display: name };
+            if (interaction.isFromMessage() && interaction.message) {
+                await interaction.message.delete();
+                return interaction.channel.send({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(`:white_check_mark: Successfully registered!`)
+                            .setDescription(`
+# Welcome to :european_castle: **Castle Fights**, **${name}**!
+> :book: **Guide:** Read the guide on how to play the game using the \`?guide\` command and **__make sure to read the \`?rules\`__!**!
+> :bust_in_silhouette: **Profile:** View your profile and profiles of others using the \`?profile\` command!
+> :earth_africa: **Join a game:** Join a game by looking at the public server list (\`?servers\`) and by typing \`?join <code>\` *(altertively enter a code sent to you by a friend or server member for a private game)*
+> :crown: **Host a game:** Alternatively you can host your own game by typing \`?host\` and tweaking the match settings yourself
+-# :european_castle: **Castle Fights** uses a global server list system instead of a simple duel command for you to be able to play against server members of other servers
+> :gear: **Settings:** Change your settings by typing \`?settings\`
+> :shopping_cart: **Shop:** After earning rewards, spend your coins in the \`?shop\`
+# Enjoy your stay and have fun playing! :D :tada:
+                            `)
+                            .setColor('Green')
+                            .setFooter({ text: `?register | User ${name} created account at ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()} (#${Object.keys(db).length})` })
+                    ]
+});
+            }
+        } catch (error) {
+            console.error(`Failed to process register modal (${interaction.customId}) interaction: ${error}`);
+        }
     }
 });
 
