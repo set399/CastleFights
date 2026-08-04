@@ -888,6 +888,12 @@ Please click the button below to create your account and type your name!
 :warning: **Disclaimer:** The name you enter inside the modal that will pop up after pressing the button is your **Display Name** in game, your actual username that people can interact with you by will be the lowercase version of it where spaces are converted into underscores, i.e. **Castle Fights** -> \`@castle_fights\`
 :exclamation: **You cannot use \`:\`, \`/\`, \`\\\`, \`;\`, \`*\`, \`\`\`, \`<\` or \`>\` in your name and it must be 2-20 characters long
 `)
+                        ], components: [
+                            new ButtonBuilder()
+                                .setCustomId('register')
+                                .setLabel('Register')
+                                .setEmoji('👤')
+                                .setStyle('SUCCESS')
                         ]
                     });
                 }
