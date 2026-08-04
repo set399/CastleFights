@@ -727,7 +727,7 @@ const lootboxEmojis = {
 
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
-    const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits, ModalBuilder, TextInputBuilder, LabelBuilder } = require('discord.js');
+    const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits, ModalBuilder, TextInputBuilder, LabelBuilder, MessageFlags } = require('discord.js');
     const cl = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] })
 
 const wh = {
@@ -2504,7 +2504,7 @@ cl.on('interactionCreate', async interaction => {
         try {
             const id = interaction.customId.split('register_')[1];
             if (!id) return;
-            if (interaction.user.id !== id) return await interaction.reply({content: ':no_entry_sign: This is not your message!', epheremal: true});
+            if (interaction.user.id !== id) return await interaction.reply({content: ':no_entry_sign: This is not your message!', flags: MessageFlags.Epheremal});
                 const modal = new ModalBuilder()
                 .setCustomId('registerModal_' + id)
                 .setTitle('Register to Castle Fights');
