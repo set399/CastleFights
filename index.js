@@ -736,7 +736,14 @@ const wh = {
     frames: new WebhookClient({ url: process.env.WH_FRAMES }),
     interactions: new WebhookClient({ url: process.env.WH_INTERACTIONS }),
     errors: new WebhookClient({ url: process.env.WH_ERRORS })
-}
+};
+const whColors = {
+    commands: 'Green',
+    games: 'Blue',
+    frames: 'Blue',
+    interactions: 'Green',
+    errors: 'Red'
+};
 
 let queues = {
     commands: [],
