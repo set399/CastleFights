@@ -727,7 +727,7 @@ const lootboxEmojis = {
 
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
-    const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits } = require('discord.js');
+    const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits, ModalBuilder, TextInputBuilder, LabelBuilder } = require('discord.js');
     const cl = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] })
 
 const wh = {
