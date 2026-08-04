@@ -2504,7 +2504,7 @@ cl.on('interactionCreate', async interaction => {
         try {
             const id = interaction.customId.split('register_')[1];
             if (!id) return;
-            if (interaction.user.id !== id) return await interaction.reply({content: ':no_entry_sign: This is not your message!', flags: MessageFlags.Epheremal});
+            if (interaction.user.id !== id) return await interaction.reply({content: ':no_entry_sign: **This is not your message! Please type \`?register\` yourself to be able to execute it!**', flags: 64});
                 const modal = new ModalBuilder()
                 .setCustomId('registerModal_' + id)
                 .setTitle('Register to Castle Fights');
