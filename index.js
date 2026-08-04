@@ -2435,7 +2435,6 @@ cl.on('interactionCreate', async interaction => {
             .replaceAll('>', '-')
             .replaceAll(':', '-')
             .replaceAll('@', '-')
-            .replaceAll(' ', '-')
         console.log(ign);
         await interaction.deferUpdate();
 
