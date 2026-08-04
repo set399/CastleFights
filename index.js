@@ -889,11 +889,13 @@ Please click the button below to create your account and type your name!
 :exclamation: **You cannot use \`:\`, \`/\`, \`\\\`, \`;\`, \`*\`, \`\`\`, \`<\` or \`>\` in your name and it must be 2-20 characters long
 `)
                         ], components: [
-                            new ButtonBuilder()
+                            new ActionRowBuilder().addComponents(
+                                new ButtonBuilder()
                                 .setCustomId('register')
                                 .setLabel('Register')
                                 .setEmoji('👤')
                                 .setStyle('Success')
+                            )
                         ]
                     });
                 }
