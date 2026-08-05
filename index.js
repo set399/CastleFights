@@ -2427,13 +2427,11 @@ cl.on('interactionCreate', async interaction => {
         try {
             const id = interaction.customId.split('registerModal_')[1];
             if (!id || id !== interaction.user.id) return;
-            await interaction.deferUpdate();
             let invalidName = false;
             const ign = interaction.fields.getTextInputValue('registerInput_' + id);
             const invalidChars = ['*', '/', '\\', '_', '`', '<', '>', ':', '@'];
             Object.values(ign).forEach(char => {
-                if (invalidChars.includes(char));
-                invalidName = true;
+                if (invalidChars.includes(char)) invalidName = true;
             });
             if (invalidName) return await interaction.reply({ content: `:no_entry_sign: **This name is already taken! Please click the button again and submit a different name!**`, flags: 64 });
             db[interaction.user.id] = register(ign, Object.keys(db).length);
