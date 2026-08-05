@@ -2434,7 +2434,7 @@ cl.on('interactionCreate', async interaction => {
                 if (invalidChars.includes(char)) invalidName = true;
             });
             if (invalidName) return await interaction.reply({ content: `:no_entry_sign: **Your name contains invalid characters! Please click the button again and re-submit the modal with a different name**`, flags: 64 });
-            if (names[ign]) return await interaction.reply({content: `:no_entry_sign: **This name is already taken! Please click the button again and re-submit the modal with a different name**`, flags: 64});
+            if (names[ign.toLowerCase().replaceAll(' ', '-')]) return await interaction.reply({content: `:no_entry_sign: **This name is already taken! Please click the button again and re-submit the modal with a different name**`, flags: 64});
             db[interaction.user.id] = register(ign, Object.keys(db).length);
             names[ign.toLowerCase().replaceAll(' ', '-')] = { id: id, display: ign };
             await interaction.deferUpdate();
