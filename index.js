@@ -2436,6 +2436,7 @@ cl.on('interactionCreate', async interaction => {
             if (invalidName) return await interaction.reply({ content: `:no_entry_sign: **This name is already taken! Please click the button again and submit a different name!**`, flags: 64 });
             db[interaction.user.id] = register(ign, Object.keys(db).length);
             names[ign.toLowerCase().replaceAll(' ', '-')] = { id: id, display: ign };
+            await interaction.deferUpdate();
             if (interaction.isFromMessage() && interaction.message) {
                 await interaction.message.delete();
                 return interaction.channel.send({
