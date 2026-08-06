@@ -2174,6 +2174,33 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     editors[message.author.id] = new CFMap('New Map', user.name);
                     editors[message.author.id].default();
                 }
+                if (!action) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':european_castle: Castle Fights Map Editor')
+                            .setDescription(`
+Welcome to the :european_castle: **Castle Fights** :map: **Map Editor**!
+*This feature is only available to ${icons.verified} **Verified** people*
+*A map is already prepared for you upon executing this command*
+
+Use the \`?editor\` command with one of the following parameters to perform actions:
+> \`view\` - :eye: **View the current state of the map** *(No auto-update unlike in-game)*
+> \`title\` - :label: **Rename the map**
+> \`clear\` - :wastebasket: **Set the whole map to empty blocks**
+> \`set\` - :green_square: **Place a block on the map**
+> \`fill\` - :left_right_arrow: **Bulk place blocks in a region with the same properties on the map**
+> \`export\` - :outbox_tray: **Save your map to the servers for later importing or showcase to potentially become as official map**
+> \`import\` - :inbox_tray: **Load a previously created map from the servers**
+
+*Please note that if a map is longer than 3,600 characters, it will have rendering restrictions*
+*Because of how discord emojis work, the \`EMPTY\` block has ~25 characters while blocks like \`WOOD\` or \`LEAF\` are just 1 emoji (:brown_square:, :green_square:)*
+*This basically creates an effect where the more complex the map is, the smaller in character size it actually is*
+*Because of this, when creating maps, place some blocks to make the map slightly complex*
+`)
+                            .setColor(embedColors[user.settings.embedcolor])
+                            .setFooter({ text: `Map Editor Options | ?editor` })
+                    ]
+                });
                 if (action == 'view') {
                     const renderedMap = editors[message.author.id].render();
                     return message.reply({
@@ -2326,33 +2353,6 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         ]
                     });
                 }
-                return message.reply({
-                    embeds: [
-                        new EmbedBuilder()
-                            .setTitle(':european_castle: Castle Fights Map Editor')
-                            .setDescription(`
-Welcome to the :european_castle: **Castle Fights** :map: **Map Editor**!
-*This feature is only available to ${icons.verified} **Verified** people*
-*A map is already prepared for you upon executing this command*
-
-Use the \`?editor\` command with one of the following parameters to perform actions:
-> \`view\` - :eye: **View the current state of the map** *(No auto-update unlike in-game)*
-> \`title\` - :label: **Rename the map**
-> \`clear\` - :wastebasket: **Set the whole map to empty blocks**
-> \`set\` - :green_square: **Place a block on the map**
-> \`fill\` - :left_right_arrow: **Bulk place blocks in a region with the same properties on the map**
-> \`export\` - :outbox_tray: **Save your map to the servers for later importing or showcase to potentially become as official map**
-> \`import\` - :inbox_tray: **Load a previously created map from the servers**
-
-*Please note that if a map is longer than 3,600 characters, it will have rendering restrictions*
-*Because of how discord emojis work, the \`EMPTY\` block has ~25 characters while blocks like \`WOOD\` or \`LEAF\` are just 1 emoji (:brown_square:, :green_square:)*
-*This basically creates an effect where the more complex the map is, the smaller in character size it actually is*
-*Because of this, when creating maps, place some blocks to make the map slightly complex*
-`)
-                            .setColor(embedColors[user.settings.embedcolor])
-                            .setFooter({ text: `Map Editor Options | ?editor` })
-                    ]
-                });
             } catch (error) {
                 console.error(`Failed to process ?editor command at ${message.channel.id}: ${error}`);
             }
@@ -2440,7 +2440,7 @@ cl.on('interactionCreate', async interaction => {
             await interaction.deferUpdate();
             if (interaction.isFromMessage() && interaction.message) {
                 await interaction.message.delete();
-                return interaction.channel.send({
+                if(!inGame.has(interaction.channel.id)) return interaction.channel.send({
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(`:white_check_mark: Successfully registered!`)
