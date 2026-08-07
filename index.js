@@ -2293,6 +2293,7 @@ cl.on('interactionCreate', async interaction => {
         try {
             const id = interaction.customId.split('register_')[1];
             if (!id) return;
+            if (inGame.has(interaction.channel.id)) return await interaction.reply({content: `:no_entry_sign: **There is an ongoing game in this channel, please wait for it to end and click the button again or run the \`?register\` command in a different channel**`, flags: 64});
             if (interaction.user.id !== id) return await interaction.reply({content: ':no_entry_sign: **This is not your message! Please type \`?register\` yourself to be able to execute it!**', flags: 64});
             if (db[interaction.user.id]) return await interaction.reply({content: `:no_entry_sign: **You are already registered as \`@${db[interaction.user.id].name}\`**`, flags: 64}); 
             const modal = new ModalBuilder()
