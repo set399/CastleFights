@@ -2286,6 +2286,13 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 console.error(`Failed to process ?editor command at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWith('?request')) {
+            try {
+
+            } catch (error) {
+                console.error(`Failed to process ?request command at ${message.channel.id}: ${error}`);
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {

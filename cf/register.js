@@ -136,6 +136,7 @@ function register(name, dbSize) {
         },
         profileviews: 0,
         canUseRequest: true,
+        requestTs: Date.now(),
         verifyNote: '',
         playerID: (dbSize || 0) + 1,
         created: Date.now(),
