@@ -2300,6 +2300,15 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             .setFooter({text: `?request | Uh yeah you're just banned from support idk that's really your fault`})
                     ]
                 });
+                if (db[message.author.id].requestTs < Date.now()) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: You are on a cooldown!')
+                            .setDescription(`You can make a request only once in 24 hours, you have already made one, you can create another request <t:${Math.floor(db[message.author.id].requestTs / 1000)}:R>`)
+                            .setColor('Red')
+                            .setFooter({text: `?request | Already another request?`})
+                    ]
+                });
             } catch (error) {
                 console.error(`Failed to process ?request command at ${message.channel.id}: ${error}`);
             }
