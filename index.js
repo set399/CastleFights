@@ -2290,7 +2290,16 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
             try {
                 if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
                 if (db[message.author.id].accountType == -1) return message.reply({ embeds: [deletedEmbed] });
-                if (db[message.author.id].accountType == -2) return message.reply({embeds: [bannedEmbed]});
+                if (db[message.author.id].accountType == -2) return message.reply({ embeds: [bannedEmbed] });
+                if (!db[message.author.id].canUseRequest) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: You are banned from creating requests!')
+                            .setDescription(`This usually happens when you repeatedly creating requests that do not have meanings or are spam, especially in mass scale`)
+                            .setColor('Red')
+                            .setFooter({text: `?request | Uh yeah you're just banned from support idk that's really your fault`})
+                    ]
+                });
             } catch (error) {
                 console.error(`Failed to process ?request command at ${message.channel.id}: ${error}`);
             }
