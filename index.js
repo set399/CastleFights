@@ -2288,7 +2288,9 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
         }
         if (message.content.startsWith('?request')) {
             try {
-
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType == -1) return message.reply({ embeds: [deletedEmbed] });
+                if (db[message.author.id].accountType == -2) return message.reply({embeds: [bannedEmbed]});
             } catch (error) {
                 console.error(`Failed to process ?request command at ${message.channel.id}: ${error}`);
             }
