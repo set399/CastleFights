@@ -2335,44 +2335,44 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             new ButtonBuilder()
                                 .setEmoji('👤')
                                 .setLabel('Username Change')
-                                .setStyle('SECONDARY')
+                                .setStyle('Secondary')
                                 .setCustomId('request_userchange'),
                             new ButtonBuilder()
                                 .setEmoji(icons.verified)
                                 .setLabel('Request Verification')
-                                .setStyle('SECONDARY')
+                                .setStyle('Secondary')
                                 .setCustomId('request_verification'),
                             new ButtonBuilder()
                                 .setEmoji('⚠️')
                                 .setLabel('Report a Player')
-                                .setStyle('SECONDARY')
+                                .setStyle('Secondary')
                                 .setCustomId('request_report'),
                             new ButtonBuilder()
                                 .setEmoji('🔨')
                                 .setLabel('Ban Appeal')
-                                .setStyle('SECONDARY')
+                                .setStyle('Secondary')
                                 .setCustomId('request_appeal'),
                             new ButtonBuilder()
                                 .setEmoji('🗺️')
                                 .setLabel('Submit Official Map')
-                                .setStyle('SECONDARY')
+                                .setStyle('Secondary')
                                 .setCustomId('request_map'),
                         ),
                         new ActionRowBuilder().addComponents(
                             new ButtonBuilder()
                                 .setEmoji('💡')
                                 .setLabel('Suggest a Feature')
-                                .setStyle('SECONDARY')
+                                .setStyle('Secondary')
                                 .setCustomId('request_feature'),
                             new ButtonBuilder()
                                 .setEmoji(icons.github)
                                 .setLabel('Claim GitHub Reward')
-                                .setStyle('SECONDARY')
+                                .setStyle('Secondary')
                                 .setCustomId('request_github'),
                             new ButtonBuilder()
                                 .setEmoji('❓')
                                 .setLabel('Other')
-                                .setStyle('SECONDARY')
+                                .setStyle('Secondary')
                                 .setCustomId('request_other'),
 
                         )
