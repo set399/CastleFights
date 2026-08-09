@@ -2301,7 +2301,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             .setFooter({text: `?request | Uh yeah you're just banned from support idk that's really your fault`})
                     ]
                 });
-                if (db[message.author.id].requestTs < Date.now()) return message.reply({
+                if (db[message.author.id].requestTs > Date.now()) return message.reply({
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: You are on a cooldown!')
