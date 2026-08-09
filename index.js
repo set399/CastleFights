@@ -2322,7 +2322,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
 > ${icons.coin} **Request Verification:** Submit a request to obtain the ${icons.verified} **Verified** badge, you can learn more about the requirements and perks in \`?info badges\`
 > :warning: **Report a Player:** Submit a request to report a player for breaking the rules, i.e. boosting or exploiting bugs, successful reports have a potential reward of up to **1,000** ${icons.coin}
 > :hammer: **Ban Appeal:** If you have been banned, submit a request to ask to be unbanned, this applies mainly to permanent bans, but even temporary ones can be shortened
-> :map: **Submit Official Map:** If you are :verified: **Verified** and have made a map using the \`?editor\` that you think is appropriate enough to become one of the official maps in rotation, you can submit a request
+> :map: **Submit Official Map:** If you are ${icons.verified} **Verified** and have made a map using the \`?editor\` that you think is appropriate enough to become one of the official maps in rotation, you can submit a request
 > :bulb: **Suggest a Feature:** If you have any ideas on what to add into the game, submit them here
 > ${icons.github} **Claim GitHub Reward:** If you have completed the steps in \`?freecoins\`, submit a request here to show proof and claim your reward
 > :question: **Other:** If you have any other requests, use this category, this also applies for **Whitelisting <1 month old accounts** or **Transferring progress between accounts!**
