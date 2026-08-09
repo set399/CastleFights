@@ -2309,6 +2309,19 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             .setFooter({text: `?request | Already another request?`})
                     ]
                 });
+                return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':envelope: Submit a Request')
+                            .setDescription(`
+* Submit a Support Ticket to the in-game ${icons.mod} **Moderators** to resolve any kinds of issues or questions
+* Select a category with the buttons below to **open a modal with the specified category and enter your text:**
+
+                            `)
+                            .setColor('Blue')
+                            .setFooter({text: `?request | Submit a Request`})
+                    ]
+                });
             } catch (error) {
                 console.error(`Failed to process ?request command at ${message.channel.id}: ${error}`);
             }
