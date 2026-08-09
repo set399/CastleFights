@@ -2325,6 +2325,8 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
 > :map: **Submit Official Map:** If you are ${icons.verified} **Verified** and have made a map using the \`?editor\` that you think is appropriate enough to become one of the official maps in rotation, you can submit a request
 > :bulb: **Suggest a Feature:** If you have any ideas on what to add into the game, submit them here
 > ${icons.github} **Claim GitHub Reward:** If you have completed the steps in \`?freecoins\`, submit a request here to show proof and claim your reward
+> 👥 **Whitelist a new account:** If you have a friend who has an account younger than a month but is a legitimate discord user, you can submit a request to create an account for them already
+> :repeat: **Transfer progress:** If you want to transfer your Castle Fights account data to a different Discord account, or you are unable to access your account, you can submit a request to transfer your progress, before this, you will need your account's Transfer ID, which is obtained from \`?transfer\`
 > :question: **Other:** If you have any other requests, use this category, this also applies for **Whitelisting <1 month old accounts** or **Transferring progress between accounts!**
                             `)
                             .setColor('Blue')
@@ -2369,6 +2371,16 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                                 .setLabel('Claim GitHub Reward')
                                 .setStyle('Success')
                                 .setCustomId('request_github'),
+                            new ButtonBuilder()
+                                .setEmoji('👥')
+                                .setLabel('Whitelist a new account')
+                                .setStyle('Success')
+                                .setCustomId('request_whitelist'),
+                                new ButtonBuilder()
+                                .setEmoji('🔁')
+                                .setLabel('Transfer progress')
+                                .setStyle('Secondary')
+                                .setCustomId('request_transfer'),
                             new ButtonBuilder()
                                 .setEmoji('❓')
                                 .setLabel('Other')
