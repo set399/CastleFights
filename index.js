@@ -2374,7 +2374,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             new ButtonBuilder()
                                 .setEmoji('👥')
                                 .setLabel('Whitelist a new account')
-                                .setStyle('Success')
+                                .setStyle('Secondary')
                                 .setCustomId('request_whitelist'),
                                 new ButtonBuilder()
                                 .setEmoji('🔁')
