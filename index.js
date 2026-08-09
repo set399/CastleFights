@@ -138,6 +138,7 @@ const textures = {
         darkbluecolor: '<:darkbluecolor:1523432962706772127>',
         mintycolor: '<:mintycolor:1523433011620741120>',
         pinkcolor: '<:pinkcolor:1523432979333124187>',
+        github: '<:github:1535982911533097082>'
     };
     const skins = {
         default: '😀',
