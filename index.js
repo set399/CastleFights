@@ -2294,7 +2294,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 if (db[message.author.id].accountType == -2) return message.reply({ embeds: [bannedEmbed] });
                 if (!db[message.author.id].canUseRequest) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: You are banned from creating requests!')
                             .setDescription(`This usually happens when you repeatedly creating requests that do not have meanings or are spam, especially in mass scale`)
                             .setColor('Red')
@@ -2303,7 +2303,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 });
                 if (db[message.author.id].requestTs < Date.now()) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: You are on a cooldown!')
                             .setDescription(`You can make a request only once in 24 hours, you have already made one, you can create another request <t:${Math.floor(db[message.author.id].requestTs / 1000)}:R>`)
                             .setColor('Red')
@@ -2312,7 +2312,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 });
                 return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':envelope: Submit a Request')
                             .setDescription(`
 * Submit a Support Ticket to the in-game ${icons.mod} **Moderators** to resolve any kinds of issues or questions
@@ -2329,6 +2329,53 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             `)
                             .setColor('Blue')
                             .setFooter({text: `?request | Submit a Request`})
+                    ],
+                    components: [
+                        new ActionRowBuilder().addComponents(
+                            new ButtonBuilder()
+                                .setEmoji('👤')
+                                .setLabel('Username Change')
+                                .setStyle('SECONDARY')
+                                .setCustomId('request_userchange'),
+                            new ButtonBuilder()
+                                .setEmoji(icons.verified)
+                                .setLabel('Request Verification')
+                                .setStyle('SECONDARY')
+                                .setCustomId('request_verification'),
+                            new ButtonBuilder()
+                                .setEmoji('⚠️')
+                                .setLabel('Report a Player')
+                                .setStyle('SECONDARY')
+                                .setCustomId('request_report'),
+                            new ButtonBuilder()
+                                .setEmoji('🔨')
+                                .setLabel('Ban Appeal')
+                                .setStyle('SECONDARY')
+                                .setCustomId('request_appeal'),
+                            new ButtonBuilder()
+                                .setEmoji('🗺️')
+                                .setLabel('Submit Official Map')
+                                .setStyle('SECONDARY')
+                                .setCustomId('request_map'),
+                        ),
+                        new ActionRowBuilder().addComponents(
+                            new ButtonBuilder()
+                                .setEmoji('💡')
+                                .setLabel('Suggest a Feature')
+                                .setStyle('SECONDARY')
+                                .setCustomId('request_feature'),
+                            new ButtonBuilder()
+                                .setEmoji(icons.github)
+                                .setLabel('Claim GitHub Reward')
+                                .setStyle('SECONDARY')
+                                .setCustomId('request_github'),
+                            new ButtonBuilder()
+                                .setEmoji('❓')
+                                .setLabel('Other')
+                                .setStyle('SECONDARY')
+                                .setCustomId('request_other'),
+
+                        )
                     ]
                 });
             } catch (error) {
