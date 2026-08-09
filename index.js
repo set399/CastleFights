@@ -2319,7 +2319,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
 * Select a category with the buttons below to **open a modal with the specified category and enter your text:**
 *(Upon sending a request, you will receive the response in your :inbox_tray: \`?inbox\`)*
 > :bust_in_silhouette: **Username Change:** Submit a request to change your in-game display name and username, please make sure to specify both in your request
-> ${icons.coin} **Request Verification:** Submit a request to obtain the ${icons.verified} **Verified** badge, you can learn more about the requirements and perks in \`?info badges\`
+> ${icons.verified} **Request Verification:** Submit a request to obtain the ${icons.verified} **Verified** badge, you can learn more about the requirements and perks in \`?info badges\`
 > :warning: **Report a Player:** Submit a request to report a player for breaking the rules, i.e. boosting or exploiting bugs, successful reports have a potential reward of up to **1,000** ${icons.coin}
 > :hammer: **Ban Appeal:** If you have been banned, submit a request to ask to be unbanned, this applies mainly to permanent bans, but even temporary ones can be shortened
 > :map: **Submit Official Map:** If you are ${icons.verified} **Verified** and have made a map using the \`?editor\` that you think is appropriate enough to become one of the official maps in rotation, you can submit a request
@@ -2345,12 +2345,12 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             new ButtonBuilder()
                                 .setEmoji('⚠️')
                                 .setLabel('Report a Player')
-                                .setStyle('Secondary')
+                                .setStyle('Danger')
                                 .setCustomId('request_report'),
                             new ButtonBuilder()
                                 .setEmoji('🔨')
                                 .setLabel('Ban Appeal')
-                                .setStyle('Secondary')
+                                .setStyle('Primary')
                                 .setCustomId('request_appeal'),
                             new ButtonBuilder()
                                 .setEmoji('🗺️')
@@ -2362,12 +2362,12 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             new ButtonBuilder()
                                 .setEmoji('💡')
                                 .setLabel('Suggest a Feature')
-                                .setStyle('Secondary')
+                                .setStyle('Primary')
                                 .setCustomId('request_feature'),
                             new ButtonBuilder()
                                 .setEmoji(icons.github)
                                 .setLabel('Claim GitHub Reward')
-                                .setStyle('Secondary')
+                                .setStyle('Success')
                                 .setCustomId('request_github'),
                             new ButtonBuilder()
                                 .setEmoji('❓')
