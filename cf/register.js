@@ -1,3 +1,4 @@
+const { rand } = require('@set399/wawautils');
 function register(name, dbSize) {
     let d = {
         accountType: 1,
@@ -138,6 +139,8 @@ function register(name, dbSize) {
         canUseRequest: true,
         requestTs: Date.now(),
         verifyNote: '',
+        whitelist: '',
+        transferID: rand('all', 10),
         playerID: (dbSize || 0) + 1,
         created: Date.now(),
     };
