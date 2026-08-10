@@ -2638,7 +2638,8 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         const authorUser = db[names[msg.author].id]
                         author = `${names[author].display}${displayBadge('mod', authorUser.badges.mod)}${displayBadge('verified', authorUser.badges.mod)}${displayBadge('challenger', authorUser.badges.challenger)}${displayBadge('crafter', authorUser.badges.crafter)}`;
                     }
-                    inboxContents += `
+                    inboxContents +=
+`
 ================================
 **Author:** 
 **Sent at:** <t:${msg.ts}:R>
@@ -2654,6 +2655,7 @@ ${msg.text}
                             .setTitle(':inbox_tray: Inbox of ' + db[message.author.id].display)
                             .setDescription(`
 *${db[message.author.id].inbox.length}/5 messages in inbox*
+${unsentInfo}
 ${inboxContents}
 `)
                             .setColor(embedColors[db[message.author.id].settings.embedcolor])
