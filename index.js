@@ -2536,12 +2536,45 @@ cl.on('interactionCreate', async interaction => {
         }
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('requestModal_')) {
-        const parts = interaction.customid.split('_');
-        const category = parts[1];
-        const user = parts[2];
-        const text = interaction.fields.getTextInputValue('requestText_' + id);
-        db[user].requestTs = Date.now() + (1000 * 60 * 60 * 24);
-
+        try {
+            const parts = interaction.customId.split('_');
+            const category = parts[1];
+            const user = parts[2];
+            const text = interaction.fields.getTextInputValue('requestText_' + user);
+            db[user].requestTs = Date.now() + (1000 * 60 * 60 * 24);
+            let ping = `<@&${process.env.MOD_ROLE}>`;
+            if (devPing.includes(category)) ping = `<@&${process.env.DEV_ROLE}>`;
+            cl.channels.cache.get(process.env.REQ_CHANNEL).send({
+                content: `${ping}`, embeds: [
+                    new MessageEmbed()
+                        .setTitle(`:envelope_incoming: New Request! (\`${requestCategory[category]}\`)`)
+                        .setDescription(`
+**Author:** ${db[user].skin} ${db[user].display} (\`@${db[user].name}\`) (<@${user}>)
+**Category:** ${requestCategory[category]}
+**Text:**
+\`\`\`
+${text}
+\`\`\`
+`)
+                        .setColor('Blue')
+                        .setFooter({ text: `User @${db[user].name} has made a ${category} request` })
+                ]
+            });
+            if (interaction.isFromMessage() && interaction.message) {
+                await interaction.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':white_check_mark: Request sent!')
+                            .setDescription(`You have successfully sent a **${requestCategory[category]} request**! Please check your :inbox_tray: \`?inbox\` for a response!`)
+                            .setColor('Green')
+                            .setFooter({text: `Successfully sent ${category} request!`})
+                    ], flags: 64
+                });
+                return await interaction.message.delete();
+            }
+        } catch (error) {
+            console.error(`Failed to process request modal (${interaction.customId}) interaction: ${error}`);
+        }
     }
 });
 
