@@ -2162,6 +2162,37 @@ Press the button below to open up a modal to type out the reason and confirm giv
                 console.error(`Failed to process ?ban command at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWith('?unban')) {
+            try {
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType < 3) return message.reply({ embeds: [modEmbed] });
+                const ign = message.content.split('?unban ')[1];
+                if (!ign || names[ign] == undefined) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user doesn\'t exist!')
+                            .setColor('Red')
+                    ]
+                });
+                const user = db[names[ign].id];
+                if (user.accountType !== -2) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user is already not banned!')
+                            .setColor('Red')
+                    ]
+                });
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(`:white_check_mark: Unbanned \`@${ign}\`!`)
+                            .setColor('Green')
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?unban command at ${message.channel.id}: ${error}`);
+            }
+        }
         // Editor Commands
         if (message.content.startsWith('?editor')) {
             try {
