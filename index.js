@@ -2542,21 +2542,21 @@ cl.on('interactionCreate', async interaction => {
             const user = parts[2];
             const text = interaction.fields.getTextInputValue('requestText_' + user);
             db[user].requestTs = Date.now() + (1000 * 60 * 60 * 24);
-            let ping = `<@&${process.env.MOD_ROLE}>`;
-            if (devPing.includes(category)) ping = `<@&${process.env.DEV_ROLE}>`;
+            let ping = `<@&${process.env.ROLE_MOD}>`;
+            if (devPing.includes(category)) ping = `<@&${process.env.ROLE_DEV}>`;
             cl.channels.cache.get(process.env.REQ_CHANNEL).send({
                 content: `${ping}`, embeds: [
                     new EmbedBuilder()
-                        .setTitle(`:envelope_incoming: New Request! (\`${requestCategory[category]}\`)`)
+                        .setTitle(`:incoming_envelope: New Request! (\`${requestCategory[category]}\`)`)
                         .setDescription(`
-**Author:** ${db[user].skin} ${db[user].display} (\`@${db[user].name}\`) (<@${user}>)
+**Author:** ${skins[db[user].skin]} ${db[user].display} (\`@${db[user].name}\`) (<@${user}>)
 **Category:** ${requestCategory[category]}
 **Text:**
 \`\`\`
 ${text}
 \`\`\`
 `)
-                        .setColor('Blue')
+                        .setColor(devPing.includes(category) ? embedColors.minty : 'Blue')
                         .setFooter({ text: `User @${db[user].name} has made a ${category} request` })
                 ]
             });
