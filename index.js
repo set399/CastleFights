@@ -2198,7 +2198,7 @@ Press the button below to open up a modal to type out the reason and confirm giv
         }
         if (message.content.startsWith('?reqban')) {
             try {
-                const ign = message.contnet.split('?reqban ')[1];
+                const ign = message.content.split('?reqban ')[1];
                 if (!ign || names[ign] == undefined) return message.reply({
                     embeds: [
                         new EmbedBuilder()
@@ -2219,6 +2219,36 @@ Press the button below to open up a modal to type out the reason and confirm giv
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(`:white_check_mark: Request banned \`@${ign}\`!`)
+                            .setColor('Green')
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?reqban command at ${message.channel.id}: ${error}`);
+            }
+        }
+        if (message.content.startsWith('?requnban')) {
+            try {
+                const ign = message.content.split('?requnban ')[1];
+                if (!ign || names[ign] == undefined) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user doesn\'t exist!')
+                            .setColor('Red')
+                    ]
+                });
+                const user = db[names[ign].id];
+                if (user.canUseRequest) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user is not already request banned!')
+                            .setColor('Red')
+                    ]
+                });
+                user.canUseRequest = true;
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(`:white_check_mark: Removed \`@${ign}\`'s request ban!`)
                             .setColor('Green')
                     ]
                 });
