@@ -2548,6 +2548,31 @@ cl.on('interactionCreate', async interaction => {
             console.error(`Failed to process request (${interaction.customId}) interaction: ${error}`);
         }
     }
+    if (interaction.isButton() && interaction.customId.startsWith('ban_')) {
+        try {
+            const parts = interaction.customId.split('_');
+            const user = parts[1];
+            const banUser = parts[2];
+            if (!user) return;
+            if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
+            if (db[user].accountType < 3) return await interaction.reply({ content: `:no_entry_sign: **You do not have permissions to execute this command!**`, flags: 64 });
+            if (db[banUser] == undefined) return await interaction.reply({ content: `:no_entry_sign: **This user doesn't exist!**`, flags: 64 });
+            if (interaction.user.id !== user) return await interaction.reply({ content: `:no_entry_sign: **This is not your command!**`, flags: 64 });
+            const modal = new ModalBuilder()
+                .setCustomId('banModal_' + user + '_' + banUser)
+                .setTitle(`Ban ${db[banUser].display}`);
+            const banReason = new TextInputBuilder()
+                .setCustomId('banReason_' + user)
+                .setLabel(`Enter the reason to ban this user`)
+                .setStyle('Short')
+                .setRequired(true)
+            const modalRow = new ActionRowBuilder().addComponents(banReason);
+            modal.addComponents(modalRow);
+            await interaction.showModal(modal);
+        } catch (error) {
+            console.error(`Failed to process ban (${interaction.customId}) interaction: ${error}`);
+        }
+    }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
         try {
             const id = interaction.customId.split('registerModal_')[1];
