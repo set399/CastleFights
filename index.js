@@ -752,7 +752,8 @@ const wh = {
     games: new WebhookClient({ url: process.env.WH_GAMES }),
     frames: new WebhookClient({ url: process.env.WH_FRAMES }),
     interactions: new WebhookClient({ url: process.env.WH_INTERACTIONS }),
-    errors: new WebhookClient({ url: process.env.WH_ERRORS })
+    errors: new WebhookClient({ url: process.env.WH_ERRORS }),
+    whitelist: new WebhookClient({ url: process.env.WH_WHITELIST })
 };
 const whColors = {
     commands: 'Green',
