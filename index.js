@@ -2092,7 +2092,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (user.badges.mod < 1) return message.reply({
                     embeds: [
                         new EmbedBuilder()
-                            .setTitle(icons.verified + ' This user is already not a mod!')
+                            .setTitle(':no_entry_sign: This user is already not a mod!')
                             .setColor('Red')
                     ]
                 });
@@ -2102,6 +2102,56 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 return message.reply({ content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and revoked ${icons.mod} **Moderator** badge` });
             } catch (error) {
                 console.error(`Failed to process ?mod command at ${message.channel.id}: ${error}`);
+            }
+        }
+        if (message.content.startsWith('?ban')) {
+            try {
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType < 3) return message.reply({ embeds: [modEmbed] });
+                const ign = message.content.split('?ban ')[1];
+                if (!ign || db[names[ign].id] == undefined) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user doesn\'t exist!')
+                            .setColor('Red')
+                    ]
+                });
+                const user = db[names[ign].id];
+                if (user.accountType !== 2) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user is already banned!')
+                            .setColor('Red')
+                    ]
+                });
+                if (user.accountType > 2) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: You cannot ban this user because they are a ' + icons.mod + ' Moderator!')
+                            .setColor('Red')
+                    ]
+                });
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(`:hammer: Ban \`@${ign}\`?`)
+                            .setDescription(`
+You are about to ban ${skins[user.skin]} **${user.display}** (Level ${getLevel(user.xp).level}), are you sure?
+Press the button below to open up a model to type out the reason and confirm giving the user a ban
+`)
+                            .setColor('Red')
+                            .setFooter({text: `?ban | woahh banning are we`})
+                    ],
+                    components: [
+                        new ActionRowBuilder()
+                            .setCustomId('ban_' + message.author.id + '_' + names[message.author.id].id)
+                            .setLabel('Ban User')
+                            .setStyle('Danger')
+                            .setEmoji('🔨')
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?ban command at ${message.channel.id}: ${error}`);
             }
         }
         // Editor Commands
