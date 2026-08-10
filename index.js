@@ -2478,7 +2478,7 @@ cl.on('interactionCreate', async interaction => {
             if (!user) return;
             if (!db[user].canUseRequest) return await interaction.reply({content: `:no_entry_sign: **You are banned from creating requests!**`, flags: 64});
             if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
-            if (db[user].requestTs > Date.now()) return await interaction.reply({content: `:no_entry_sign: **You have already have made a request in the past 24 hours, you can create a new one: <t:${db[user].requestTs}:R>**`, flags: 64});
+            if (db[user].requestTs > Date.now()) return await interaction.reply({content: `:no_entry_sign: **You have already have made a request in the past 24 hours, you can create a new one: <t:${Math.floor(db[user].requestTs/1000)}:R>**`, flags: 64});
             const modal = new ModalBuilder()
                 .setCustomId('requestModal_' + category + '_' + user)
                 .setTitle(`${requestCategory[category]} request`);
@@ -2546,7 +2546,7 @@ cl.on('interactionCreate', async interaction => {
             if (devPing.includes(category)) ping = `<@&${process.env.DEV_ROLE}>`;
             cl.channels.cache.get(process.env.REQ_CHANNEL).send({
                 content: `${ping}`, embeds: [
-                    new MessageEmbed()
+                    new EmbedBuilder()
                         .setTitle(`:envelope_incoming: New Request! (\`${requestCategory[category]}\`)`)
                         .setDescription(`
 **Author:** ${db[user].skin} ${db[user].display} (\`@${db[user].name}\`) (<@${user}>)
