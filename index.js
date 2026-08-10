@@ -760,7 +760,8 @@ const whColors = {
     games: 'Blue',
     frames: 'Blue',
     interactions: 'Green',
-    errors: 'Red'
+    errors: 'Red',
+    whitelist: 'No'
 };
 
 let queues = {
@@ -768,7 +769,8 @@ let queues = {
     games: [],
     frames: [],
     interactions: [],
-    errors: []
+    errors: [],
+    whitelist: []
 };
 
 setInterval(() => {
@@ -2523,6 +2525,39 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 return message.reply({content: `:white_check_mark: Chose whitelist IGN as **${ign}** (\`@${ign.toLowerCase().replaceAll(' ', '-')}\`)`});
             } catch (error) {
                 console.error(`Failed to process ?whitelist command at ${message.channel.id}: ${error}`);
+            }
+        }
+        if (message.content.startsWith('?transfer')) {
+            try {
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':repeat: Transferring Accounts')
+                            .setDescription(`
+* This command serves for you to view your **Transfer ID**, a unique identificator for each user to verify their identity when transferring their progress
+* This command is essential for the fact that if you lose your main account and want to get your :european_castle: **Castle Fights** account data back, you will need to:
+> - Know the Transfer ID of this account already
+> - Submit a \`?request\` on your new account with the Transfer ID specified
+* This is also useful if you wish to move Discord accounts, since your account data is based on your ID and your In-Game Name is just an identifier
+* **Click the button below to view your Transfer ID!**
+* **Please make sure to never share this ID without anyone and make sure to save it somewhere so you can use it later!**
+`)
+                            .setColor('Red')
+                            .setFooter({text: `?transfer | Press the button to view your ID`})
+                    ], components: [
+                        new ActionRowBuilder()
+                            .addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId('transfer_' + message.author.id)
+                                    .setLabel('View')
+                                    .setEmoji('👁️')
+                                    .setStyle('Danger')
+                        )
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?transfer command at ${message.channel.id}: ${error}`);
             }
         }
     }); 
