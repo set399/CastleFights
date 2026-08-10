@@ -2624,6 +2624,42 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 console.error(`Failed to process ?transfer command at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWith('?inbox')) {
+            try {
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                let inboxContents = '';
+                let unsentInfo = '';
+                if (db[message.author.id].inbox.length <= 0) inboxContents = 'Your inbox is empty. Messages will appear here from account actions, i.e. response to support tickets, getting data reverted, transfering accounts or getting banned. Additionally updates will show up here too!'
+                if (db[message.author.id].inbox.length >= 5) unsentInfo = `⛔ **Your inbox is full! Please dismiss atleast one message otherwise you will not be able to receive any more messages. \`${db[message.author.id].inboxFails}\` messages have failed to send to you so far.**`;
+                db[message.author.id].inbox.forEach(msg => {
+                    const authorUser = db[names[author].id]
+                    let author = '';
+                    author = `${msg.author}`;
+                    if(msg.author == 'system') author = 'Castle Fights' + icons.verified
+                    inboxContents += `
+================================
+**Author:** ${names[author].display}${displayBadge('mod', authorUser.badges.mod)}${displayBadge('verified', authorUser.badges.mod)}${displayBadge('challenger', authorUser.badges.challenger)}${displayBadge('crafter', authorUser.badges.crafter)}
+**Sent at:** <t:${msg.ts}:R>
+**Text:**
+\`\`\`
+${msg.text}
+\`\`\`
+                    `
+                });
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':inbox_tray: Inbox of ' + db[message.author.id].display)
+                            .setDescription(`
+*${db[message.author.id].inbox.length}/5 messages in inbox*
+${inboxContents}
+`)
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?inbox command at ${message.channel.id}: ${error}`);
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
