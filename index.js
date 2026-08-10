@@ -689,7 +689,18 @@ function settingsLevelIconUnlockButtonStyle(icon, level) {
     if (level < icon) return 'Secondary';
     if (level >= icon) return 'Success';
 }
-
+const requestCategory = {
+    userchange: 'Username Change',
+    verification: 'Request Verification',
+    report: 'Report a Player',
+    appeal: 'Ban Appeal',
+    map: 'Submit Official Map',
+    feature: 'Suggest a Feature',
+    github: 'Claim GitHub Reward',
+    whitelist: 'Whitelist a new account',
+    transfer: 'Transfer progress',
+    other: 'Other'
+};
 
 const lootboxPrices = {
     commonbox: 500,
