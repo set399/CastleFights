@@ -2514,12 +2514,13 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 });
                 if (db[message.author.id]) return message.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':no_entry_sign: You already have an account!')
                             .setColor('Red')
                     ]
                 });
-                wh.whitelist.send({embeds: `**:bust_in_silhouette: Whitelist | User <@${message.author.id}> (${message.author.username}) wants to be whitelisted as: \`${ign}\`**`});
+                wh.whitelist.send({content: `**:bust_in_silhouette: Whitelist | User <@${message.author.id}> (${message.author.username}) wants to be whitelisted as: \`${ign}\`**`});
+                return message.reply({content: `:white_check_mark: Chose whitelist IGN as **${ign}** (\`@${ign.toLowerCase().replaceAll(' ', '-')}\`)`});
             } catch (error) {
                 console.error(`Failed to process ?whitelist command at ${message.channel.id}: ${error}`);
             }
