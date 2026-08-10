@@ -2665,7 +2665,27 @@ ${text}
             const user = parts[1];
             const banUser = parts[2];
             const reason = interaction.fields.getTextInputValue('banReason_' + user);
-
+            inboxSend(db[banReason], `
+### You have been banned! ###
+You have been banned from Castle Fights for the reason: "${reason}"
+What this means for you:
+* You are not able to host or join any games
+* You cannot interact with any community and account-related commands in Castle Fights
+* Your profile's stats are for the most part truncated
+* You are able to use ?request to appeal your ban
+            `, 'system');
+            db[banReason].accountType = -2;
+            db[banReason].disableReason = reason;
+            if (interaction.isFromMessage() && interaction.message) {
+                await interaction.message.delete();
+                return message.channel.send({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(`:hammer: Banned user \`@${db[banUser].name}\` for \`${reason}\``)
+                            .setColor('Green')
+                    ]
+                });
+            }
         } catch (error) {
             console.error(`Failed to process ban modal (${interaction.customId}) interaction: ${error}`);
         }
