@@ -2462,7 +2462,16 @@ cl.on('interactionCreate', async interaction => {
         }
     }
     if (interaction.isButton() && interaction.customId.startsWith('request_')) {
-        
+        try {
+            const parts = interaction.customId.split('_');
+            const category = parts[1];
+            const user = parts[2];
+            if (interaction.customId == user) {
+
+            }
+        } catch (error) {
+            console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
+        }
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
         try {
