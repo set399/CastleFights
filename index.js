@@ -2480,7 +2480,7 @@ cl.on('interactionCreate', async interaction => {
             if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
             if (db[user].requestTs > Date.now()) return await interaction.reply({content: `:no_entry_sign: **You have already have made a request in the past 24 hours, you can create a new one: <t:${db[user].requestTs}:R>**`, flags: 64});
             const modal = new ModalBuilder()
-                .setCustomId('requestModal_' + category + '_' + id)
+                .setCustomId('requestModal_' + category + '_' + user)
                 .setTitle(`Submit a Castle Fights Request (Category: ${category})`);
             const requestInput = new TextInputBuilder()
                 .setCustomId('requestText_' + user)
@@ -2493,7 +2493,7 @@ cl.on('interactionCreate', async interaction => {
             modal.addComponents(modalRow);
             await interaction.showModal(modal);
         } catch (error) {
-            console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
+            console.error(`Failed to process request (${interaction.customId}) interaction: ${error}`);
         }
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
