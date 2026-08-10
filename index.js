@@ -701,7 +701,7 @@ const requestCategory = {
     transfer: 'Transfer progress',
     other: 'Other'
 };
-
+const devPing = ['userchange', 'map', 'feature', 'github', 'whitelist', 'transfer'];
 const lootboxPrices = {
     commonbox: 500,
     common: 500,
