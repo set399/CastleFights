@@ -2632,7 +2632,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 if (db[message.author.id].inbox.length <= 0) inboxContents = 'Your inbox is empty. Messages will appear here from account actions, i.e. response to support tickets, getting data reverted, transfering accounts or getting banned. Additionally updates will show up here too!'
                 if (db[message.author.id].inbox.length >= 5) unsentInfo = `⛔ **Your inbox is full! Please dismiss atleast one message otherwise you will not be able to receive any more messages. \`${db[message.author.id].inboxFails}\` messages have failed to send to you so far.**`;
                 db[message.author.id].inbox.forEach(msg => {
-                    const authorUser = db[names[author].id]
+                    const authorUser = db[names[msg.author].id]
                     let author = '';
                     author = `${msg.author}`;
                     if(msg.author == 'system') author = 'Castle Fights' + icons.verified
