@@ -2199,6 +2199,8 @@ Press the button below to open up a modal to type out the reason and confirm giv
         if (message.content.startsWith('?reqban')) {
             try {
                 const ign = message.content.split('?reqban ')[1];
+                if (db[message.author.id] == undefined) return message.reply({embeds: [noAccountEmbed]});
+                if (db[message.author.id].accountType < 3) return message.reply({ embeds: [modEmbed] });
                 if (!ign || names[ign] == undefined) return message.reply({
                     embeds: [
                         new EmbedBuilder()
@@ -2229,6 +2231,8 @@ Press the button below to open up a modal to type out the reason and confirm giv
         if (message.content.startsWith('?requnban')) {
             try {
                 const ign = message.content.split('?requnban ')[1];
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType < 3) return message.reply({ embeds: [modEmbed] });
                 if (!ign || names[ign] == undefined) return message.reply({
                     embeds: [
                         new EmbedBuilder()
