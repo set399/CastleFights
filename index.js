@@ -2481,10 +2481,10 @@ cl.on('interactionCreate', async interaction => {
             if (db[user].requestTs > Date.now()) return await interaction.reply({content: `:no_entry_sign: **You have already have made a request in the past 24 hours, you can create a new one: <t:${db[user].requestTs}:R>**`, flags: 64});
             const modal = new ModalBuilder()
                 .setCustomId('requestModal_' + category + '_' + user)
-                .setTitle(`Submit a Castle Fights Request`);
+                .setTitle(`${requestCategory[category]} request`);
             const requestInput = new TextInputBuilder()
                 .setCustomId('requestText_' + user)
-                .setLabel(`Enter the text for your ${category} request`)
+                .setLabel(`Enter the text for your request`)
                 .setStyle('Paragraph')
                 .setRequired(true)
             const modalRow = new ActionRowBuilder().addComponents(requestInput);
