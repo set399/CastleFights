@@ -2144,10 +2144,13 @@ Press the button below to open up a model to type out the reason and confirm giv
                     ],
                     components: [
                         new ActionRowBuilder()
-                            .setCustomId('ban_' + message.author.id + '_' + names[message.author.id].id)
+                            .addComponents(
+                            new ButtonBuilder()
+                            .setCustomId('ban_' + message.author.id + '_' + names[ign].id)
                             .setLabel('Ban User')
                             .setStyle('Danger')
                             .setEmoji('🔨')
+                        )
                     ]
                 });
             } catch (error) {
