@@ -2563,7 +2563,7 @@ ${text}
             if (interaction.isFromMessage() && interaction.message) {
                 await interaction.reply({
                     embeds: [
-                        new MessageEmbed()
+                        new EmbedBuilder()
                             .setTitle(':white_check_mark: Request sent!')
                             .setDescription(`You have successfully sent a **${requestCategory[category]} request**! Please check your :inbox_tray: \`?inbox\` for a response!`)
                             .setColor('Green')
