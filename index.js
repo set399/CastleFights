@@ -2479,6 +2479,7 @@ cl.on('interactionCreate', async interaction => {
             if (!db[user].canUseRequest) return await interaction.reply({content: `:no_entry_sign: **You are banned from creating requests!**`, flags: 64});
             if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
             if (db[user].requestTs > Date.now()) return await interaction.reply({content: `:no_entry_sign: **You have already have made a request in the past 24 hours, you can create a new one: <t:${Math.floor(db[user].requestTs/1000)}:R>**`, flags: 64});
+            if (interaction.user.id !== user) return await interaction.reply({content: `:no_entry_sign: **This is not your command! Run your own \`?request\` to submit a Request`, flags: 64});
             const modal = new ModalBuilder()
                 .setCustomId('requestModal_' + category + '_' + user)
                 .setTitle(`${requestCategory[category]} request`);
