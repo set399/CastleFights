@@ -2535,6 +2535,14 @@ cl.on('interactionCreate', async interaction => {
             console.error(`Failed to process register modal (${interaction.customId}) interaction: ${error}`);
         }
     }
+    if (interaction.isModalSubmit() && interaction.customId.startsWith('requestModal_')) {
+        const parts = interaction.customid.split('_');
+        const category = parts[1];
+        const user = parts[2];
+        const text = interaction.fields.getTextInputValue('requestText_' + id);
+        db[user].requestTs = Date.now() + (1000 * 60 * 60 * 24);
+
+    }
 });
 
 
