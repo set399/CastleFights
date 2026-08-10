@@ -2141,7 +2141,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                             .setTitle(`:hammer: Ban \`@${ign}\`?`)
                             .setDescription(`
 You are about to ban ${skins[user.skin]} **${user.display}** (Level ${getLevel(user.xp).level}), are you sure?
-Press the button below to open up a model to type out the reason and confirm giving the user a ban
+Press the button below to open up a modal to type out the reason and confirm giving the user a ban
 `)
                             .setColor('Red')
                             .setFooter({text: `?ban | woahh banning are we`})
