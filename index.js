@@ -2338,54 +2338,54 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                                 .setEmoji('👤')
                                 .setLabel('Username Change')
                                 .setStyle('Secondary')
-                                .setCustomId('request_userchange'),
+                                .setCustomId('request_userchange_' + message.author.id),
                             new ButtonBuilder()
                                 .setEmoji(icons.verified)
                                 .setLabel('Request Verification')
                                 .setStyle('Secondary')
-                                .setCustomId('request_verification'),
+                                .setCustomId('request_verification_' + message.author.id),
                             new ButtonBuilder()
                                 .setEmoji('⚠️')
                                 .setLabel('Report a Player')
                                 .setStyle('Danger')
-                                .setCustomId('request_report'),
+                                .setCustomId('request_report_' + message.author.id),
                             new ButtonBuilder()
                                 .setEmoji('🔨')
                                 .setLabel('Ban Appeal')
                                 .setStyle('Primary')
-                                .setCustomId('request_appeal'),
+                                .setCustomId('request_appeal_' + message.author.id),
                             new ButtonBuilder()
                                 .setEmoji('🗺️')
                                 .setLabel('Submit Official Map')
                                 .setStyle('Secondary')
-                                .setCustomId('request_map'),
+                                .setCustomId('request_map_' + message.author.id),
                         ),
                         new ActionRowBuilder().addComponents(
                             new ButtonBuilder()
                                 .setEmoji('💡')
                                 .setLabel('Suggest a Feature')
                                 .setStyle('Primary')
-                                .setCustomId('request_feature'),
+                                .setCustomId('request_feature_' + message.author.id),
                             new ButtonBuilder()
                                 .setEmoji(icons.github)
                                 .setLabel('Claim GitHub Reward')
                                 .setStyle('Success')
-                                .setCustomId('request_github'),
+                                .setCustomId('request_github_' + message.author.id),
                             new ButtonBuilder()
                                 .setEmoji('👥')
                                 .setLabel('Whitelist a new account')
                                 .setStyle('Secondary')
-                                .setCustomId('request_whitelist'),
+                                .setCustomId('request_whitelist_' + message.author.id),
                                 new ButtonBuilder()
                                 .setEmoji('🔁')
                                 .setLabel('Transfer progress')
                                 .setStyle('Secondary')
-                                .setCustomId('request_transfer'),
+                                .setCustomId('request_transfer_' + message.author.id),
                             new ButtonBuilder()
                                 .setEmoji('❓')
                                 .setLabel('Other')
                                 .setStyle('Secondary')
-                                .setCustomId('request_other'),
+                                .setCustomId('request_other_' + message.author.id),
 
                         )
                     ]
@@ -2460,6 +2460,9 @@ cl.on('interactionCreate', async interaction => {
         } catch (error) {
             console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
         }
+    }
+    if (interaction.isButton() && interaction.customId.startsWith('request_')) {
+        
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
         try {
