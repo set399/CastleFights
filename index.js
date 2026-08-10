@@ -2662,15 +2662,15 @@ ${inboxContents}
                                 new ButtonBuilder()
                                     .setCustomId('inboxDismiss_all_' + message.author.id)
                                     .setLabel('Dismiss All')
-                                    .setColor('Red'),
+                                    .setStyle('Danger'),
                                 new ButtonBuilder()
                                     .setCustomId('inboxDismiss_latest_' + message.author.id)
                                     .setLabel('Dismiss Latest')
-                                    .setColor('Red'),
+                                    .setStyle('Danger'),
                                 new ButtonBuilder()
                                     .setCustomId('inboxDismiss_oldest_' + message.author.id)
                                     .setLabel('Dismiss Oldest')
-                                    .setColor('Red'),
+                                    .setStyle('Danger'),
 
                         )
                     ]
