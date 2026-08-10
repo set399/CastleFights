@@ -2625,6 +2625,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
             }
         }
         if (message.content.startsWith('?inbox')) {
+            try {
                 if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
                 let inboxContents = '';
                 let unsentInfo = '';
@@ -2636,10 +2637,10 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         author = 'Castle Fights ' + icons.verified;
                     } else {
                         const authorUser = db[names[msg.author].id]
-                        author = `${names[author].display}${displayBadge('mod', authorUser.badges.mod)}${displayBadge('verified', authorUser.badges.mod)}${displayBadge('challenger', authorUser.badges.challenger)}${displayBadge('crafter', authorUser.badges.crafter)}`;
+                        author = `${names[msg.author].display}${displayBadge('mod', authorUser.badges.mod)}${displayBadge('verified', authorUser.badges.mod)}${displayBadge('challenger', authorUser.badges.challenger)}${displayBadge('crafter', authorUser.badges.crafter)}`;
                     }
                     inboxContents +=
-`
+                        `
 ================================
 **Author:** 
 **Sent at:** <t:${msg.ts}:R>
@@ -2659,7 +2660,7 @@ ${unsentInfo}
 ${inboxContents}
 `)
                             .setColor(embedColors[db[message.author.id].settings.embedcolor])
-                            .setFooter({text: `?inbox | ${(db[message.author.id].inbox.length/5)*100}% of inbox space used`})
+                            .setFooter({ text: `?inbox | ${(db[message.author.id].inbox.length / 5) * 100}% of inbox space used` })
                     ], components: [
                         new ActionRowBuilder()
                             .addComponents(
@@ -2676,9 +2677,12 @@ ${inboxContents}
                                     .setLabel('Dismiss Oldest')
                                     .setStyle('Danger'),
 
-                        )
+                            )
                     ]
                 });
+            } catch (error) {
+                console.error(`Failed to process ?inbox command at ${message.channel.id}: ${error}`)
+            }
         }
     }); 
 
