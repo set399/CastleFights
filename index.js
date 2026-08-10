@@ -2109,7 +2109,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
                 if (db[message.author.id].accountType < 3) return message.reply({ embeds: [modEmbed] });
                 const ign = message.content.split('?ban ')[1];
-                if (!ign || db[names[ign].id] == undefined) return message.reply({
+                if (!ign || names[ign] == undefined) return message.reply({
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user doesn\'t exist!')
@@ -2117,7 +2117,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     ]
                 });
                 const user = db[names[ign].id];
-                if (user.accountType !== 2) return message.reply({
+                if (user.accountType !== -2) return message.reply({
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user is already banned!')
