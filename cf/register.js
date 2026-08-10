@@ -136,6 +136,7 @@ function register(name, dbSize) {
             highestWinstreak: 0
         },
         inbox: [],
+        inboxFails: 0,
         profileviews: 0,
         canUseRequest: true,
         requestTs: Date.now(),

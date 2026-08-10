@@ -265,7 +265,10 @@ const textures = {
     }
 
 
-
+    function inboxSend(user, message) {
+        if (!user.inbox || !user || !message) return;
+        if(user.inbox.length >= 5)
+    }
 
     function healthStatus(health, maxHealth) {
         const hpPercentage = (health / maxHealth) * 100;
