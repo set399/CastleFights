@@ -2636,11 +2636,11 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         author = 'Castle Fights ' + icons.verified;
                     } else {
                         const authorUser = db[names[msg.author].id]
-                        author = ${ names[author].display }${ displayBadge('mod', authorUser.badges.mod) }${ displayBadge('verified', authorUser.badges.mod) }${ displayBadge('challenger', authorUser.badges.challenger) }${ displayBadge('crafter', authorUser.badges.crafter) }
+                        author = `${names[author].display}${displayBadge('mod', authorUser.badges.mod)}${displayBadge('verified', authorUser.badges.mod)}${displayBadge('challenger', authorUser.badges.challenger)}${displayBadge('crafter', authorUser.badges.crafter)}`;
                     }
                     inboxContents += `
 ================================
-**Author:** ${author}
+**Author:** 
 **Sent at:** <t:${msg.ts}:R>
 **Text:**
 \`\`\`
