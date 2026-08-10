@@ -2117,7 +2117,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                     ]
                 });
                 const user = db[names[ign].id];
-                if (user.accountType !== -2) return message.reply({
+                if (user.accountType == -2) return message.reply({
                     embeds: [
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: This user is already banned!')
