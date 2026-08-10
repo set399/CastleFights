@@ -265,9 +265,10 @@ const textures = {
     }
 
 
-    function inboxSend(user, message) {
-        if (!user.inbox || !user || !message) return;
-        if(user.inbox.length >= 5)
+    function inboxSend(user, message, author) {
+        if (!user.inbox || !user || !message || !author) return;
+        if (user.inbox.length >= 5) return user.inboxFails++;
+        return user.inbox.push({ts: Date.now(), author: author, text: message});
     }
 
     function healthStatus(health, maxHealth) {
