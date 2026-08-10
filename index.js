@@ -2182,6 +2182,7 @@ Press the button below to open up a modal to type out the reason and confirm giv
                             .setColor('Red')
                     ]
                 });
+                user.accountType = 1;
                 return message.reply({
                     embeds: [
                         new EmbedBuilder()
@@ -2708,6 +2709,8 @@ What this means for you:
             `, 'system');
             db[banUser].accountType = -2;
             db[banUser].disableReason = reason;
+            db[banUser].badges.mod = 0;
+            db[banUser].badges.verified = 0;
             if (interaction.isFromMessage() && interaction.message) {
                 await interaction.deferUpdate();
                 await interaction.message.delete();
