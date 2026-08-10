@@ -2655,6 +2655,17 @@ ${text}
             console.error(`Failed to process request modal (${interaction.customId}) interaction: ${error}`);
         }
     }
+    if (interaction.isModalSubmit() && interaction.customId.startsWith('banModal_')) {
+        try {
+            const parts = interaction.customId.split('_');
+            const user = parts[1];
+            const banUser = parts[2];
+            const reason = interaction.fields.getTextInputValue('banReason_' + user);
+
+        } catch (error) {
+            console.error(`Failed to process ban modal (${interaction.customId}) interaction: ${error}`);
+        }
+    }
 });
 
 
