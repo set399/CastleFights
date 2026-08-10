@@ -2483,7 +2483,7 @@ cl.on('interactionCreate', async interaction => {
                 .setCustomId('requestModal_' + category + '_' + id)
                 .setTitle(`Submit a Castle Fights Request (Category: ${category})`);
             const requestInput = new TextInputBuilder()
-                .setCustomId('requestText_' + id)
+                .setCustomId('requestText_' + user)
                 .setLabel(`Enter the text for your ${category} request`)
                 .setStyle('Paragraph')
                 .setRequired(true)
