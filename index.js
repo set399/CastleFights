@@ -2388,6 +2388,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 console.error(`Failed to process ?editor command at ${message.channel.id}: ${error}`);
             }
         }
+        // Account Commands
         if (message.content.startsWith('?request')) {
             try {
                 if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
@@ -2491,6 +2492,36 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 });
             } catch (error) {
                 console.error(`Failed to process ?request command at ${message.channel.id}: ${error}`);
+            }
+        }
+        if (message.content.startsWith('?whitelist')) {
+            try {
+                const ign = message.content.split('?whitelist ')[1];
+                if (!ign) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':bust_in_silhouette: Whitelist Command')
+                            .setDescription(`
+* This command serves for people whose accounts are **less than a month old**
+* Because the \`?register\` requirement is for your account to be older than a month, you cannot register if it's too young
+* However if you have a friend who already has an account registered on :european_castle: **Castle Fights**, they can \`?request\` to whitelist you into the game regardless of your account's age if you're a new discord user looking to play or something happened to your previous account and you had to make a new one
+* **The correct usage of this command is \`?whitelist <your-future-ign>\`, it follows the same rules as the \`?register\` command**
+* Once you submit your IGN you wish to use with this command and your friend submits a requesst to whitelist you and it gets accepted, your account will automatically be made with specified username!
+`)
+                            .setColor('Green')
+                            .setFooter({text: `?whitelist | idk what to actual put as the footer this time to be honest`})
+                    ]
+                });
+                if (db[message.author.id]) return message.reply({
+                    embeds: [
+                        new MessageEmbed()
+                            .setTitle(':no_entry_sign: You already have an account!')
+                            .setColor('Red')
+                    ]
+                });
+                wh.whitelist.send({embeds: `**:bust_in_silhouette: Whitelist | User <@${message.author.id}> (${message.author.username}) wants to be whitelisted as: \`${ign}\`**`});
+            } catch (error) {
+                console.error(`Failed to process ?whitelist command at ${message.channel.id}: ${error}`);
             }
         }
     }); 
