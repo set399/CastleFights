@@ -2563,6 +2563,27 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
     }); 
 
 cl.on('interactionCreate', async interaction => {
+    if (interaction.isButton() && interaction.customId.startsWith('transfer_')) {
+        const id = interaction.customId.split('transfer_')[1];
+        if (!id) return;
+        if (interaction.user.id !== id) return await interaction.reply({ content: `:no_entry_sign: **This is not your message! Please run the \`?transfer\` command yourself to view your Transfer ID!**`, flags: 64 });
+        if (db[message.author.id] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
+        return await interaction.reply({
+            embeds: [
+                new EmbedBuilder()
+                    .setTitle(':lock: Your Transfer ID')
+                    .setDescription(`
+**Click the spoiler below to view your Transfer ID!**
+:arrow_down::arrow_down::arrow_down::arrow_down::arrow_down:
+||\`${db[id].transferID}\`||
+:arrow_up::arrow_up::arrow_up::arrow_up::arrow_up:
+:exclamation ***__Please make sure to save this somewhere where you can access it if anything happens to your Discord account!__***
+                    `)
+                    .setColor('Yellow')
+                    .setFooter({text: `?transfer | Save your Transfer ID!`})
+            ], flags: 64
+        });
+    }
     if (interaction.isButton() && interaction.customId.startsWith('register_')) {
         try {
             const id = interaction.customId.split('register_')[1];
