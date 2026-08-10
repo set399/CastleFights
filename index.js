@@ -2301,8 +2301,6 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
         if (message.content.startsWith('?request')) {
             try {
                 if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
-                if (db[message.author.id].accountType == -1) return message.reply({ embeds: [deletedEmbed] });
-                if (db[message.author.id].accountType == -2) return message.reply({ embeds: [bannedEmbed] });
                 if (!db[message.author.id].canUseRequest) return message.reply({
                     embeds: [
                         new EmbedBuilder()
@@ -2477,9 +2475,10 @@ cl.on('interactionCreate', async interaction => {
             const parts = interaction.customId.split('_');
             const category = parts[1];
             const user = parts[2];
-            if (interaction.customId == user) {
-
-            }
+            if (!user) return;
+            if (!db[user].canUseRequest) return await interaction.reply({content: `:no_entry_sign: **You are banned from creating requests!**`, flags: 64});
+            if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
+            if (db[user].requestTs > Date.now()) return await interaction.reply({content: `:no_entry_sign: **You have already have made a request in the past 24 hours, you can create a new one: <t:${db[user].requestTs}:R>**`, flags: 64});
         } catch (error) {
             console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
         }
