@@ -2654,6 +2654,25 @@ ${msg.text}
 *${db[message.author.id].inbox.length}/5 messages in inbox*
 ${inboxContents}
 `)
+                            .setColor(embedColors[db[message.author.id].settings.embedcolor])
+                            .setFooter({text: `?inbox | ${(db[message.author.id].inbox.length/5)*100}% of inbox space used`})
+                    ], components: [
+                        new ActionRowBuilder()
+                            .addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId('inboxDismiss_all_' + message.author.id)
+                                    .setLabel('Dismiss All')
+                                    .setColor('Red'),
+                                new ButtonBuilder()
+                                    .setCustomId('inboxDismiss_latest_' + message.author.id)
+                                    .setLabel('Dismiss Latest')
+                                    .setColor('Red'),
+                                new ButtonBuilder()
+                                    .setCustomId('inboxDismiss_oldest_' + message.author.id)
+                                    .setLabel('Dismiss Oldest')
+                                    .setColor('Red'),
+
+                        )
                     ]
                 });
             } catch (error) {
