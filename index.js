@@ -2260,6 +2260,54 @@ Press the button below to open up a modal to type out the reason and confirm giv
                 console.error(`Failed to process ?reqban command at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWith('?send')) {
+            try {
+                const ign = message.content.split('?send ')[1];
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType < 3) return message.reply({ embeds: [modEmbed] });
+                if (!ign || names[ign] == undefined) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user doesn\'t exist!')
+                            .setColor('Red')
+                    ]
+                });
+                if (db[ign].inbox.length >= 5) {
+                    db[ign].inboxFails++;
+                    return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle(`:no_entry_sign: This user's inbox is full!`)
+                                .setColor('Red')
+                                .setFooter({text: `?send | +1 unsent message has been added to their counter, they now have ${db[ign].inboxFails}`})
+                        ]
+                    });
+                }
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':envelope: Send a Message')
+                            .setDescription(`
+You are about to send a message to ${skins[db[ign].skin]} **${db[ign].display}** (\`${db[ign].name}\`)
+Click the button below to open up a modal to write the message to send!
+`)
+                            .setColor('Green')
+                            .setFooter({text: '?send | Click the Send button!'})
+                    ], components: [
+                        new ActionRowBuilder()
+                            .addComponents(
+                                new ButtonBuilder()
+                                    .setLabel('Send')
+                                    .setEmoji('✉️')
+                                    .setColor('Success')
+                                    .setCustomId('send_' + names[ign].id + '_' + message.author.id)
+                            )
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?send command at ${message.channel.id}: ${error}`);
+            }
+        }
         // Editor Commands
         if (message.content.startsWith('?editor')) {
             try {
