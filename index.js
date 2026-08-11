@@ -2272,14 +2272,15 @@ Press the button below to open up a modal to type out the reason and confirm giv
                             .setColor('Red')
                     ]
                 });
-                if (db[ign].inbox.length >= 5) {
-                    db[ign].inboxFails++;
+                const user = names[ign].id
+                if (db[user].inbox.length >= 5) {
+                    db[user].inboxFails++;
                     return message.reply({
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: This user's inbox is full!`)
                                 .setColor('Red')
-                                .setFooter({text: `?send | +1 unsent message has been added to their counter, they now have ${db[ign].inboxFails}`})
+                                .setFooter({text: `?send | +1 unsent message has been added to their counter, they now have ${db[user].inboxFails}`})
                         ]
                     });
                 }
@@ -2288,7 +2289,7 @@ Press the button below to open up a modal to type out the reason and confirm giv
                         new EmbedBuilder()
                             .setTitle(':envelope: Send a Message')
                             .setDescription(`
-You are about to send a message to ${skins[db[ign].skin]} **${db[ign].display}** (\`${db[ign].name}\`)
+You are about to send a message to ${skins[db[user].skin]} **${db[user].display}** (\`${db[user].name}\`)
 Click the button below to open up a modal to write the message to send!
 `)
                             .setColor('Green')
@@ -2300,7 +2301,7 @@ Click the button below to open up a modal to write the message to send!
                                     .setLabel('Send')
                                     .setEmoji('✉️')
                                     .setColor('Success')
-                                    .setCustomId('send_' + names[ign].id + '_' + message.author.id)
+                                    .setCustomId('send_' + user + '_' + message.author.id)
                             )
                     ]
                 });
