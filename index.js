@@ -2309,6 +2309,38 @@ Click the button below to open up a modal to write the message to send!
                 console.error(`Failed to process ?send command at ${message.channel.id}: ${error}`);
             }
         }
+        if (message.content.startsWith('?dismissinbox')) {
+            try {
+                const ign = message.content.split('?dismissinbox ')[1];
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType < 3) return message.reply({ embeds: [modEmbed] });
+                if (!ign || names[ign] == undefined) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user doesn\'t exist!')
+                            .setColor('Red')
+                    ]
+                });
+                const user = db[names[ign].id];
+                if (user.inbox.length < 1) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(':no_entry_sign: This user\'s inbox is empty!')
+                            .setColor('Red')
+                    ]
+                });
+                user.inbox.shift();
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(`:white_check_mark: Dismissed the oldest message from \`@${ign}\`'s :envelope: **inbox**!`)
+                            .setColor('Green')
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?dismissinbox command at ${message.channel.id}: ${error}`);
+            }
+        }
         // Editor Commands
         if (message.content.startsWith('?editor')) {
             try {
