@@ -2768,6 +2768,45 @@ ${inboxContents}
     }); 
 
 cl.on('interactionCreate', async interaction => {
+    if (interaction.isButton() && interaction.customId.startsWith('settings')) {
+        try {
+            const parts = interaction.customId.split('_')
+            const category = parts[1];
+            const action = parts[2];
+            const user = parts[3];
+            if (interaction.user.id == user) {
+                if (category == 'levelicon') {
+                    const lvl = parseInt(action.split('lvl')[1]);
+                    db[user].levelIcon = lvl;
+                    interaction.message.delete();
+                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Level Icon** to ${icons['lvl' + lvl]} **Level ${lvl}**`);
+                    return interaction.deferUpdate();
+                }
+                if (category == 'embedcolor') {
+                    db[user].settings.embedcolor = action;
+                    interaction.message.delete();
+                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Embed Color** to **${displayEmbedColor(embedColors[action])}**`);
+                    return interaction.deferUpdate();
+                }
+                if (category == 'profileviews') {
+                    db[user].settings.profileviews = !db[user].settings.profileviews;
+                    interaction.message.delete();
+                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Profile Views** to ${db[user].settings.profileviews ? ':white_check_mark: **Enabled**' : '✖️ **Disabled**'}`);
+                    return interaction.deferUpdate();
+                }
+                if (category == 'anonmode') {
+                    db[user].settings.anonymous = !db[user].settings.anonymous;
+                    interaction.message.delete();
+                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Anonymous Mode** to ${db[user].settings.profileviews ? ':white_check_mark: **Enabled**' : '✖️ **Disabled**'}`);
+                    return interaction.deferUpdate();
+                }
+
+            }
+            return interaction.deferUpdate();
+        } catch (error) {
+            console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
+        }
+    }
     if (interaction.isButton() && interaction.customId.startsWith('transfer_')) {
         const id = interaction.customId.split('transfer_')[1];
         if (!id) return;
@@ -2812,45 +2851,6 @@ cl.on('interactionCreate', async interaction => {
 
         } catch (error) {
             console.error(`Failed to process register (${interaction.customId}) interaction: ${error}`);
-        }
-    }
-    if (interaction.isButton() && interaction.customId.startsWith('settings')) {
-        try {
-            const parts = interaction.customId.split('_')
-            const category = parts[1];
-            const action = parts[2];
-            const user = parts[3];
-            if (interaction.user.id == user) {
-                if (category == 'levelicon') {
-                    const lvl = parseInt(action.split('lvl')[1]);
-                    db[user].levelIcon = lvl;
-                    interaction.message.delete();
-                    if(!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Level Icon** to ${icons['lvl' + lvl]} **Level ${lvl}**`);
-                    return interaction.deferUpdate();
-                }
-                if (category == 'embedcolor') {
-                    db[user].settings.embedcolor = action;
-                    interaction.message.delete();
-                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Embed Color** to **${displayEmbedColor(embedColors[action])}**`);
-                    return interaction.deferUpdate();
-                }
-                if (category == 'profileviews') {
-                    db[user].settings.profileviews = !db[user].settings.profileviews; 
-                    interaction.message.delete();
-                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Profile Views** to ${db[user].settings.profileviews ? ':white_check_mark: **Enabled**' : '✖️ **Disabled**'}`);
-                    return interaction.deferUpdate();
-                }
-                if (category == 'anonmode') {
-                    db[user].settings.anonymous = !db[user].settings.anonymous;
-                    interaction.message.delete();
-                    if (!inGame.has(interaction.channel.id)) interaction.channel.send(`:white_check_mark: Set **Anonymous Mode** to ${db[user].settings.profileviews ? ':white_check_mark: **Enabled**' : '✖️ **Disabled**'}`);
-                    return interaction.deferUpdate();
-                }
-
-            }
-            return interaction.deferUpdate();
-        } catch (error) {
-            console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
         }
     }
     if (interaction.isButton() && interaction.customId.startsWith('request_')) {
@@ -3018,6 +3018,30 @@ What this means for you:
         } catch (error) {
             console.error(`Failed to process ban modal (${interaction.customId}) interaction: ${error}`);
         }
+    }
+    if (interaction.isButton() && interaction.customId.startsWith('inboxDismiss_')) {
+        const parts = interaction.customId.split('_');
+        const action = parts[1];
+        const user = parts[2];
+        if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have a Castle Fights account! Create one with the \`?register\` command!**`, flags: 64 });
+        if (user !== interaction.user.id) return await interaction.reply({ content: `:no_entry_sign: **This is not your inbox! Open your own with the :inbox_tray: \`?inbox\` command!`, flags: 64 });
+        if (db[user].inbox.length < 1) return await interaction.reply({ content: ` :inbox_tray: **Your inbox is empty!**` });
+        if (action == 'all') {
+            const count = db[user].inbox.length;
+            db[user].inbox = [];
+            return await interaction.reply({content: `:wastebasket: **Cleared \`${count}\` messages from your inbox! Check your updated inbox by running the command again!**`, flags: 64});
+        }
+        if (action == 'oldest') {
+            const count = db[user].inbox.length;
+            db[user].inbox.shift();
+            return await interaction.reply({ content: `:wastebasket: **Cleared \`1\` message (oldest) from your inbox! Check your updated inbox by running the command again!**`, flags: 64 });
+        }
+        if (action == 'latest') {
+            const count = db[user].inbox.length;
+            db[user].inbox.pop();
+            return await interaction.reply({ content: `:wastebasket: **Cleared \`1\` message (latest) from your inbox! Check your updated inbox by running the command again!**`, flags: 64 });
+        }
+
     }
 });
 
