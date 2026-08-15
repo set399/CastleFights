@@ -3024,7 +3024,7 @@ What this means for you:
         const action = parts[1];
         const user = parts[2];
         if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have a Castle Fights account! Create one with the \`?register\` command!**`, flags: 64 });
-        if (user !== interaction.user.id) return await interaction.reply({ content: `:no_entry_sign: **This is not your inbox! Open your own with the :inbox_tray: \`?inbox\` command!`, flags: 64 });
+        if (user !== interaction.user.id) return await interaction.reply({ content: `:no_entry_sign: **This is not your inbox! Open your own with the :inbox_tray: \`?inbox\` command!**`, flags: 64 });
         if (db[user].inbox.length < 1) return await interaction.reply({ content: ` :inbox_tray: **Your inbox is empty!**`, flags: 64 });
         if (action == 'all') {
             const count = db[user].inbox.length;
