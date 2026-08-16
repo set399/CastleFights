@@ -2300,7 +2300,7 @@ Click the button below to open up a modal to write the message to send!
                                 new ButtonBuilder()
                                     .setLabel('Send')
                                     .setEmoji('✉️')
-                                    .setColor('Success')
+                                    .setStyle('Success')
                                     .setCustomId('send_' + user + '_' + message.author.id)
                             )
                     ]
