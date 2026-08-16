@@ -2724,7 +2724,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         `
 ================================
 **Author:** 
-**Sent at:** <t:${msg.ts}:R>
+**Sent at:** <t:${Math.floor(msg.ts/1000)}:R>
 **Text:**
 \`\`\`
 ${msg.text}
