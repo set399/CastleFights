@@ -2933,8 +2933,8 @@ cl.on('interactionCreate', async interaction => {
     if (interaction.isButton() && interaction.customId.startsWith('send_')) {
         try {
             const parts = interaction.customId.split('_');
-            const user = parts[1];
-            const sendUser = parts[2];
+            const sendUser = parts[1];
+            const user = parts[2];
             if (!user) return;
             if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
             if (db[user].accountType < 3) return await interaction.reply({ content: `:no_entry_sign: **You do not have permissions to execute this command!**`, flags: 64 });
