@@ -2903,6 +2903,33 @@ cl.on('interactionCreate', async interaction => {
             console.error(`Failed to process ban (${interaction.customId}) interaction: ${error}`);
         }
     }
+    if (interaction.isButton() && interaction.customId.startsWith('inboxDismiss_')) {
+        try {
+            const parts = interaction.customId.split('_');
+            const action = parts[1];
+            const user = parts[2];
+            if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have a Castle Fights account! Create one with the \`?register\` command!**`, flags: 64 });
+            if (user !== interaction.user.id) return await interaction.reply({ content: `:no_entry_sign: **This is not your inbox! Open your own with the :inbox_tray: \`?inbox\` command!**`, flags: 64 });
+            if (db[user].inbox.length < 1) return await interaction.reply({ content: ` :inbox_tray: **Your inbox is empty!**`, flags: 64 });
+            if (action == 'all') {
+                const count = db[user].inbox.length;
+                db[user].inbox = [];
+                return await interaction.reply({ content: `:wastebasket: **Cleared \`${count}\` messages from your inbox! Check your updated inbox by running the command again!**`, flags: 64 });
+            }
+            if (action == 'oldest') {
+                const count = db[user].inbox.length;
+                db[user].inbox.shift();
+                return await interaction.reply({ content: `:wastebasket: **Cleared \`1\` message (oldest) from your inbox! Check your updated inbox by running the command again!**`, flags: 64 });
+            }
+            if (action == 'latest') {
+                const count = db[user].inbox.length;
+                db[user].inbox.pop();
+                return await interaction.reply({ content: `:wastebasket: **Cleared \`1\` message (latest) from your inbox! Check your updated inbox by running the command again!**`, flags: 64 });
+            }
+        } catch (error) {
+            console.error(`Failed to process inboxDismiss (${interaction.customId}) interaction: ${error}`);
+        }
+    }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
         try {
             const id = interaction.customId.split('registerModal_')[1];
@@ -3018,30 +3045,6 @@ What this means for you:
         } catch (error) {
             console.error(`Failed to process ban modal (${interaction.customId}) interaction: ${error}`);
         }
-    }
-    if (interaction.isButton() && interaction.customId.startsWith('inboxDismiss_')) {
-        const parts = interaction.customId.split('_');
-        const action = parts[1];
-        const user = parts[2];
-        if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have a Castle Fights account! Create one with the \`?register\` command!**`, flags: 64 });
-        if (user !== interaction.user.id) return await interaction.reply({ content: `:no_entry_sign: **This is not your inbox! Open your own with the :inbox_tray: \`?inbox\` command!**`, flags: 64 });
-        if (db[user].inbox.length < 1) return await interaction.reply({ content: ` :inbox_tray: **Your inbox is empty!**`, flags: 64 });
-        if (action == 'all') {
-            const count = db[user].inbox.length;
-            db[user].inbox = [];
-            return await interaction.reply({content: `:wastebasket: **Cleared \`${count}\` messages from your inbox! Check your updated inbox by running the command again!**`, flags: 64});
-        }
-        if (action == 'oldest') {
-            const count = db[user].inbox.length;
-            db[user].inbox.shift();
-            return await interaction.reply({ content: `:wastebasket: **Cleared \`1\` message (oldest) from your inbox! Check your updated inbox by running the command again!**`, flags: 64 });
-        }
-        if (action == 'latest') {
-            const count = db[user].inbox.length;
-            db[user].inbox.pop();
-            return await interaction.reply({ content: `:wastebasket: **Cleared \`1\` message (latest) from your inbox! Check your updated inbox by running the command again!**`, flags: 64 });
-        }
-
     }
 });
 
