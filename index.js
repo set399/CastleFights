@@ -2930,6 +2930,31 @@ cl.on('interactionCreate', async interaction => {
             console.error(`Failed to process inboxDismiss (${interaction.customId}) interaction: ${error}`);
         }
     }
+    if (interaction.isButton() && interaction.customId.startsWith('send_')) {
+        try {
+            const parts = interaction.customId.split('_');
+            const user = parts[1];
+            const sendUser = parts[2];
+            if (!user) return;
+            if (db[user] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
+            if (db[user].accountType < 3) return await interaction.reply({ content: `:no_entry_sign: **You do not have permissions to execute this command!**`, flags: 64 });
+            if (db[sendUser] == undefined) return await interaction.reply({ content: `:no_entry_sign: **This user doesn't exist!**`, flags: 64 });
+            if (interaction.user.id !== user) return await interaction.reply({ content: `:no_entry_sign: **This is not your command!**`, flags: 64 });
+            const modal = new ModalBuilder()
+                .setCustomId('sendModal_' + user + '_' + sendUser)
+                .setTitle(`Send a message to ${db[sendUser].display}`);
+            const text = new TextInputBuilder()
+                .setCustomId('sendText_' + user)
+                .setLabel(`Enter the text to send to this user`)
+                .setStyle('Paragraph')
+                .setRequired(true)
+            const modalRow = new ActionRowBuilder().addComponents(text);
+            modal.addComponents(modalRow);
+            await interaction.showModal(modal);
+        } catch (error) {
+            console.error(`Failed to process send (${interaction.customId}) interaction: ${error}`);
+        }
+    }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
         try {
             const id = interaction.customId.split('registerModal_')[1];
