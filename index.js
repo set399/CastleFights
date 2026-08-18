@@ -3078,7 +3078,7 @@ What this means for you:
             const user = parts[2];
             const text = interaction.fields.getTextInputValue('sendText_' + user);
             inboxSend(db[sendUser], text, db[user].name);
-            return await interaction.channel.send({
+            return await interaction.reply({
                 embeds: [
                     new EmbedBuilder()
                         .setTitle(':white_check_mark: Sent Message!')
