@@ -2941,7 +2941,7 @@ cl.on('interactionCreate', async interaction => {
             if (db[sendUser] == undefined) return await interaction.reply({ content: `:no_entry_sign: **This user doesn't exist!**`, flags: 64 });
             if (interaction.user.id !== user) return await interaction.reply({ content: `:no_entry_sign: **This is not your command!**`, flags: 64 });
             const modal = new ModalBuilder()
-                .setCustomId('sendModal_' + user + '_' + sendUser)
+                .setCustomId('sendModal_' + sendUser + '_' + user)
                 .setTitle(`Send a message to ${db[sendUser].display}`);
             const text = new TextInputBuilder()
                 .setCustomId('sendText_' + user)
