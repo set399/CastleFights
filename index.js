@@ -3071,6 +3071,31 @@ What this means for you:
             console.error(`Failed to process ban modal (${interaction.customId}) interaction: ${error}`);
         }
     }
+    if (interaction.isModalSubmit() && interaction.customId.startsWith('sendModal_')) {
+        try {
+            const parts = interaction.customId.split('_');
+            const sendUser = parts[1];
+            const user = parts[2];
+            const text = interaction.fields.getTextInputValue('sendText_' + user);
+            inboxSend(db[sendUser], text, db[user].name);
+            return await interaction.channel.send({
+                embeds: [
+                    new EmbedBuilder()
+                        .setTitle(':white_check_mark: Sent Message!')
+                        .setDescription(`
+You have sent the following message to ${icons['lvl' + db[sendUser].levelIcon]} | ${skins[db[sendUser].skin]} **${db[sendUser].display}**:
+\`\`\`
+${text}
+\`\`\`
+`)
+                        .setColor('Green')
+                        .setFooter({text: `?send | Sent message! :D`})
+                ], flags: 64
+            });
+        } catch (error) {
+            console.error(`Failed to process send modal (${interaction.customId}) interaction: ${error}`);
+        }
+    }
 });
 
 
