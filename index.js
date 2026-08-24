@@ -903,28 +903,6 @@ Your account type does not match the required!
 
     cl.on('messageCreate', async (message) => {
         if (message.author.bot) return null;
-        if (
-            (
-                message.content.startsWith('?register') ||
-                message.content.startsWith('?profile') ||
-                message.content.startsWith('?inventory') ||
-                message.content.startsWith('?lootboxes') ||
-                message.content.startsWith('?unbox') ||
-                message.content.startsWith('?buy') ||
-                message.content.startsWith('?shop') ||
-                message.content.startsWith('?usercraft') ||
-                message.content.startsWith('?challenges') ||
-                message.content.startsWith('?equip') ||
-                message.content.startsWith('?sell' ||
-                message.content.startsWith('?editor'))
-            ) && inGame.has(message.channel.id)
-        ) {
-            try {
-                message.react('❌');
-            } catch (error) {
-                console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`);
-            }
-        }
         for (const command of commandList) { 
             if (message.content.startsWith(`?${command}`)) {
                 if (inGame.has(message.channel.id)) {
