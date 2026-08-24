@@ -925,7 +925,7 @@ Your account type does not match the required!
                 console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`);
             }
         }
-        commandsList.forEach(command => {
+        commandList.forEach(command => {
             if (message.content.startsWith(`?${command}`)) {
                 if (inGame.has(message.channel.id)) {
                     try {
