@@ -911,6 +911,7 @@ Your account type does not match the required!
                     } catch (error) {
                         console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`)
                     }
+                    return;
                 }
                 return queues.commands.push(new EmbedBuilder()
                     .setTitle('🤖 Command Executed: `' + command + '`')
@@ -926,7 +927,6 @@ ${message.content}
                     .setFooter({ text: `?${command} | @${message.author.username} (${message.author.id})` })
                 );
             }
-            return;
         };
         if (message.content.startsWith('?register')) {
             try {
