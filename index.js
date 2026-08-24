@@ -871,6 +871,35 @@ Your account type does not match the required!
             });
         });
     });
+    const commandList = [
+        'register',
+        'profile',
+        'lootboxes',
+        'shop',
+        'buy',
+        'unbox',
+        'inventory',
+        'equip',
+        'sell',
+        'usercraft',
+        'challenges',
+        'settings',
+        'verify',
+        'unverify',
+        'mod',
+        'unmod',
+        'ban',
+        'unban',
+        'reqban',
+        'requnban',
+        'send',
+        'dismissinbox',
+        'editor',
+        'request',
+        'whitelist',
+        'transfer',
+        'inbox'
+    ];
 
     cl.on('messageCreate', async (message) => {
         if (message.author.bot) return null;
@@ -896,6 +925,7 @@ Your account type does not match the required!
                 console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`);
             }
         }
+        
         if (message.content.startsWith('?register')) {
             try {
                 if (db[message.author.id] == undefined) {
