@@ -913,7 +913,7 @@ Your account type does not match the required!
                     }
                     return;
                 }
-                return queues.commands.push(new EmbedBuilder()
+                queues.commands.push(new EmbedBuilder()
                     .setTitle('🤖 Command Executed: `' + command + '`')
                     .setDescription(`
 :bust_in_silhouette: **User:** \`@${message.author.username}\` (${message.author.globalName}) (<@${message.author.id}>)
@@ -926,6 +926,7 @@ ${message.content}
                     .setColor(whColors.commands)
                     .setFooter({ text: `?${command} | @${message.author.username} (${message.author.id})` })
                 );
+                break;
             }
         };
         if (message.content.startsWith('?register')) {
