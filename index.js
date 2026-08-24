@@ -925,7 +925,7 @@ Your account type does not match the required!
                 console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`);
             }
         }
-        commandList.forEach(command => {
+        for (const command of commandList) { 
             if (message.content.startsWith(`?${command}`)) {
                 if (inGame.has(message.channel.id)) {
                     try {
@@ -934,7 +934,7 @@ Your account type does not match the required!
                         console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`)
                     }
                 }
-                queues.commands.push(new EmbedBuilder()
+                return queues.commands.push(new EmbedBuilder()
                     .setTitle('🤖 Command Executed: `' + command + '`')
                     .setDescription(`
 :bust_in_silhouette: **User:** \`@${message.author.username}\` (${message.author.globalName}) (<@${message.author.id}>)
@@ -945,10 +945,11 @@ ${message.content}
 \`\`\`
                     `)
                     .setColor(whColors.commands)
-                    .setFooter({text: `?${command} | @${message.author.username} (${message.author.id})`})
+                    .setFooter({ text: `?${command} | @${message.author.username} (${message.author.id})` })
                 );
             }
-        });
+            return;
+        };
         if (message.content.startsWith('?register')) {
             try {
                 if (db[message.author.id] == undefined) {
