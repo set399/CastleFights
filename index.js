@@ -847,6 +847,24 @@ Your account type does not match the required!
     .setColor('Red')
     .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
 
+function errorEmbed(user, channel, actionFull, type, err) {
+    const action = action.split('')[0];
+    return new EmbedBuilder()
+        .setTitle(`:no_entry_sign: Error occured on \`${action}\``)
+        .setDescription(`
+:bust_in_silhouette: **User:** \`@${user.username}\` (${user.globalName}) (<@${user.id}>)
+:calendar: **Sent at:** <t:${Math.floor(Date.now() / 1000)}:R>
+:channel: **Channel:** <#${channel.id}>
+:gear: **Action:** \`${actionFull}\` (${type})
+:link: **Error:**
+\`\`\`
+${err}
+\`\`\`
+        `)
+        .setColor('Red')
+        .setFooter({text: `${user.username} failed a ${action} ${type}`})
+};
+
 
     cl.on('clientReady', () => {
         console.log('[0;32mBot started!');
