@@ -865,7 +865,6 @@ ${err}
         .setFooter({text: `${user.username} failed a ${action} ${type}`})
 };
 
-
     cl.on('clientReady', () => {
         console.log('[0;32mBot started!');
         cl.user.setActivity(`to the ? prefix`, { type: "LISTENING" });
@@ -982,6 +981,7 @@ ${message.content}
                 });
             } catch (error) {
                 return console.error(`Failed to send ?register message at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?profile')) {
@@ -993,6 +993,7 @@ ${message.content}
                         return message.reply({embeds: [noAccountEmbed]})
                     } catch (error) {
                         return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[message.author.id].accountType == -1) {
                     try {
@@ -1027,6 +1028,7 @@ ${message.content}
                         });
                     } catch (error) {
                         return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[message.author.id].accountType == -2) {
                     try {
@@ -1064,6 +1066,7 @@ ${user.disableReason}
                         })
                     } catch (error) {
                         return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else {
                     try {
@@ -1111,6 +1114,7 @@ ${badgeDescriptions}
                         })
                     } catch (error) {
                         return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 }
             } else {
@@ -1128,6 +1132,7 @@ ${badgeDescriptions}
                         });
                     } catch (error) {
                         return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[names[ign].id].accountType == -1) {
                     // deleted account
@@ -1163,6 +1168,7 @@ ${badgeDescriptions}
                         })
                     } catch (error) {
                         return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[names[ign].id].accountType == -2) {
                     try {
@@ -1197,6 +1203,7 @@ ${badgeDescriptions}
                         })
                     } catch (error) {
                         return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else {
                     try {
@@ -1245,6 +1252,7 @@ ${badgeDescriptions}
                         })
                     } catch (error) {
                         return console.error(`Failed to send ?profile message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 }
             }
@@ -1255,18 +1263,21 @@ ${badgeDescriptions}
                     return message.reply({ embeds: [noAccountEmbed] });
                 } catch (error) {
                     return console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             } else if (db[message.author.id].accountType == -1) {
                 try {
                     return message.reply({ embeds: [deletedEmbed] });
                 } catch (error) {
                     return console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             } else if (db[message.author.id].accountTpe == -2) {
                 try {
                     return message.reply({ embeds: [bannedEmbed] });
                 } catch (error) {
                     return console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             } else {
                 try {
@@ -1287,6 +1298,7 @@ ${icons.mythicbox} **Mythic Lootbox** - \`${db[message.author.id].lootboxes.myth
                     })
                 } catch (error) {
                     return console.error(`Failed to send ?lootboxes message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             }
         }
@@ -1332,6 +1344,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                 })
             } catch (error) {
                 return console.error(`Failed to send ?shop message at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?buy')) {
@@ -1349,6 +1362,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                     });
                 } catch (error) {
                     return console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             } else {
                 if (db[message.author.id] == undefined) {
@@ -1356,18 +1370,21 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                         return message.reply({ embeds: [noAccountEmbed] });
                     } catch (error) {
                         return console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[message.author.id].accountType == -1) {
                     try {
                         return message.reply({ embeds: [deletedEmbed] });
                     } catch (error) {
                         return console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[message.author.id].accountType == -2) {
                     try {
                         return message.reply({ embeds: [bannedEmbed] });
                     } catch (error) {
                         return console.error(`Failed to send ?buy message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else {
                     try {
@@ -1394,6 +1411,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                         })
                     } catch (error) {
                         return console.error(`Failed to process ?buy at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 }
             } 
@@ -1413,6 +1431,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                     });
                 } catch (error) {
                     return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             } else {
                 if (db[message.author.id] == undefined) {
@@ -1420,18 +1439,21 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                         return message.reply({ embeds: [noAccountEmbed] });
                     } catch (error) {
                         return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[message.author.id].accountType == -1) {
                     try {
                         return message.reply({ embeds: [deletedEmbed] });
                     } catch (error) {
                         return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[message.author.id].accountType == -2) {
                     try {
                         return message.reply({ embeds: [bannedEmbed] });
                     } catch (error) {
                         return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else if (db[message.author.id].lootboxes[box.replace('box', '')] < 1) {
                     try {
@@ -1446,6 +1468,7 @@ ${icons.mythicbox} **Mythic Lootbox** - *Unobtainable through coins, but obtaina
                         });
                     } catch (error) {
                         return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 } else {
                     const reward = roll(box.replace('box', ''));
@@ -1470,6 +1493,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                         });
                     } catch (error) {
                         return console.error(`Failed to send ?unbox message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 }
             }
@@ -1486,6 +1510,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                     });
                 } catch (error) {
                     return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             };
             if (ign && names[ign.toLowerCase()] !== undefined) user = names[ign.toLowerCase()].id;
@@ -1502,6 +1527,7 @@ You have opened a ${lootboxEmojis[box]} **${lootboxNames[box]}** and received:
                     });
                 } catch (error) {
                     return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             }
             try {
@@ -1522,6 +1548,7 @@ ${inv}
                 })
             } catch (error) {
                 return console.error(`Failed to send ?inventory message at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?equip')) {
@@ -1539,6 +1566,7 @@ ${inv}
                     });
                 } catch (error) {
                     return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             } else {
                 if (db[message.author.id] == undefined) {
@@ -1546,6 +1574,7 @@ ${inv}
                         return message.reply({ embeds: [noAccountEmbed] });
                     } catch (error) {
                         return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 }
                 if (!skins[skin]) {
@@ -1561,6 +1590,7 @@ ${inv}
                         });
                     } catch (error) {
                         return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 }
                 if (db[message.author.id].inventory[skin] < 1) {
@@ -1576,6 +1606,7 @@ ${inv}
                         })
                     } catch (error) {
                         return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                        queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                     }
                 }
                 db[message.author.id].skin = skin;
@@ -1589,6 +1620,7 @@ ${inv}
                     });
                 } catch (error) {
                     return console.error(`Failed to send ?equip message at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
 
             }
@@ -1652,6 +1684,7 @@ ${inv}
                     });
                 } catch (error) {
                     console.error(`Failed to process ?sell command at ${message.channel.id}: ${error}`);
+                    queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
                 }
             }
         if (message.content.startsWith('?usercraft')) {
@@ -1745,6 +1778,7 @@ ${icons.crafter} **Crafter (User Badge)** - 50 ${icons.gem} (\`crafter\`)
                 
             } catch (error) {
                 console.error(`Failed to process ?usercraft command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?challenges')) {
@@ -1783,6 +1817,7 @@ ${challengeTierRewardDisplay('coins', challengeRewards['tier' + completingTier].
                 });
             } catch (error) {
                 console.error(`Failed to process ?challenges command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?settings')) {
@@ -2050,6 +2085,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 });
             } catch (error) {
                 console.error(`Failed to process ?settings command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         // Mod Commands
@@ -2078,6 +2114,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 return message.reply({content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and granted ${icons.verified} **Verified** badge`});
             } catch (error) {
                 console.error(`Failed to process ?verify command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?unverify')) {
@@ -2104,7 +2141,8 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 if (user.accountType < 3) user.accountType = 1;
                 return message.reply({ content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and revoked ${icons.verified} **Verified** badge` });
             } catch (error) {
-                console.error(`Failed to process ?verify command at ${message.channel.id}: ${error}`);
+                console.error(`Failed to process ?unverify command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?mod')) {
@@ -2132,6 +2170,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 return message.reply({ content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and granted ${icons.mod} **Moderator** badge` });
             } catch (error) {
                 console.error(`Failed to process ?mod command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?unmod')) {
@@ -2160,6 +2199,7 @@ ${settingsLevelIconUnlockDisplay(100, level)} **Level 100**
                 return message.reply({ content: `:white_check_mark: Set \`${ign}\`'s Account Type to **${user.accountType}** and revoked ${icons.mod} **Moderator** badge` });
             } catch (error) {
                 console.error(`Failed to process ?mod command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?ban')) {
@@ -2213,6 +2253,7 @@ Press the button below to open up a modal to type out the reason and confirm giv
                 });
             } catch (error) {
                 console.error(`Failed to process ?ban command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?unban')) {
@@ -2245,6 +2286,7 @@ Press the button below to open up a modal to type out the reason and confirm giv
                 });
             } catch (error) {
                 console.error(`Failed to process ?unban command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?reqban')) {
@@ -2277,6 +2319,7 @@ Press the button below to open up a modal to type out the reason and confirm giv
                 });
             } catch (error) {
                 console.error(`Failed to process ?reqban command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?requnban')) {
@@ -2309,6 +2352,7 @@ Press the button below to open up a modal to type out the reason and confirm giv
                 });
             } catch (error) {
                 console.error(`Failed to process ?reqban command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?send')) {
@@ -2358,6 +2402,7 @@ Click the button below to open up a modal to write the message to send!
                 });
             } catch (error) {
                 console.error(`Failed to process ?send command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?dismissinbox')) {
@@ -2390,6 +2435,7 @@ Click the button below to open up a modal to write the message to send!
                 });
             } catch (error) {
                 console.error(`Failed to process ?dismissinbox command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         // Editor Commands
@@ -2584,6 +2630,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 }
             } catch (error) {
                 console.error(`Failed to process ?editor command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         // Account Commands
@@ -2690,6 +2737,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 });
             } catch (error) {
                 console.error(`Failed to process ?request command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?whitelist')) {
@@ -2721,6 +2769,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 return message.reply({content: `:white_check_mark: Chose whitelist IGN as **${ign}** (\`@${ign.toLowerCase().replaceAll(' ', '-')}\`)`});
             } catch (error) {
                 console.error(`Failed to process ?whitelist command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?transfer')) {
@@ -2754,6 +2803,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 });
             } catch (error) {
                 console.error(`Failed to process ?transfer command at ${message.channel.id}: ${error}`);
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
         if (message.content.startsWith('?inbox')) {
@@ -2814,6 +2864,7 @@ ${inboxContents}
                 });
             } catch (error) {
                 console.error(`Failed to process ?inbox command at ${message.channel.id}: ${error}`)
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
     }); 
@@ -2856,6 +2907,7 @@ cl.on('interactionCreate', async interaction => {
             return interaction.deferUpdate();
         } catch (error) {
             console.error(`Failed to process settings (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isButton() && interaction.customId.startsWith('transfer_')) {
@@ -2902,6 +2954,7 @@ cl.on('interactionCreate', async interaction => {
 
         } catch (error) {
             console.error(`Failed to process register (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isButton() && interaction.customId.startsWith('request_')) {
@@ -2927,6 +2980,7 @@ cl.on('interactionCreate', async interaction => {
             await interaction.showModal(modal);
         } catch (error) {
             console.error(`Failed to process request (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isButton() && interaction.customId.startsWith('ban_')) {
@@ -2952,6 +3006,7 @@ cl.on('interactionCreate', async interaction => {
             await interaction.showModal(modal);
         } catch (error) {
             console.error(`Failed to process ban (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isButton() && interaction.customId.startsWith('inboxDismiss_')) {
@@ -2979,6 +3034,7 @@ cl.on('interactionCreate', async interaction => {
             }
         } catch (error) {
             console.error(`Failed to process inboxDismiss (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isButton() && interaction.customId.startsWith('send_')) {
@@ -3004,6 +3060,7 @@ cl.on('interactionCreate', async interaction => {
             await interaction.showModal(modal);
         } catch (error) {
             console.error(`Failed to process send (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('registerModal_')) {
@@ -3045,6 +3102,7 @@ cl.on('interactionCreate', async interaction => {
             }
         } catch (error) {
             console.error(`Failed to process register modal (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('requestModal_')) {
@@ -3086,6 +3144,7 @@ ${text}
             }
         } catch (error) {
             console.error(`Failed to process request modal (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('banModal_')) {
@@ -3120,6 +3179,7 @@ What this means for you:
             }
         } catch (error) {
             console.error(`Failed to process ban modal (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
     if (interaction.isModalSubmit() && interaction.customId.startsWith('sendModal_')) {
@@ -3145,6 +3205,7 @@ ${text}
             });
         } catch (error) {
             console.error(`Failed to process send modal (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
 });
