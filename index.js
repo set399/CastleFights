@@ -28,6 +28,7 @@ rl.on('line', async l => {
             })
         } catch (error) {
             console.log(`Failed to log "${l}"`)
+            queues.errors.push(errorEmbed({ id: '0', globalName: 'System', username: 'system' }, {id: 'SYSTEM'} , 'readlineLog', 'system action', error));
         }
     });
 });
@@ -59,6 +60,7 @@ names.json length: ${JSON.stringify(names).length}
 
             } catch (error) {
                 return console.error(error);
+                queues.errors.push(errorEmbed({ id: '0', globalName: 'System', username: 'system' }, { id: 'SYSTEM' }, 'dbDeposit', 'system action', error));
             }
         }, 20000);
         // console.log(JSON.stringify(db));
@@ -927,6 +929,7 @@ ${err}
                         message.react('❌');
                     } catch (error) {
                         console.error(`Failed to react to ${message.content} with X at ${message.channel.id}: ${error}`)
+                        queues.errors.push(errorEmbed(message.author, message.channel.id, message.content + ' (inGame)', 'reaction', error));
                     }
                     return;
                 }
