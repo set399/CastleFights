@@ -850,7 +850,7 @@ Your account type does not match the required!
     .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
 
 function errorEmbed(user, channel, actionFull, type, err) {
-    const action = action.split('')[0];
+    const action = actionFull.split('')[0];
     return new EmbedBuilder()
         .setTitle(`:no_entry_sign: Error occured on \`${action}\``)
         .setDescription(`
@@ -2904,12 +2904,12 @@ ${inboxContents}
                                     .setCustomId('host_public_' + message.author.id)
                                     .setLabel('Public')
                                     .setEmoji('🌍')
-                                    .setStyle('SECONDARY'),
+                                    .setStyle('Secondary'),
                                 new ButtonBuilder()
                                     .setCustomId('host_private_' + message.author.id)
                                     .setLabel('Private')
                                     .setEmoji('🔒')
-                                    .setStyle('SECONDARY')
+                                    .setStyle('Secondary')
                         )
                     ]
                 });
