@@ -2971,7 +2971,7 @@ cl.on('interactionCreate', async interaction => {
             if (db[interaction.user.id] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
             if (db[interaction.user.id].accountType == -1) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
             if (db[interaction.user.id].accountType == -2) return await interaction.reply({ content: `:no_entry_sign: **You have been banned from Castle Fights! (How tf did you run this command tho)**`, flags: 64 });
-            if (type == 'public') {
+
                 const modal = new ModalBuilder()
                     .setCustomId('hostModal_' + type + id)
                     .setTitle('Hosting a Game');
@@ -2994,7 +2994,7 @@ cl.on('interactionCreate', async interaction => {
                     );
                     */
                 const optionsPicker = new LabelBuilder()
-                    .setLabel('Checkbox Group')
+                    .setLabel('Select additional settings')
                     .setCheckboxGroupComponent((checkboxes) =>
                         checkboxes.setCustomId('hostOption_optionsSelect_' + interaction.user.id).addOptions([
                             { label: 'Disable Fancy Garden', value: 'disableFancyGarden', description: `Disable an exploration biome which gives additional items and can be considered too overpowered.` },
@@ -3002,13 +3002,18 @@ cl.on('interactionCreate', async interaction => {
                             { label: 'Show Events', value: 'showEvents', description: 'Log kills and different game events in the embed of the game' },
                             { label: 'Disable Utility items', value: 'disableUtils', description: 'Disable Firecracker, Bomb and Powerful Bomb' }
                         ]),
-                    );
+            );
+            const components = [mapPicker, optionsPicker];
+            if (type == 'private') {
+                const customMapPicker = new TextInputBuilder()
+                    .setCustomId('hostOption_customMapSelect_' + id)
+                    .setLabel('Or enter a Custom Map ID (only for private games)')
+                    .setStyle('Short')
+                    .setRequired(true);
+                    components.splice(1, 0, customMapPicker)
+            };
                 modal.addLabelComponents(mapPicker, optionsPicker);
                 await interaction.showModal(modal);
-            }
-            if (type == 'private') {
-
-            }
         } catch (error) {
             console.error(`Failed to process host (${interaction.customId}) interaction: ${error}`);
             queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
