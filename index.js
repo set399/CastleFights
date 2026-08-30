@@ -3013,7 +3013,7 @@ cl.on('interactionCreate', async interaction => {
                     .setRequired(true);
                     components.splice(1, 0, customMapPicker)
             };
-                modal.addLabelComponents(mapPicker, optionsPicker);
+                modal.addLabelComponents(...components);
                 await interaction.showModal(modal);
         } catch (error) {
             console.error(`Failed to process host (${interaction.customId}) interaction: ${error}`);
