@@ -2964,7 +2964,7 @@ cl.on('interactionCreate', async interaction => {
     }
     // Server Interactions
     if (interaction.isButton() && interaction.customId.startsWith('host_')) {
-        try {
+  
             const parts = interaction.customId.split('_');
             const type = parts[1];
             const id = parts[2];
@@ -3006,19 +3006,19 @@ cl.on('interactionCreate', async interaction => {
             );
             const components = [mapPicker, optionsPicker];
             if (type == 'private') {
-                const customMapPicker = new TextInputBuilder()
-                    .setCustomId('hostOption_customMapSelect_' + id)
+                const customMapPicker = new LabelBuilder()
                     .setLabel('Or enter a Custom Map ID...')
-                    .setStyle('Short')
-                    .setRequired(true);
+                    .setTextInputComponent((input) =>
+                            input
+                            .setCustomId('hostOption_customMapSelect_' + id)
+                            .setStyle('Short')
+                            .setRequired(false) 
+                    );
                     components.splice(1, 0, customMapPicker)
             };
                 modal.addLabelComponents(...components);
                 await interaction.showModal(modal);
-        } catch (error) {
-            console.error(`Failed to process host (${interaction.customId}) interaction: ${error}`);
-            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
-        }
+   
     }
     // Game Interactions
     // sweepy -w-
