@@ -850,7 +850,7 @@ Your account type does not match the required!
     .setFooter({ text: `Invalid permissions!!! ;< why try to use mod command wowww` });
 
 function errorEmbed(user, channel, actionFull, type, err) {
-    const action = actionFull.split('')[0];
+    const action = actionFull.split(' ')[0];
     return new EmbedBuilder()
         .setTitle(`:no_entry_sign: Error occured on \`${action}\``)
         .setDescription(`
