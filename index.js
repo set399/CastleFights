@@ -2916,15 +2916,35 @@ ${inboxContents}
 
 cl.on('interactionCreate', async interaction => {
     // Logger
-    if (interaction.isButton() || interaction.isModalSubmit()) {
+    if (interaction.isButton()) {
         queues.commands.push(new EmbedBuilder()
             .setTitle('🖱️ Button Pressed: `' + interaction.customId + '`')
             .setDescription(`
 :bust_in_silhouette: **User:** \`@${interaction.user.username}\` (${interaction.user.globalName}) (<@${interaction.user.id}>)
-:calendar: **Pressed at at:** <t:${Math.floor(Date.now() / 1000)}:R>
+:calendar: **Pressed at:** <t:${Math.floor(Date.now() / 1000)}:R>
 :link: **Custom ID:**
 \`\`\`
 ${interaction.customId}
+\`\`\`
+                    `)
+            .setColor(whColors.commands)
+            .setFooter({ text: `?${interaction.customId} | @${interaction.user.username} (${interaction.user.id})` })
+        );
+    }
+    if (interaction.isModalSubmit()) {
+        queues.commands.push(new EmbedBuilder()
+            .setTitle('📋 Modal Completed: `' + interaction.customId + '`')
+            .setDescription(`
+:bust_in_silhouette: **User:** \`@${interaction.user.username}\` (${interaction.user.globalName}) (<@${interaction.user.id}>)
+:calendar: **Completed at:** <t:${Math.floor(Date.now() / 1000)}:R>
+:link: **Custom ID:**
+\`\`\`
+${interaction.customId}
+\`\`\`
+📊 **Values:**
+\`\`\`
+${Array.from(interaction.fields.fields.values())
+.map(field => `(${field.customId}): ${field.value || 'None'}`)}
 \`\`\`
                     `)
             .setColor(whColors.commands)
