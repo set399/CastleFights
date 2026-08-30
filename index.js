@@ -2963,7 +2963,7 @@ cl.on('interactionCreate', async interaction => {
     }
     // Server Interactions
     if (interaction.isButton() && interaction.customId.startsWith('host_')) {
-        try {
+
             const parts = interaction.customId.split('_');
             const type = parts[1];
             const id = parts[2];
@@ -2995,7 +2995,7 @@ cl.on('interactionCreate', async interaction => {
                     .setLabel('Checkbox Group')
                     .setCheckboxGroupComponent((checkboxes) =>
                         checkboxes.setCustomId('hostOption_optionsSelect_' + interaction.user.id).addOptions([
-                            { label: 'Disable Fancy Garden', value: 'disableFancyGarden', description: `Disable an exploration biome with that name which gives additional items and can be considered too overpowered.` },
+                            { label: 'Disable Fancy Garden', value: 'disableFancyGarden', description: `Disable an exploration biome which gives additional items and can be considered too overpowered.` },
                             { label: 'Hide Identities in lobby', value: 'hideIdentities', description: 'Hide the name, badges and stats of both players in the lobby to prevent evading' },
                             { label: 'Show Events', value: 'showEvents', description: 'Log kills and different game events in the embed of the game' },
                             { label: 'Disable Utility items', value: 'disableUtils', description: 'Disable Firecracker, Bomb and Powerful Bomb'}
@@ -3007,10 +3007,7 @@ cl.on('interactionCreate', async interaction => {
             if (type == 'private') {
 
             }
-        } catch (error) {
-            console.error(`Failed to process host (${interaction.customId}) interaction: ${error}`);
-            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
-        }
+
     }
     // Game Interactions
     // sweepy -w-
