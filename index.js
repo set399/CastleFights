@@ -3007,7 +3007,7 @@ cl.on('interactionCreate', async interaction => {
             if (type == 'private') {
                 const customMapPicker = new TextInputBuilder()
                     .setCustomId('hostOption_customMapSelect_' + id)
-                    .setLabel('Or enter a Custom Map ID (only for private games)')
+                    .setLabel('Or enter a Custom Map ID...')
                     .setStyle('Short')
                     .setRequired(true);
                     components.splice(1, 0, customMapPicker)
