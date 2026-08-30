@@ -917,7 +917,8 @@ ${err}
         'request',
         'whitelist',
         'transfer',
-        'inbox'
+        'inbox',
+        'host'
     ];
 
     cl.on('messageCreate', async (message) => {
