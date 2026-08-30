@@ -2870,6 +2870,54 @@ ${inboxContents}
                 queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
         }
+        // Server Commands
+        if (message.content.startsWith('?host')) {
+            try {
+                if (db[message.author.id] == undefined) return message.reply({ embeds: [noAccountEmbed] });
+                if (db[message.author.id].accountType == -1) return message.reply({ embeds: [deletedEmbed] });
+                if (db[message.author.id].accountType == -2) return message.reply({ embeds: [bannedEmbed] }); 
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle('🗄️ Hosting a Game')
+                            .setDescription(`
+# \`Game State:\`
+- :earth_africa: **Public** - *The game will show in the public server list and anyone will be able to join, you **WILL** be awarded for your performance*
+-# Anyone is also able to spectate this game using the \`?spectate\` command, you can only change this behavior by setting your game to :lock: **Private**
+- :lock: **Private** - *Your game will NOT show in the public server list and the only way for your opponent to join is if they know the invite code, you will **NOT** be awarded for your performance*
+
+:map: **In :lock: \`Private\` games, you can select a Custom Map to play, in order to do that, you need to execute the \`?host\` command with the map parameter, like this: \`?host testMapID\`. All Custom Map IDs are [here](https://github.com/set399/CastleFights/blob/master/maps/)**
+# \`Maps:\`
+- :camping: **Ground** - A regular plains map that has 3 destructible decoration trees with **100** :hearts: in the middle as a forest
+- :bridge_at_night: **Bridge** - A map that has 2 plains islands and a stone bridge connecting them both made out of :ro: **Stone** blocks that all have **1,000** :hearts: and are destructible, meaning you can sabotage your enemy from entering your island, under the bridge is water that instantly kills you
+- :desert: **Desert** - A sandy map that goes a bit higher in elevation in the middle and has 3 cacti with **100** :hearts: to obstruct players
+
+**Use the buttons below to choose if the game state is :earth_africa: \`Public\` or :lock: \`Private\`, clicking either buttons will pop up a modal to configure your server's options and host the game**
+`)
+                            .setColor('Green')
+                            .setFooter({text: `Pick one of the buttons below | ?host`})
+                    ],
+                    components: [
+                        new ActionRowBuilder()
+                            .addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId('host_public_' + message.author.id)
+                                    .setLabel('Public')
+                                    .setEmoji('🌍')
+                                    .setStyle('SECONDARY'),
+                                new ButtonBuilder()
+                                    .setCustomId('host_private_' + message.author.id)
+                                    .setLabel('Private')
+                                    .setEmoji('🔒')
+                                    .setStyle('SECONDARY')
+                        )
+                    ]
+                });
+            } catch (error) {
+                console.error(`Failed to process ?host command at ${message.channel.id}: ${error}`)
+                queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
+            }
+        }
     }); 
 
 cl.on('interactionCreate', async interaction => {
