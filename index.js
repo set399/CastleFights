@@ -2883,7 +2883,7 @@ ${inboxContents}
                             .setDescription(`
 # \`Game State:\`
 :earth_africa: **Public** - *The game will show in the public server list and anyone will be able to join, you **WILL** be awarded for your performance*
--# Anyone is also able to spectate this game using the \`?spectate\` command, you can only change this behavior by setting your game to :lock: **Private**
+-# *Anyone is also able to spectate this game using the \`?spectate\` command, you can only change this behavior by setting your game to :lock: **Private***
 :lock: **Private** - *Your game will NOT show in the public server list and the only way for your opponent to join is if they know the invite code, you will **NOT** be awarded for your performance*
 
 :map: **In :lock: \`Private\` games, you can select a Custom Map to play, in order to do that, you need to execute the \`?host\` command with the map parameter, like this: \`?host testMapID\`. All Custom Map IDs are [here](https://github.com/set399/CastleFights/blob/master/maps/)**
@@ -2961,26 +2961,85 @@ cl.on('interactionCreate', async interaction => {
             queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
+    // Server Interactions
+    if (interaction.isButton() && interaction.customId.startsWith('host_')) {
+        try {
+            const parts = interaction.customId.split('_');
+            const type = parts[1];
+            const id = parts[2];
+            if (id !== interaction.user.id) return await interaction.reply({ content: `:no_entry_sign: **This is not your message! Run your own \`?host\` command!! ;<**`, flags: 64 });
+            if (db[interaction.user.id] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
+            if (db[interaction.user.id].accountType == -1) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
+            if (db[interaction.user.id].accountType == -2) return await interaction.reply({ content: `:no_entry_sign: **You have been banned from Castle Fights! (How tf did you run this command tho)**`, flags: 64 });
+            if (type == 'public') {
+                const modal = new ModalBuilder()
+                    .setCustomId('hostModal_' + type + id)
+                    .setTitle('Hosting a Game');
+                const mapPicker = new LabelBuilder()
+                    .setLabel('Select a Map')
+                    .setRadioGroupComponent((options) =>
+                        options.setCustomId('hostOption_mapSelect_' + interaction.user.id).addOptions([
+                            { label: 'Ground', value: 'ground', description: 'A regular plains-themed map with destructible trees', default: true },
+                            { label: 'Bridge', value: 'bridge', description: 'A map of 2 islands connected by a bridge out of destructible stone blocks' },
+                            { label: 'desert', value: 'desert', description: 'A hilly desert map with destructible cacti in the middle that also deal damage' }
+                        ]),
+                );
+                const gamemodePicker = new LabelBuilder()
+                    .setLabel('Select a Gamemode')
+                    .setRadioGroupComponent((options) =>
+                        options.setCustomId('hostOption_gamemodeSelect_' + interaction.user.id).addOptions([
+                            { label: 'Classic', value: 'classic', description: 'The default gamemode, destroy the crown of your opponent and kill them', default: true }
+                        ]),
+                    );
+                const optionsPicker = new LabelBuilder()
+                    .setLabel('Checkbox Group')
+                    .setCheckboxGroupComponent((checkboxes) =>
+                        checkboxes.setCustomId('hostOption_optionsSelect_' + interaction.user.id).addOptions([
+                            { label: 'Disable Fancy Garden', value: 'disableFancyGarden', description: `Disable an exploration biome with that name which gives additional items and can be considered too overpowered.` },
+                            { label: 'Hide Identities in lobby', value: 'hideIdentities', description: 'Hide the name, badges and stats of both players in the lobby to prevent evading' },
+                            { label: 'Show Events', value: 'showEvents', description: 'Log kills and different game events in the embed of the game' },
+                            { label: 'Disable Utility items', value: 'disableUtils', description: 'Disable Firecracker, Bomb and Powerful Bomb'}
+                        ]),
+                    );
+                modal.addLabelComponents(mapPicker, gamemodePicker, optionsPicker);
+                await interaction.showModal(modal);
+            }
+            if (type == 'private') {
+
+            }
+        } catch (error) {
+            console.error(`Failed to process host (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
+        }
+    }
+    // Game Interactions
+    // sweepy -w-
+    // User Interactions
     if (interaction.isButton() && interaction.customId.startsWith('transfer_')) {
-        const id = interaction.customId.split('transfer_')[1];
-        if (!id) return;
-        if (interaction.user.id !== id) return await interaction.reply({ content: `:no_entry_sign: **This is not your message! Please run the \`?transfer\` command yourself to view your Transfer ID!**`, flags: 64 });
-        if (db[interaction.user.id] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
-        return await interaction.reply({
-            embeds: [
-                new EmbedBuilder()
-                    .setTitle(':lock: Your Transfer ID')
-                    .setDescription(`
+        try {
+            const id = interaction.customId.split('transfer_')[1];
+            if (!id) return;
+            if (interaction.user.id !== id) return await interaction.reply({ content: `:no_entry_sign: **This is not your message! Please run the \`?transfer\` command yourself to view your Transfer ID!**`, flags: 64 });
+            if (db[interaction.user.id] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account!**`, flags: 64 });
+            return await interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                        .setTitle(':lock: Your Transfer ID')
+                        .setDescription(`
 **Click the spoiler below to view your Transfer ID!**
 :arrow_down::arrow_down::arrow_down::arrow_down::arrow_down:
 ||\`${db[id].transferID}\`||
 :arrow_up::arrow_up::arrow_up::arrow_up::arrow_up:
 :exclamation: ***__Please make sure to save this somewhere where you can access it if anything happens to your Discord account!__***
                     `)
-                    .setColor('Yellow')
-                    .setFooter({text: `?transfer | Save your Transfer ID!`})
-            ], flags: 64
-        });
+                        .setColor('Yellow')
+                        .setFooter({ text: `?transfer | Save your Transfer ID!` })
+                ], flags: 64
+            });
+        } catch (error) {
+            console.error(`Failed to process transfer (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
+        }
     }
     if (interaction.isButton() && interaction.customId.startsWith('register_')) {
         try {
