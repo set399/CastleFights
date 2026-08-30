@@ -2974,7 +2974,7 @@ cl.on('interactionCreate', async interaction => {
 
                 const modal = new ModalBuilder()
                     .setCustomId('hostModal_' + type + id)
-                    .setTitle('Hosting a Game');
+                    .setTitle('Hosting a Game (' + type + ')');
                 const mapPicker = new LabelBuilder()
                     .setLabel('Select a Map')
                     .setRadioGroupComponent((options) =>
