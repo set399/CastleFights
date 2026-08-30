@@ -2981,7 +2981,7 @@ cl.on('interactionCreate', async interaction => {
                         options.setCustomId('hostOption_mapSelect_' + interaction.user.id).addOptions([
                             { label: 'Ground', value: 'ground', description: 'A regular plains-themed map with destructible trees', default: true },
                             { label: 'Bridge', value: 'bridge', description: 'A map of 2 islands connected by a bridge out of destructible stone blocks' },
-                            { label: 'desert', value: 'desert', description: 'A hilly desert map with destructible cacti in the middle that also deal damage' }
+                            { label: 'Desert', value: 'desert', description: 'A hilly desert map with destructible cacti in the middle that also deal damage' }
                         ]),
                     );
                 /*
