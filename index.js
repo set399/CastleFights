@@ -2886,7 +2886,7 @@ ${inboxContents}
 :earth_africa: **Public** - *The game will show in the public server list and anyone will be able to join, you **WILL** be awarded for your performance*
 -# *Anyone is also able to spectate this game using the \`?spectate\` command, you can only change this behavior by setting your game to :lock: **Private***
 :lock: **Private** - *Your game will NOT show in the public server list and the only way for your opponent to join is if they know the invite code, you will **NOT** be awarded for your performance*
--# :map: **In :lock: \`Private\` games, you can select a Custom Map to play, in order to do that, you need to execute the \`?host\` command with the map parameter, like this: \`?host testMapID\`. All Custom Map IDs are [here](https://github.com/set399/CastleFights/blob/master/maps/)**
+-# :map: In :lock: **Private** games, you can select a Custom Map to play, in order to do that, you need to execute the \`?host\` command with the map parameter, like this: \`?host testMapID\`. All Custom Map IDs are [here](https://github.com/set399/CastleFights/blob/master/maps/)
 `)
                             .setColor('Green')
                             .setFooter({text: `Pick one of the buttons below | ?host`})
@@ -2915,6 +2915,23 @@ ${inboxContents}
     }); 
 
 cl.on('interactionCreate', async interaction => {
+    // Logger
+    if (interaction.isButton() || interaction.isModalSubmit()) {
+        queues.commands.push(new EmbedBuilder()
+            .setTitle('🖱️ Button Pressed: `' + interaction.customId + '`')
+            .setDescription(`
+:bust_in_silhouette: **User:** \`@${interaction.user.username}\` (${interaction.user.globalName}) (<@${interaction.user.id}>)
+:calendar: **Pressed at at:** <t:${Math.floor(Date.now() / 1000)}:R>
+:link: **Custom ID:**
+\`\`\`
+${interaction.customId}
+\`\`\`
+                    `)
+            .setColor(whColors.commands)
+            .setFooter({ text: `?${interaction.customId} | @${interaction.user.username} (${interaction.user.id})` })
+        );
+    }
+    // Settings
     if (interaction.isButton() && interaction.customId.startsWith('settings')) {
         try {
             const parts = interaction.customId.split('_')
