@@ -3003,7 +3003,7 @@ cl.on('interactionCreate', async interaction => {
                             { label: 'Disable Utility items', value: 'disableUtils', description: 'Disable Firecracker, Bomb and Powerful Bomb' }
                         ]),
                     );
-                modal.addLabelComponents(mapPicker, gamemodePicker, optionsPicker);
+                modal.addLabelComponents(mapPicker, optionsPicker);
                 await interaction.showModal(modal);
             }
             if (type == 'private') {
