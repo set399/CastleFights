@@ -2882,18 +2882,11 @@ ${inboxContents}
                         new EmbedBuilder()
                             .setTitle('🗄️ Hosting a Game')
                             .setDescription(`
-# \`Game State:\`
+# \`Select the type of game using the buttons below:\`
 :earth_africa: **Public** - *The game will show in the public server list and anyone will be able to join, you **WILL** be awarded for your performance*
 -# *Anyone is also able to spectate this game using the \`?spectate\` command, you can only change this behavior by setting your game to :lock: **Private***
 :lock: **Private** - *Your game will NOT show in the public server list and the only way for your opponent to join is if they know the invite code, you will **NOT** be awarded for your performance*
-
-:map: **In :lock: \`Private\` games, you can select a Custom Map to play, in order to do that, you need to execute the \`?host\` command with the map parameter, like this: \`?host testMapID\`. All Custom Map IDs are [here](https://github.com/set399/CastleFights/blob/master/maps/)**
-# \`Maps:\`
-- :camping: **Ground** - A regular plains map that has 3 destructible decoration trees with **100** :hearts: in the middle as a forest
-- :bridge_at_night: **Bridge** - A map that has 2 plains islands and a stone bridge connecting them both made out of :ro: **Stone** blocks that all have **1,000** :hearts: and are destructible, meaning you can sabotage your enemy from entering your island, under the bridge is water that instantly kills you
-- :desert: **Desert** - A sandy map that goes a bit higher in elevation in the middle and has 3 cacti with **100** :hearts: to obstruct players
-
-**Use the buttons below to choose if the game state is :earth_africa: \`Public\` or :lock: \`Private\`, clicking either buttons will pop up a modal to configure your server's options and host the game**
+-# :map: **In :lock: \`Private\` games, you can select a Custom Map to play, in order to do that, you need to execute the \`?host\` command with the map parameter, like this: \`?host testMapID\`. All Custom Map IDs are [here](https://github.com/set399/CastleFights/blob/master/maps/)**
 `)
                             .setColor('Green')
                             .setFooter({text: `Pick one of the buttons below | ?host`})
@@ -2964,7 +2957,7 @@ cl.on('interactionCreate', async interaction => {
     }
     // Server Interactions
     if (interaction.isButton() && interaction.customId.startsWith('host_')) {
-  
+        try {
             const parts = interaction.customId.split('_');
             const type = parts[1];
             const id = parts[2];
@@ -2973,52 +2966,56 @@ cl.on('interactionCreate', async interaction => {
             if (db[interaction.user.id].accountType == -1) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
             if (db[interaction.user.id].accountType == -2) return await interaction.reply({ content: `:no_entry_sign: **You have been banned from Castle Fights! (How tf did you run this command tho)**`, flags: 64 });
 
-                const modal = new ModalBuilder()
-                    .setCustomId('hostModal_' + type + id)
-                    .setTitle('Hosting a Game (' + type + ')');
-                const mapPicker = new LabelBuilder()
-                    .setLabel('Select a Map')
-                    .setRadioGroupComponent((options) =>
-                        options.setCustomId('hostOption_mapSelect_' + interaction.user.id).addOptions([
-                            { label: 'Ground', value: 'ground', description: 'A regular plains-themed map with destructible trees', default: true },
-                            { label: 'Bridge', value: 'bridge', description: 'A map of 2 islands connected by a bridge out of destructible stone blocks' },
-                            { label: 'Desert', value: 'desert', description: 'A hilly desert map with destructible cacti in the middle that also deal damage' }
-                        ]),
-                    );
-                /*
-                const gamemodePicker = new LabelBuilder()
-                    .setLabel('Select a Gamemode')
-                    .setRadioGroupComponent((options) =>
-                        options.setCustomId('hostOption_gamemodeSelect_' + interaction.user.id).addOptions([
-                            { label: 'Classic', value: 'classic', description: 'The default gamemode, destroy the crown of your opponent and kill them', default: true }
-                        ]),
-                    );
-                    */
-                const optionsPicker = new LabelBuilder()
-                    .setLabel('Select additional settings')
-                    .setCheckboxGroupComponent((checkboxes) =>
-                        checkboxes.setCustomId('hostOption_optionsSelect_' + interaction.user.id).addOptions([
-                            { label: 'Disable Fancy Garden', value: 'disableFancyGarden', description: `Disable an exploration biome which gives additional items and can be considered too overpowered.` },
-                            { label: 'Hide Identities in lobby', value: 'hideIdentities', description: 'Hide the name, badges and stats of both players in the lobby to prevent evading' },
-                            { label: 'Show Events', value: 'showEvents', description: 'Log kills and different game events in the embed of the game' },
-                            { label: 'Disable Utility items', value: 'disableUtils', description: 'Disable Firecracker, Bomb and Powerful Bomb' }
-                        ]),
-            );
+            const modal = new ModalBuilder()
+                .setCustomId('hostModal_' + type + id)
+                .setTitle('Hosting a Game (' + type + ')');
+            const mapPicker = new LabelBuilder()
+                .setLabel('Select a Map')
+                .setRadioGroupComponent((options) =>
+                    options.setCustomId('hostOption_mapSelect_' + interaction.user.id).addOptions([
+                        { label: 'Ground', value: 'ground', description: 'A regular plains-themed map with destructible trees', default: true },
+                        { label: 'Bridge', value: 'bridge', description: 'A map of 2 islands connected by a bridge out of destructible stone blocks' },
+                        { label: 'Desert', value: 'desert', description: 'A hilly desert map with destructible cacti in the middle that also deal damage' }
+                    ]),
+                );
+            /*
+            const gamemodePicker = new LabelBuilder()
+                .setLabel('Select a Gamemode')
+                .setRadioGroupComponent((options) =>
+                    options.setCustomId('hostOption_gamemodeSelect_' + interaction.user.id).addOptions([
+                        { label: 'Classic', value: 'classic', description: 'The default gamemode, destroy the crown of your opponent and kill them', default: true }
+                    ]),
+                );
+                */
+            const optionsPicker = new LabelBuilder()
+                .setLabel('Select additional settings')
+                .setCheckboxGroupComponent((checkboxes) =>
+                    checkboxes.setCustomId('hostOption_optionsSelect_' + interaction.user.id).addOptions([
+                        { label: 'Disable Fancy Garden', value: 'disableFancyGarden', description: `Disable an exploration biome which gives additional items and can be considered too overpowered.` },
+                        { label: 'Hide Identities in lobby', value: 'hideIdentities', description: 'Hide the name, badges and stats of both players in the lobby to prevent evading' },
+                        { label: 'Show Events', value: 'showEvents', description: 'Log kills and different game events in the embed of the game' },
+                        { label: 'Disable Utility items', value: 'disableUtils', description: 'Disable Firecracker, Bomb and Powerful Bomb' }
+                    ]),
+                );
             const components = [mapPicker, optionsPicker];
             if (type == 'private') {
                 const customMapPicker = new LabelBuilder()
                     .setLabel('Or enter a Custom Map ID...')
                     .setTextInputComponent((input) =>
-                            input
+                        input
                             .setCustomId('hostOption_customMapSelect_' + id)
                             .setStyle('Short')
-                            .setRequired(false) 
+                            .setRequired(false)
                     );
-                    components.splice(1, 0, customMapPicker)
+                components.splice(1, 0, customMapPicker)
             };
-                modal.addLabelComponents(...components);
-                await interaction.showModal(modal);
-   
+            modal.addLabelComponents(...components);
+            await interaction.showModal(modal);
+
+        } catch (error) {
+            console.error(`Failed to process host (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
+        }
     }
     // Game Interactions
     // sweepy -w-
