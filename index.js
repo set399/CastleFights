@@ -3004,7 +3004,7 @@ ${Array.from(interaction.fields.fields.values())
             if (db[interaction.user.id].accountType == -2) return await interaction.reply({ content: `:no_entry_sign: **You have been banned from Castle Fights! (How tf did you run this command tho)**`, flags: 64 });
 
             const modal = new ModalBuilder()
-                .setCustomId('hostModal_' + type + id)
+                .setCustomId('hostModal_' + type + '_' + id)
                 .setTitle('Hosting a Game (' + type + ')');
             const mapPicker = new LabelBuilder()
                 .setLabel('Select a Map')
