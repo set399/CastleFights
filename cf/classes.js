@@ -267,6 +267,19 @@ class CFPlayer {
     
 
 }
+class CFServer {
 
+    constructor(code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent) {
+        this.code = code;
+        this.host = host;
+        this.players = [];
+        this.settings = {
+            fancyGardenEnabled: fancyGarden,
+            hideIdentities: hideIdentities,
+            showEvents: events,
+            disableUtils: disableUtils
+        };
+    }
+}
 
 module.exports = {CFMap, CFPlayer};
