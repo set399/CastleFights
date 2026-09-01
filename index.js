@@ -3054,6 +3054,26 @@ ${Array.from(interaction.fields.fields.values())
             queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
         }
     }
+    if (interaction.isModalSubmit() && interaction.customId.startsWith('hostModal_')) {
+        try {
+            const parts = interaction.customId.split('_');
+            const type = parts[1];
+            const id = parts[2];
+            let options = interaction.fields.getCheckboxGroupValues(`hostOption_optionsSelect_${id}`);
+            let game = {
+                code: WawaUtils.rand('all', 5), gamemode: 'CLASSIC', map: { name: interaction.fields.getTextInputValue('hostOption_customMapSelect_' + id) || interaction.fields.getRadioGroup('hostOption_mapSelect_' + id) }, settings: { fancyGardenEnabled: !options.includes('disableFancyGarden'), hideIdentities: options.includes('hideIdentities'), showEvents: options.includes('showEvents'), disableUtils: options.includes('disableUtils') }, host: db[id].name, opponent: undefined };
+            await interaction.reply({
+                content: `
+ya so this hosts the damn server, here values:
+\`\`\`
+${JSON.stringify(game)}
+\`\`\`
+                `});
+        } catch (error) {
+            console.error(`Failed to process host modal (${interaction.customId}) interaction: ${error}`);
+            queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
+        }
+    }
     // Game Interactions
     // sweepy -w-
     // User Interactions
