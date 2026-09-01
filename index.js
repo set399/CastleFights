@@ -3059,13 +3059,15 @@ ${Array.from(interaction.fields.fields.values())
             const parts = interaction.customId.split('_');
             const type = parts[1];
             const id = parts[2];
+            let customMap;
             let options = interaction.fields.getCheckboxGroup(`hostOption_optionsSelect_${id}`);
+            if (interaction.fields.getTextInputValue('hostOption_customMapSelect_' + id)) customMap = interaction.fields.getTextInputValue('hostOption_customMapSelect_' + id);
             let game = {
-                code: WawaUtils.rand('all', 5), gamemode: 'CLASSIC', map: { name: interaction.fields.getTextInputValue('hostOption_customMapSelect_' + id) || interaction.fields.getRadioGroup('hostOption_mapSelect_' + id) }, settings: { fancyGardenEnabled: !options.includes('disableFancyGarden'), hideIdentities: options.includes('hideIdentities'), showEvents: options.includes('showEvents'), disableUtils: options.includes('disableUtils') }, host: db[id].name, opponent: undefined };
+                code: WawaUtils.rand('all', 5), gamemode: 'CLASSIC', map: { name: customMap || interaction.fields.getRadioGroup('hostOption_mapSelect_' + id) }, settings: { fancyGardenEnabled: !options.includes('disableFancyGarden'), hideIdentities: options.includes('hideIdentities'), showEvents: options.includes('showEvents'), disableUtils: options.includes('disableUtils') }, host: db[id].name, opponent: undefined };
             await interaction.reply({
                 content: `
 ya so this hosts the damn server, here values:
-\`\`\`
+\`\`\`json
 ${JSON.stringify(game)}
 \`\`\`
                 `});

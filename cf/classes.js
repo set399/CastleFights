@@ -279,6 +279,10 @@ class CFServer {
             showEvents: events,
             disableUtils: disableUtils
         };
+        this.phase = 'LOBBY';
+        this.prepPhaseEnd = 0;
+        this.fightEnd = 0;
+        this.finalGameEnd = 0;
     }
 }
 
