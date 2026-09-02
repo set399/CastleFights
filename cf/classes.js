@@ -70,6 +70,7 @@ class CFMap {
     constructor(title, author) {
         this.title = title;
         this.author = author;
+        this.failLoad = false;
         this.settings = {
             allowedPlaceRegion: [
                 { min: [-1, -1], max: [-1, -1] },
@@ -101,6 +102,9 @@ class CFMap {
         return ({ blocksFilled: (x2 - x1 + 1) * (y2 - y1 + 1) });
     }
     render() {
+        if (this.failLoad) {
+            return 'This map failed to load. Please check if all configuration is correct.'
+        }
         let map = '';
         for (var y = 8; y >= 0; y--) {
             let row = '';
