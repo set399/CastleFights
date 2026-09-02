@@ -70,7 +70,12 @@ class CFMap {
     constructor(title, author) {
         this.title = title;
         this.author = author;
-        this.settings = {};
+        this.settings = {
+            allowedPlaceRegion: [
+                { min: [-1, -1], max: [-1, -1] },
+                { min: [-1, -1], max: [-1, -1] }
+            ]
+        };
         this.clear();
     }
     set(x, y, id, hp, props = {}) {
