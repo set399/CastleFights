@@ -269,7 +269,7 @@ class CFPlayer {
 }
 class CFServer {
 
-    constructor(code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent) {
+    constructor(code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapID) {
         this.code = code;
         this.host = host;
         this.players = [];
@@ -283,6 +283,8 @@ class CFServer {
         this.prepPhaseEnd = 0;
         this.fightEnd = 0;
         this.finalGameEnd = 0;
+        this.map = {};
+        this.baseMap = {};
     }
 }
 
