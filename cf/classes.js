@@ -153,6 +153,7 @@ class CFMap {
         let map = JSON.parse(jsonData);
         if (!map.title || typeof map.title !== 'string') throw new Error('CFMap.import(...): Map title not specified'); 
         if (!map.data || !Array.isArray(map.data)) throw new Error('CFMap.import(...): Invalid map data specified');
+        if (!map.settings) throw new Error('CFMap.import(...): No map settings specified');
         this.title = map.title;
         this.data = map.data;
         return this.title;
