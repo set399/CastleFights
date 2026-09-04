@@ -280,6 +280,7 @@ class CFPlayer {
 class CFServer {
 
     constructor(code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapID) {
+        const mapData = await WawaUtils.readf(`./maps/${mapID}.json`);
         this.code = code;
         this.host = host;
         this.players = [];
@@ -293,8 +294,8 @@ class CFServer {
         this.prepPhaseEnd = 0;
         this.fightEnd = 0;
         this.finalGameEnd = 0;
-        this.map = {};
-        this.baseMap = {};
+        this.map = new CFMap(mapData.title, mapData.author).import(mapData);
+        this.baseMap = new CFMap(mapData.title, mapData.author).import(mapData);
     }
 }
 
