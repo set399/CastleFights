@@ -73,8 +73,8 @@ class CFMap {
         this.failLoad = false;
         this.settings = {
             allowedPlaceRegion: [
-                { min: [-1, -1], max: [-1, -1] },
-                { min: [-1, -1], max: [-1, -1] }
+                [{x: -1, y: -1}],
+                [{x: -1, y: -1}]
             ]
         };
         this.clear();
