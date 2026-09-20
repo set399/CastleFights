@@ -3009,7 +3009,7 @@ ${Array.from(interaction.fields.fields.values())
             const mapPicker = new LabelBuilder()
                 .setLabel('Select a Map')
                 .setRadioGroupComponent((options) =>
-                    options.setCustomId('hostOption_mapSelect_' + interaction.user.id).addOptions([
+                    options.setCustomId('map').addOptions([
                         { label: 'Ground', value: 'ground', description: 'A regular plains-themed map with destructible trees', default: true },
                         { label: 'Bridge', value: 'bridge', description: 'A map of 2 islands connected by a bridge out of destructible stone blocks' },
                         { label: 'Desert', value: 'desert', description: 'A hilly desert map with destructible cacti in the middle that also deal damage' }
@@ -3027,7 +3027,7 @@ ${Array.from(interaction.fields.fields.values())
             const optionsPicker = new LabelBuilder()
                 .setLabel('Select additional settings')
                 .setCheckboxGroupComponent((checkboxes) =>
-                    checkboxes.setCustomId('hostOption_optionsSelect_' + interaction.user.id).addOptions([
+                    checkboxes.setCustomId('options').addOptions([
                         { label: 'Disable Fancy Garden', value: 'disableFancyGarden', description: `Disable an exploration biome which gives additional items and can be considered too overpowered.` },
                         { label: 'Hide Identities in lobby', value: 'hideIdentities', description: 'Hide the name, badges and stats of both players in the lobby to prevent evading' },
                         { label: 'Show Events', value: 'showEvents', description: 'Log kills and different game events in the embed of the game' },
@@ -3040,7 +3040,7 @@ ${Array.from(interaction.fields.fields.values())
                     .setLabel('Or enter a Custom Map ID...')
                     .setTextInputComponent((input) =>
                         input
-                            .setCustomId('hostOption_customMapSelect_' + id)
+                            .setCustomId('customMap')
                             .setStyle('Short')
                             .setRequired(false)
                     );
@@ -3060,10 +3060,10 @@ ${Array.from(interaction.fields.fields.values())
             const type = parts[1];
             const id = parts[2];
             let customMap;
-            let options = interaction.fields.getCheckboxGroup(`hostOption_optionsSelect_${id}`);
-            if (type == 'private' && interaction.fields.getTextInputValue('hostOption_customMapSelect_' + id)) customMap = interaction.fields.getTextInputValue('hostOption_customMapSelect_' + id);
+            let options = interaction.fields.getCheckboxGroup('options');
+            if (type == 'private' && interaction.fields.getTextInputValue('customMap')) customMap = interaction.fields.getTextInputValue('customMap');
             let game = {
-                code: WawaUtils.rand('all', 5), gamemode: 'CLASSIC', map: { name: customMap || interaction.fields.getRadioGroup('hostOption_mapSelect_' + id) }, settings: { fancyGardenEnabled: !options.includes('disableFancyGarden'), hideIdentities: options.includes('hideIdentities'), showEvents: options.includes('showEvents'), disableUtils: options.includes('disableUtils') }, host: db[id].name, opponent: undefined };
+                code: WawaUtils.rand('all', 5), gamemode: 'CLASSIC', map: { name: customMap || interaction.fields.getRadioGroup('map') }, settings: { fancyGardenEnabled: !options.includes('disableFancyGarden'), hideIdentities: options.includes('hideIdentities'), showEvents: options.includes('showEvents'), disableUtils: options.includes('disableUtils') }, host: db[id].name, opponent: undefined };
             await interaction.reply({
                 content: `
 ya so this hosts the damn server, here values:
