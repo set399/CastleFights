@@ -300,4 +300,4 @@ class CFServer {
     }
 }
 
-module.exports = {CFMap, CFPlayer};
+module.exports = {CFMap, CFPlayer, CFServer};
