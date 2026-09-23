@@ -77,6 +77,10 @@ class CFMap {
                 [{x: -1, y: -1}]
             ]
         };
+        this.spawnpoints = [
+            { x: 5, y: 5 },
+            { x: 16, y: 5 }
+        ]
         this.clear();
     }
     set(x, y, id, hp, props = {}) {
