@@ -71,12 +71,7 @@ class CFMap {
         this.title = title;
         this.author = author;
         this.failLoad = false;
-        this.settings = {
-            allowedPlaceRegion: [
-                [{x: -1, y: -1}],
-                [{x: -1, y: -1}]
-            ]
-        };
+        this.settings = {};
         this.spawnpoints = [
             { x: 5, y: 5 },
             { x: 16, y: 5 }
