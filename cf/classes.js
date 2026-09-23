@@ -71,7 +71,12 @@ class CFMap {
         this.title = title;
         this.author = author;
         this.failLoad = false;
-        this.settings = {};
+        this.settings = {
+            crowns: [
+                { x: 1, y: 5 },
+                { x: 20, y: 5 }
+            ]
+        };
         this.spawnpoints = [
             { x: 5, y: 5 },
             { x: 16, y: 5 }
