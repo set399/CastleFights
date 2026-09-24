@@ -2648,7 +2648,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     const id = params[0];
                     const x = parseInt(params[1]);
                     const y = parseInt(params[2]);
-                    if ((id !== '1' && id !== '2') || !id || !x || !y || isNaN(x) || isNaN(y)) return message.reply({ embeds: [invalidParamsEmbed] });
+                    if ((id !== '1' && id !== '2') || !id || !x || !y || isNaN(x) || isNaN(y) || x < 1 || x > 20 || y < 1 || y > 9) return message.reply({ embeds: [invalidParamsEmbed] });
                     let playerID = 0;
                     if (id == '2') playerID = 1;
                     editors[message.author.id].settings.spawnpoints[playerID] = { x: x, y: y };
