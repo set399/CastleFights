@@ -2636,6 +2636,34 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 console.error(`Failed to process ?editor command at ${message.channel.id}: ${error}`);
                 queues.errors.push(errorEmbed(message.author, message.channel, message.content, 'command', error));
             }
+            if (action.startsWith('spawnpoint')) {
+                const invalidParamsEmbed = new EmbedBuilder()
+                    .setTitle(':no_entry_sign: Invalid parameters!')
+                    .setDescription(`
+* In order to use the \`?editor spawnpoint\` command, you need to specify :bust_in_silhouette: **Spawnpoint ID** and X and Y coordinates of it
+* __Example: \`?editor spawnpoint 1,5,5\`__ *(Set the Host's spawnpoint [left side] to be 5 blocks from the border and on standard map elevation)*
+* The first argument is Player ID, which is either \`1\` for Game Host or \`2\` for Opponent
+* The other two are X and Y that must not exceed the map size (min X \`1\` Y \`1\`, max X \`20\`, \`9\`)
+                            `)
+                    .setColor('Red');
+                const args = action.split('spawnpoint ')[1];
+                if (!args) return message.reply({ embeds: [invalidParamsEmbed] });
+                const params = args.split(',');
+                const id = params[0];
+                const x = parseInt(params[1]);
+                const y = parseInt(params[2]);
+                if ((id !== '1' && id !== '2') || !id || !x || !y || isNaN(x) || isNaN(y)) return message.reply({ embeds: [invalidParamsEmbed] });
+                let playerID = 0;
+                if (id == '2') playerID = 1;
+                editors[message.author.id].spawnpoints[playerID] = { x: x, y: y };
+                return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                            .setTitle(`:white_check_mark: Set Player \`${id}\`'s Spawnpoint to \`${x}, ${y}\``)
+                            .setColor('Green')
+                    ]
+                });
+            }
         }
         // Account Commands
         if (message.content.startsWith('?request')) {
