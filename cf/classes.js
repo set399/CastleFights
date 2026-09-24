@@ -75,12 +75,12 @@ class CFMap {
             crowns: [
                 { x: 1, y: 5 },
                 { x: 20, y: 5 }
+            ],
+            spawnpoints: [
+                { x: 5, y: 5 },
+                { x: 16, y: 5 }
             ]
         };
-        this.spawnpoints = [
-            { x: 5, y: 5 },
-            { x: 16, y: 5 }
-        ]
         this.clear();
     }
     set(x, y, id, hp, props = {}) {
