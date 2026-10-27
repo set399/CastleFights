@@ -3090,15 +3090,13 @@ ${Array.from(interaction.fields.fields.values())
             let customMap;
             let options = interaction.fields.getCheckboxGroup('options');
             if (type == 'private' && interaction.fields.getTextInputValue('customMap')) customMap = interaction.fields.getTextInputValue('customMap');
-            let game = {
-                code: WawaUtils.rand('all', 5), gamemode: 'CLASSIC', map: { name: customMap || interaction.fields.getRadioGroup('map') }, settings: { fancyGardenEnabled: !options.includes('disableFancyGarden'), hideIdentities: options.includes('hideIdentities'), showEvents: options.includes('showEvents'), disableUtils: options.includes('disableUtils') }, host: db[id].name, opponent: undefined };
-            await interaction.reply({
-                content: `
-ya so this hosts the damn server, here values:
-\`\`\`json
-${JSON.stringify(game)}
+            const server = new CFServer(type, WawaUtils.rand(5, 'all'), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, customMap || interaction.fields.getRadioGroup('map'));
+            console.log(`[0;32m+ [Game] New server hosted!|[0m Code: [94m${server.code}[0 Host: [94m${server.host}[0`);
+            interaction.channel.send(`
+\`\`\`js
+${JSON.stringify(server)}
 \`\`\`
-                `});
+`);
         } catch (error) {
             console.error(`Failed to process host modal (${interaction.customId}) interaction: ${error}`);
             queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
