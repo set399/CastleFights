@@ -2651,25 +2651,16 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     if ((id !== '1' && id !== '2') || !id || !x || !y || isNaN(x) || isNaN(y) || x < 1 || x > 20 || y < 1 || y > 9) return message.reply({ embeds: [invalidParamsEmbed] });
                     let playerID = 0;
                     if (id == '2') playerID = 1;
-                    if (editors[message.author.id].settings.spawnpoints[0] === editors[message.author.id].settings.spawnpoints[1]) return message.reply({
-                        embeds: [
-                            new EmbedBuilder()
-                                .setTitle(':no_entry_sign: Both players cannot share the same spawnpoint!')
-                                .setColor('Red')
-                        ]
-                    });
-                    if (editors[message.author.id].settings.spawnpoints[0] === editors[message.author.id].settings.crowns[0] || 
-                        editors[message.author.id].settings.spawnpoints[0] === editors[message.author.id].settings.crowns[1] ||
-                        editors[message.author.id].settings.spawnpoints[1] === editors[message.author.id].settings.crowns[0] ||
-                        editors[message.author.id].settings.spawnpoints[1] === editors[message.author.id].settings.crowns[1]
-                    ) return message.reply({
+                    let placeTo = { x: x, y: y };
+                    if (placeTo === editors[message.author.id].settings.crowns[0] ||
+                        placeTo === editors[message.author.id].settings.crowns[1]) return message.reply({
                         embeds: [
                             new EmbedBuilder()
                                 .setTitle(`:no_entry_sign: This block is already occupied by a ${textures.CROWN1} Crown!`)
                                 .setColor('Red')
-                        ]
-                    });
-                    editors[message.author.id].settings.spawnpoints[playerID] = { x: x, y: y };
+                        ]   
+                        });
+                    editors[message.author.id].settings.spawnpoints[playerID] = placeTo;
                     return message.reply({
                         embeds: [
                             new EmbedBuilder()
