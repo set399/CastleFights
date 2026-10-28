@@ -104,6 +104,8 @@ const textures = {
     OBSIDIAN_U: '🟪',
     CROWN1: '<:cr:1117868600976478299>',
     CROWN2: '<:cr:1117868600976478299>',
+    SPAWNPOINT1: '<:spawnpoint1:1565142053405327461>',
+    SPAWNPOINT2: '<:spawnpoint2:1565142010761969724>',
     invalid: '<:invalid:1337424671171412000>',
 };
     const icons = {
