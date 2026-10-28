@@ -2651,6 +2651,24 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     if ((id !== '1' && id !== '2') || !id || !x || !y || isNaN(x) || isNaN(y) || x < 1 || x > 20 || y < 1 || y > 9) return message.reply({ embeds: [invalidParamsEmbed] });
                     let playerID = 0;
                     if (id == '2') playerID = 1;
+                    if (editors[message.author.id].settings.spawnpoints[0] === editors[message.author.id].settings.spawnpoints[1]) return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle(':no_entry_sign: Both players cannot share the same spawnpoint!')
+                                .setColor('Red')
+                        ]
+                    });
+                    if (editors[message.author.id].settings.spawnpoints[0] === editors[message.author.id].settings.crowns[0] || 
+                        editors[message.author.id].settings.spawnpoints[0] === editors[message.author.id].settings.crowns[1] ||
+                        editors[message.author.id].settings.spawnpoints[1] === editors[message.author.id].settings.crowns[0] ||
+                        editors[message.author.id].settings.spawnpoints[1] === editors[message.author.id].settings.crowns[1]
+                    ) return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle(`:no_entry_sign: This block is already occupied by a ${textures.CROWN1} Crown!`)
+                                .setColor('Red')
+                        ]
+                    });
                     editors[message.author.id].settings.spawnpoints[playerID] = { x: x, y: y };
                     return message.reply({
                         embeds: [
@@ -2679,6 +2697,24 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     if ((id !== '1' && id !== '2') || !id || !x || !y || isNaN(x) || isNaN(y) || x < 1 || x > 20 || y < 1 || y > 9) return message.reply({ embeds: [invalidParamsEmbed] });
                     let playerID = 0;
                     if (id == '2') playerID = 1;
+                    if (editors[message.author.id].settings.crowns[0] === editors[message.author.id].settings.crowns[1]) return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle(':no_entry_sign: Both crowns cannot share the same block space!')
+                                .setColor('Red')
+                        ]
+                    });
+                    if (editors[message.author.id].settings.spawnpoints[0] === editors[message.author.id].settings.crowns[0] ||
+                        editors[message.author.id].settings.spawnpoints[0] === editors[message.author.id].settings.crowns[1] ||
+                        editors[message.author.id].settings.spawnpoints[1] === editors[message.author.id].settings.crowns[0] ||
+                        editors[message.author.id].settings.spawnpoints[1] === editors[message.author.id].settings.crowns[1]
+                    ) return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle(`:no_entry_sign: This block is already occupied by a :bust_in_silhouette: Spawnpoint!`)
+                                .setColor('Red')
+                        ]
+                    });
                     editors[message.author.id].settings.crowns[playerID] = { x: x, y: y };
                     return message.reply({
                         embeds: [
