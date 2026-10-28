@@ -2662,6 +2662,20 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                                 .setColor('Red')
                         ]   
                         });
+                    if (placeTo === editors[message.author.id].settings.spawnpoints[0]) return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle(`:no_entry_sign: This block is already occupied by a ${textures.SPAWNPOINT1} Player 1 Spawnpoint!`)
+                                .setColor('Red')
+                        ]
+                    });
+                    if (placeTo === editors[message.author.id].settings.spawnpoints[1]) return message.reply({
+                        embeds: [
+                            new EmbedBuilder()
+                                .setTitle(`:no_entry_sign: This block is already occupied by a ${textures.SPAWNPOINT2} Player 2 Spawnpoint!`)
+                                .setColor('Red')
+                        ]
+                    });
                     editors[message.author.id].settings.spawnpoints[playerID] = placeTo;
                     return message.reply({
                         embeds: [
