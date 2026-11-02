@@ -65,6 +65,8 @@ const textures = {
     OBSIDIAN: '🟪',
     CROWN: '<:cr:1117868600976478299>',
     INVALID: '<:invalid:1337424671171412000>',
+    SPAWNPOINT1: '<:spawnpoint1:1565142053405327461>',
+    SPAWNPOINT2: '<:spawnpoint2:1565142010761969724>'
 };
 class CFMap {
     constructor(title, author) {
@@ -105,7 +107,8 @@ class CFMap {
         }
         return ({ blocksFilled: (x2 - x1 + 1) * (y2 - y1 + 1) });
     }
-    render() {
+    render(isEditor) {
+        if (!isEditor) isEditor = false;
         if (this.failLoad) {
             return 'This map failed to load. Please check if all configuration is correct.'
         }
@@ -115,6 +118,10 @@ class CFMap {
             for (var x = 0; x < 20; x++) {
                 if (this.data[x][y].id == 'PLAYER') {
                     row += skinsObj[this.data[x][y].props.skin];
+                } else if (isEditor && x == this.settings.spawnpoints[0].x && y == this.settings.spawnpoints[0].y) {
+                    row += textures.SPAWNPOINT1;
+                } else if (isEditor && x == this.settings.spawnpoints[1].x && y == this.settings.spawnpoints[1].y) {
+                    row += textures.SPAWNPOINT2;
                 } else {
                     row += textures[this.data[x][y].id];
                 }
