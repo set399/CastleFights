@@ -2679,6 +2679,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         ]
                     });
                     editors[message.author.id].settings.spawnpoints[playerID] = placeTo;
+                    editors[message.author.id].set(x, y, 'EMPTY', 0, {});
                     return message.reply({
                         embeds: [
                             new EmbedBuilder()
