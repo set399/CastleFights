@@ -2485,7 +2485,7 @@ Use the \`?editor\` command with one of the following parameters to perform acti
                     ]
                 });
                 if (action == 'view') {
-                    const renderedMap = editors[message.author.id].render();
+                    const renderedMap = editors[message.author.id].render(true);
                     return message.reply({
                         embeds: [
                             new EmbedBuilder()
