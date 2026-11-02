@@ -2470,6 +2470,8 @@ Use the \`?editor\` command with one of the following parameters to perform acti
 > \`clear\` - :wastebasket: **Set the whole map to empty blocks**
 > \`set\` - :green_square: **Place a block on the map**
 > \`fill\` - :left_right_arrow: **Bulk place blocks in a region with the same properties on the map**
+> \`spawnpoint\` - :busts_in_silhouette: **Place a spawnpoint on the map**
+> \`crown\` - ${textures.CROWN1} **Place a Crown on the map**
 > \`export\` - :outbox_tray: **Save your map to the servers for later importing or showcase to potentially become as official map**
 > \`import\` - :inbox_tray: **Load a previously created map from the servers**
 
