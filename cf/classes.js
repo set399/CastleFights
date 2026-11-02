@@ -84,7 +84,7 @@ class CFMap {
             ]
         };
         this.clear();
-        this.settings.crowns.forEach((c, playerID) => this.set(c.x, c.y, 'CROWN', 200, {playerID: playerID}))
+        
     }
     set(x, y, id, hp, props = {}) {
         x = Math.floor(x);
@@ -146,9 +146,10 @@ class CFMap {
         for (var x = 0; x < 20; x++) {
             this.data.push([]);
             for (var y = 0; y < 9; y++) {
-                this.data[x].push({ id: 'EMPTY', health: 0 });
+                this.data[x].push({ id: 'EMPTY', health: 0, props: {} });
             }
         };
+        this.settings.crowns.forEach((c, playerID) => this.data[c.x][c.y] = { id: 'CROWN', health: 200, props: { playerID: playerID } });
         return true;
     }
     default() {
