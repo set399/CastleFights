@@ -2470,7 +2470,7 @@ Use the \`?editor\` command with one of the following parameters to perform acti
 > \`clear\` - :wastebasket: **Set the whole map to empty blocks**
 > \`set\` - :green_square: **Place a block on the map**
 > \`fill\` - :left_right_arrow: **Bulk place blocks in a region with the same properties on the map**
-> \`spawnpoint\` - :busts_in_silhouette: **Place a spawnpoint on the map**
+> \`spawnpoint\` - ${textures.SPAWNPOINT1} **Place a spawnpoint on the map**
 > \`crown\` - ${textures.CROWN1} **Place a Crown on the map**
 > \`export\` - :outbox_tray: **Save your map to the servers for later importing or showcase to potentially become as official map**
 > \`import\` - :inbox_tray: **Load a previously created map from the servers**
@@ -2640,7 +2640,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     const invalidParamsEmbed = new EmbedBuilder()
                         .setTitle(':no_entry_sign: Invalid parameters!')
                         .setDescription(`
-* In order to use the \`?editor spawnpoint\` command, you need to specify :bust_in_silhouette: **Spawnpoint ID** and X and Y coordinates of it
+* In order to use the \`?editor spawnpoint\` command, you need to specify ${textures.SPAWNPOINT1} **Spawnpoint ID** and X and Y coordinates of it
 * __Example: \`?editor spawnpoint 1,5,5\`__ *(Set the Host's spawnpoint [left side] to be 5 blocks from the border and on standard map elevation)*
 * The first argument is Player ID, which is either \`1\` for Game Host or \`2\` for Opponent
 * The other two are X and Y that must not exceed the map size (min X \`1\` Y \`1\`, max X \`20\`, \`9\`)
@@ -2682,7 +2682,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     return message.reply({
                         embeds: [
                             new EmbedBuilder()
-                                .setTitle(`:white_check_mark: Set Player \`${id}\`'s Spawnpoint to \`${x}, ${y}\``)
+                                .setTitle(`:white_check_mark: Set Player \`${id}\`'s ${textures['SPAWNPOINT' + id]} Spawnpoint to \`${x}, ${y}\``)
                                 .setColor('Green')
                         ]
                     });
@@ -2733,7 +2733,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     return message.reply({
                         embeds: [
                             new EmbedBuilder()
-                                .setTitle(`${textures.CROWN1} Set Player \`${id}\`'s Crown to \`${x}, ${y}\``)
+                                .setTitle(`${textures.CROWN1} Set Player \`${id}\`'s ${textures.CROWN1} Crown to \`${x}, ${y}\``)
                                 .setColor('Green')
                         ]
                     });
