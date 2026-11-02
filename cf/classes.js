@@ -75,8 +75,8 @@ class CFMap {
         this.failLoad = false;
         this.settings = {
             crowns: [
-                { x: 1, y: 4 },
-                { x: 20, y: 4 }
+                { x: 0, y: 4 },
+                { x: 19, y: 4 }
             ],
             spawnpoints: [
                 { x: 4, y: 4 },
