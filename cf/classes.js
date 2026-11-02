@@ -84,6 +84,7 @@ class CFMap {
             ]
         };
         this.clear();
+        this.settings.crowns.forEach((c, playerID) => this.set(c.x, c.y, 'CROWN', 200, {playerID: playerID}))
     }
     set(x, y, id, hp, props = {}) {
         x = Math.floor(x);
