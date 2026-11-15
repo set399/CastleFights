@@ -141,7 +141,7 @@ class CFMap {
             row += '\n';
             map += row;
         }
-        if (map.length > 3600) {
+        if (map.length >= 3600) {
             let arr = map.split('\n');
             arr.splice(0, 2);
             map = '';
@@ -149,7 +149,21 @@ class CFMap {
                 map += row + '\n';
             });
             map += 'Map too long. Unrendered top 2 vertical rows (Y 7, 8).';
+            if (map.length > 3600 && isEditor) { 
+                map = `
+**Failed to render the map:**
+The map text exceeds the limit of \`3600\` characters, this is caused by using **heavy** blocks in your map *(blocks that use a custom emoji for their display which takes **30** characters instead of 1)*, i.e. ${textures.EMPTY} \`Air\`, ${textures.STEEL} \`Steel\`, ${textures.STONE} \`Stone\` and ${textures.ICE} \`Ice\`
+You can fix this issue by replacing them with other blocks that aren't mentioned in this list, which take only **1** character
+*You cannot export this map as it would cause issues in gameplay if played*
+
+:map: **Map size: \`${map.length}\`** *(Remove \`${(Math.ceil(map.length-3600)/31)}\` heavy blocks to make the map render again)*
+                `;
+            } 
+            if (map.length > 3600 && isEditor == false) {
+                map = `This map failed to load due to being too big (3600+ characters). If this issue continues, please consider contacting the map author, or you can still play (up to you :D), **controls are still enabled, you can choose to play blindly**`;
+            }
         }
+        
         return map;
     }
     clear() {
