@@ -72,7 +72,10 @@ const textures = {
 const DEFAULTS = {
     width: 21,
     height: 9,
-    crown1: [this.width]
+    crown1: [0, 4],
+    crown2: [this.width-1, 4],
+    spawnpoint1: [4, 4],
+    spawnpoint2: [this.width-4, 4]
 };
 
 class CFMap {
