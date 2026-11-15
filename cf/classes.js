@@ -69,13 +69,14 @@ const textures = {
     SPAWNPOINT2: '<:spawnpoint2:1565142010761969724>'
 };
 
+const WIDTH = 21;
+const HEIGHT = 9;
+
 const DEFAULTS = {
-    width: 21,
-    height: 9,
     crown1: { x: 0, y: 4 },
-    crown2: { x: this.width - 1, y: 4 },
+    crown2: { x: WIDTH - 1, y: 4 },
     spawnpoint1: { x: 4, y: 4 },
-    spawnpoint2: { x: this.width - 4, y: 4 }
+    spawnpoint2: { x: WIDTH - 4, y: 4 }
 };
 
 class CFMap {
