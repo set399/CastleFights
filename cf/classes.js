@@ -68,6 +68,13 @@ const textures = {
     SPAWNPOINT1: '<:spawnpoint1:1565142053405327461>',
     SPAWNPOINT2: '<:spawnpoint2:1565142010761969724>'
 };
+
+const DEFAULTS = {
+    width: 21,
+    height: 9,
+    crown1: [this.width]
+};
+
 class CFMap {
     constructor(title, author) {
         this.title = title;
