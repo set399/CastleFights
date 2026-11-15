@@ -86,12 +86,12 @@ class CFMap {
         this.failLoad = false;
         this.settings = {
             crowns: [
-                { x: 0, y: 4 },
-                { x: 19, y: 4 }
+                { ...DEFAULTS.crown1 },
+                { ...DEFAULTS.crown2 }
             ],
             spawnpoints: [
-                { x: 4, y: 4 },
-                { x: 15, y: 4 }
+                { ...DEFAULTS.spawnpoint1 },
+                { ...DEFAULTS.spawnpoint2 }
             ]
         };
         this.clear();
@@ -100,7 +100,7 @@ class CFMap {
     set(x, y, id, hp, props = {}) {
         x = Math.floor(x);
         y = Math.floor(y);
-        if (isNaN(x) || isNaN(y) || x < 0 || x > 19 || y < 0 || y > 8) throw new Error('CFMap.set(...): Object coords exceed the 20x9 area');
+        if (isNaN(x) || isNaN(y) || x < 0 || x > WIDTH || y < 0 || y > HEIGHT) throw new Error(`CFMap.set(...): Object coords exceed the ${WIDTH}x${HEIGHT} area`);
         if (!blockIDs.includes(id)) throw new Error('CFMap.set(...): Invalid Block ID, allowed are: ' + JSON.stringify(blockIDs));
         if (hp < 1) hp = 0;
         if (hp > 100000) hp = 100000;
@@ -110,8 +110,8 @@ class CFMap {
         return this.data[x][y] = { id: id, health: hp, props: props};
     }
     fill(x1, x2, y1, y2, id, hp) {
-        if (isNaN(x1) || isNaN(y1) || x1 < 0 || x1 > 19 || y1 < 0 || y1 > 8) throw new Error('CFMap.fill(...): Fill boundaries (1) exceed the 20x9 area');
-        if (isNaN(x2) || isNaN(y2) || x2 < 0 || x2 > 19 || y2 < 0 || y2 > 8) throw new Error('CFMap.fill(...): Fill boundaries (2) exceed the 20x9 area');
+        if (isNaN(x1) || isNaN(y1) || x1 < 0 || x1 > WIDTH || y1 < 0 || y1 > HEIGHT) throw new Error(`CFMap.fill(...): Fill boundaries (1) exceed the ${WIDTH}x${HEIGHT} area`);
+        if (isNaN(x2) || isNaN(y2) || x2 < 0 || x2 > WIDTH || y2 < 0 || y2 > HEIGHT) throw new Error(`CFMap.fill(...): Fill boundaries (2) exceed the ${WIDTH}x${HEIGHT} area`);
         for (var y = y1; y <= y2; y++) {
             for (var x = x1; x <= x2; x++) {
                 this.set(x, y, id, hp);
@@ -125,9 +125,9 @@ class CFMap {
             return 'This map failed to load. Please check if all configuration is correct.'
         }
         let map = '';
-        for (var y = 8; y >= 0; y--) {
+        for (var y = HEIGHT - 1; y >= 0; y--) {
             let row = '';
-            for (var x = 0; x < 20; x++) {
+            for (var x = 0; x < WIDTH; x++) {
                 if (this.data[x][y].id == 'PLAYER') {
                     row += skinsObj[this.data[x][y].props.skin];
                 } else if (isEditor && x == this.settings.spawnpoints[0].x && y == this.settings.spawnpoints[0].y) {
@@ -154,9 +154,9 @@ class CFMap {
     }
     clear() {
         this.data = [];
-        for (var x = 0; x < 20; x++) {
+        for (var x = 0; x < WIDTH; x++) {
             this.data.push([]);
-            for (var y = 0; y < 9; y++) {
+            for (var y = 0; y < HEIGHT; y++) {
                 this.data[x].push({ id: 'EMPTY', health: 0, props: {} });
             }
         };
@@ -166,18 +166,19 @@ class CFMap {
     default() {
         this.title = 'Example Map';
         this.clear();
-        this.fill(0, 19, 0, 2, 'WOOD', 100000);
-        this.fill(0, 19, 3, 3, 'LEAF', 100000);
+        this.fill(0, WIDTH-1, 0, 2, 'WOOD', 100000);
+        this.fill(0, WIDTH-1, 3, 3, 'LEAF', 100000);
         return this.title;
     }
     export() {
-        return JSON.stringify({ title: this.title, author: this.author, data: this.data});
+        return JSON.stringify({ title: this.title, author: this.author, data: this.data, settings: this.settings, failLoad: this.failLoad});
     }
     import(jsonData) {
         let map = JSON.parse(jsonData);
         if (!map.title || typeof map.title !== 'string') throw new Error('CFMap.import(...): Map title not specified'); 
         if (!map.data || !Array.isArray(map.data)) throw new Error('CFMap.import(...): Invalid map data specified');
         if (!map.settings) throw new Error('CFMap.import(...): No map settings specified');
+        if (map.failLoad) this.failLoad = true;
         this.title = map.title;
         this.data = map.data;
         return this.title;
