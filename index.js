@@ -2494,7 +2494,7 @@ Use the \`?editor\` command with one of the following parameters to perform acti
 ${renderedMap}
 `)
                                 .setColor(embedColors[user.settings.embedcolor])
-                                .setFooter({text: `Map size: ${renderedMap.length}/3600 characters (20x9 blocks of space)`})
+                                .setFooter({text: `Map size: ${renderedMap.length}/3600 characters (21x9 blocks of space)`})
 
                         ]
                     });
@@ -2935,7 +2935,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     }
                     inboxContents +=
                         `
-================================
+━━━━━━━━━━━━━━━━━━━━━━━━━
 **Author:** ${author}
 **Sent at:** <t:${Math.floor(msg.ts/1000)}:R>
 **Text:**
