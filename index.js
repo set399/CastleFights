@@ -2924,7 +2924,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 let inboxContents = '';
                 let unsentInfo = '';
                 if (db[message.author.id].inbox.length <= 0) inboxContents = 'Your inbox is empty. Messages will appear here from account actions, i.e. response to support tickets, getting data reverted, transfering accounts or getting banned. Additionally updates will show up here too!'
-                if (db[message.author.id].inbox.length >= 5) unsentInfo = `⛔ **Your inbox is full! Please dismiss atleast one message otherwise you will not be able to receive any more messages. \`${db[message.author.id].inboxFails}\` messages have failed to send to you so far.**`;
+                if (db[message.author.id].inbox.length >= 5) unsentInfo = `\n⛔ **Your inbox is full! Please dismiss atleast one message otherwise you will not be able to receive any more messages. \`${db[message.author.id].inboxFails}\` messages have failed to send to you so far.**`;
                 db[message.author.id].inbox.forEach(msg => {
                     let author;
                     if (msg.author == 'system') {
@@ -2935,7 +2935,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     }
                     inboxContents +=
                         `
-━━━━━━━━━━━━━━━━━━━━━━━━━
+**━━━━━━━━━━━━━━━━━━━━━━━━━**
 **Author:** ${author}
 **Sent at:** <t:${Math.floor(msg.ts/1000)}:R>
 **Text:**
@@ -2949,8 +2949,7 @@ ${msg.text}
                         new EmbedBuilder()
                             .setTitle(':inbox_tray: Inbox of ' + db[message.author.id].display)
                             .setDescription(`
-*${db[message.author.id].inbox.length}/5 messages in inbox*
-${unsentInfo}
+*${db[message.author.id].inbox.length}/5 messages in inbox*${unsentInfo}
 ${inboxContents}
 `)
                             .setColor(embedColors[db[message.author.id].settings.embedcolor])
