@@ -156,10 +156,9 @@ The map text exceeds the limit of \`3600\` characters, this is caused by using *
 You can fix this issue by replacing them with other blocks that aren't mentioned in this list, which take only **1** character
 *You cannot export this map as it would cause issues in gameplay if played*
 
-:map: **Map size: \`${map.length}\`** *(Remove \`${(Math.ceil(map.length-3600)/31)}\` heavy blocks to make the map render again)*
+:map: **Map size: \`${map.length}\`** *(Remove \`${(Math.ceil((map.length-3600)/29))}\` heavy blocks to make the map render again)*
                 `;
-            } 
-            if (map.length > 3600 && isEditor == false) {
+            } else if (map.length > 3600 && !isEditor) {
                 map = `This map failed to load due to being too big (3600+ characters). If this issue continues, please consider contacting the map author, or you can still play (up to you :D), **controls are still enabled, you can choose to play blindly**`;
             }
         }
