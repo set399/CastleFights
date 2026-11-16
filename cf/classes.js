@@ -51,22 +51,22 @@ const skinsObj = {
     rgbchicken: '<a:rgbchicken:1091024982966026350>'
 };
 const textures = {
-    EMPTY: '<:e_:1337418328875991092>',
+    EMPTY: '<:e:1337418328875991092>',
     WOOD: '🟫',
     LEAF: '🟩',
-    STONE: '<:ro:1337424806399709265>',
+    STONE: '<:r:1337424806399709265>',
     CACTUS: '🌵',
     SAND: '🟨',
-    ICE: '<:ic:1337714434227048449>',
-    STEEL: '<:st:1337806342714298420>',
+    ICE: '<:i:1337714434227048449>',
+    STEEL: '<:s:1337806342714298420>',
     DECO_TREE: '🌲',
     DECO_DEADBUSH: '🪾',
     DECO_PALMTREE: '🌴',
     OBSIDIAN: '🟪',
-    CROWN: '<:cr:1117868600976478299>',
-    INVALID: '<:invalid:1337424671171412000>',
-    SPAWNPOINT1: '<:spawnpoint1:1565142053405327461>',
-    SPAWNPOINT2: '<:spawnpoint2:1565142010761969724>'
+    CROWN: '<:c:1117868600976478299>',
+    INVALID: '<:i:1337424671171412000>',
+    SPAWNPOINT1: '<:s:1565142053405327461>',
+    SPAWNPOINT2: '<:s:1565142010761969724>'
 };
 
 const WIDTH = 21;
@@ -152,11 +152,11 @@ class CFMap {
             if (map.length > 3600 && isEditor) { 
                 map = `
 **Failed to render the map:**
-The map text exceeds the limit of \`3600\` characters, this is caused by using **heavy** blocks in your map *(blocks that use a custom emoji for their display which takes **30** characters instead of 1)*, i.e. ${textures.EMPTY} \`Air\`, ${textures.STEEL} \`Steel\`, ${textures.STONE} \`Stone\` and ${textures.ICE} \`Ice\`
+The map text exceeds the limit of \`3600\` characters, this is caused by using **heavy** blocks in your map *(blocks that use a custom emoji for their display which takes **24** characters instead of 1)*, i.e. ${textures.EMPTY} \`Air\`, ${textures.STEEL} \`Steel\`, ${textures.STONE} \`Stone\` and ${textures.ICE} \`Ice\`
 You can fix this issue by replacing them with other blocks that aren't mentioned in this list, which take only **1** character
 *You cannot export this map as it would cause issues in gameplay if played*
 
-:map: **Map size: \`${map.length}\`** *(Remove \`${(Math.ceil((map.length-3600)/29))}\` heavy blocks to make the map render again)*
+:map: **Map size: \`${map.length}\`** *(Remove \`${(Math.ceil((map.length-3600)/23))}\` heavy blocks to make the map render again)*
                 `;
             } else if (map.length > 3600 && !isEditor) {
                 map = `This map failed to load due to being too big (3600+ characters). If this issue continues, please consider contacting the map author, or you can still play (up to you :D), **controls are still enabled, you can choose to play blindly**`;
