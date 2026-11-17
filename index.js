@@ -3134,7 +3134,7 @@ ${Array.from(interaction.fields.fields.values())
             const optionsPicker = new LabelBuilder()
                 .setLabel('Select additional settings')
                 .setCheckboxGroupComponent((checkboxes) =>
-                    checkboxes.setCustomId('options').addOptions([
+                    checkboxes.setCustomId('options').setRequired(false).addOptions([
                         { label: 'Disable Fancy Garden', value: 'disableFancyGarden', description: `Disable an exploration biome which gives additional items and can be considered too overpowered.` },
                         { label: 'Hide Identities in lobby', value: 'hideIdentities', description: 'Hide the name, badges and stats of both players in the lobby to prevent evading' },
                         { label: 'Show Events', value: 'showEvents', description: 'Log kills and different game events in the embed of the game' },
@@ -3169,16 +3169,18 @@ ${Array.from(interaction.fields.fields.values())
             let customMap;
             let options = interaction.fields.getCheckboxGroup('options');
             if (type == 'private' && interaction.fields.getTextInputValue('customMap')) customMap = interaction.fields.getTextInputValue('customMap');
-            let mapID = (customMap || interaction.fields.getRadioGroup('map')).replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-');
+            let mapID = customMap;
+            if(!mapID || mapID == '') mapID = interaction.fields.getRadioGroup('map').replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-');
             let mapData = await WawaUtils.readf(`./maps/${mapID}.json`);
             if (await WawaUtils.readf(`./maps/${mapID}.json`) == false) mapData = false;
-            const server = new CFServer(type, WawaUtils.rand(5, 'all'), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData);
-            console.log(`[0;32m+ [Game] New server hosted!|[0m Code: [94m${server.code}[0 Host: [94m${server.host}[0`);
+            const server = new CFServer(type, WawaUtils.rand('all', 5), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData);
+            console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m`);
             interaction.channel.send(`
 \`\`\`js
 ${JSON.stringify(server)}
 \`\`\`
 `);
+            return await interaction.deferUpdate();
         } catch (error) {
             console.error(`Failed to process host modal (${interaction.customId}) interaction: ${error}`);
             queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));

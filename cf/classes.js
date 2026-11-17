@@ -326,7 +326,7 @@ class CFServer {
         } catch (error) {
             console.log(`Failed to load ${code} server map: ${error}`);
         }
-        if (!mapData || mapFail) return { error: 'mapfail' };
+        if (!mapData || mapFail) return { error: 'mapfail', code: code, host: host };
         this.code = code;
         this.host = host;
         this.players = [];
