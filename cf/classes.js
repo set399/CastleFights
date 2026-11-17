@@ -320,11 +320,12 @@ class CFServer {
 
     constructor(type, code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapData) {
         let mapFail = false;
+        let parsedMap = {title: 'Unloaded', author: 'Unloaded'};
         try {
-            const parsedMap = JSON.parse(mapData);
-            mapFail = true;
+            parsedMap = JSON.parse(mapData);
         } catch (error) {
             console.log(`Failed to load ${code} server map: ${error}`);
+            mapFail = true;
         }
         if (!mapData || mapFail) return { error: 'mapfail', code: code, host: host };
         this.code = code;

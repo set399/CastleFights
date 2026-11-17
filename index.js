@@ -748,7 +748,7 @@ const lootboxEmojis = {
 
     const EventEmitter = require('events');
     const dominoUpdater = new EventEmitter();
-    const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits, ModalBuilder, TextInputBuilder, LabelBuilder, MessageFlags } = require('discord.js');
+    const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, Client, WebhookClient, GatewayIntentBits, ModalBuilder, TextInputBuilder, LabelBuilder, MessageFlags, AttachmentBuilder } = require('discord.js');
     const cl = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] })
 
 const wh = {
@@ -3167,19 +3167,18 @@ ${Array.from(interaction.fields.fields.values())
             const type = parts[1];
             const id = parts[2];
             let customMap;
-            let options = interaction.fields.getCheckboxGroup('options');
+            let options = interaction.fields.getCheckboxGroup('options') || [];
             if (type == 'private' && interaction.fields.getTextInputValue('customMap')) customMap = interaction.fields.getTextInputValue('customMap');
             let mapID = customMap;
-            if(!mapID || mapID == '') mapID = interaction.fields.getRadioGroup('map').replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-');
-            let mapData = await WawaUtils.readf(`./maps/${mapID}.json`);
-            if (await WawaUtils.readf(`./maps/${mapID}.json`) == false) mapData = false;
+            if(!mapID || mapID == '') mapID = interaction.fields.getRadioGroup('map')
+            let mapData = await WawaUtils.readf(`./maps/${mapID.replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-') }.json`);
+            if (!await WawaUtils.readf(`./maps/${mapID.replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-') }.json`)) mapData = false;
             const server = new CFServer(type, WawaUtils.rand('all', 5), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData);
             console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m`);
-            interaction.channel.send(`
-\`\`\`js
-${JSON.stringify(server)}
-\`\`\`
-`);
+            interaction.channel.send({attachments: [
+                new AttachmentBuilder(Buffer.from(JSON.stringify(server), 'utf-8'), {name: 'server.json'})
+            ]
+            });
             return await interaction.deferUpdate();
         } catch (error) {
             console.error(`Failed to process host modal (${interaction.customId}) interaction: ${error}`);
