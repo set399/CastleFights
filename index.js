@@ -3169,7 +3169,10 @@ ${Array.from(interaction.fields.fields.values())
             let customMap;
             let options = interaction.fields.getCheckboxGroup('options');
             if (type == 'private' && interaction.fields.getTextInputValue('customMap')) customMap = interaction.fields.getTextInputValue('customMap');
-            const server = new CFServer(type, WawaUtils.rand(5, 'all'), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, customMap || interaction.fields.getRadioGroup('map'));
+            const mapID = customMap || interaction.fields.getRadioGroup('map');
+            let mapData = await WawaUtils.readf(`./maps/${mapID}.json`);
+            if (await WawaUtils.readf(`./maps/${mapID}.json`) == false) mapData = { nonexistent: true };
+            const server = new CFServer(type, WawaUtils.rand(5, 'all'), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData);
             console.log(`[0;32m+ [Game] New server hosted!|[0m Code: [94m${server.code}[0 Host: [94m${server.host}[0`);
             interaction.channel.send(`
 \`\`\`js

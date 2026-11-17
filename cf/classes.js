@@ -318,10 +318,7 @@ class CFPlayer {
 }
 class CFServer {
 
-    constructor(type, code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapID) {
-        const mapData = (async() => {
-            await WawaUtils.readf(`./maps/${mapID}.json`)
-        })();
+    constructor(type, code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapData) {
         const parsedMap = JSON.parse(mapData);
         if (!mapData) return { error: `Invalid Map ID ;< sobbies u hatieeeeeee u put invalid map` };
         this.code = code;
