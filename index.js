@@ -3117,9 +3117,9 @@ ${Array.from(interaction.fields.fields.values())
                 .setLabel('Select a Map')
                 .setRadioGroupComponent((options) =>
                     options.setCustomId('map').addOptions([
-                        { label: 'Ground', value: 'ground', description: 'A regular plains-themed map with destructible trees', default: true },
-                        { label: 'Bridge', value: 'bridge', description: 'A map of 2 islands connected by a bridge out of destructible stone blocks' },
-                        { label: 'Desert', value: 'desert', description: 'A hilly desert map with destructible cacti in the middle that also deal damage' }
+                        { label: 'Ground', value: 'Ground', description: 'A regular plains-themed map with destructible trees', default: true },
+                        { label: 'Bridge', value: 'Bridge', description: 'A map of 2 islands connected by a bridge out of destructible stone blocks' },
+                        { label: 'Desert', value: 'Desert', description: 'A hilly desert map with destructible cacti in the middle that also deal damage' }
                     ]),
                 );
             /*
