@@ -1,5 +1,5 @@
 const WawaUtils = require('@set399/wawautils');
-const blockIDs = ['EMPTY', 'LEAF', 'WOOD', 'SAND', 'ICE', 'CACTUS', 'STEEL', 'OBSIDIAN', 'CROWN', 'PLAYER', 'DECO_TREE', 'DECO_PALMTREE', 'DECO_DEADBUSH'];
+const blockIDs = ['EMPTY', 'LEAF', 'WOOD', 'SAND', 'ICE', 'STONE', 'CACTUS', 'STEEL', 'OBSIDIAN', 'CROWN', 'PLAYER', 'DECO_TREE', 'DECO_PALMTREE', 'DECO_DEADBUSH'];
 const skins = ['default', 'default2', 'constructionworker', 'farmer', 'sweating', 'holdingtears', 'grin', 'joy', 'rofl', 'snail', 'beetle', 'cricket', 'halo', 'sunglasses', 'suspicious', 'sauropod', 'orangutan', 'parrot', 'swan', 'chipmunk', 'nerd', 'raisedeyebrow', 'coldface', 'imp', 'pumpkin', 'turkey', 'dodo', 'flamingo', 'crocodile', 'beaver', 'flushed', 'cowboy', 'skull', 'alien', 'robot', 'turtle', 'dog', 'cat', 'rat', 'peacock', 'chicken', 'rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken'];
 const skinsObj = {
     default: '😀',
@@ -76,7 +76,7 @@ const DEFAULTS = {
     crown1: { x: 0, y: 4 },
     crown2: { x: WIDTH - 1, y: 4 },
     spawnpoint1: { x: 4, y: 4 },
-    spawnpoint2: { x: WIDTH - 4, y: 4 }
+    spawnpoint2: { x: WIDTH - 5, y: 4 }
 };
 
 class CFMap {
