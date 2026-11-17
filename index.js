@@ -3175,7 +3175,7 @@ ${Array.from(interaction.fields.fields.values())
             if (!await WawaUtils.readf(`./maps/${mapID.replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-') }.json`)) mapData = false;
             const server = new CFServer(type, WawaUtils.rand('all', 5), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData);
             console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m`);
-            interaction.channel.send({attachments: [
+            interaction.channel.send({files: [
                 new AttachmentBuilder(Buffer.from(JSON.stringify(server), 'utf-8'), {name: 'server.json'})
             ]
             });
