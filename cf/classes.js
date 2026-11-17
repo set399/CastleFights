@@ -1,5 +1,5 @@
 const WawaUtils = require('@set399/wawautils');
-const blockIDs = ['EMPTY', 'LEAF', 'WOOD', 'SAND', 'ICE', 'STONE', 'CACTUS', 'STEEL', 'OBSIDIAN', 'CROWN', 'PLAYER', 'DECO_TREE', 'DECO_PALMTREE', 'DECO_DEADBUSH'];
+const blockIDs = ['EMPTY', 'LEAF', 'WOOD', 'SAND', 'ICE', 'STONE', 'CACTUS', 'STEEL', 'OBSIDIAN', 'CROWN', 'PLAYER', 'DECO_TREE', 'DECO_PALMTREE', 'DECO_DEADBUSH', 'SPECIALS_WATER'];
 const skins = ['default', 'default2', 'constructionworker', 'farmer', 'sweating', 'holdingtears', 'grin', 'joy', 'rofl', 'snail', 'beetle', 'cricket', 'halo', 'sunglasses', 'suspicious', 'sauropod', 'orangutan', 'parrot', 'swan', 'chipmunk', 'nerd', 'raisedeyebrow', 'coldface', 'imp', 'pumpkin', 'turkey', 'dodo', 'flamingo', 'crocodile', 'beaver', 'flushed', 'cowboy', 'skull', 'alien', 'robot', 'turtle', 'dog', 'cat', 'rat', 'peacock', 'chicken', 'rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken'];
 const skinsObj = {
     default: '😀',
@@ -63,6 +63,7 @@ const textures = {
     DECO_DEADBUSH: '🪾',
     DECO_PALMTREE: '🌴',
     OBSIDIAN: '🟪',
+    SPECIALS_WATER: '🟦',
     CROWN: '<:c:1117868600976478299>',
     INVALID: '<:i:1337424671171412000>',
     SPAWNPOINT1: '<:s:1565142053405327461>',
