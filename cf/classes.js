@@ -319,8 +319,14 @@ class CFPlayer {
 class CFServer {
 
     constructor(type, code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapData) {
-        const parsedMap = JSON.parse(mapData);
-        if (!mapData || mapData == {nonexistent: true}) return { error: `Invalid Map ID ;< sobbies u hatieeeeeee u put invalid map` };
+        let mapFail = false;
+        try {
+            const parsedMap = JSON.parse(mapData);
+            mapFail = true;
+        } catch (error) {
+            console.log(`Failed to load ${code} server map: ${error}`);
+        }
+        if (!mapData || mapFail) return { error: 'mapfail' };
         this.code = code;
         this.host = host;
         this.players = [];

@@ -2630,7 +2630,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                     return message.reply({
                         embeds: [
                             new EmbedBuilder()
-                                .setTitle(`:white_check_mark: Loaded \`${loadedMap.title}\` by \`@${loadedMap.author}\` to the editor!`)
+                                .setTitle(`:white_check_mark: Loaded \`${loadedMap.title}\` by \`@${file.author}\` to the editor!`)
                                 .setColor('Green')
                                 .setFooter({text: `${args}.json has been loaded into the editor! | ?editor import`})
                         ]
@@ -3169,9 +3169,9 @@ ${Array.from(interaction.fields.fields.values())
             let customMap;
             let options = interaction.fields.getCheckboxGroup('options');
             if (type == 'private' && interaction.fields.getTextInputValue('customMap')) customMap = interaction.fields.getTextInputValue('customMap');
-            const mapID = (customMap || interaction.fields.getRadioGroup('map')).replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-');
+            let mapID = (customMap || interaction.fields.getRadioGroup('map')).replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-');
             let mapData = await WawaUtils.readf(`./maps/${mapID}.json`);
-            if (await WawaUtils.readf(`./maps/${mapID}.json`) == false) mapData = { nonexistent: true };
+            if (await WawaUtils.readf(`./maps/${mapID}.json`) == false) mapData = false;
             const server = new CFServer(type, WawaUtils.rand(5, 'all'), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData);
             console.log(`[0;32m+ [Game] New server hosted!|[0m Code: [94m${server.code}[0 Host: [94m${server.host}[0`);
             interaction.channel.send(`
