@@ -195,7 +195,7 @@ You can fix this issue by replacing them with other blocks that aren't mentioned
         if (map.failLoad) this.failLoad = true;
         this.title = map.title;
         this.data = map.data;
-        return this.title;
+        return this;
     }
     
 }
@@ -320,7 +320,7 @@ class CFServer {
 
     constructor(type, code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapData) {
         const parsedMap = JSON.parse(mapData);
-        if (!mapData) return { error: `Invalid Map ID ;< sobbies u hatieeeeeee u put invalid map` };
+        if (!mapData || mapData == {nonexistent: true}) return { error: `Invalid Map ID ;< sobbies u hatieeeeeee u put invalid map` };
         this.code = code;
         this.host = host;
         this.players = [];
