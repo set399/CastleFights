@@ -2625,12 +2625,19 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                                 .setColor('Red')
                         ]
                     });
+                    let author = 'Unknown Author';
+                    try {
+                        const f = JSON.parse(file);
+                        author = f.author;
+                    } catch (error) { 
+
+                    };
                     editors[message.author.id].import(file);
                     const loadedMap = editors[message.author.id];
                     return message.reply({
                         embeds: [
                             new EmbedBuilder()
-                                .setTitle(`:white_check_mark: Loaded \`${loadedMap.title}\` by \`@${file.author}\` to the editor!`)
+                                .setTitle(`:white_check_mark: Loaded \`${loadedMap.title}\` by \`@${author}\` to the editor!`)
                                 .setColor('Green')
                                 .setFooter({text: `${args}.json has been loaded into the editor! | ?editor import`})
                         ]
