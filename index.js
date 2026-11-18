@@ -964,8 +964,8 @@ ${message.content}
                                 .setDescription(`
 * :wave: Hey **${message.author.globalName}**! Welcome to :european_castle: **Castle Fights**! Because the bot uses it's own account system independent of your Discord account, you have to register your own account like this.
 * **Please click the button below to create your account and type your name inside the modal that will pop up upon pressing!**
-* :warning: **Disclaimer:** The name you enter inside the modal that will pop up after pressing the button is your **Display Name** in game, your actual username that people can interact with you by will be the lowercase version of it where spaces are converted into underscores, i.e. **Castle Fights** -> \`@castle_fights\`
-* :exclamation: **You cannot use \`:\`, \`/\`, \`\\\`, \`;\`, \`*\`, \`\`\`, \`<\` or \`>\` in your name and it must be 2-20 characters long**
+* :warning: **Disclaimer:** The name you enter inside the modal that will pop up after pressing the button is your **Display Name** in game, your actual username that people can interact with you by will be the lowercase version of it where spaces are converted into dashes, i.e. **Castle Fights** -> \`@castle_fights\`
+* :exclamation: **You cannot use any other characters in your name other than the **english alphabet letters and numbers** (except dashes, \`-\`) and it must be 2-20 characters long**
 `)
                                 .setColor(embedColors.blue)
                                 .setFooter({text: '?register | Click the button below to register!'})
@@ -2602,7 +2602,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                 }
                 if (action == 'export') {
                     const id = WawaUtils.rand('0-9', 10);
-                    const mapName = `${editors[message.author.id].title}-${id}`.replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-'); // '-' looks like a silly face woaa -w-
+                    const mapName = `${editors[message.author.id].title}-${id}`.replace(allowRegex, '-');
                     await WawaUtils.editjsonf(`./maps/${mapName}.json`, editors[message.author.id]);
                     return message.reply({
                         content: `
@@ -2620,7 +2620,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                                 .setColor('Red')
                         ]
                     });
-                    const file = await WawaUtils.readf(`./maps/${args.replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-') }.json`);
+                    const file = await WawaUtils.readf(`./maps/${args.replace(allowRegex, '-')}.json`);
                     if (!file) return message.reply({
                         embeds: [
                             new EmbedBuilder()
@@ -2885,6 +2885,13 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                         new EmbedBuilder()
                             .setTitle(':no_entry_sign: You already have an account!')
                             .setColor('Red')
+                    ]
+                });
+                if (!ign.test(allowRegex) || ign.length < 2 || ign.length > 20) return message.reply({
+                    embeds: [
+                        new EmbedBuilder()
+                        .setTitle(':no_entry_sign: Your name contains invalid characters or does not meet the length of 2-20 characters!')
+                        .setColor('Red')
                     ]
                 });
                 wh.whitelist.send({content: `**:bust_in_silhouette: Whitelist | User <@${message.author.id}> (${message.author.username}) wants to be whitelisted as: \`${ign}\`**`});
@@ -3183,8 +3190,8 @@ ${Array.from(interaction.fields.fields.values())
             if (type == 'private' && interaction.fields.getTextInputValue('customMap')) customMap = interaction.fields.getTextInputValue('customMap');
             let mapID = customMap;
             if(!mapID || mapID == '') mapID = interaction.fields.getRadioGroup('map')
-            let mapData = await WawaUtils.readf(`./maps/${mapID.replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-') }.json`);
-            if (!await WawaUtils.readf(`./maps/${mapID.replaceAll(' ', '-').replaceAll('/', '-').replaceAll('.', '-').replaceAll('\\', '-') }.json`)) mapData = false;
+            let mapData = await WawaUtils.readf(`./maps/${mapID.replace(allowRegex, '-') }.json`);
+            if (!await WawaUtils.readf(`./maps/${mapID.replace(allowRegex, '-')}.json`)) mapData = false;
             const server = new CFServer(type, WawaUtils.rand('all', 5), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData);
             console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m`);
             interaction.channel.send({files: [
@@ -3370,10 +3377,11 @@ ${Array.from(interaction.fields.fields.values())
             if (!id || id !== interaction.user.id) return;
             let invalidName = false;
             const ign = interaction.fields.getTextInputValue('registerInput_' + id);
-            const invalidChars = ['*', '/', '\\', '_', '`', '<', '>', ':', '@'];
+            /* const invalidChars = ['*', '/', '\\', '_', '`', '<', '>', ':', '@'];
             Object.values(ign).forEach(char => {
                 if (invalidChars.includes(char)) invalidName = true;
-            });
+            }); */
+            if (!ign.test(allowRegex)) invalidName = true;
             if (invalidName) return await interaction.reply({ content: `:no_entry_sign: **Your name contains invalid characters! Please click the button again and re-submit the modal with a different name**`, flags: 64 });
             if (names[ign.toLowerCase().replaceAll(' ', '-')]) return await interaction.reply({content: `:no_entry_sign: **This name is already taken! Please click the button again and re-submit the modal with a different name**`, flags: 64});
             db[interaction.user.id] = register(ign, Object.keys(db).length);
