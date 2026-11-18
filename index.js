@@ -3352,6 +3352,8 @@ ${Array.from(interaction.fields.fields.values())
                 .setLabel(`Enter the text to send to this user`)
                 .setStyle('Paragraph')
                 .setRequired(true)
+                .setMinLength(2)
+                .setMaxLength(300)
             const modalRow = new ActionRowBuilder().addComponents(text);
             modal.addComponents(modalRow);
             await interaction.showModal(modal);
