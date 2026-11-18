@@ -2887,7 +2887,7 @@ You need to specify the **set** option like this: \`?editor set x1,y1,x2,y2,id,h
                             .setColor('Red')
                     ]
                 });
-                if (!allowRegex.test(ign) || ign.length < 2 || ign.length > 20) return message.reply({
+                if (allowRegex.test(ign) || ign.length < 2 || ign.length > 20) return message.reply({
                     embeds: [
                         new EmbedBuilder()
                         .setTitle(':no_entry_sign: Your name contains invalid characters or does not meet the length of 2-20 characters!')
@@ -3381,7 +3381,7 @@ ${Array.from(interaction.fields.fields.values())
             Object.values(ign).forEach(char => {
                 if (invalidChars.includes(char)) invalidName = true;
             }); */
-            if (!allowRegex.test(ign)) invalidName = true;
+            if (allowRegex.test(ign)) invalidName = true;
             if (invalidName) return await interaction.reply({ content: `:no_entry_sign: **Your name contains invalid characters! Please click the button again and re-submit the modal with a different name**`, flags: 64 });
             if (names[ign.toLowerCase().replaceAll(' ', '-')]) return await interaction.reply({content: `:no_entry_sign: **This name is already taken! Please click the button again and re-submit the modal with a different name**`, flags: 64});
             db[interaction.user.id] = register(ign, Object.keys(db).length);
