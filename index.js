@@ -84,6 +84,8 @@ let editors = {};
             return 'CUSTOM'
         }
     }
+const allowRegex = /[^a-zA-Z0-9_-]/g;
+
 const textures = {
     EMPTY: '<:e_:1337418328875991092>',
     WOOD: '🟫',
