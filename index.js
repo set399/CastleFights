@@ -4,7 +4,7 @@ const fs = require('fs');
 const readline = require('readline');
 const rl = readline.createInterface(process.stdin, process.stdout);
 
-const logChannels = [process.env.LOG1, process.env.LOG2];
+const logChannels = [process.env.LOG2];
 
 rl.prompt('> ')
 
@@ -3157,6 +3157,8 @@ ${Array.from(interaction.fields.fields.values())
                             .setCustomId('customMap')
                             .setStyle('Short')
                             .setRequired(false)
+                            .setMinLength(2)
+                            .setMaxLength(50)
                     );
                 components.splice(1, 0, customMapPicker)
             };
@@ -3265,6 +3267,8 @@ ${Array.from(interaction.fields.fields.values())
                 .setLabel(`Enter the text for your request`)
                 .setStyle('Paragraph')
                 .setRequired(true)
+                .setMinLength(2)
+                .setMaxLength(500)
             const modalRow = new ActionRowBuilder().addComponents(requestInput);
             modal.addComponents(modalRow);
             await interaction.showModal(modal);
@@ -3291,6 +3295,8 @@ ${Array.from(interaction.fields.fields.values())
                 .setLabel(`Enter the reason to ban this user`)
                 .setStyle('Short')
                 .setRequired(true)
+                .setMinLength(2)
+                .setMaxLength(200)
             const modalRow = new ActionRowBuilder().addComponents(banReason);
             modal.addComponents(modalRow);
             await interaction.showModal(modal);
