@@ -2475,10 +2475,11 @@ Use the \`?editor\` command with one of the following parameters to perform acti
 > \`export\` - :outbox_tray: **Save your map to the servers for later importing or showcase to potentially become as official map**
 > \`import\` - :inbox_tray: **Load a previously created map from the servers**
 
-*Please note that if a map is longer than 3,600 characters, it will have rendering restrictions*
-*Because of how discord emojis work, the \`EMPTY\` block has ~25 characters while blocks like \`WOOD\` or \`LEAF\` are just 1 emoji (:brown_square:, :green_square:)*
-*This basically creates an effect where the more complex the map is, the smaller in character size it actually is*
-*Because of this, when creating maps, place some blocks to make the map slightly complex*
+**__Map Constraints__**
+* If a map's combined character length exceeds over \`3600\` characters, it's top 2 vertical Y rows will get unrendered.
+* If despite the row unrender action the map still goes over the limit, it will return an error and will not render.
+* There are so called **heavy blocks** (blocks that use a custom emoji for their display which takes **24** characters instead of 1)*, i.e. ${textures.EMPTY} \`Air\`, ${textures.STEEL} \`Steel\`, ${textures.STONE} \`Stone\`, ${textures.ICE} \`Ice\` and 🟦 \`Water\`
+* **Please consider not using these blocks too much in your map and instead use other blocks, because every other block than the ones mentioned here take only \`1\` character**
 `)
                             .setColor(embedColors[user.settings.embedcolor])
                             .setFooter({ text: `Map Editor Options | ?editor` })
@@ -3000,7 +3001,7 @@ ${inboxContents}
 :earth_africa: **Public** - *The game will show in the public server list and anyone will be able to join, you **WILL** be awarded for your performance*
 -# *Anyone is also able to spectate this game using the \`?spectate\` command, you can only change this behavior by setting your game to :lock: **Private***
 :lock: **Private** - *Your game will NOT show in the public server list and the only way for your opponent to join is if they know the invite code, you will **NOT** be awarded for your performance*
--# :map: In :lock: **Private** games, you can select a Custom Map to play, in order to do that, you need to execute the \`?host\` command with the map parameter, like this: \`?host testMapID\`. All Custom Map IDs are [here](https://github.com/set399/CastleFights/blob/master/maps/)
+-# :map: In :lock: **Private** games, you can select a Custom Map to play, if you know the ID of a Custom Map, you can enter it as an option when hosting a game of this type. All Custom Map IDs are [here](https://github.com/set399/CastleFights/blob/master/maps/)
 `)
                             .setColor('Green')
                             .setFooter({text: `Pick one of the buttons below | ?host`})
