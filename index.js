@@ -33,8 +33,6 @@ rl.on('line', async l => {
     });
 });
 
-let inGame = new Set();
-
 const { editjson, readjson, make, del, edit, read } = require('./fileManager.js');
 const { CFMap, CFPlayer, CFServer } = require('./cf/classes.js');
 const { register } = require('./cf/register.js'); 
@@ -68,6 +66,9 @@ names.json length: ${JSON.stringify(names).length}
 
 
 let editors = {};
+let servers = new Map();
+let currentGame = {};
+let inGame = new Set();
 
     function racc(int) { // Resolve account type
         if (int == 0 || int == undefined || !int || int == null) {
@@ -245,8 +246,7 @@ const textures = {
         rgbchicken: 'RGB Chicken'
 };
 
-    var servers = {};
-    var currentGame = {};
+
 
     const blockHp = {
         LEAF: 50,

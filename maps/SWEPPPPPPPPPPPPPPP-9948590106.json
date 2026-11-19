@@ -1,0 +1,1020 @@
+{
+  "title": "SWEPPPPPPPPPPPPPPP",
+  "author": "swepswep",
+  "failLoad": false,
+  "settings": {
+    "crowns": [
+      {
+        "x": 0,
+        "y": 4
+      },
+      {
+        "x": 20,
+        "y": 4
+      }
+    ],
+    "spawnpoints": [
+      {
+        "x": 4,
+        "y": 4
+      },
+      {
+        "x": 16,
+        "y": 4
+      }
+    ]
+  },
+  "data": [
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "CROWN",
+        "health": 200,
+        "props": {
+          "playerID": 0
+        }
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ],
+    [
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "WOOD",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "LEAF",
+        "health": 100000,
+        "props": {}
+      },
+      {
+        "id": "CROWN",
+        "health": 200,
+        "props": {
+          "playerID": 1
+        }
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      },
+      {
+        "id": "EMPTY",
+        "health": 0,
+        "props": {}
+      }
+    ]
+  ]
+}
