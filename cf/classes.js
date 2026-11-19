@@ -328,7 +328,7 @@ class CFServer {
             console.log(`Failed to load ${code} server map: ${error}`);
             mapFail = true;
         }
-        if (!mapData || mapFail) return { error: 'mapfail', code: code, host: host };
+        if (!mapData || mapFail) this.end('mapfail');
         this.code = code;
         this.host = host;
         this.players = [];
@@ -345,7 +345,19 @@ class CFServer {
         this.map = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
         this.baseMap = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
     }
-    end
+    end(reason) {
+        servers.delete(this.code);
+        console.log(`[0;31m+ [Game] Server ended! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m Reason: [94m${reason}[0m`);
+    }
+    phaseChange() {
+
+    }
+    join() {
+
+    }
+    leave() {
+
+    }
 }
 
 module.exports = {CFMap, CFPlayer, CFServer};
