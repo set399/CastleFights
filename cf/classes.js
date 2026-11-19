@@ -1,3 +1,4 @@
+const { servers } = require('../index.js');
 const WawaUtils = require('@set399/wawautils');
 const blockIDs = ['EMPTY', 'LEAF', 'WOOD', 'SAND', 'ICE', 'STONE', 'CACTUS', 'STEEL', 'OBSIDIAN', 'CROWN', 'PLAYER', 'DECO_TREE', 'DECO_PALMTREE', 'DECO_DEADBUSH', 'SPECIALS_WATER'];
 const skins = ['default', 'default2', 'constructionworker', 'farmer', 'sweating', 'holdingtears', 'grin', 'joy', 'rofl', 'snail', 'beetle', 'cricket', 'halo', 'sunglasses', 'suspicious', 'sauropod', 'orangutan', 'parrot', 'swan', 'chipmunk', 'nerd', 'raisedeyebrow', 'coldface', 'imp', 'pumpkin', 'turkey', 'dodo', 'flamingo', 'crocodile', 'beaver', 'flushed', 'cowboy', 'skull', 'alien', 'robot', 'turtle', 'dog', 'cat', 'rat', 'peacock', 'chicken', 'rich', 'killermouse', 'spaceinvader', 'catfemoby', 'femoby', 'rgbchicken'];
@@ -344,6 +345,7 @@ class CFServer {
         this.map = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
         this.baseMap = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
     }
+    end
 }
 
 module.exports = {CFMap, CFPlayer, CFServer};

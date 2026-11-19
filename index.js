@@ -3521,3 +3521,4 @@ ${text}
 
 
 cl.login(process.env.TOKEN);
+module.exports = { servers };
