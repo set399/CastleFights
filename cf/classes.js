@@ -1,3 +1,4 @@
+const { TextInputStyle } = require('discord.js');
 const { servers } = require('../index.js');
 const WawaUtils = require('@set399/wawautils');
 const blockIDs = ['EMPTY', 'LEAF', 'WOOD', 'SAND', 'ICE', 'STONE', 'CACTUS', 'STEEL', 'OBSIDIAN', 'CROWN', 'PLAYER', 'DECO_TREE', 'DECO_PALMTREE', 'DECO_DEADBUSH', 'SPECIALS_WATER'];
@@ -332,6 +333,7 @@ class CFServer {
         this.code = code;
         this.host = host;
         this.players = [];
+        this.type = type;
         this.settings = {
             fancyGardenEnabled: fancyGarden,
             hideIdentities: hideIdentities,
@@ -344,6 +346,7 @@ class CFServer {
         this.finalGameEnd = 0;
         this.map = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
         this.baseMap = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
+        console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m`);
     }
     end(reason) {
         servers.delete(this.code);

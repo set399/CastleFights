@@ -3191,14 +3191,31 @@ ${Array.from(interaction.fields.fields.values())
             let mapID = customMap;
             if(!mapID || mapID == '') mapID = interaction.fields.getRadioGroup('map')
             let mapData = await WawaUtils.readf(`./maps/${mapID.replace(allowRegex, '-') }.json`);
-            if (!await WawaUtils.readf(`./maps/${mapID.replace(allowRegex, '-')}.json`)) mapData = false;
-            const server = new CFServer(type, WawaUtils.rand('all', 5), 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData);
-            console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m`);
-            interaction.channel.send({files: [
+            if (!await WawaUtils.readf(`./maps/${mapID.replace(allowRegex, '-')}.json`)) { 
+                return await interaction.reply({embeds: [
+                new EmbedBuilder()
+                        .setTitle(':no_entry_sign: This map doesn\'t exist!')
+                        .setColor('Red')
+                ], flags: 64});
+            }
+            const code = WawaUtils.rand('all', 5);
+            servers.set(code, new CFServer(type, code, 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData));
+            /* interaction.channel.send({files: [
                 new AttachmentBuilder(Buffer.from(JSON.stringify(server), 'utf-8'), {name: 'server.json'})
             ]
+            }); */
+            interaction.deferUpdate();
+            if (!servers.get(code)) return await interaction.channel.send({embeds: [
+                new EmbedBuilder()
+                    .setTitle(`:file_cabinet: Server \`${code}\` (${type == 'public' ? '🌍' : ':lock:'} ${type == 'public' ? 'Public' : 'Private'})`)
+                    .setDescription(`
+Failed to host the server.
+The server has been deleted, please re-host it.
+`)
+                    .setColor('Red')
+                    .setFooter({text: `#${code} failed to host`})
+            ]
             });
-            return await interaction.deferUpdate();
         } catch (error) {
             console.error(`Failed to process host modal (${interaction.customId}) interaction: ${error}`);
             queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
