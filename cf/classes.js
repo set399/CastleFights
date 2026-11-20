@@ -350,7 +350,7 @@ class CFServer {
     }
     end(reason) {
         servers.delete(this.code);
-        console.log(`[0;31m+ [Game] Server ended! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m Reason: [94m${reason}[0m`);
+        console.log(`[0;31m+ [Game] Server ended! | [0m Code: [94m${this.code}[0m Host: [94m${this.host}[0m Reason: [94m${reason}[0m`);
     }
     phaseChange() {
 
