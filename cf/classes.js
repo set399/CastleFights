@@ -346,11 +346,11 @@ class CFServer {
         this.finalGameEnd = 0;
         this.map = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
         this.baseMap = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
-        console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m`);
+        console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${this.code}[0m Host: [94m${this.host}[0m`);
     }
     end(reason) {
         servers.delete(this.code);
-        console.log(`[0;31m+ [Game] Server ended! | [0m Code: [94m${server.code}[0m Host: [94m${server.host}[0m Reason: [94m${reason}[0m`);
+        console.log(`[0;31m+ [Game] Server ended! | [0m Code: [94m${this.code}[0m Host: [94m${this.host}[0m Reason: [94m${reason}[0m`);
     }
     phaseChange() {
 
