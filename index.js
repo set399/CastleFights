@@ -40,7 +40,6 @@ const WawaUtils = require('@set399/wawautils');
     // DB Deposit
     let db = {};
     let names = {};
-    let currentgame = {};
     (async () => {
         db = await readjson('./db.json');
         console.log(`[DB] Loaded db.json (length: ${JSON.stringify(db).length})`);
@@ -706,9 +705,9 @@ function gamemodeDisplay(gamemode) {
     if (gamemode == 'CLASSIC') return `Classic`;
 }
 function mapDisplayIcon(map) {
-    if (gamemode == 'Ground') return `🏕`;
-    if (gamemode == 'Bridge') return `🌉`;
-    if (gamemode == 'Desert') return `🏜`;
+    if (map == 'Ground') return `🏕`;
+    if (map == 'Bridge') return `🌉`;
+    if (map == 'Desert') return `🏜`;
     return `🗺`;
 }
 const requestCategory = {
@@ -3142,7 +3141,7 @@ ${Array.from(interaction.fields.fields.values())
             if (db[interaction.user.id] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
             if (db[interaction.user.id].accountType == -1) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
             if (db[interaction.user.id].accountType == -2) return await interaction.reply({ content: `:no_entry_sign: **You have been banned from Castle Fights! (How tf did you run this command tho)**`, flags: 64 });
-
+            if (currentGame[interaction.user.id]) return await interaction.reply({content: `:no_entry_sign: **You are already in a game!**`, flags: 64});
             const modal = new ModalBuilder()
                 .setCustomId('hostModal_' + type + '_' + id)
                 .setTitle('Hosting a Game (' + type + ')');
@@ -3201,6 +3200,11 @@ ${Array.from(interaction.fields.fields.values())
             const parts = interaction.customId.split('_');
             const type = parts[1];
             const id = parts[2];
+            if (id !== interaction.user.id) return await interaction.reply({ content: `:no_entry_sign: **This is not your message! Run your own \`?host\` command!! ;<**`, flags: 64 });
+            if (db[interaction.user.id] == undefined) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
+            if (db[interaction.user.id].accountType == -1) return await interaction.reply({ content: `:no_entry_sign: **You do not have an account! (How tf did you run this command tho)**`, flags: 64 });
+            if (db[interaction.user.id].accountType == -2) return await interaction.reply({ content: `:no_entry_sign: **You have been banned from Castle Fights! (How tf did you run this command tho)**`, flags: 64 });
+            if (currentGame[interaction.user.id]) return await interaction.reply({ content: `:no_entry_sign: **You are already in a game!**`, flags: 64 });
             let customMap;
             let options = interaction.fields.getCheckboxGroup('options') || [];
             if (type == 'private' && interaction.fields.getTextInputValue('customMap')) customMap = interaction.fields.getTextInputValue('customMap');
@@ -3232,6 +3236,7 @@ The server has been deleted, please re-host it.
                     .setFooter({text: `#${code} failed to host`})
             ]
             });
+            currentGame[interaction.user.id] = code;
             return await interaction.channel.send({
                 embeds: [
                     new EmbedBuilder()
@@ -3245,10 +3250,10 @@ The server has been deleted, please re-host it.
 * \`Show Events ${servers.get(code).settings.showEvents == true ? '✅' : '🚫'}\`
 * \`Utilities ${!servers.get(code).settings.disableUtils == true ? '✅' : '🚫'}\`
 # :busts_in_silhouette: Players: \`${servers.get(code).players.length}/2\` (${servers.get(code).players.length > 1 ? '✅' : '🚫'} *${servers.get(code).players.length > 1 ? 'Can' : 'Cannot'} start*)
-${skins[servers.get(code).players[0].skin]} **${servers.get(code).players[0].nick}** - Player 1 (Host)
-> ${icons['lvl' + servers.get(code)].players[0].levelIcon} \`Level ${servers.get(code).players[0].level}\`
-> ${icons.coin} \`${db[names[servers.get(code).players[0].ign].id].coins} coins\` 
-> :trophy: \`${db[names[servers.get(code).players[0].ign].id].wins} wins\` (${Math.floor((db[names[servers.get(code).players[0].ign].id].wins / db[names[servers.get(code).players[0].ign].id].games)/100)}%)
+${skins[servers.get(code).players[0].skin]} **${servers.get(code).players[0].displayUser}** - Player 1 (Host)
+> ${icons['lvl' + servers.get(code).players[0].levelIcon]} \`Level ${servers.get(code).players[0].level}\`
+> ${icons.coin} \`${db[names[servers.get(code).players[0].user].id].coins} coins\` 
+> :trophy: \`${db[names[servers.get(code).players[0].user].id].wins} wins\` (${Math.floor((db[names[servers.get(code).players[0].user].id].wins / db[names[servers.get(code).players[0].user].id].games)*100) || 0}%)
 :question_mark: *Empty slot* - Player 2 (Opponent)
 Nobody has joined this game yet.
                         `)
