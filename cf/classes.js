@@ -202,7 +202,7 @@ You can fix this issue by replacing them with other blocks that aren't mentioned
     
 }
 class CFPlayer {
-    constructor(ign, nick, level, skin, x, y, respawnX, respawnY) {
+    constructor(ign, nick, level, levelIcon, skin, x, y, respawnX, respawnY) {
         this.level = level;
         this.user = ign;
         this.displayUser = nick;
@@ -332,7 +332,7 @@ class CFServer {
         if (!mapData || mapFail) this.end('mapfail');
         this.code = code;
         this.host = host;
-        this.players = [];
+        this.players = [new CFPlayer(host.ign, host.nick, host.level, host.levelIcon, host.skin, 0, 0, 0, 0)];
         this.type = type;
         this.settings = {
             fancyGardenEnabled: fancyGarden,
@@ -340,6 +340,7 @@ class CFServer {
             showEvents: events,
             disableUtils: disableUtils
         };
+        this.gamemode = gamemode;
         this.phase = 'LOBBY';
         this.prepPhaseEnd = 0;
         this.fightEnd = 0;

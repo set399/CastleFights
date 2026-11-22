@@ -699,6 +699,18 @@ function settingsLevelIconUnlockButtonStyle(icon, level) {
     if (level < icon) return 'Secondary';
     if (level >= icon) return 'Success';
 }
+function gamemodeDisplayIcon(gamemode) { 
+    if (gamemode == 'CLASSIC') return `⚔`;
+}
+function gamemodeDisplay(gamemode) {
+    if (gamemode == 'CLASSIC') return `Classic`;
+}
+function mapDisplayIcon(map) {
+    if (gamemode == 'Ground') return `🏕`;
+    if (gamemode == 'Bridge') return `🌉`;
+    if (gamemode == 'Desert') return `🏜`;
+    return `🗺`;
+}
 const requestCategory = {
     userchange: 'Username Change',
     verification: 'Request Verification',
@@ -3203,7 +3215,7 @@ ${Array.from(interaction.fields.fields.values())
                 ], flags: 64});
             }
             const code = WawaUtils.rand('all', 5);
-            servers.set(code, new CFServer(type, code, 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), db[id].name, undefined, mapData));
+            servers.set(code, new CFServer(type, code, 'CLASSIC', !options.includes('disableFancyGarden'), options.includes('hideIdentities'), options.includes('showEvents'), options.includes('disableUtils'), {ign: db[id].name, nick: db[id].display, level: getLevel(db[id].xp).level, levelIcon: db[id].levelIcon,skin: db[id].skin}, undefined, mapData));
             /* interaction.channel.send({files: [
                 new AttachmentBuilder(Buffer.from(JSON.stringify(server), 'utf-8'), {name: 'server.json'})
             ]
@@ -3220,6 +3232,30 @@ The server has been deleted, please re-host it.
                     .setFooter({text: `#${code} failed to host`})
             ]
             });
+            return await interaction.channel.send({
+                embeds: [
+                    new EmbedBuilder()
+                        .setTitle(`:file_cabinet: Server \`${code}\` (${type == 'public' ? '🌍' : ':lock:'} ${type == 'public' ? 'Public' : 'Private'})`)
+                        .setDescription(`
+**:map: Map: ${mapDisplayIcon(servers.get(code).map.title)} \`${servers.get(code).map.title}\`**
+**:video_game: Gamemode: ${gamemodeDisplayIcon(servers.get(code).gamemode)} \`${gamemodeDisplay(servers.get(code).gamemode)}\`**
+**:gear: Settings:** 
+* \`Fancy Garden ${servers.get(code).settings.fancyGardenEnabled == true ? '✅' : '🚫'}\`
+* \`Show Identities ${!servers.get(code).settings.hideIdentities == true ? '✅' : '🚫'}\`
+* \`Show Events ${servers.get(code).settings.showEvents == true ? '✅' : '🚫'}\`
+* \`Utilities ${!servers.get(code).settings.disableUtils == true ? '✅' : '🚫'}\`
+# :busts_in_silhouette: Players: \`${servers.get(code).players.length}/2\` (${servers.get(code).players.length > 1 ? '✅' : '🚫'} *${servers.get(code).players.length > 1 ? 'Can' : 'Cannot'} start*)
+${skins[servers.get(code).players[0].skin]} **${servers.get(code).players[0].nick}** - Player 1 (Host)
+> ${icons['lvl' + servers.get(code)].players[0].levelIcon} \`Level ${servers.get(code).players[0].level}\`
+> ${icons.coin} \`${db[names[servers.get(code).players[0].ign].id].coins} coins\` 
+> :trophy: \`${db[names[servers.get(code).players[0].ign].id].wins} wins\` (${Math.floor((db[names[servers.get(code).players[0].ign].id].wins / db[names[servers.get(code).players[0].ign].id].games)/100)}%)
+:question_mark: *Empty slot* - Player 2 (Opponent)
+Nobody has joined this game yet.
+                        `)
+                        .setColor(servers.get(code).players.length > 1 ? 'Green' : 'Red')
+                        .setFooter({text: `Server ${code} | ${servers.get(code).players.length}/2 players`})
+                ]
+            })
         } catch (error) {
             console.error(`Failed to process host modal (${interaction.customId}) interaction: ${error}`);
             queues.errors.push(errorEmbed(interaction.user, interaction.channel, interaction.customId, 'interaction', error));
