@@ -3258,7 +3258,7 @@ ${skins[servers.get(code).players[0].skin]} **${servers.get(code).players[0].dis
 Nobody has joined this game yet.
                         `)
                         .setColor(servers.get(code).players.length > 1 ? 'Green' : 'Red')
-                        .setFooter({text: `Server ${code} | ${servers.get(code).players.length}/2 players`})
+                        .setFooter({text: `Server ${code} | ${servers.get(code).players.length}/2 players | Viewing as @${db[interaction.user.id].name}`})
                 ]
             })
         } catch (error) {
