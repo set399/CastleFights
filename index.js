@@ -3265,17 +3265,17 @@ Nobody has joined this game yet.
                 new ActionRowBuilder()
                 .addComponents(
                         new ButtonBuilder()
-                        .setStyle('SUCCESS')
+                        .setStyle('Success')
                         .setCustomId(`game_start_${code}_${interaction.user.id}`)
                         .setLabel('Start Game')
                         .setEmoji('▶'),
                         new ButtonBuilder()
-                        .setStyle('DANGER')
+                        .setStyle('Danger')
                         .setCustomId(`game_leave_${code}_${interaction.user.id}`)
                         .setLabel('End Game')
                         .setEmoji('🚪'),
                     new ButtonBuilder()
-                        .setStyle('SECONDARY')
+                        .setStyle('Secondary')
                         .setCustomId(`game_refresh_${code}_${interaction.user.id}`)
                         .setEmoji('🔁')
                 )
