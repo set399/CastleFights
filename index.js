@@ -3237,6 +3237,7 @@ The server has been deleted, please re-host it.
             ]
             });
             currentGame[interaction.user.id] = code;
+            interaction.message.delete();
             return await interaction.channel.send({
                 embeds: [
                     new EmbedBuilder()
