@@ -3260,6 +3260,25 @@ Nobody has joined this game yet.
                         `)
                         .setColor(servers.get(code).players.length > 1 ? 'Green' : 'Red')
                         .setFooter({text: `Server ${code} | ${servers.get(code).players.length}/2 players | Viewing as @${db[interaction.user.id].name}`})
+                ],
+                components: [
+                new ActionRowBuilder()
+                .addComponents(
+                        new ButtonBuilder()
+                        .setStyle('SUCCESS')
+                        .setCustomId(`game_start_${code}_${interaction.user.id}`)
+                        .setLabel('Start Game')
+                        .setEmoji('▶'),
+                        new ButtonBuilder()
+                        .setStyle('DANGER')
+                        .setCustomId(`game_leave_${code}_${interaction.user.id}`)
+                        .setLabel('End Game')
+                        .setEmoji('🚪'),
+                    new ButtonBuilder()
+                        .setStyle('SECONDARY')
+                        .setCustomId(`game_refresh_${code}_${interaction.user.id}`)
+                        .setEmoji('🔁')
+                )
                 ]
             })
         } catch (error) {
