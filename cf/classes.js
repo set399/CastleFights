@@ -321,7 +321,7 @@ class CFPlayer {
 }
 class CFServer {
 
-    constructor(type, code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapData) {
+    constructor(type, code, gamemode, fancyGarden, hideIdentities, events, disableUtils, host, opponent, mapData, expiryMin) {
         let mapFail = false;
         let parsedMap = {title: 'Unloaded', author: 'Unloaded'};
         try {
@@ -348,6 +348,7 @@ class CFServer {
         this.finalGameEnd = 0;
         this.map = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
         this.baseMap = new CFMap(parsedMap.title, parsedMap.author).import(mapData);
+        this.expiryTs = Date.now() + (expiry * 1000 * 60)
         console.log(`[0;32m+ [Game] New server hosted! | [0m Code: [94m${this.code}[0m Host: [94m${this.host.ign}[0m`);
     }
     end(reason) {
