@@ -3257,6 +3257,8 @@ ${skins[servers.get(code).players[0].skin]} **${servers.get(code).players[0].dis
 > :trophy: \`${db[names[servers.get(code).players[0].user].id].wins} wins\` (${Math.floor((db[names[servers.get(code).players[0].user].id].wins / db[names[servers.get(code).players[0].user].id].games)*100) || 0}%)
 :question_mark: *Empty slot* - Player 2 (Opponent)
 Nobody has joined this game yet.
+
+Type \`?lobby\` to view this menu again!
                         `)
                         .setColor(servers.get(code).players.length > 1 ? 'Green' : 'Red')
                         .setFooter({text: `Server ${code} | ${servers.get(code).players.length}/2 players | Viewing as @${db[interaction.user.id].name}`})
